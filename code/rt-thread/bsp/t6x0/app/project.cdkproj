@@ -3,172 +3,6 @@
   <Dependencies Name="Debug"/>
   <Description/>
   <Dependencies Name="BuildSet"/>
-  <BuildConfigs>
-    <BuildConfig Name="BuildSet">
-      <Target>
-        <ROMBank Selected="1">
-          <ROM1>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-          </ROM1>
-          <ROM2>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-          </ROM2>
-          <ROM3>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-          </ROM3>
-          <ROM4>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-          </ROM4>
-          <ROM5>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-          </ROM5>
-        </ROMBank>
-        <RAMBank>
-          <RAM1>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-            <Init>yes</Init>
-          </RAM1>
-          <RAM2>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-            <Init>yes</Init>
-          </RAM2>
-          <RAM3>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-            <Init>yes</Init>
-          </RAM3>
-          <RAM4>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-            <Init>yes</Init>
-          </RAM4>
-          <RAM5>
-            <InUse>no</InUse>
-            <Start/>
-            <Size/>
-            <Init>yes</Init>
-          </RAM5>
-        </RAMBank>
-        <CPU>ck803s</CPU>
-        <UseMiniLib>yes</UseMiniLib>
-        <Endian>little</Endian>
-        <UseHardFloat>no</UseHardFloat>
-        <UseEnhancedLRW>no</UseEnhancedLRW>
-      </Target>
-      <Output>
-        <OutputName>$(ProjectName)</OutputName>
-        <Type>Executable</Type>
-        <CreateHexFile>yes</CreateHexFile>
-        <CreateBinFile>yes</CreateBinFile>
-        <Preprocessor>yes</Preprocessor>
-        <Disasm>yes</Disasm>
-        <CallGraph>yes</CallGraph>
-        <Map>yes</Map>
-      </Output>
-      <User>
-        <BeforeCompile>
-          <RunUserProg>no</RunUserProg>
-          <UserProgName/>
-        </BeforeCompile>
-        <BeforeMake>
-          <RunUserProg>no</RunUserProg>
-          <UserProgName/>
-        </BeforeMake>
-        <AfterMake>
-          <RunUserProg>yes</RunUserProg>
-          <UserProgName>csky-abiv2-elf-objcopy -O binary .\Obj\$(ProjectName).elf .\Obj\$(ProjectName).bin</UserProgName>
-        </AfterMake>
-      </User>
-      <Compiler>
-        <Define/>
-        <Undefine/>
-        <Optim>Optimize more (-O2)</Optim>
-        <DebugLevel>Default (-g)</DebugLevel>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
-        <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf -DMBEDTLS_CONFIG_FILE=\"mbedtls\/config.h\"</OtherFlags>
-        <Verbose>no</Verbose>
-        <Ansi>no</Ansi>
-        <Syntax>no</Syntax>
-        <Pedantic>no</Pedantic>
-        <PedanticErr>no</PedanticErr>
-        <InhibitWarn>no</InhibitWarn>
-        <AllWarn>yes</AllWarn>
-        <WarnErr>no</WarnErr>
-        <OneElfS>yes</OneElfS>
-        <Fstrict>no</Fstrict>
-      </Compiler>
-      <Asm>
-        <Define>CONFIG_CKCPU_MMU=0</Define>
-        <Undefine/>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
-        <OtherFlags/>
-        <DebugLevel>gdwarf2</DebugLevel>
-      </Asm>
-      <Linker>
-        <Garbage>yes</Garbage>
-        <LDFile>$(ProjectPath)\fw.ld</LDFile>
-        <LibName/>
-        <LibPath/>
-        <OtherFlags/>
-        <AutoLDFile>no</AutoLDFile>
-      </Linker>
-      <Debug>
-        <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
-        <Connector>Remote ICE</Connector>
-        <StopAt>yes</StopAt>
-        <StopAtText>main</StopAtText>
-        <InitFile/>
-        <AutoRun>no</AutoRun>
-        <ResetType>Hard Reset</ResetType>
-        <SoftResetVal>0</SoftResetVal>
-        <ResetAfterLoad>no</ResetAfterLoad>
-        <ConfigICE>
-          <IP>localhost</IP>
-          <PORT>1025</PORT>
-          <Clock>12000</Clock>
-          <Delay>10</Delay>
-          <DDC>yes</DDC>
-          <TRST>no</TRST>
-          <Connect>Normal</Connect>
-          <ResetType>Soft Reset</ResetType>
-          <SoftResetVal>0</SoftResetVal>
-          <RTOSType>Bare Metal</RTOSType>
-          <DownloadToFlash>no</DownloadToFlash>
-          <ResetAfterConnect>yes</ResetAfterConnect>
-        </ConfigICE>
-        <ConfigSIM>
-          <SIMTarget/>
-          <OtherFlags/>
-          <NoGraphic>yes</NoGraphic>
-          <Log>no</Log>
-        </ConfigSIM>
-      </Debug>
-      <Flash>
-        <InitFile/>
-        <Erase>Erase Sectors</Erase>
-        <Algorithms Path=""/>
-        <Program>yes</Program>
-        <Verify>no</Verify>
-        <ResetAndRun>no</ResetAndRun>
-      </Flash>
-    </BuildConfig>
-  </BuildConfigs>
   <VirtualDirectory Name="entry">
     <File Name="entry/ipraw.c">
       <FileOption/>
@@ -921,14 +755,200 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
+  <MonitorProgress>
+    <DebugLaunch>170</DebugLaunch>
+  </MonitorProgress>
+  <BuildConfigs>
+    <BuildConfig Name="BuildSet">
+      <Target>
+        <ROMBank Selected="1">
+          <ROM1>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM1>
+          <ROM2>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM2>
+          <ROM3>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM3>
+          <ROM4>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM4>
+          <ROM5>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM5>
+        </ROMBank>
+        <RAMBank>
+          <RAM1>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM1>
+          <RAM2>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM2>
+          <RAM3>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM3>
+          <RAM4>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM4>
+          <RAM5>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM5>
+        </RAMBank>
+        <CPU>ck803s</CPU>
+        <UseMiniLib>yes</UseMiniLib>
+        <Endian>little</Endian>
+        <UseHardFloat>no</UseHardFloat>
+        <UseEnhancedLRW>no</UseEnhancedLRW>
+        <UseContinueBuild>no</UseContinueBuild>
+        <UseSemiHost>no</UseSemiHost>
+      </Target>
+      <Output>
+        <OutputName>$(ProjectName)</OutputName>
+        <Type>Executable</Type>
+        <CreateHexFile>yes</CreateHexFile>
+        <CreateBinFile>yes</CreateBinFile>
+        <Preprocessor>yes</Preprocessor>
+        <Disassmeble>yes</Disassmeble>
+        <CallGraph>yes</CallGraph>
+        <Map>yes</Map>
+      </Output>
+      <User>
+        <BeforeCompile>
+          <RunUserProg>no</RunUserProg>
+          <UserProgName/>
+        </BeforeCompile>
+        <BeforeMake>
+          <RunUserProg>no</RunUserProg>
+          <UserProgName/>
+        </BeforeMake>
+        <AfterMake>
+          <RunUserProg>yes</RunUserProg>
+          <UserProgName>csky-abiv2-elf-objcopy -O binary .\Obj\$(ProjectName).elf .\Obj\$(ProjectName).bin</UserProgName>
+        </AfterMake>
+      </User>
+      <Compiler>
+        <Define/>
+        <Undefine/>
+        <Optim>Optimize more (-O2)</Optim>
+        <DebugLevel>Default (-g)</DebugLevel>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
+        <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf -DMBEDTLS_CONFIG_FILE=\"mbedtls\/config.h\"</OtherFlags>
+        <Verbose>no</Verbose>
+        <Ansi>no</Ansi>
+        <Syntax>no</Syntax>
+        <Pedantic>no</Pedantic>
+        <PedanticErr>no</PedanticErr>
+        <InhibitWarn>no</InhibitWarn>
+        <AllWarn>yes</AllWarn>
+        <WarnErr>no</WarnErr>
+        <OneElfS>yes</OneElfS>
+        <Fstrict>no</Fstrict>
+      </Compiler>
+      <Asm>
+        <Define>CONFIG_CKCPU_MMU=0</Define>
+        <Undefine/>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
+        <OtherFlags/>
+        <DebugLevel>gdwarf2</DebugLevel>
+      </Asm>
+      <Linker>
+        <Garbage>yes</Garbage>
+        <LDFile>$(ProjectPath)\fw_jtag.ld</LDFile>
+        <LibName/>
+        <LibPath/>
+        <OtherFlags/>
+        <AutoLDFile>no</AutoLDFile>
+        <LinkType/>
+      </Linker>
+      <Debug>
+        <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
+        <Connector>ICE</Connector>
+        <StopAt>yes</StopAt>
+        <StopAtText>main</StopAtText>
+        <InitFile/>
+        <AutoRun>yes</AutoRun>
+        <ResetType>Hard Reset</ResetType>
+        <SoftResetVal>0</SoftResetVal>
+        <ResetAfterLoad>no</ResetAfterLoad>
+        <Dumpcore>no</Dumpcore>
+        <DumpcoreText>$(ProjectPath)/$(ProjectName).cdkcore</DumpcoreText>
+        <ConfigICE>
+          <IP>localhost</IP>
+          <PORT>1025</PORT>
+          <CPUNumber>0</CPUNumber>
+          <Clock>12000</Clock>
+          <Delay>10</Delay>
+          <WaitReset>50</WaitReset>
+          <DDC>yes</DDC>
+          <TRST>no</TRST>
+          <DebugPrint>no</DebugPrint>
+          <Connect>Normal</Connect>
+          <ResetType>Soft Reset</ResetType>
+          <SoftResetVal>0</SoftResetVal>
+          <RTOSType>Bare Metal</RTOSType>
+          <DownloadToFlash>yes</DownloadToFlash>
+          <ResetAfterConnect>yes</ResetAfterConnect>
+          <GDBName/>
+          <GDBServerType>Local</GDBServerType>
+          <OtherFlags/>
+        </ConfigICE>
+        <ConfigSIM>
+          <SIMTarget>soccfg/userconfig/T680/1.xml</SIMTarget>
+          <OtherFlags>111</OtherFlags>
+          <NoGraphic>yes</NoGraphic>
+          <Log>no</Log>
+          <SimTrace>yes</SimTrace>
+        </ConfigSIM>
+      </Debug>
+      <Flash>
+        <InitFile/>
+        <Erase>Erase Sectors</Erase>
+        <Algorithms Path="">T6x0_Norflash_Cdk.elf</Algorithms>
+        <Program>yes</Program>
+        <Verify>no</Verify>
+        <ResetAndRun>no</ResetAndRun>
+        <ResetType>Soft Reset</ResetType>
+        <SoftResetVal/>
+        <External>no</External>
+        <Command/>
+        <Arguments/>
+      </Flash>
+    </BuildConfig>
+  </BuildConfigs>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ</statistics>
+    <statistics>;;MHZ;</statistics>
     <peripheralTabs/>
-    <WatchDisplayFormat/>
-    <LocalDisplayFormat/>
+    <WatchDisplayFormat>1</WatchDisplayFormat>
+    <LocalDisplayFormat>1</LocalDisplayFormat>
     <debugLayout/>
-    <memoryTabColSizeExpressions/>
+    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
 </Project>
