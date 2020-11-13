@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CDK_Workspace Name="project" Database="">
+<CDK_Workspace Name="project" Database="" DoubleClick="Yes">
   <Project Name="rt-thread" Path="project.cdkproj" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
