@@ -742,7 +742,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3176,7 +3176,7 @@ void rt_show_version(void)
     rt_kprintf("\n \\ | /\n");
     rt_kprintf("- RT -     Thread Operating System\n");
     rt_kprintf(" / | \\     %d.%d.%d build %s\n",
-               3L, 1L, 0L, "Nov  9 2020");
+               3L, 1L, 0L, "Nov 13 2020");
     rt_kprintf(" 2006 - 2018 Copyright by rt-thread team\n");
 }
 ;
@@ -3817,7 +3817,7 @@ void rt_kprintf(const char *fmt, ...)
 {
     va_list args;
     rt_size_t length;
-    static char rt_log_buf[128];
+    static char rt_log_buf[256];
 
     __builtin_va_start(args,fmt);
 
@@ -3826,8 +3826,8 @@ void rt_kprintf(const char *fmt, ...)
 
 
     length = rt_vsnprintf(rt_log_buf, sizeof(rt_log_buf) - 1, fmt, args);
-    if (length > 128 - 1)
-        length = 128 - 1;
+    if (length > 256 - 1)
+        length = 256 - 1;
 
     if (_console_device == (0))
     {

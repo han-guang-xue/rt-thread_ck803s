@@ -1,0 +1,12 @@
+----------Building project:[ rt-thread - BuildSet ]----------
+make[1]: Entering directory 'E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/app'
+csky-elfabiv2-gcc -o  Obj/rt-thread.elf  -Wl,--callgraph_file=.//Lst/rt-thread.htm   -Wl,--ckmap=.//Lst/rt-thread.map  @rt-thread.txt -LE:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/libraries  -Wl,--whole-archive -lt6x0_c   -Wl,--no-whole-archive  -mcpu=ck803s  -nostartfiles -Wl,--gc-sections -T.//fw.ld   -Wl,--whole-archive  -Wl,--no-whole-archive  
+csky-elfabiv2-objcopy -O ihex .//Obj/rt-thread.elf  .//Obj/rt-thread.ihex 
+csky-elfabiv2-objdump -S .//Obj/rt-thread.elf  > .//Lst/rt-thread.asm 
+size of target:
+   text	   data	    bss	    dec	    hex	filename
+ 496716	   1356	  44764	 542836	  84874	./Obj/rt-thread.elf
+checksum value of target:0x69E78030 (2,860,008)
+make[1]: Leaving directory 'E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/app'
+Executing Post Build commands ...
+Done

@@ -743,7 +743,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3059,6 +3059,177 @@ static __inline void rt_poll_add(rt_wqueue_t *wq, rt_pollreq_t *req)
     }
 }
 # 38 "../../../components/drivers/include/rtdevice.h" 2
+# 46 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/rtc.h" 1
+# 28 "../../../components/drivers/include/drivers/rtc.h"
+rt_err_t set_date(rt_uint32_t year, rt_uint32_t month, rt_uint32_t day);
+rt_err_t set_time(rt_uint32_t hour, rt_uint32_t minute, rt_uint32_t second);
+
+int rt_soft_rtc_init(void);
+int rt_rtc_ntp_sync_init(void);
+# 47 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+
+
+
+# 1 "../../../components/drivers/include/drivers/spi.h" 1
+# 70 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message
+{
+    const void *send_buf;
+    void *recv_buf;
+    rt_size_t length;
+    struct rt_spi_message *next;
+
+    unsigned cs_take : 1;
+    unsigned cs_release : 1;
+};
+
+
+
+
+struct rt_spi_configuration
+{
+    rt_uint8_t mode;
+    rt_uint8_t data_width;
+    rt_uint16_t reserved;
+
+    rt_uint32_t max_hz;
+};
+
+struct rt_spi_ops;
+struct rt_spi_bus
+{
+    struct rt_device parent;
+    const struct rt_spi_ops *ops;
+
+    struct rt_mutex lock;
+    struct rt_spi_device *owner;
+};
+
+
+
+
+struct rt_spi_ops
+{
+    rt_err_t (*configure)(struct rt_spi_device *device, struct rt_spi_configuration *configuration);
+    rt_uint32_t (*xfer)(struct rt_spi_device *device, struct rt_spi_message *message);
+};
+
+
+
+
+struct rt_spi_device
+{
+    struct rt_device parent;
+    struct rt_spi_bus *bus;
+
+    struct rt_spi_configuration config;
+};
+
+
+
+rt_err_t rt_spi_bus_register(struct rt_spi_bus *bus,
+                             const char *name,
+                             const struct rt_spi_ops *ops);
+
+
+rt_err_t rt_spi_bus_attach_device(struct rt_spi_device *device,
+                                  const char *name,
+                                  const char *bus_name,
+                                  void *user_data);
+# 142 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take_bus(struct rt_spi_device *device);
+# 151 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release_bus(struct rt_spi_device *device);
+# 160 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take(struct rt_spi_device *device);
+# 169 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release(struct rt_spi_device *device);
+
+
+rt_err_t rt_spi_configure(struct rt_spi_device *device,
+                          struct rt_spi_configuration *cfg);
+
+
+rt_err_t rt_spi_send_then_recv(struct rt_spi_device *device,
+                               const void *send_buf,
+                               rt_size_t send_length,
+                               void *recv_buf,
+                               rt_size_t recv_length);
+
+rt_err_t rt_spi_send_then_send(struct rt_spi_device *device,
+                               const void *send_buf1,
+                               rt_size_t send_length1,
+                               const void *send_buf2,
+                               rt_size_t send_length2);
+# 198 "../../../components/drivers/include/drivers/spi.h"
+rt_size_t rt_spi_transfer(struct rt_spi_device *device,
+                          const void *send_buf,
+                          void *recv_buf,
+                          rt_size_t length);
+# 212 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message *rt_spi_transfer_message(struct rt_spi_device *device,
+                                               struct rt_spi_message *message);
+
+static __inline rt_size_t rt_spi_recv(struct rt_spi_device *device,
+                                void *recv_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, (0), recv_buf, length);
+}
+
+static __inline rt_size_t rt_spi_send(struct rt_spi_device *device,
+                                const void *send_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, send_buf, (0), length);
+}
+
+static __inline rt_uint8_t rt_spi_sendrecv8(struct rt_spi_device *device,
+                                      rt_uint8_t data)
+{
+    rt_uint8_t value;
+
+    rt_spi_send_then_recv(device, &data, 1, &value, 1);
+
+    return value;
+}
+
+static __inline rt_uint16_t rt_spi_sendrecv16(struct rt_spi_device *device,
+                                        rt_uint16_t data)
+{
+    rt_uint16_t value;
+
+    rt_spi_send_then_recv(device, &data, 2, &value, 2);
+
+    return value;
+}
+
+
+
+
+
+
+
+static __inline void rt_spi_message_append(struct rt_spi_message *list,
+                                     struct rt_spi_message *message)
+{
+    if (!(list != (0))) { rt_assert_handler("list != RT_NULL", __FUNCTION__, 258); };
+    if (message == (0))
+        return;
+
+    while (list->next != (0))
+    {
+        list = list->next;
+    }
+
+    list->next = message;
+    message->next = (0);
+}
+# 54 "../../../components/drivers/include/rtdevice.h" 2
 # 65 "../../../components/drivers/include/rtdevice.h"
 # 1 "../../../components/drivers/include/drivers/serial.h" 1
 # 107 "../../../components/drivers/include/drivers/serial.h"
@@ -3140,4 +3311,1484 @@ rt_err_t rt_hw_serial_register(struct rt_serial_device *serial,
                                rt_uint32_t flag,
                                void *data);
 # 66 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/i2c.h" 1
+# 41 "../../../components/drivers/include/drivers/i2c.h"
+struct rt_i2c_msg
+{
+    rt_uint16_t addr;
+    rt_uint16_t flags;
+    rt_uint16_t len;
+    rt_uint8_t *buf;
+};
+
+struct rt_i2c_bus_device;
+
+struct rt_i2c_bus_device_ops
+{
+    rt_size_t (*master_xfer)(struct rt_i2c_bus_device *bus,
+                             struct rt_i2c_msg msgs[],
+                             rt_uint32_t num);
+    rt_size_t (*slave_xfer)(struct rt_i2c_bus_device *bus,
+                            struct rt_i2c_msg msgs[],
+                            rt_uint32_t num);
+    rt_err_t (*i2c_bus_control)(struct rt_i2c_bus_device *bus,
+                                rt_uint32_t,
+                                rt_uint32_t);
+};
+
+
+struct rt_i2c_bus_device
+{
+    struct rt_device parent;
+    const struct rt_i2c_bus_device_ops *ops;
+    rt_uint16_t flags;
+    rt_uint16_t addr;
+    struct rt_mutex lock;
+    rt_uint32_t timeout;
+    rt_uint32_t retries;
+    void *priv;
+};
+
+
+
+
+
+
+
+rt_err_t rt_i2c_bus_device_register(struct rt_i2c_bus_device *bus,
+                                    const char *bus_name);
+struct rt_i2c_bus_device *rt_i2c_bus_device_find(const char *bus_name);
+rt_size_t rt_i2c_transfer(struct rt_i2c_bus_device *bus,
+                          struct rt_i2c_msg msgs[],
+                          rt_uint32_t num);
+rt_size_t rt_i2c_master_send(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             const rt_uint8_t *buf,
+                             rt_uint32_t count);
+rt_size_t rt_i2c_master_recv(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             rt_uint8_t *buf,
+                             rt_uint32_t count);
+int rt_i2c_core_init(void);
+# 70 "../../../components/drivers/include/rtdevice.h" 2
+# 1 "../../../components/drivers/include/drivers/i2c_dev.h" 1
+# 39 "../../../components/drivers/include/drivers/i2c_dev.h"
+struct rt_i2c_priv_data
+{
+    struct rt_i2c_msg *msgs;
+    rt_size_t number;
+};
+
+rt_err_t rt_i2c_bus_device_device_init(struct rt_i2c_bus_device *bus,
+                                       const char *name);
+# 71 "../../../components/drivers/include/rtdevice.h" 2
+
+
+# 1 "../../../components/drivers/include/drivers/i2c-bit-ops.h" 1
+# 32 "../../../components/drivers/include/drivers/i2c-bit-ops.h"
+struct rt_i2c_bit_ops
+{
+    void *data;
+    void (*set_sda)(void *data, rt_int32_t state);
+    void (*set_scl)(void *data, rt_int32_t state);
+    rt_int32_t (*get_sda)(void *data);
+    rt_int32_t (*get_scl)(void *data);
+
+    void (*udelay)(rt_uint32_t us);
+
+    rt_uint32_t delay_us;
+    rt_uint32_t timeout;
+};
+
+rt_err_t rt_i2c_bit_add_bus(struct rt_i2c_bus_device *bus,
+                            const char *bus_name);
+# 74 "../../../components/drivers/include/rtdevice.h" 2
+# 84 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/watchdog.h" 1
+# 37 "../../../components/drivers/include/drivers/watchdog.h"
+struct rt_watchdog_ops;
+struct rt_watchdog_device
+{
+    struct rt_device parent;
+    const struct rt_watchdog_ops *ops;
+};
+typedef struct rt_watchdog_device rt_watchdog_t;
+
+struct rt_watchdog_ops
+{
+    rt_err_t (*init)(rt_watchdog_t *wdt);
+    rt_err_t (*control)(rt_watchdog_t *wdt, int cmd, void *arg);
+};
+
+rt_err_t rt_hw_watchdog_register(rt_watchdog_t *wdt,
+                                 const char *name,
+                                 rt_uint32_t flag,
+                                 void *data);
+# 85 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/pin.h" 1
+# 37 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin
+{
+    struct rt_device parent;
+    const struct rt_pin_ops *ops;
+};
+# 63 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin_mode
+{
+    rt_uint16_t pin;
+    rt_uint16_t mode;
+};
+struct rt_device_pin_status
+{
+    rt_uint16_t pin;
+    rt_uint16_t status;
+};
+struct rt_pin_irq_hdr
+{
+    rt_int16_t pin;
+    rt_uint16_t mode;
+    void (*hdr)(void *args);
+    void *args;
+};
+struct rt_pin_ops
+{
+    void (*pin_mode)(struct rt_device *device, rt_base_t pin, rt_base_t mode);
+    void (*pin_write)(struct rt_device *device, rt_base_t pin, rt_base_t value);
+    int (*pin_read)(struct rt_device *device, rt_base_t pin);
+
+
+    rt_err_t (*pin_attach_irq)(struct rt_device *device, rt_int32_t pin,
+                      rt_uint32_t mode, void (*hdr)(void *args), void *args);
+    rt_err_t (*pin_detach_irq)(struct rt_device *device, rt_int32_t pin);
+    rt_err_t (*pin_irq_enable)(struct rt_device *device, rt_base_t pin, rt_uint32_t enabled);
+};
+
+int rt_device_pin_register(const char *name, const struct rt_pin_ops *ops, void *user_data);
+
+void rt_pin_mode(rt_base_t pin, rt_base_t mode);
+void rt_pin_write(rt_base_t pin, rt_base_t value);
+int rt_pin_read(rt_base_t pin);
+rt_err_t rt_pin_attach_irq(rt_int32_t pin, rt_uint32_t mode,
+                             void (*hdr)(void *args), void *args);
+rt_err_t rt_pin_detach_irq(rt_int32_t pin);
+rt_err_t rt_pin_irq_enable(rt_base_t pin, rt_uint32_t enabled);
+# 89 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/hwtimer.h" 1
+# 12 "../../../components/drivers/include/drivers/hwtimer.h"
+typedef enum
+{
+    HWTIMER_CTRL_FREQ_SET = 0x01,
+    HWTIMER_CTRL_STOP,
+    HWTIMER_CTRL_INFO_GET,
+    HWTIMER_CTRL_MODE_SET
+} rt_hwtimer_ctrl_t;
+
+
+typedef enum
+{
+    HWTIMER_MODE_ONESHOT = 0x01,
+    HWTIMER_MODE_PERIOD
+} rt_hwtimer_mode_t;
+
+
+typedef struct rt_hwtimerval
+{
+    rt_int32_t sec;
+    rt_int32_t usec;
+} rt_hwtimerval_t;
+
+
+
+
+struct rt_hwtimer_device;
+
+struct rt_hwtimer_ops
+{
+    void (*init)(struct rt_hwtimer_device *timer, rt_uint32_t state);
+    rt_err_t (*start)(struct rt_hwtimer_device *timer, rt_uint32_t cnt, rt_hwtimer_mode_t mode);
+    void (*stop)(struct rt_hwtimer_device *timer);
+    rt_uint32_t (*count_get)(struct rt_hwtimer_device *timer);
+    rt_err_t (*control)(struct rt_hwtimer_device *timer, rt_uint32_t cmd, void *args);
+};
+
+
+struct rt_hwtimer_info
+{
+    rt_int32_t maxfreq;
+    rt_int32_t minfreq;
+    rt_uint32_t maxcnt;
+    rt_uint8_t cntmode;
+};
+
+typedef struct rt_hwtimer_device
+{
+    struct rt_device parent;
+    const struct rt_hwtimer_ops *ops;
+    const struct rt_hwtimer_info *info;
+
+    rt_int32_t freq;
+    rt_int32_t overflow;
+    float period_sec;
+    rt_int32_t cycles;
+    rt_int32_t reload;
+    rt_hwtimer_mode_t mode;
+} rt_hwtimer_t;
+
+rt_err_t rt_device_hwtimer_register(rt_hwtimer_t *timer, const char *name, void *user_data);
+void rt_device_hwtimer_isr(rt_hwtimer_t *timer);
+# 93 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/cputime.h" 1
+# 28 "../../../components/drivers/include/drivers/cputime.h"
+struct rt_clock_cputime_ops
+{
+    float (*cputime_getres) (void);
+    uint32_t (*cputime_gettime)(void);
+};
+
+float clock_cpu_getres(void);
+uint32_t clock_cpu_gettime(void);
+
+uint32_t clock_cpu_microsecond(uint32_t cpu_tick);
+uint32_t clock_cpu_millisecond(uint32_t cpu_tick);
+
+int clock_cpu_setops(const struct rt_clock_cputime_ops *ops);
+# 97 "../../../components/drivers/include/rtdevice.h" 2
+# 108 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/sata.h" 1
+# 10 "../../../components/drivers/include/drivers/sata.h"
+struct rt_ata_device_ops;
+
+struct rt_ata_device
+{
+    struct rt_device parent;
+
+    struct rt_device_blk_geometry dev_info;
+    struct rt_device_blk_sectors dev_cap;
+
+    struct rt_mutex dlock;
+
+    const struct rt_ata_ops *ops;
+
+
+    void *crypto;
+    int disk_encrypt;
+
+
+
+    volatile int pending_cmds;
+
+};
+
+typedef struct rt_ata_device rt_ata_device_t;
+
+struct rt_ata_ops
+{
+    rt_err_t (*init)(struct rt_ata_device *device);
+    rt_err_t (*probe)(struct rt_ata_device *device, struct rt_device_blk_geometry *dev_info);
+    rt_size_t (*read)(struct rt_ata_device *device, rt_off_t pos, void *buffer, rt_size_t size);
+    rt_size_t (*write)(struct rt_ata_device *device, rt_off_t pos, const void *buffer, rt_size_t size);
+    rt_err_t (*ioctrl)(struct rt_ata_device *device, int cmd, void *args);
+    rt_err_t (*sync)(struct rt_ata_device *device);
+    rt_err_t (*trim)(struct rt_ata_device *device, void *buffer, rt_size_t size);
+};
+
+rt_err_t rt_ata_register(struct rt_ata_device *ata,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 109 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/crypto_dev.h" 1
+
+
+
+
+struct rt_crypto_device
+{
+    struct rt_device parent;
+
+    struct rt_mutex lock_cipher;
+    struct rt_mutex lock_pk;
+    struct rt_mutex lock_hash;
+    struct rt_mutex lock_rng;
+
+    const struct rt_crypto_ops *ops;
+};
+
+typedef struct rt_crypto_device rt_crypto_device_t;
+
+struct rt_crypto_ops
+{
+    rt_err_t (*reset)(rt_crypto_device_t *dev);
+    rt_err_t (*ioctl)(rt_crypto_device_t *dev, int cmd, void *args);
+};
+
+rt_err_t rt_crypto_register(rt_crypto_device_t *crypto,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 113 "../../../components/drivers/include/rtdevice.h" 2
 # 3 "../drivers/drv_crypto.c" 2
+
+
+# 1 "../drivers/drv_crypto.h" 1
+
+
+# 1 "../libraries/inc/tih/crypto.h" 1
+# 30 "../libraries/inc/tih/crypto.h"
+typedef struct symm_info {
+    unsigned char alg;
+    unsigned char mode;
+    unsigned char func;
+    unsigned char endian;
+    unsigned int keybits;
+    unsigned char *key;
+    unsigned char *xtskey;
+
+
+
+
+
+    unsigned char *param;
+    unsigned int ctr_step;
+} symm_info_t;
+
+void crypto_hw_init(void);
+int crypto_is_busy(void);
+void crypto_reset(void);
+
+unsigned int crypto_frontend_port_addr(void);
+unsigned int crypto_backend_port_addr(void);
+
+int crypto_bridge_is_required(unsigned int addr, symm_info_t *info);
+int crypto_bridge_enable(symm_info_t *info, unsigned int addr, unsigned int addr_mode, unsigned int nbytes, unsigned int dir);
+int crypto_bridge_prd_enable(symm_info_t *info, unsigned int *prd, unsigned int prd_nwords, unsigned int data_nbytes, int ass_mode);
+
+int crypto_fifo_enable(symm_info_t *info, unsigned int nbytes, unsigned int dir);
+
+int crypto_dma_start(symm_info_t *info, unsigned int src_addr, unsigned int src_addr_mode, unsigned int dst_addr, unsigned int dst_addr_mode, unsigned int nbytes);
+
+void crypto_data_pad(void);
+void crypto_data_discard(void);
+void crypto_master_reset(void);
+void crypto_slave_reset(void);
+
+unsigned int crypto_reg_symc_lsr_get(void);
+unsigned int crypto_symc_data_cnt(void);
+# 4 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/crypto_errno.h" 1
+
+
+
+typedef enum crypto_errno {
+                TIH_OK = 0x0,
+                TIH_KEYNULL = -1,
+                TIH_KEYLENERR = -2,
+                TIH_XTSKEYNULL = -3,
+                TIH_ALGFUNCNOTSUPPORT = -4,
+                TIH_DATASIZEERR = -5,
+                TIH_INDATANULL = -6,
+                TIH_IVNULL = -7,
+                TIH_IVLENERR = -8,
+                TIH_ALGMODNOTSUPPORT = -9,
+                TIH_SM2VERIFYERR = -10,
+                TIH_SM2ZEROALL = -11,
+                TIH_SM2BUFFERNULL = -12,
+                TIH_SM2INTEGERTOOBIG = -13,
+                TIH_SM2INOUTSAMEBUFFER = -14,
+                TIH_SM2INPUTLENINVALID = -15,
+                TIH_SM2CIPHERINVALIDORDER = -16,
+                TIH_SM2NOTONCURVE = -17,
+                TIH_RSABUFFERNULL = -18,
+                TIH_RSAINPUTTOOLONG = -19,
+                TIH_RSAINPUTINVALID = -20,
+                TIH_UNKOWNERR = -21,
+} crypto_errno_t;
+# 5 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/aes.h" 1
+
+
+
+
+# 1 "../libraries/inc/tih/crypto_errno.h" 1
+# 6 "../libraries/inc/tih/aes.h" 2
+# 23 "../libraries/inc/tih/aes.h"
+crypto_errno_t aes_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                         unsigned char *key, unsigned int key_nbytes, unsigned int func, unsigned int mode, unsigned char *iv);
+crypto_errno_t aes_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key, unsigned int key_nbytes,
+                             unsigned int func, unsigned int mode, unsigned char *count, unsigned int ctr_step);
+crypto_errno_t aes_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key, unsigned int key_nbytes,
+                             unsigned int func, unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+# 7 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/pke.h" 1
+
+
+
+
+
+void pke_init(void);
+# 8 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm4.h" 1
+# 19 "../libraries/inc/tih/sm4.h"
+crypto_errno_t sm4_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                         unsigned char *key, unsigned int func, unsigned int mode, unsigned char *iv);
+crypto_errno_t sm4_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key,
+                             unsigned int func, unsigned int mode, unsigned char *count, unsigned int ctr_step);
+crypto_errno_t sm4_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key,
+                             unsigned int func, unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+# 9 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/ecc.h" 1
+
+
+
+
+
+typedef struct ecc_curve {
+    unsigned int ecc_p_nbits;
+    unsigned int ecc_n_nbits;
+    unsigned int *ecc_p;
+    unsigned int *ecc_a;
+    unsigned int *ecc_b;
+    unsigned int *ecc_gx;
+    unsigned int *ecc_gy;
+    unsigned int *ecc_n;
+} ecc_curve_t;
+
+
+int ecc_point_verify(ecc_curve_t *curve, unsigned int *px, unsigned int *py);
+
+int ecc_point_add(ecc_curve_t *curve, unsigned int *px, unsigned int *py, unsigned int *qx, unsigned int *qy, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_double(ecc_curve_t *curve, unsigned int *px, unsigned int *py, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_mul(ecc_curve_t *curve, unsigned int *k, unsigned int *px, unsigned int *py, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_shamir(ecc_curve_t *curve, unsigned int *k1, unsigned int *P1x, unsigned int *P1y,
+                                           unsigned int *k2, unsigned int *P2x, unsigned int *P2y,
+                                           unsigned int *Qx, unsigned int *Qy);
+# 11 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/rsa.h" 1
+
+
+
+
+
+
+crypto_errno_t rsa_crt_keypair_gen(unsigned char *p, unsigned char *q,
+                                  unsigned char *dp, unsigned char *dq,
+                                  unsigned char *u, unsigned char *e,
+                                  unsigned char *n, unsigned int nbits);
+
+crypto_errno_t rsa_encrypt(unsigned char *plain,
+                           unsigned char *e, unsigned char *n,
+                           unsigned char *cipher,
+                           unsigned int nbits);
+
+crypto_errno_t rsa_crt_decrypt(unsigned char *cipher,
+                              unsigned char *p, unsigned char *q,
+                              unsigned char *dp, unsigned char *dq,
+                              unsigned char *u,
+                              unsigned char *plain,
+                              unsigned int nbits);
+
+crypto_errno_t rsa_keypair_gen(unsigned char *e, unsigned char *d, unsigned char *n, unsigned int nbits);
+
+crypto_errno_t rsa_decrypt(unsigned char *cipher,
+                           unsigned char *d, unsigned char *n,
+                           unsigned char *plain,
+                           unsigned int nbits);
+
+crypto_errno_t rsa_pq_keypair_gen(unsigned char *p, unsigned char *q,
+                                  unsigned char *e, unsigned char *d, unsigned char *n,
+                                  unsigned int nbits);
+# 12 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm2.h" 1
+# 10 "../libraries/inc/tih/sm2.h"
+typedef enum {
+    SM2_Role_Sponsor = 0,
+    SM2_Role_Responsor
+} sm2_exchange_role_e;
+
+crypto_errno_t sm2_keypair_gen(unsigned char *prikey, unsigned char *pubkey);
+crypto_errno_t sm2_e_get(unsigned char *m, unsigned int m_nbytes, unsigned char *z, unsigned char *e);
+crypto_errno_t sm2_z_get(unsigned char *id, unsigned int idbytes, unsigned char *pubkey, unsigned char *z);
+crypto_errno_t sm2_sign(unsigned char e[32], unsigned char prikey[32], unsigned char signature[64]);
+crypto_errno_t sm2_verify(unsigned char e[32], unsigned char pubkey[64], unsigned char signature[64]);
+crypto_errno_t sm2_encrypt(unsigned char *m, unsigned int m_nbytes,
+                           unsigned char pubkey[64],
+                           unsigned char *c, unsigned int *c_nbytes);
+crypto_errno_t sm2_decrypt(unsigned char *c, unsigned int c_nbytes,
+                           unsigned char prikey[32],
+                           unsigned char *m, unsigned int *m_nbytes);
+crypto_errno_t sm2_key_exchange(sm2_exchange_role_e role,
+                                unsigned char *da, unsigned char *pb,
+                                unsigned char *ra, unsigned char *rpa,
+                                unsigned char *rb,
+                                unsigned char *za, unsigned char *zb,
+                                unsigned int k_nbytes,
+                                unsigned char *ka, unsigned char *sl, unsigned char *sa);
+# 13 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/hash.h" 1
+# 12 "../libraries/inc/tih/hash.h"
+typedef struct hash_context {
+    unsigned int total[2];
+    unsigned char buffer[64];
+} hash_context_t;
+
+crypto_errno_t hash_init(hash_context_t *ctx, unsigned int alg);
+crypto_errno_t hash_update(hash_context_t *ctx, unsigned char *in, unsigned int nbytes, unsigned int alg);
+crypto_errno_t hash_final(hash_context_t *ctx, unsigned char *out, unsigned int alg);
+# 15 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha1.h" 1
+
+
+
+
+
+
+crypto_errno_t sha1_init(void);
+crypto_errno_t sha1_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha1_final(unsigned char *outdata);
+# 16 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha224.h" 1
+
+
+
+
+
+
+crypto_errno_t sha224_init(void);
+crypto_errno_t sha224_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha224_final(unsigned char *outdata);
+# 17 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha256.h" 1
+
+
+
+
+
+
+crypto_errno_t sha256_init(void);
+crypto_errno_t sha256_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha256_final(unsigned char *outdata);
+# 18 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm3.h" 1
+
+
+
+
+
+
+crypto_errno_t sm3_init(void);
+crypto_errno_t sm3_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sm3_final(unsigned char *outdata);
+# 19 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/cmac.h" 1
+# 13 "../libraries/inc/tih/cmac.h"
+typedef struct cmac_ctx {
+    unsigned char *key;
+    int keylen;
+    unsigned char *iv;
+    unsigned int alg_mode;
+} cmac_ctx_t;
+
+crypto_errno_t cmac_init(cmac_ctx_t *ctx, unsigned char *key, int keylen, unsigned char *iv, int ivlen, unsigned int alg);
+
+crypto_errno_t cmac_update(cmac_ctx_t *ctx, unsigned char *data, unsigned int len);
+
+crypto_errno_t cmac_final(cmac_ctx_t *ctx, unsigned char *out, unsigned int *len);
+# 20 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/bignum.h" 1
+# 13 "../libraries/inc/tih/bignum.h"
+int bn_mod(unsigned int *a, unsigned int *b, unsigned int *out, unsigned int a_nwords, unsigned int b_nwords);
+
+
+
+
+
+int bn_cmp(unsigned int *a, unsigned int *b, unsigned int a_nwords, unsigned int b_nwords);
+
+
+
+
+
+
+int bn_add(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+int bn_sub(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_mul(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modadd(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modsub(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modmul(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modexp(const unsigned int *modulus, const unsigned int *exponent, const unsigned int *base, unsigned int *out, unsigned int mod_nwords, unsigned int exp_nwords);
+
+
+
+
+
+
+int bn_modinv(const unsigned int *modulus, const unsigned int *a, unsigned int *out, unsigned int mod_nwords, unsigned int a_nwords);
+# 22 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/rng.h" 1
+
+
+
+
+
+
+crypto_errno_t rand_get(unsigned char *rand, unsigned int nbyte);
+# 23 "../drivers/drv_crypto.h" 2
+
+typedef struct ecc_point {
+    unsigned int *x;
+    unsigned int *y;
+} ecc_point_t;
+
+
+crypto_errno_t tih_aes_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                             unsigned char *key, unsigned int keybytes, unsigned int func,
+                             unsigned int mode, unsigned char *iv);
+
+crypto_errno_t tih_aes_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int keybytes, unsigned int func,
+                                 unsigned int mode, unsigned char *count, unsigned int ctr_step);
+
+crypto_errno_t tih_aes_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int keybytes, unsigned int func,
+                                 unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+
+crypto_errno_t tih_sm4_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                             unsigned char *key, unsigned int func, unsigned int mode, unsigned char *iv);
+
+crypto_errno_t tih_sm4_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int func, unsigned int mode,
+                                 unsigned char *count, unsigned int ctr_step);
+
+crypto_errno_t tih_sm4_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int func, unsigned int mode,
+                                 unsigned char *tw, unsigned char *xtskey);
+
+crypto_errno_t tih_rsa_keypair_gen(unsigned char *p, unsigned char *q,
+                               unsigned char *dp, unsigned char *dq,
+                               unsigned char *u, unsigned char *e,
+                               unsigned char *n, unsigned int nbits);
+crypto_errno_t tih_rsa_encrypt(unsigned char *plain,
+                           unsigned char *e, unsigned char *n,
+                           unsigned char *cipher,
+                           unsigned int nbits);
+crypto_errno_t tih_rsa_decrypt(unsigned char *cipher,
+                           unsigned char *p, unsigned char *q,
+                           unsigned char *dp, unsigned char *dq,
+                           unsigned char *u,
+                           unsigned char *plain,
+                           unsigned int nbits);
+
+crypto_errno_t tih_sm2_keypair_gen(unsigned char *prikey, unsigned char *pubkey);
+crypto_errno_t tih_sm2_e_get(unsigned char *m, unsigned int m_nbytes, unsigned char *z, unsigned char *e);
+crypto_errno_t tih_sm2_z_get(unsigned char *id, unsigned int idbytes, unsigned char *pubkey, unsigned char *z);
+crypto_errno_t tih_sm2_sign(unsigned char e[32], unsigned char prikey[32], unsigned char signature[64]);
+crypto_errno_t tih_sm2_verify(unsigned char e[32], unsigned char pubkey[64], unsigned char signature[64]);
+crypto_errno_t tih_sm2_encrypt(unsigned char *m, unsigned int m_nbytes,
+                           unsigned char pubkey[64],
+                           unsigned char *c, unsigned int *c_nbytes);
+crypto_errno_t tih_sm2_decrypt(unsigned char *c, unsigned int c_nbytes,
+                           unsigned char prikey[32],
+                           unsigned char *m, unsigned int *m_nbytes);
+crypto_errno_t tih_sm2_key_exchange(sm2_exchange_role_e role,
+                                unsigned char *da, unsigned char *pb,
+                                unsigned char *ra, unsigned char *rpa,
+                                unsigned char *rb,
+                                unsigned char *za, unsigned char *zb,
+                                unsigned int k_nbytes,
+                                unsigned char *ka, unsigned char *sl, unsigned char *sa);
+
+
+crypto_errno_t tih_sha1_init(void);
+crypto_errno_t tih_sha1_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha1_final(unsigned char *out);
+
+
+crypto_errno_t tih_sha224_init(void);
+crypto_errno_t tih_sha224_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha224_final(unsigned char *out);
+
+
+crypto_errno_t tih_sha256_init(void);
+crypto_errno_t tih_sha256_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha256_final(unsigned char *out);
+
+
+crypto_errno_t tih_cmac_init(cmac_ctx_t *ctx, unsigned char *key, int keylen,
+                             unsigned char *iv, int ivlen, unsigned int alg);
+crypto_errno_t tih_cmac_update(cmac_ctx_t *ctx, unsigned char *data, unsigned int len);
+crypto_errno_t tih_cmac_final(cmac_ctx_t *ctx, unsigned char *out, unsigned int *len);
+
+
+crypto_errno_t tih_sm3_init(void);
+crypto_errno_t tih_sm3_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sm3_final(unsigned char *out);
+
+crypto_errno_t tih_rand_get(unsigned char *rand, unsigned int byteLen);
+
+int tih_ecp_mul(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k, ecc_point_t *P);
+int tih_ecp_muladd(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k1, ecc_point_t *P1,
+                     unsigned int *k2, ecc_point_t *P2);
+int tih_ecp_add(ecc_curve_t *curve, ecc_point_t *P1, ecc_point_t *P2, ecc_point_t *Q);
+int tih_ecp_double(ecc_curve_t *curve, ecc_point_t *P, ecc_point_t *Q);
+int tih_ecp_check(ecc_curve_t *curve, ecc_point_t *P);
+
+
+
+
+
+int tih_mpi_add(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_sub(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_mul(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_cmp(unsigned int *a, unsigned int *b, unsigned int a_nword, unsigned int b_nword);
+int tih_mpi_mod_mpi(unsigned int *a, unsigned int a_nword, unsigned int *b, unsigned int b_nword, unsigned int *c);
+int tih_mpi_add_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword);
+int tih_mpi_sub_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword);
+int tih_mpi_inv_mod(const unsigned int *modulus, const unsigned int *a, unsigned int *ainv,
+                      unsigned int mod_nword, unsigned int a_nword);
+int tih_mpi_mul_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nwords);
+int tih_mpi_inv_mod(const unsigned int *modulus, const unsigned int *a, unsigned int *ainv,
+                      unsigned int mod_nword, unsigned int a_nword);
+# 6 "../drivers/drv_crypto.c" 2
+
+
+
+
+
+
+
+rt_crypto_device_t crypto_dev;
+
+static rt_err_t drv_crypto_reset(rt_crypto_device_t *dev)
+{
+
+    crypto_hw_init();
+    crypto_reset();
+
+
+    pke_init();
+
+    return 0;
+}
+
+static rt_err_t drv_crypto_ioctl(rt_crypto_device_t *dev, int cmd, void *args)
+{
+    switch (cmd) {
+        case 0x01:
+            crypto_hw_init();
+            crypto_reset();
+            break;
+        case 0x02:
+
+            break;
+        case 0x03:
+
+            break;
+        default:
+            break;
+    }
+
+    return 0;
+}
+
+static const struct rt_crypto_ops rt_crypto_ops =
+{
+    drv_crypto_reset,
+    drv_crypto_ioctl
+};
+
+static void __attribute__((section(".fast"))) drv_crypto_lock(rt_uint32_t ctype)
+{
+    if (ctype == 0) {
+        rt_mutex_take(&crypto_dev.lock_cipher, -1);
+    } else if (ctype == 1) {
+        rt_mutex_take(&crypto_dev.lock_pk, -1);
+    } else if (ctype == 2) {
+        rt_mutex_take(&crypto_dev.lock_hash, -1);
+    } else if (ctype == 3) {
+        rt_mutex_take(&crypto_dev.lock_rng, -1);
+    }
+}
+
+static void __attribute__((section(".fast"))) drv_crypto_unlock(rt_uint32_t ctype)
+{
+    if (ctype == 0) {
+        rt_mutex_release(&crypto_dev.lock_cipher);
+    } else if (ctype == 1) {
+        rt_mutex_release(&crypto_dev.lock_pk);
+    } else if (ctype == 2) {
+        rt_mutex_release(&crypto_dev.lock_hash);
+    } else if (ctype == 3) {
+        rt_mutex_release(&crypto_dev.lock_rng);
+    }
+}
+
+static int drv_crypto_init(void)
+{
+    crypto_dev.ops = &rt_crypto_ops;
+
+    rt_crypto_register(&crypto_dev, "crypto", 0x003, ((void *)0));
+
+
+
+
+
+    crypto_dev.parent.init(&(crypto_dev.parent));
+
+
+    return 0;
+}
+const init_fn_t __rt_init_drv_crypto_init __attribute__((section(".rti_fn.""1"))) = drv_crypto_init;
+
+
+
+
+crypto_errno_t __attribute__((section(".fast"))) tih_aes_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                    unsigned char *key,unsigned int keybytes, unsigned int func,
+                                    unsigned int mode, unsigned char *iv)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = aes_crypt(in, out, nbytes, key, keybytes, func, mode, iv);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_aes_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                        unsigned char *key, unsigned int keybytes, unsigned int func,
+                                        unsigned int mode, unsigned char *count,unsigned int ctr_step)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = aes_crypt_ctr(in, out, nbytes, key, keybytes, func, mode, count, ctr_step);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_aes_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                        unsigned char *key, unsigned int keybytes, unsigned int func,
+                                        unsigned int mode, unsigned char *tw, unsigned char *xtskey)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = aes_crypt_xts(in, out, nbytes, key, keybytes, func, mode, tw, xtskey);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm4_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                    unsigned char *key, unsigned int func, unsigned int mode, unsigned char *iv)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = sm4_crypt(in, out, nbytes, key, func, mode, iv);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm4_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                        unsigned char *key, unsigned int func, unsigned int mode,
+                                        unsigned char *count, unsigned int ctr_step)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = sm4_crypt_ctr(in, out, nbytes, key, func, mode, count, ctr_step);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm4_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                        unsigned char *key, unsigned int func, unsigned int mode,
+                                        unsigned char *tw, unsigned char *xtskey)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(0);
+    err = sm4_crypt_xts(in, out, nbytes, key, func, mode, tw, xtskey);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_rsa_keypair_gen(unsigned char *p, unsigned char *q,
+                               unsigned char *dp, unsigned char *dq,
+                               unsigned char *u, unsigned char *e,
+                               unsigned char *n, unsigned int nbits)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(3);
+    err = rsa_crt_keypair_gen(p, q, dp, dq, u, e, n, nbits);
+    drv_crypto_unlock(3);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_rsa_encrypt(unsigned char *plain,
+                           unsigned char *e, unsigned char *n,
+                           unsigned char *cipher,
+                           unsigned int nbits)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    err = rsa_encrypt(plain, e, n, cipher, nbits);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_rsa_decrypt(unsigned char *cipher,
+                           unsigned char *p, unsigned char *q,
+                           unsigned char *dp, unsigned char *dq,
+                           unsigned char *u,
+                           unsigned char *plain,
+                           unsigned int nbits)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    err = rsa_crt_decrypt(cipher, p, q, dp, dq, u, plain, nbits);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_keypair_gen(unsigned char *prikey, unsigned char *pubkey)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(3);
+    err = sm2_keypair_gen(prikey, pubkey);
+    drv_crypto_unlock(3);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_e_get(unsigned char *m, unsigned int m_nbytes, unsigned char *z, unsigned char *e)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sm2_e_get(m, m_nbytes, z, e);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_z_get(unsigned char *id, unsigned int idbytes, unsigned char *pubkey, unsigned char *z)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sm2_z_get(id, idbytes, pubkey, z);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_sign(unsigned char e[32], unsigned char prikey[32], unsigned char signature[64])
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(3);
+    err = sm2_sign(e, prikey, signature);
+    drv_crypto_unlock(3);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_verify(unsigned char e[32], unsigned char pubkey[64], unsigned char signature[64])
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    err = sm2_verify(e, pubkey, signature);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_encrypt(unsigned char *m, unsigned int m_nbytes,
+                           unsigned char pubkey[64],
+                           unsigned char *c, unsigned int *c_nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(2);
+    drv_crypto_lock(3);
+    err = sm2_encrypt(m, m_nbytes, pubkey, c, c_nbytes);
+    drv_crypto_unlock(3);
+    drv_crypto_unlock(2);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_decrypt(unsigned char *c, unsigned int c_nbytes,
+                           unsigned char prikey[32],
+                           unsigned char *m, unsigned int *m_nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(2);
+    err = sm2_decrypt(c, c_nbytes, prikey, m, m_nbytes);
+    drv_crypto_unlock(2);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm2_key_exchange(sm2_exchange_role_e role,
+                                unsigned char *da, unsigned char *pb,
+                                unsigned char *ra, unsigned char *rpa,
+                                unsigned char *rb,
+                                unsigned char *za, unsigned char *zb,
+                                unsigned int k_nbytes,
+                                unsigned char *ka, unsigned char *sl, unsigned char *sa)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(1);
+    drv_crypto_lock(2);
+    err = sm2_key_exchange(role, da, pb, ra, rpa, rb, za, zb, k_nbytes, ka, sl, sa);
+    drv_crypto_unlock(2);
+    drv_crypto_unlock(1);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha1_init(void)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sha1_init();
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha1_update(unsigned char *in, unsigned int nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha1_update(in, nbytes);
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha1_final(unsigned char *out)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha1_final(out);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha224_init(void)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sha224_init();
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha224_update(unsigned char *in, unsigned int nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha224_update(in, nbytes);
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha224_final(unsigned char *out)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha224_final(out);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha256_init(void)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sha256_init();
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha256_update(unsigned char *in, unsigned int nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha256_update(in, nbytes);
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sha256_final(unsigned char *out)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sha256_final(out);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm3_init(void)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(2);
+    err = sm3_init();
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm3_update(unsigned char *in, unsigned int nbytes)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sm3_update(in, nbytes);
+
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_sm3_final(unsigned char *out)
+{
+    crypto_errno_t err = TIH_OK;
+
+
+    err = sm3_final(out);
+    drv_crypto_unlock(2);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_cmac_init(cmac_ctx_t *ctx, unsigned char *key, int keylen, unsigned char *iv, int ivlen, unsigned int alg)
+{
+    crypto_errno_t err = TIH_OK;
+    err = cmac_init(ctx, key, keylen, iv, ivlen, alg);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_cmac_update(cmac_ctx_t *ctx, unsigned char *data, unsigned int len)
+{
+    crypto_errno_t err = TIH_OK;
+    drv_crypto_lock(0);
+    err = cmac_update(ctx, data, len);
+    drv_crypto_unlock(0);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_cmac_final(cmac_ctx_t *ctx, unsigned char *out, unsigned int *len)
+{
+    crypto_errno_t err = TIH_OK;
+    err = cmac_final(ctx, out, len);
+
+    return err;
+}
+
+crypto_errno_t __attribute__((section(".fast"))) tih_rand_get(unsigned char *rand, unsigned int byteLen)
+{
+    crypto_errno_t err = TIH_OK;
+
+    drv_crypto_lock(3);
+    err = rand_get(rand, byteLen);
+    drv_crypto_unlock(3);
+
+    return err;
+}
+
+
+int __attribute__((section(".fast"))) tih_ecp_mul(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k, ecc_point_t *P)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = ecc_point_mul(curve, k, P->x, P->y, Q->x, Q->y);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_ecp_muladd(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k1, ecc_point_t *P1,unsigned int *k2,
+                     ecc_point_t *P2)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = ecc_point_shamir(curve, k1, P1->x, P1->y, k2, P2->x, P2->y, Q->x, Q->y);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_ecp_add(ecc_curve_t *curve, ecc_point_t *P1, ecc_point_t *P2, ecc_point_t *Q)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = ecc_point_add(curve, P1->x, P1->y, P2->x, P2->y, Q->x, Q->y);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_ecp_double(ecc_curve_t *curve, ecc_point_t *P, ecc_point_t *Q)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = ecc_point_double(curve, P->x, P->y, Q->x, Q->y);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_ecp_check(ecc_curve_t *curve, ecc_point_t *P)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = ecc_point_verify(curve, P->x, P->y);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+int __attribute__((section(".fast"))) tih_mpi_add(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+
+    ret = bn_add(a, b, out, ab_nword);
+
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+int __attribute__((section(".fast"))) tih_mpi_sub(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+
+    ret = bn_sub(a, b, out, ab_nword);
+
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+int __attribute__((section(".fast"))) tih_mpi_mul(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+
+    ret = bn_mul(a, b, out, ab_nword);
+
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+
+
+
+int __attribute__((section(".fast"))) tih_mpi_cmp(unsigned int *a, unsigned int *b, unsigned int a_nword, unsigned int b_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+
+    ret = bn_cmp(a, b, a_nword, b_nword);
+
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_mod_mpi(unsigned int *a, unsigned int a_nword, unsigned int *b, unsigned int b_nword, unsigned int *c)
+{
+    int ret;
+    drv_crypto_lock(1);
+
+    ret = bn_mod(a, b, c, a_nword, b_nword);
+
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_add_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = bn_modadd(modulus, a, b, out, nword);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_sub_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = bn_modsub(modulus, a, b, out, nword);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_mul_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nwords)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = bn_modmul(modulus, a, b, out, nwords);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_inv_mod(const unsigned int *modulus, const unsigned int *a, unsigned int *ainv,
+                      unsigned int mod_nword, unsigned int a_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = bn_modinv(modulus, a, ainv, mod_nword, a_nword);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}
+
+
+int __attribute__((section(".fast"))) tih_mpi_exp_mod(const unsigned int *modulus, const unsigned int *exp, const unsigned int *base,
+                      unsigned int *out, unsigned int mod_nword, unsigned int exp_nword)
+{
+    int ret;
+    drv_crypto_lock(1);
+    ret = bn_modexp(modulus, exp, base, out, mod_nword, exp_nword);
+    drv_crypto_unlock(1);
+
+    return -ret;
+}

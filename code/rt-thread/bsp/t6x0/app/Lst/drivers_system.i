@@ -744,7 +744,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3052,7 +3052,35 @@ void sys_hw_init(void)
 
     clock_freq_set(MODULE_UART_IO, 50000000);
     clock_enable(MODULE_UART_IO);
-# 133 "../drivers/system.c"
+
+
+
+    clock_freq_set(MODULE_SPI_IO, 50000000);
+    clock_enable(MODULE_SPI_IO);
+
+
+
+    clock_freq_set(MODULE_CRYPTO, 200000000);
+    clock_enable(MODULE_CRYPTO);
+    clock_enable(MODULE_PKE);
+    clock_enable(MODULE_TRNG);
+    module_enable(MODULE_CRYPTO);
+    module_enable(MODULE_PKE);
+    module_enable(MODULE_TRNG);
+
+
+
+    clock_enable(MODULE_SATA_HOST);
+    module_enable(MODULE_SATA_HOST);
+# 125 "../drivers/system.c"
+    clock_freq_set(MODULE_GMAC1_25M, 25000000);
+    clock_freq_set(MODULE_GMAC1_125M, 125000000);
+    clock_enable(MODULE_GMAC1);
+    clock_enable(MODULE_GMAC1_25M);
+    clock_enable(MODULE_GMAC1_125M);
+    module_enable(MODULE_GMAC1);
+
+
     rt_hw_interrupt_init();
     h2x_hw_init();
     xmem_init();

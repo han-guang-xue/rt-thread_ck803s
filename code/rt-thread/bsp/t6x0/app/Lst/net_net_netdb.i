@@ -868,7 +868,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -2918,6 +2918,297 @@ typedef signed long ptrdiff_t;
 # 42 "../../../components/net/lwip-2.0.2/src/include/lwip/debug.h" 2
 # 53 "../../../components/net/lwip-2.0.2/src/include/lwip/opt.h" 2
 # 38 "../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h" 2
+
+
+
+
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h" 1
+# 44 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h"
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/def.h" 1
+# 85 "../../../components/net/lwip-2.0.2/src/include/lwip/def.h"
+u16_t lwip_htons(u16_t x);
+
+
+
+
+u32_t lwip_htonl(u32_t x);
+# 123 "../../../components/net/lwip-2.0.2/src/include/lwip/def.h"
+void lwip_itoa(char* result, size_t bufsize, int number);
+
+
+
+int lwip_strnicmp(const char* str1, const char* str2, size_t len);
+
+
+
+int lwip_stricmp(const char* str1, const char* str2);
+
+
+
+char* lwip_strnstr(const char* buffer, const char* token, size_t n);
+# 45 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h" 2
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h" 1
+# 43 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h"
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/ip4_addr.h" 1
+# 51 "../../../components/net/lwip-2.0.2/src/include/lwip/ip4_addr.h"
+struct ip4_addr {
+  u32_t addr;
+};
+
+
+
+typedef struct ip4_addr ip4_addr_t;
+# 66 "../../../components/net/lwip-2.0.2/src/include/lwip/ip4_addr.h"
+
+struct ip4_addr2 {
+  u16_t addrw[2];
+} __attribute__((packed));
+
+
+
+
+
+
+struct netif;
+# 174 "../../../components/net/lwip-2.0.2/src/include/lwip/ip4_addr.h"
+u8_t ip4_addr_isbroadcast_u32(u32_t addr, const struct netif *netif);
+
+
+u8_t ip4_addr_netmask_valid(u32_t netmask);
+# 215 "../../../components/net/lwip-2.0.2/src/include/lwip/ip4_addr.h"
+u32_t ipaddr_addr(const char *cp);
+int ip4addr_aton(const char *cp, ip4_addr_t *addr);
+
+char *ip4addr_ntoa(const ip4_addr_t *addr);
+char *ip4addr_ntoa_r(const ip4_addr_t *addr, char *buf, int buflen);
+# 44 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h" 2
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/ip6_addr.h" 1
+# 46 "../../../components/net/lwip-2.0.2/src/include/lwip/ip6_addr.h"
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/def.h" 1
+# 47 "../../../components/net/lwip-2.0.2/src/include/lwip/ip6_addr.h" 2
+# 45 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h" 2
+# 54 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h"
+enum lwip_ip_addr_type {
+
+  IPADDR_TYPE_V4 = 0U,
+
+  IPADDR_TYPE_V6 = 6U,
+
+  IPADDR_TYPE_ANY = 46U
+};
+# 244 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h"
+typedef ip4_addr_t ip_addr_t;
+# 338 "../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h"
+extern const ip_addr_t ip_addr_any;
+extern const ip_addr_t ip_addr_broadcast;
+# 46 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h" 2
+# 55 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h"
+typedef u32_t in_addr_t;
+
+
+struct in_addr {
+  in_addr_t s_addr;
+};
+
+struct in6_addr {
+  union {
+    u32_t u32_addr[4];
+    u8_t u8_addr[16];
+  } un;
+
+};
+# 86 "../../../components/net/lwip-2.0.2/src/include/lwip/inet.h"
+extern const struct in6_addr in6addr_any;
+# 43 "../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h" 2
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h" 1
+# 47 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/err.h" 1
+# 57 "../../../components/net/lwip-2.0.2/src/include/lwip/err.h"
+typedef s8_t err_t;
+
+
+
+typedef enum {
+
+  ERR_OK = 0,
+
+  ERR_MEM = -1,
+
+  ERR_BUF = -2,
+
+  ERR_TIMEOUT = -3,
+
+  ERR_RTE = -4,
+
+  ERR_INPROGRESS = -5,
+
+  ERR_VAL = -6,
+
+  ERR_WOULDBLOCK = -7,
+
+  ERR_USE = -8,
+
+  ERR_ALREADY = -9,
+
+  ERR_ISCONN = -10,
+
+  ERR_CONN = -11,
+
+  ERR_IF = -12,
+
+
+  ERR_ABRT = -13,
+
+  ERR_RST = -14,
+
+  ERR_CLSD = -15,
+
+  ERR_ARG = -16
+} err_enum_t;
+# 112 "../../../components/net/lwip-2.0.2/src/include/lwip/err.h"
+int err_to_errno(err_t err);
+# 48 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h" 2
+
+# 1 "../../../components/net/lwip-2.0.2/src/include/lwip/errno.h" 1
+# 50 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h" 2
+# 58 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+typedef u8_t sa_family_t;
+
+
+
+
+typedef u16_t in_port_t;
+
+
+
+
+struct sockaddr_in {
+  u8_t sin_len;
+  sa_family_t sin_family;
+  in_port_t sin_port;
+  struct in_addr sin_addr;
+
+  char sin_zero[8];
+};
+# 89 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+struct sockaddr {
+  u8_t sa_len;
+  sa_family_t sa_family;
+  char sa_data[14];
+};
+
+struct sockaddr_storage {
+  u8_t s2_len;
+  sa_family_t ss_family;
+  char s2_data1[2];
+  u32_t s2_data2[3];
+
+
+
+};
+
+
+
+
+typedef u32_t socklen_t;
+
+
+struct lwip_sock;
+# 146 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+struct iovec {
+  void *iov_base;
+  size_t iov_len;
+};
+
+
+struct msghdr {
+  void *msg_name;
+  socklen_t msg_namelen;
+  struct iovec *msg_iov;
+  int msg_iovlen;
+  void *msg_control;
+  socklen_t msg_controllen;
+  int msg_flags;
+};
+# 201 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+struct linger {
+       int l_onoff;
+       int l_linger;
+};
+# 309 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+typedef struct ip_mreq {
+    struct in_addr imr_multiaddr;
+    struct in_addr imr_interface;
+} ip_mreq;
+# 477 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+void lwip_socket_thread_init(void);
+void lwip_socket_thread_cleanup(void);
+# 513 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+int lwip_accept(int s, struct sockaddr *addr, socklen_t *addrlen);
+int lwip_bind(int s, const struct sockaddr *name, socklen_t namelen);
+int lwip_shutdown(int s, int how);
+int lwip_getpeername (int s, struct sockaddr *name, socklen_t *namelen);
+int lwip_getsockname (int s, struct sockaddr *name, socklen_t *namelen);
+int lwip_getsockopt (int s, int level, int optname, void *optval, socklen_t *optlen);
+int lwip_setsockopt (int s, int level, int optname, const void *optval, socklen_t optlen);
+int lwip_close(int s);
+int lwip_connect(int s, const struct sockaddr *name, socklen_t namelen);
+int lwip_listen(int s, int backlog);
+int lwip_recv(int s, void *mem, size_t len, int flags);
+int lwip_read(int s, void *mem, size_t len);
+int lwip_recvfrom(int s, void *mem, size_t len, int flags,
+      struct sockaddr *from, socklen_t *fromlen);
+int lwip_send(int s, const void *dataptr, size_t size, int flags);
+int lwip_sendmsg(int s, const struct msghdr *message, int flags);
+int lwip_sendto(int s, const void *dataptr, size_t size, int flags,
+    const struct sockaddr *to, socklen_t tolen);
+int lwip_socket(int domain, int type, int protocol);
+int lwip_write(int s, const void *dataptr, size_t size);
+int lwip_writev(int s, const struct iovec *iov, int iovcnt);
+int lwip_select(int maxfdp1, _types_fd_set *readset, _types_fd_set *writeset, _types_fd_set *exceptset,
+                struct timeval *timeout);
+int lwip_ioctl(int s, long cmd, void *argp);
+int lwip_fcntl(int s, int cmd, int val);
+# 44 "../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h" 2
+# 92 "../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h"
+struct hostent {
+    char *h_name;
+    char **h_aliases;
+
+    int h_addrtype;
+    int h_length;
+    char **h_addr_list;
+
+
+};
+
+struct addrinfo {
+    int ai_flags;
+    int ai_family;
+    int ai_socktype;
+    int ai_protocol;
+    socklen_t ai_addrlen;
+    struct sockaddr *ai_addr;
+    char *ai_canonname;
+    struct addrinfo *ai_next;
+};
+
+
+
+
+
+
+extern int h_errno;
+
+
+struct hostent *lwip_gethostbyname(const char *name);
+int lwip_gethostbyname_r(const char *name, struct hostent *ret, char *buf,
+                size_t buflen, struct hostent **result, int *h_errnop);
+void lwip_freeaddrinfo(struct addrinfo *ai);
+int lwip_getaddrinfo(const char *nodename,
+       const char *servname,
+       const struct addrinfo *hints,
+       struct addrinfo **res);
 # 33 "../../../components/dfs/filesystems/net/netdb.h" 2
 
 struct hostent *gethostbyname(const char *name);

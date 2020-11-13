@@ -949,7 +949,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3328,7 +3328,28 @@ void mem_free(void *mem);
 # 1 "../../../components/net/lwip-2.0.2/src/include/lwip/memp.h" 1
 # 47 "../../../components/net/lwip-2.0.2/src/include/lwip/memp.h"
 # 1 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h" 1
-# 63 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
+# 42 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3336,6 +3357,10 @@ void mem_free(void *mem);
 
 
 # 87 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
+
+
+
+
 
 
 
@@ -3354,7 +3379,28 @@ void mem_free(void *mem);
 typedef enum {
 
 # 1 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h" 1
-# 63 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
+# 42 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
+MEMP_RAW_PCB,
+
+
+
+MEMP_UDP_PCB,
+
+
+
+MEMP_TCP_PCB,
+MEMP_TCP_PCB_LISTEN,
+MEMP_TCP_SEG,
+
+
+
+MEMP_REASSDATA,
+
+
+
+
+
+
 MEMP_NETBUF,
 MEMP_NETCONN,
 
@@ -3366,11 +3412,15 @@ MEMP_ARP_QUEUE,
 
 
 
-
+MEMP_IGMP_GROUP,
 
 
 
 MEMP_SYS_TIMEOUT,
+
+
+
+MEMP_NETDB,
 # 126 "../../../components/net/lwip-2.0.2/src/include/lwip/priv/memp_std.h"
 MEMP_PBUF,
 MEMP_PBUF_POOL,
@@ -3715,7 +3765,18 @@ extern const ip_addr_t ip_addr_broadcast;
 # 107 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
 enum lwip_internal_netif_client_data_index
 {
-# 121 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+
+   LWIP_NETIF_CLIENT_DATA_INDEX_DHCP,
+
+
+
+
+
+   LWIP_NETIF_CLIENT_DATA_INDEX_IGMP,
+
+
+
+
    LWIP_NETIF_CLIENT_DATA_INDEX_MAX
 };
 # 139 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
@@ -3750,6 +3811,12 @@ typedef err_t (*netif_output_fn)(struct netif *netif, struct pbuf *p,
 typedef err_t (*netif_linkoutput_fn)(struct netif *netif, struct pbuf *p);
 
 typedef void (*netif_status_callback_fn)(struct netif *netif);
+
+
+typedef err_t (*netif_igmp_mac_filter_fn)(struct netif *netif,
+       const ip4_addr_t *group, enum netif_mac_filter_action action);
+# 211 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+u8_t netif_alloc_client_data_id(void);
 # 225 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
 struct netif {
 
@@ -3773,9 +3840,19 @@ struct netif {
 
 
   netif_linkoutput_fn linkoutput;
+# 266 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+  netif_status_callback_fn status_callback;
 # 279 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
   void *state;
-# 289 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+
+  void* client_data[LWIP_NETIF_CLIENT_DATA_INDEX_MAX + 0];
+
+
+
+
+
+
+
   u8_t rs_count;
 # 299 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
   u16_t mtu;
@@ -3789,6 +3866,8 @@ struct netif {
   char name[2];
 
   u8_t num;
+# 323 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+  netif_igmp_mac_filter_fn igmp_mac_filter;
 # 341 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
 };
 # 353 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
@@ -3824,7 +3903,18 @@ void netif_set_gw(struct netif *netif, const ip4_addr_t *gw);
 # 396 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
 void netif_set_up(struct netif *netif);
 void netif_set_down(struct netif *netif);
-# 410 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
+
+
+
+
+
+
+void netif_set_status_callback(struct netif *netif, netif_status_callback_fn status_callback);
+
+
+
+
+
 void netif_set_link_up(struct netif *netif);
 void netif_set_link_down(struct netif *netif);
 # 447 "../../../components/net/lwip-2.0.2/src/include/lwip/netif.h"
@@ -3904,7 +3994,14 @@ typedef struct
 } net_device;
 typedef net_device* net_device_t;
 # 54 "../drivers/drv_eth.c" 2
-# 81 "../drivers/drv_eth.c"
+# 74 "../drivers/drv_eth.c"
+unsigned int eth1_tx_pbuf_record[4];
+unsigned int eth1_rx_pbuf_record[4];
+
+net_device eth1_dev_entry;
+static net_device_t eth1_dev = &eth1_dev_entry;
+
+
 extern const phy_ops_t m88e1512_phy_ops;
 extern const phy_ops_t rtl8211_phy_ops;
 
@@ -3983,7 +4080,7 @@ static rt_err_t eth_dev_init(rt_device_t device)
 
 
 
-    Netif->mtu = RT_LWIP_ETH_MTU;
+    Netif->mtu = 1500;
 
     return 0;
 }
@@ -4096,10 +4193,10 @@ static rt_err_t eth_dev_control(rt_device_t dev, int cmd, void *args)
                 if (!((ret == 0))) { rt_assert_handler("(ret == 0)", __FUNCTION__, 241); };
 
                 gmac_tx_queue_init(net_dev->gmac_id, net_dev->tx_desc_num);
-                gmac_rx_queue_init(net_dev->gmac_id, net_dev->rx_desc_num, (((RT_LWIP_ETH_MTU+0u +16) + 8 - 1U) & ~(8 -1U)));
+                gmac_rx_queue_init(net_dev->gmac_id, net_dev->rx_desc_num, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)));
 
                 for (i = 0; i < net_dev->rx_desc_num; i++) {
-                    p = pbuf_alloc(PBUF_RAW, (((RT_LWIP_ETH_MTU+0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
+                    p = pbuf_alloc(PBUF_RAW, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
                     if (p != 
 # 248 "../drivers/drv_eth.c" 3 4
                             (0)
@@ -4108,7 +4205,7 @@ static rt_err_t eth_dev_control(rt_device_t dev, int cmd, void *args)
                         net_dev->rx_pbuf_record[i] = (unsigned int)p;
 
                         gmac_rx_buf_attach(net_dev->gmac_id, (unsigned char *)p->payload);
-                        do { if (0) rt_kprintf ("eth_dev_init RX Alloc %d 0x%x 0x%x\n", (((RT_LWIP_ETH_MTU+0u +16) + 8 - 1U) & ~(8 -1U)), (unsigned int)p->payload, ((((unsigned int)p->payload) >= 0x10000 && ((unsigned int)p->payload) < (0x10000 + (0x40000 - 0x10000))) ? (((unsigned int)p->payload) + 0x22300000 - (0x10000 & 0xFFF00000)) : (((unsigned int)p->payload) >= 0x11100000 && ((unsigned int)p->payload) < (0x11100000 + 0x2000)) ? (((unsigned int)p->payload) + 0x22200000 - (0x11100000 & 0xFFF00000)) : ((unsigned int)p->payload))); } while (0);
+                        do { if (0) rt_kprintf ("eth_dev_init RX Alloc %d 0x%x 0x%x\n", (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), (unsigned int)p->payload, ((((unsigned int)p->payload) >= 0x10000 && ((unsigned int)p->payload) < (0x10000 + (0x40000 - 0x10000))) ? (((unsigned int)p->payload) + 0x22300000 - (0x10000 & 0xFFF00000)) : (((unsigned int)p->payload) >= 0x11100000 && ((unsigned int)p->payload) < (0x11100000 + 0x2000)) ? (((unsigned int)p->payload) + 0x22200000 - (0x11100000 & 0xFFF00000)) : ((unsigned int)p->payload))); } while (0);
                     }
                     do { if (!((p != 
 # 254 "../drivers/drv_eth.c" 3 4
@@ -4116,7 +4213,18 @@ static rt_err_t eth_dev_control(rt_device_t dev, int cmd, void *args)
 # 254 "../drivers/drv_eth.c"
                    ))) { do {rt_kprintf("eth_dev_init error!"); sys_arch_assert("../drivers/drv_eth.c", 254);}while(0); }} while(0);
                 }
-# 268 "../drivers/drv_eth.c"
+
+
+                gmac_chksum_offload_set(net_dev->gmac_id, (1 << 0) | (1 << 1) |
+                                                          (1 << 2) | (1 << 3) |
+                                                          (1 << 4) | (1 << 5) |
+                                                          (1 << 6) | (1 << 7));
+
+
+
+
+
+
                 gmac_flow_ctrl_enable(net_dev->gmac_id, 0x1000, 10);
                 gmac_mac_addr_set(net_dev->gmac_id, net_dev->mac_addr);
                 gmac_intr_enable(net_dev->gmac_id, ((1 << 0)));
@@ -4414,7 +4522,7 @@ static struct pbuf* __attribute__((section(".fast"))) eth_dev_rx(rt_device_t dev
     }
 
 
-    new_p = pbuf_alloc(PBUF_RAW, (((RT_LWIP_ETH_MTU+0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
+    new_p = pbuf_alloc(PBUF_RAW, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
     if (new_p == 
 # 530 "../drivers/drv_eth.c" 3 4
                 (0)
@@ -4468,3 +4576,167 @@ static struct pbuf* __attribute__((section(".fast"))) eth_dev_rx(rt_device_t dev
         return p;
     }
 }
+# 731 "../drivers/drv_eth.c"
+static void __attribute__((section(".fast"))) eth1_isr()
+{
+    unsigned int status;
+
+    rt_hw_interrupt_clear(7);
+    status = gmac_intr_status(eth1_dev->gmac_id);
+    do { if (0) rt_kprintf ("[eth1 isr] status=0x%x\n",status); } while (0);
+    gmac_intr_clear(eth1_dev->gmac_id, status);
+
+    if (status & (1 << 8)) {
+        rt_kprintf("GMAC_INT_AHB_ERR in isr1\n");
+    }
+
+    if (status & (1 << 7)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TPKT_LOST in isr1\n"); } while (0);
+    }
+
+    if (status & (1 << 6)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TXBUF_UNAVA in isr1\n"); } while (0);
+    }
+
+    if (status & (1 << 4)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TPKT2E in isr1\n"); } while (0);
+    }
+
+
+    if (status & ((1 << 0) | (1 << 2) | (1 << 3))) {
+        if (eth_device_ready(&(eth1_dev->parent)) != 0) {
+            ;
+        } else {
+            gmac_intr_disable(eth1_dev->gmac_id, ((1 << 0)));
+        }
+    }
+}
+
+static int rt_hw_t610_eth1_init(void)
+{
+    unsigned int i;
+    int ret;
+    unsigned int phy_mmd_clk;
+    rt_err_t result;
+    struct pbuf *p;
+
+    memset(eth1_dev, 0, sizeof(net_device));
+
+    eth1_dev->gmac_id = 1;
+    eth1_dev->tx_desc_num = 4;
+    eth1_dev->rx_desc_num = 4;
+    eth1_dev->link_status.linked = 0;
+    eth1_dev->tx_pbuf_record = eth1_tx_pbuf_record;
+    eth1_dev->rx_pbuf_record = eth1_rx_pbuf_record;
+    eth1_dev->phy = &m88e1512_phy_ops;
+    eth1_dev->phy_addr = 0;
+    eth1_dev->mac_addr[0] = 0x00;
+    eth1_dev->mac_addr[1] = 0x84;
+    eth1_dev->mac_addr[2] = 0x73;
+    eth1_dev->mac_addr[3] = 0x72;
+    rand_get(&eth1_dev->mac_addr[4], 1);
+    rand_get(&eth1_dev->mac_addr[5], 1);
+
+    ret = gmac_hw_init(eth1_dev->gmac_id);
+    if (ret != 0 ) {
+        return -1;
+    }
+
+    ret = gmac_tx_queue_init(eth1_dev->gmac_id, eth1_dev->tx_desc_num);
+    if (ret != 0) {
+        return -1;
+    }
+
+    ret = gmac_rx_queue_init(eth1_dev->gmac_id, eth1_dev->rx_desc_num, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)));
+    if (ret != 0) {
+        return -1;
+    }
+
+    for (i = 0; i < eth1_dev->rx_desc_num; i++) {
+        p = pbuf_alloc(PBUF_RAW, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
+        if (p != 
+# 808 "../drivers/drv_eth.c" 3 4
+                (0)
+# 808 "../drivers/drv_eth.c"
+                    ) {
+            eth1_dev->rx_pbuf_record[i] = (unsigned int)p;
+
+            gmac_rx_buf_attach(eth1_dev->gmac_id, (unsigned char *)p->payload);
+            do { if (0) rt_kprintf ("RX queue %d 0x%x 0x%x\n", (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), (unsigned int)p->payload, ((((unsigned int)p->payload) >= 0x10000 && ((unsigned int)p->payload) < (0x10000 + (0x40000 - 0x10000))) ? (((unsigned int)p->payload) + 0x22300000 - (0x10000 & 0xFFF00000)) : (((unsigned int)p->payload) >= 0x11100000 && ((unsigned int)p->payload) < (0x11100000 + 0x2000)) ? (((unsigned int)p->payload) + 0x22200000 - (0x11100000 & 0xFFF00000)) : ((unsigned int)p->payload))); } while (0);
+        } else {
+            return -1;
+        }
+    }
+
+
+    gmac_chksum_offload_set(eth1_dev->gmac_id, (1 << 0) | (1 << 1) |
+                                               (1 << 2) | (1 << 3) |
+                                               (1 << 4) | (1 << 5) |
+                                               (1 << 6) | (1 << 7));
+
+
+
+
+
+
+    gmac_flow_ctrl_enable(eth1_dev->gmac_id, 0xf000, 10);
+    gmac_mac_addr_set(eth1_dev->gmac_id, eth1_dev->mac_addr);
+    gmac_intr_enable(eth1_dev->gmac_id, ((1 << 0)));
+    gmac_addr_filter_set(eth1_dev->gmac_id, (1 << 10) | (1 << 11));
+    gmac_tx_enable(eth1_dev->gmac_id);
+    gmac_rx_enable(eth1_dev->gmac_id);
+
+
+    phy_mmd_clk = eth1_dev->phy->phy_mmd_max_fre_get(eth1_dev->gmac_id);
+    gmac_phy_addr_set(eth1_dev->gmac_id, eth1_dev->phy_addr);
+    gmac_phy_mmd_clk_set(eth1_dev->gmac_id, phy_mmd_clk);
+    ret = eth1_dev->phy->phy_init(eth1_dev->gmac_id);
+    if (ret != 0) {
+        rt_kprintf("ERR##: PHY1 initialize fail!\n");
+    }
+
+
+    rt_timer_init(&eth1_dev->timer, "eth1_timer", eth_link_update, (void *)eth1_dev, 100, 0x2);
+    rt_timer_start(&eth1_dev->timer);
+
+
+    if (rt_hw_interrupt_install(7, eth1_isr, 
+# 850 "../drivers/drv_eth.c" 3 4
+                                                        (0)
+# 850 "../drivers/drv_eth.c"
+                                                            , "ETH1") != 
+# 850 "../drivers/drv_eth.c" 3 4
+                                                                         (0)
+# 850 "../drivers/drv_eth.c"
+                                                                             ) {
+        rt_hw_interrupt_umask(7);
+    }
+
+
+
+
+
+    eth1_dev->parent.parent.init = eth_dev_init;
+    eth1_dev->parent.parent.open = eth_dev_open;
+    eth1_dev->parent.parent.close = eth_dev_close;
+    eth1_dev->parent.parent.read = eth_dev_read;
+    eth1_dev->parent.parent.write = eth_dev_write;
+    eth1_dev->parent.parent.control = eth_dev_control;
+    eth1_dev->parent.eth_rx = eth_dev_rx;
+    eth1_dev->parent.eth_tx = eth_dev_tx;
+
+
+
+
+    eth1_dev->parent.parent.fops = 
+# 870 "../drivers/drv_eth.c" 3 4
+                                  (0)
+# 870 "../drivers/drv_eth.c"
+                                      ;
+
+
+    result = eth_device_init(&(eth1_dev->parent), "e1");
+    return result;
+}
+
+const init_fn_t __rt_init_rt_hw_t610_eth1_init __attribute__((section(".rti_fn.""4"))) = rt_hw_t610_eth1_init;

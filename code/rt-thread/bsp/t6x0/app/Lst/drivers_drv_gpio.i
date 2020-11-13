@@ -743,7 +743,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3059,6 +3059,177 @@ static __inline void rt_poll_add(rt_wqueue_t *wq, rt_pollreq_t *req)
     }
 }
 # 38 "../../../components/drivers/include/rtdevice.h" 2
+# 46 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/rtc.h" 1
+# 28 "../../../components/drivers/include/drivers/rtc.h"
+rt_err_t set_date(rt_uint32_t year, rt_uint32_t month, rt_uint32_t day);
+rt_err_t set_time(rt_uint32_t hour, rt_uint32_t minute, rt_uint32_t second);
+
+int rt_soft_rtc_init(void);
+int rt_rtc_ntp_sync_init(void);
+# 47 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+
+
+
+# 1 "../../../components/drivers/include/drivers/spi.h" 1
+# 70 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message
+{
+    const void *send_buf;
+    void *recv_buf;
+    rt_size_t length;
+    struct rt_spi_message *next;
+
+    unsigned cs_take : 1;
+    unsigned cs_release : 1;
+};
+
+
+
+
+struct rt_spi_configuration
+{
+    rt_uint8_t mode;
+    rt_uint8_t data_width;
+    rt_uint16_t reserved;
+
+    rt_uint32_t max_hz;
+};
+
+struct rt_spi_ops;
+struct rt_spi_bus
+{
+    struct rt_device parent;
+    const struct rt_spi_ops *ops;
+
+    struct rt_mutex lock;
+    struct rt_spi_device *owner;
+};
+
+
+
+
+struct rt_spi_ops
+{
+    rt_err_t (*configure)(struct rt_spi_device *device, struct rt_spi_configuration *configuration);
+    rt_uint32_t (*xfer)(struct rt_spi_device *device, struct rt_spi_message *message);
+};
+
+
+
+
+struct rt_spi_device
+{
+    struct rt_device parent;
+    struct rt_spi_bus *bus;
+
+    struct rt_spi_configuration config;
+};
+
+
+
+rt_err_t rt_spi_bus_register(struct rt_spi_bus *bus,
+                             const char *name,
+                             const struct rt_spi_ops *ops);
+
+
+rt_err_t rt_spi_bus_attach_device(struct rt_spi_device *device,
+                                  const char *name,
+                                  const char *bus_name,
+                                  void *user_data);
+# 142 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take_bus(struct rt_spi_device *device);
+# 151 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release_bus(struct rt_spi_device *device);
+# 160 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take(struct rt_spi_device *device);
+# 169 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release(struct rt_spi_device *device);
+
+
+rt_err_t rt_spi_configure(struct rt_spi_device *device,
+                          struct rt_spi_configuration *cfg);
+
+
+rt_err_t rt_spi_send_then_recv(struct rt_spi_device *device,
+                               const void *send_buf,
+                               rt_size_t send_length,
+                               void *recv_buf,
+                               rt_size_t recv_length);
+
+rt_err_t rt_spi_send_then_send(struct rt_spi_device *device,
+                               const void *send_buf1,
+                               rt_size_t send_length1,
+                               const void *send_buf2,
+                               rt_size_t send_length2);
+# 198 "../../../components/drivers/include/drivers/spi.h"
+rt_size_t rt_spi_transfer(struct rt_spi_device *device,
+                          const void *send_buf,
+                          void *recv_buf,
+                          rt_size_t length);
+# 212 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message *rt_spi_transfer_message(struct rt_spi_device *device,
+                                               struct rt_spi_message *message);
+
+static __inline rt_size_t rt_spi_recv(struct rt_spi_device *device,
+                                void *recv_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, (0), recv_buf, length);
+}
+
+static __inline rt_size_t rt_spi_send(struct rt_spi_device *device,
+                                const void *send_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, send_buf, (0), length);
+}
+
+static __inline rt_uint8_t rt_spi_sendrecv8(struct rt_spi_device *device,
+                                      rt_uint8_t data)
+{
+    rt_uint8_t value;
+
+    rt_spi_send_then_recv(device, &data, 1, &value, 1);
+
+    return value;
+}
+
+static __inline rt_uint16_t rt_spi_sendrecv16(struct rt_spi_device *device,
+                                        rt_uint16_t data)
+{
+    rt_uint16_t value;
+
+    rt_spi_send_then_recv(device, &data, 2, &value, 2);
+
+    return value;
+}
+
+
+
+
+
+
+
+static __inline void rt_spi_message_append(struct rt_spi_message *list,
+                                     struct rt_spi_message *message)
+{
+    if (!(list != (0))) { rt_assert_handler("list != RT_NULL", __FUNCTION__, 258); };
+    if (message == (0))
+        return;
+
+    while (list->next != (0))
+    {
+        list = list->next;
+    }
+
+    list->next = message;
+    message->next = (0);
+}
+# 54 "../../../components/drivers/include/rtdevice.h" 2
 # 65 "../../../components/drivers/include/rtdevice.h"
 # 1 "../../../components/drivers/include/drivers/serial.h" 1
 # 107 "../../../components/drivers/include/drivers/serial.h"
@@ -3140,6 +3311,339 @@ rt_err_t rt_hw_serial_register(struct rt_serial_device *serial,
                                rt_uint32_t flag,
                                void *data);
 # 66 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/i2c.h" 1
+# 41 "../../../components/drivers/include/drivers/i2c.h"
+struct rt_i2c_msg
+{
+    rt_uint16_t addr;
+    rt_uint16_t flags;
+    rt_uint16_t len;
+    rt_uint8_t *buf;
+};
+
+struct rt_i2c_bus_device;
+
+struct rt_i2c_bus_device_ops
+{
+    rt_size_t (*master_xfer)(struct rt_i2c_bus_device *bus,
+                             struct rt_i2c_msg msgs[],
+                             rt_uint32_t num);
+    rt_size_t (*slave_xfer)(struct rt_i2c_bus_device *bus,
+                            struct rt_i2c_msg msgs[],
+                            rt_uint32_t num);
+    rt_err_t (*i2c_bus_control)(struct rt_i2c_bus_device *bus,
+                                rt_uint32_t,
+                                rt_uint32_t);
+};
+
+
+struct rt_i2c_bus_device
+{
+    struct rt_device parent;
+    const struct rt_i2c_bus_device_ops *ops;
+    rt_uint16_t flags;
+    rt_uint16_t addr;
+    struct rt_mutex lock;
+    rt_uint32_t timeout;
+    rt_uint32_t retries;
+    void *priv;
+};
+
+
+
+
+
+
+
+rt_err_t rt_i2c_bus_device_register(struct rt_i2c_bus_device *bus,
+                                    const char *bus_name);
+struct rt_i2c_bus_device *rt_i2c_bus_device_find(const char *bus_name);
+rt_size_t rt_i2c_transfer(struct rt_i2c_bus_device *bus,
+                          struct rt_i2c_msg msgs[],
+                          rt_uint32_t num);
+rt_size_t rt_i2c_master_send(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             const rt_uint8_t *buf,
+                             rt_uint32_t count);
+rt_size_t rt_i2c_master_recv(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             rt_uint8_t *buf,
+                             rt_uint32_t count);
+int rt_i2c_core_init(void);
+# 70 "../../../components/drivers/include/rtdevice.h" 2
+# 1 "../../../components/drivers/include/drivers/i2c_dev.h" 1
+# 39 "../../../components/drivers/include/drivers/i2c_dev.h"
+struct rt_i2c_priv_data
+{
+    struct rt_i2c_msg *msgs;
+    rt_size_t number;
+};
+
+rt_err_t rt_i2c_bus_device_device_init(struct rt_i2c_bus_device *bus,
+                                       const char *name);
+# 71 "../../../components/drivers/include/rtdevice.h" 2
+
+
+# 1 "../../../components/drivers/include/drivers/i2c-bit-ops.h" 1
+# 32 "../../../components/drivers/include/drivers/i2c-bit-ops.h"
+struct rt_i2c_bit_ops
+{
+    void *data;
+    void (*set_sda)(void *data, rt_int32_t state);
+    void (*set_scl)(void *data, rt_int32_t state);
+    rt_int32_t (*get_sda)(void *data);
+    rt_int32_t (*get_scl)(void *data);
+
+    void (*udelay)(rt_uint32_t us);
+
+    rt_uint32_t delay_us;
+    rt_uint32_t timeout;
+};
+
+rt_err_t rt_i2c_bit_add_bus(struct rt_i2c_bus_device *bus,
+                            const char *bus_name);
+# 74 "../../../components/drivers/include/rtdevice.h" 2
+# 84 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/watchdog.h" 1
+# 37 "../../../components/drivers/include/drivers/watchdog.h"
+struct rt_watchdog_ops;
+struct rt_watchdog_device
+{
+    struct rt_device parent;
+    const struct rt_watchdog_ops *ops;
+};
+typedef struct rt_watchdog_device rt_watchdog_t;
+
+struct rt_watchdog_ops
+{
+    rt_err_t (*init)(rt_watchdog_t *wdt);
+    rt_err_t (*control)(rt_watchdog_t *wdt, int cmd, void *arg);
+};
+
+rt_err_t rt_hw_watchdog_register(rt_watchdog_t *wdt,
+                                 const char *name,
+                                 rt_uint32_t flag,
+                                 void *data);
+# 85 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/pin.h" 1
+# 37 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin
+{
+    struct rt_device parent;
+    const struct rt_pin_ops *ops;
+};
+# 63 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin_mode
+{
+    rt_uint16_t pin;
+    rt_uint16_t mode;
+};
+struct rt_device_pin_status
+{
+    rt_uint16_t pin;
+    rt_uint16_t status;
+};
+struct rt_pin_irq_hdr
+{
+    rt_int16_t pin;
+    rt_uint16_t mode;
+    void (*hdr)(void *args);
+    void *args;
+};
+struct rt_pin_ops
+{
+    void (*pin_mode)(struct rt_device *device, rt_base_t pin, rt_base_t mode);
+    void (*pin_write)(struct rt_device *device, rt_base_t pin, rt_base_t value);
+    int (*pin_read)(struct rt_device *device, rt_base_t pin);
+
+
+    rt_err_t (*pin_attach_irq)(struct rt_device *device, rt_int32_t pin,
+                      rt_uint32_t mode, void (*hdr)(void *args), void *args);
+    rt_err_t (*pin_detach_irq)(struct rt_device *device, rt_int32_t pin);
+    rt_err_t (*pin_irq_enable)(struct rt_device *device, rt_base_t pin, rt_uint32_t enabled);
+};
+
+int rt_device_pin_register(const char *name, const struct rt_pin_ops *ops, void *user_data);
+
+void rt_pin_mode(rt_base_t pin, rt_base_t mode);
+void rt_pin_write(rt_base_t pin, rt_base_t value);
+int rt_pin_read(rt_base_t pin);
+rt_err_t rt_pin_attach_irq(rt_int32_t pin, rt_uint32_t mode,
+                             void (*hdr)(void *args), void *args);
+rt_err_t rt_pin_detach_irq(rt_int32_t pin);
+rt_err_t rt_pin_irq_enable(rt_base_t pin, rt_uint32_t enabled);
+# 89 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/hwtimer.h" 1
+# 12 "../../../components/drivers/include/drivers/hwtimer.h"
+typedef enum
+{
+    HWTIMER_CTRL_FREQ_SET = 0x01,
+    HWTIMER_CTRL_STOP,
+    HWTIMER_CTRL_INFO_GET,
+    HWTIMER_CTRL_MODE_SET
+} rt_hwtimer_ctrl_t;
+
+
+typedef enum
+{
+    HWTIMER_MODE_ONESHOT = 0x01,
+    HWTIMER_MODE_PERIOD
+} rt_hwtimer_mode_t;
+
+
+typedef struct rt_hwtimerval
+{
+    rt_int32_t sec;
+    rt_int32_t usec;
+} rt_hwtimerval_t;
+
+
+
+
+struct rt_hwtimer_device;
+
+struct rt_hwtimer_ops
+{
+    void (*init)(struct rt_hwtimer_device *timer, rt_uint32_t state);
+    rt_err_t (*start)(struct rt_hwtimer_device *timer, rt_uint32_t cnt, rt_hwtimer_mode_t mode);
+    void (*stop)(struct rt_hwtimer_device *timer);
+    rt_uint32_t (*count_get)(struct rt_hwtimer_device *timer);
+    rt_err_t (*control)(struct rt_hwtimer_device *timer, rt_uint32_t cmd, void *args);
+};
+
+
+struct rt_hwtimer_info
+{
+    rt_int32_t maxfreq;
+    rt_int32_t minfreq;
+    rt_uint32_t maxcnt;
+    rt_uint8_t cntmode;
+};
+
+typedef struct rt_hwtimer_device
+{
+    struct rt_device parent;
+    const struct rt_hwtimer_ops *ops;
+    const struct rt_hwtimer_info *info;
+
+    rt_int32_t freq;
+    rt_int32_t overflow;
+    float period_sec;
+    rt_int32_t cycles;
+    rt_int32_t reload;
+    rt_hwtimer_mode_t mode;
+} rt_hwtimer_t;
+
+rt_err_t rt_device_hwtimer_register(rt_hwtimer_t *timer, const char *name, void *user_data);
+void rt_device_hwtimer_isr(rt_hwtimer_t *timer);
+# 93 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/cputime.h" 1
+# 28 "../../../components/drivers/include/drivers/cputime.h"
+struct rt_clock_cputime_ops
+{
+    float (*cputime_getres) (void);
+    uint32_t (*cputime_gettime)(void);
+};
+
+float clock_cpu_getres(void);
+uint32_t clock_cpu_gettime(void);
+
+uint32_t clock_cpu_microsecond(uint32_t cpu_tick);
+uint32_t clock_cpu_millisecond(uint32_t cpu_tick);
+
+int clock_cpu_setops(const struct rt_clock_cputime_ops *ops);
+# 97 "../../../components/drivers/include/rtdevice.h" 2
+# 108 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/sata.h" 1
+# 10 "../../../components/drivers/include/drivers/sata.h"
+struct rt_ata_device_ops;
+
+struct rt_ata_device
+{
+    struct rt_device parent;
+
+    struct rt_device_blk_geometry dev_info;
+    struct rt_device_blk_sectors dev_cap;
+
+    struct rt_mutex dlock;
+
+    const struct rt_ata_ops *ops;
+
+
+    void *crypto;
+    int disk_encrypt;
+
+
+
+    volatile int pending_cmds;
+
+};
+
+typedef struct rt_ata_device rt_ata_device_t;
+
+struct rt_ata_ops
+{
+    rt_err_t (*init)(struct rt_ata_device *device);
+    rt_err_t (*probe)(struct rt_ata_device *device, struct rt_device_blk_geometry *dev_info);
+    rt_size_t (*read)(struct rt_ata_device *device, rt_off_t pos, void *buffer, rt_size_t size);
+    rt_size_t (*write)(struct rt_ata_device *device, rt_off_t pos, const void *buffer, rt_size_t size);
+    rt_err_t (*ioctrl)(struct rt_ata_device *device, int cmd, void *args);
+    rt_err_t (*sync)(struct rt_ata_device *device);
+    rt_err_t (*trim)(struct rt_ata_device *device, void *buffer, rt_size_t size);
+};
+
+rt_err_t rt_ata_register(struct rt_ata_device *ata,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 109 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/crypto_dev.h" 1
+
+
+
+
+struct rt_crypto_device
+{
+    struct rt_device parent;
+
+    struct rt_mutex lock_cipher;
+    struct rt_mutex lock_pk;
+    struct rt_mutex lock_hash;
+    struct rt_mutex lock_rng;
+
+    const struct rt_crypto_ops *ops;
+};
+
+typedef struct rt_crypto_device rt_crypto_device_t;
+
+struct rt_crypto_ops
+{
+    rt_err_t (*reset)(rt_crypto_device_t *dev);
+    rt_err_t (*ioctl)(rt_crypto_device_t *dev, int cmd, void *args);
+};
+
+rt_err_t rt_crypto_register(rt_crypto_device_t *crypto,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 113 "../../../components/drivers/include/rtdevice.h" 2
 # 3 "../drivers/drv_gpio.c" 2
 # 1 "../libraries/inc/tih/scu.h" 1
 # 23 "../libraries/inc/tih/scu.h"
@@ -3235,3 +3739,244 @@ void gpio_set(unsigned int pin, unsigned int val);
 unsigned int gpio_get(unsigned int pin);
 void gpio_pull_mode_set(unsigned int pin, unsigned int mode);
 # 5 "../drivers/drv_gpio.c" 2
+# 14 "../drivers/drv_gpio.c"
+struct pin_index
+{
+    uint32_t index;
+    uint32_t pin;
+};
+
+static void __attribute__((section(".fast"))) gpio_isr(void)
+{
+    unsigned int status;
+
+    status = gpio_intr_status();
+    gpio_intr_clear(status);
+    rt_hw_interrupt_clear(19);
+
+    for (unsigned int i = 0; i < 16; ++i) {
+        if (status & (1 << i )) {
+
+        }
+    }
+}
+
+static const struct pin_index pins[] =
+{
+
+    {-1, 0},
+    {1, 1},
+    {2, 2},
+    {3, 3},
+    {4, 4},
+    {5, 5},
+    {6, 6},
+    {7, 7},
+    {8, 8},
+    {9, 9},
+    {10, 10},
+    {11, 11},
+    {12, 12},
+    {13, 13},
+    {14, 14},
+    {15, 15},
+    {16, 16},
+    {17, 17},
+    {18, 18},
+    {19, 19},
+    {20, 20},
+    {21, 21},
+    {21, 22},
+    {22, 23},
+    {24, 24},
+    {25, 25},
+    {26, 26},
+    {27, 27},
+    {28, 28},
+    {29, 29},
+    {30, 30},
+    {31, 31},
+
+};
+
+const struct pin_index *get_pin(uint8_t pin)
+{
+    const struct pin_index *index;
+
+    if (pin < sizeof(pins)/sizeof(pins[0]))
+    {
+        index = &pins[pin];
+        if (index->index == -1)
+            index = (0);
+    }
+    else
+    {
+        index = (0);
+    }
+
+    return index;
+};
+
+void drv_pin_write(rt_device_t dev, rt_base_t pin, rt_base_t value)
+{
+    const struct pin_index *index;
+
+    index = get_pin(pin);
+    if (index == (0))
+    {
+        return;
+    }
+
+    gpio_set(index->pin, value);
+}
+
+int drv_pin_read(rt_device_t dev, rt_base_t pin)
+{
+    int value;
+    const struct pin_index *index;
+
+    value = 0x00;
+
+    index = get_pin(pin);
+    if (index == (0)) {
+        return value;
+    }
+
+    if (gpio_get(index->pin) != 0) {
+        value = 0x01;
+    }
+    else {
+        value = 0x00;
+    }
+
+    return value;
+}
+
+void drv_pin_mode(rt_device_t dev, rt_base_t pin, rt_base_t mode)
+{
+    const struct pin_index *index;
+    gpio_config_t config;
+
+    index = get_pin(pin);
+    if (index == (0))
+    {
+        return;
+    }
+
+    config.trig_mode = 0;
+
+    if (mode == 0x00) {
+
+        config.pin = index->pin;
+        config.io_mode = 0;
+    }
+    else if (mode == 0x01) {
+
+        config.pin = index->pin;
+        config.io_mode = 3;
+    }
+    else if (mode == 0x02) {
+
+        config.pin = index->pin;
+        config.io_mode = 1;
+    }
+    else if (mode == 0x03) {
+
+        config.pin = index->pin;
+        config.io_mode = 2;
+    }
+    else {
+
+        if (!(0)) { rt_assert_handler("0", __FUNCTION__, 161); };
+    }
+    gpio_hw_init(&config);
+    scu_pin_mux_set(1, 0);
+}
+
+rt_err_t drv_pin_attach_irq(struct rt_device *device, rt_int32_t pin,
+                  rt_uint32_t mode, void (*hdr)(void *args), void *args)
+{
+    const struct pin_index *index;
+    gpio_config_t config;
+
+    index = get_pin(pin);
+    if (index == (0)) {
+        return -6;
+    }
+
+    if (mode == 0x00) {
+        config.trig_mode = 1;
+    }
+    else if (mode == 0x01) {
+        config.trig_mode = 2;
+    }
+    else if (mode == 0x02) {
+        config.trig_mode = 3;
+    }
+    else if (mode == 0x03) {
+        config.trig_mode = 4;
+    }
+    else if (mode == 0x04) {
+        config.trig_mode = 5;
+    }
+    else {
+
+        if (!(0)) { rt_assert_handler("0", __FUNCTION__, 195); };
+    }
+
+    config.pin = index->pin;
+    config.io_mode = 1;
+    gpio_hw_init(&config);
+    scu_pin_mux_set(1, 0);
+
+    gpio_intr_enable(pin);
+    rt_hw_interrupt_install(19, (rt_isr_handler_t)hdr, args, "GPIO");
+    rt_hw_interrupt_umask(19);
+
+    return 0;
+}
+
+rt_err_t drv_pin_detach_irq(struct rt_device *device, rt_int32_t pin)
+{
+    const struct pin_index *index;
+
+    index = get_pin(pin);
+    if (index == (0)) {
+        return -6;
+    }
+
+    gpio_intr_disable(index->pin);
+    return 0;
+}
+
+rt_err_t drv_pin_irq_enable(struct rt_device *device, rt_base_t pin, rt_uint32_t enabled)
+{
+    const struct pin_index *index;
+
+    index = get_pin(pin);
+    if (index == (0))
+    {
+        return -6;
+    }
+
+    gpio_intr_enable(index->pin);
+    return 0;
+}
+const static struct rt_pin_ops _drv_pin_ops =
+{
+    drv_pin_mode,
+    drv_pin_write,
+    drv_pin_read,
+    drv_pin_attach_irq,
+    drv_pin_detach_irq,
+    drv_pin_irq_enable,
+};
+
+static int drv_pin_init(void)
+{
+    int result;
+
+    result = rt_device_pin_register("pin", &_drv_pin_ops, (0));
+    return result;
+}
+const init_fn_t __rt_init_drv_pin_init __attribute__((section(".rti_fn.""1"))) = drv_pin_init;

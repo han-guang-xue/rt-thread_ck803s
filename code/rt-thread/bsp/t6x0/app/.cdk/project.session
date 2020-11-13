@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws">
-  <int Value="7" Name="m_selectedTab"/>
+  <int Value="8" Name="m_selectedTab"/>
   <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
@@ -54,8 +54,29 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\core\ipv4\ip4.c" Name="FileName"/>
-      <int Value="235" Name="FirstVisibleLine"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="4" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\cmd.c" Name="FileName"/>
+      <int Value="556" Name="FirstVisibleLine"/>
+      <int Value="457" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\shell.c" Name="FileName"/>
+      <int Value="31" Name="FirstVisibleLine"/>
       <int Value="1" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\symbol.c" Name="FileName"/>
+      <int Value="58" Name="FirstVisibleLine"/>
+      <int Value="74" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

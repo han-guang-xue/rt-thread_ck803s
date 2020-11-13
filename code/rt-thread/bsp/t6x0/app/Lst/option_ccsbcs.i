@@ -744,7 +744,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -1463,7 +1463,14 @@ DWORD get_fattime (void);
 
 WCHAR ff_convert (WCHAR chr, UINT dir);
 WCHAR ff_wtoupper (WCHAR chr);
-# 318 "../../../components/dfs/filesystems/elmfat/option/../ff.h"
+
+void* ff_memalloc (UINT msize);
+void ff_memfree (void* mblock);
+
+
+
+
+
 int ff_cre_syncobj (BYTE vol, rt_mutex_t* sobj);
 int ff_req_grant (rt_mutex_t sobj);
 void ff_rel_grant (rt_mutex_t sobj);

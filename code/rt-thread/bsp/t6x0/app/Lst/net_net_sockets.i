@@ -933,7 +933,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3180,6 +3180,177 @@ static __inline void rt_poll_add(rt_wqueue_t *wq, rt_pollreq_t *req)
     }
 }
 # 38 "../../../components/drivers/include/rtdevice.h" 2
+# 46 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/rtc.h" 1
+# 28 "../../../components/drivers/include/drivers/rtc.h"
+rt_err_t set_date(rt_uint32_t year, rt_uint32_t month, rt_uint32_t day);
+rt_err_t set_time(rt_uint32_t hour, rt_uint32_t minute, rt_uint32_t second);
+
+int rt_soft_rtc_init(void);
+int rt_rtc_ntp_sync_init(void);
+# 47 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+
+
+
+# 1 "../../../components/drivers/include/drivers/spi.h" 1
+# 70 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message
+{
+    const void *send_buf;
+    void *recv_buf;
+    rt_size_t length;
+    struct rt_spi_message *next;
+
+    unsigned cs_take : 1;
+    unsigned cs_release : 1;
+};
+
+
+
+
+struct rt_spi_configuration
+{
+    rt_uint8_t mode;
+    rt_uint8_t data_width;
+    rt_uint16_t reserved;
+
+    rt_uint32_t max_hz;
+};
+
+struct rt_spi_ops;
+struct rt_spi_bus
+{
+    struct rt_device parent;
+    const struct rt_spi_ops *ops;
+
+    struct rt_mutex lock;
+    struct rt_spi_device *owner;
+};
+
+
+
+
+struct rt_spi_ops
+{
+    rt_err_t (*configure)(struct rt_spi_device *device, struct rt_spi_configuration *configuration);
+    rt_uint32_t (*xfer)(struct rt_spi_device *device, struct rt_spi_message *message);
+};
+
+
+
+
+struct rt_spi_device
+{
+    struct rt_device parent;
+    struct rt_spi_bus *bus;
+
+    struct rt_spi_configuration config;
+};
+
+
+
+rt_err_t rt_spi_bus_register(struct rt_spi_bus *bus,
+                             const char *name,
+                             const struct rt_spi_ops *ops);
+
+
+rt_err_t rt_spi_bus_attach_device(struct rt_spi_device *device,
+                                  const char *name,
+                                  const char *bus_name,
+                                  void *user_data);
+# 142 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take_bus(struct rt_spi_device *device);
+# 151 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release_bus(struct rt_spi_device *device);
+# 160 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take(struct rt_spi_device *device);
+# 169 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release(struct rt_spi_device *device);
+
+
+rt_err_t rt_spi_configure(struct rt_spi_device *device,
+                          struct rt_spi_configuration *cfg);
+
+
+rt_err_t rt_spi_send_then_recv(struct rt_spi_device *device,
+                               const void *send_buf,
+                               rt_size_t send_length,
+                               void *recv_buf,
+                               rt_size_t recv_length);
+
+rt_err_t rt_spi_send_then_send(struct rt_spi_device *device,
+                               const void *send_buf1,
+                               rt_size_t send_length1,
+                               const void *send_buf2,
+                               rt_size_t send_length2);
+# 198 "../../../components/drivers/include/drivers/spi.h"
+rt_size_t rt_spi_transfer(struct rt_spi_device *device,
+                          const void *send_buf,
+                          void *recv_buf,
+                          rt_size_t length);
+# 212 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message *rt_spi_transfer_message(struct rt_spi_device *device,
+                                               struct rt_spi_message *message);
+
+static __inline rt_size_t rt_spi_recv(struct rt_spi_device *device,
+                                void *recv_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, (0), recv_buf, length);
+}
+
+static __inline rt_size_t rt_spi_send(struct rt_spi_device *device,
+                                const void *send_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, send_buf, (0), length);
+}
+
+static __inline rt_uint8_t rt_spi_sendrecv8(struct rt_spi_device *device,
+                                      rt_uint8_t data)
+{
+    rt_uint8_t value;
+
+    rt_spi_send_then_recv(device, &data, 1, &value, 1);
+
+    return value;
+}
+
+static __inline rt_uint16_t rt_spi_sendrecv16(struct rt_spi_device *device,
+                                        rt_uint16_t data)
+{
+    rt_uint16_t value;
+
+    rt_spi_send_then_recv(device, &data, 2, &value, 2);
+
+    return value;
+}
+
+
+
+
+
+
+
+static __inline void rt_spi_message_append(struct rt_spi_message *list,
+                                     struct rt_spi_message *message)
+{
+    if (!(list != (0))) { rt_assert_handler("list != RT_NULL", __FUNCTION__, 258); };
+    if (message == (0))
+        return;
+
+    while (list->next != (0))
+    {
+        list = list->next;
+    }
+
+    list->next = message;
+    message->next = (0);
+}
+# 54 "../../../components/drivers/include/rtdevice.h" 2
 # 65 "../../../components/drivers/include/rtdevice.h"
 # 1 "../../../components/drivers/include/drivers/serial.h" 1
 # 107 "../../../components/drivers/include/drivers/serial.h"
@@ -3261,6 +3432,339 @@ rt_err_t rt_hw_serial_register(struct rt_serial_device *serial,
                                rt_uint32_t flag,
                                void *data);
 # 66 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/i2c.h" 1
+# 41 "../../../components/drivers/include/drivers/i2c.h"
+struct rt_i2c_msg
+{
+    rt_uint16_t addr;
+    rt_uint16_t flags;
+    rt_uint16_t len;
+    rt_uint8_t *buf;
+};
+
+struct rt_i2c_bus_device;
+
+struct rt_i2c_bus_device_ops
+{
+    rt_size_t (*master_xfer)(struct rt_i2c_bus_device *bus,
+                             struct rt_i2c_msg msgs[],
+                             rt_uint32_t num);
+    rt_size_t (*slave_xfer)(struct rt_i2c_bus_device *bus,
+                            struct rt_i2c_msg msgs[],
+                            rt_uint32_t num);
+    rt_err_t (*i2c_bus_control)(struct rt_i2c_bus_device *bus,
+                                rt_uint32_t,
+                                rt_uint32_t);
+};
+
+
+struct rt_i2c_bus_device
+{
+    struct rt_device parent;
+    const struct rt_i2c_bus_device_ops *ops;
+    rt_uint16_t flags;
+    rt_uint16_t addr;
+    struct rt_mutex lock;
+    rt_uint32_t timeout;
+    rt_uint32_t retries;
+    void *priv;
+};
+
+
+
+
+
+
+
+rt_err_t rt_i2c_bus_device_register(struct rt_i2c_bus_device *bus,
+                                    const char *bus_name);
+struct rt_i2c_bus_device *rt_i2c_bus_device_find(const char *bus_name);
+rt_size_t rt_i2c_transfer(struct rt_i2c_bus_device *bus,
+                          struct rt_i2c_msg msgs[],
+                          rt_uint32_t num);
+rt_size_t rt_i2c_master_send(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             const rt_uint8_t *buf,
+                             rt_uint32_t count);
+rt_size_t rt_i2c_master_recv(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             rt_uint8_t *buf,
+                             rt_uint32_t count);
+int rt_i2c_core_init(void);
+# 70 "../../../components/drivers/include/rtdevice.h" 2
+# 1 "../../../components/drivers/include/drivers/i2c_dev.h" 1
+# 39 "../../../components/drivers/include/drivers/i2c_dev.h"
+struct rt_i2c_priv_data
+{
+    struct rt_i2c_msg *msgs;
+    rt_size_t number;
+};
+
+rt_err_t rt_i2c_bus_device_device_init(struct rt_i2c_bus_device *bus,
+                                       const char *name);
+# 71 "../../../components/drivers/include/rtdevice.h" 2
+
+
+# 1 "../../../components/drivers/include/drivers/i2c-bit-ops.h" 1
+# 32 "../../../components/drivers/include/drivers/i2c-bit-ops.h"
+struct rt_i2c_bit_ops
+{
+    void *data;
+    void (*set_sda)(void *data, rt_int32_t state);
+    void (*set_scl)(void *data, rt_int32_t state);
+    rt_int32_t (*get_sda)(void *data);
+    rt_int32_t (*get_scl)(void *data);
+
+    void (*udelay)(rt_uint32_t us);
+
+    rt_uint32_t delay_us;
+    rt_uint32_t timeout;
+};
+
+rt_err_t rt_i2c_bit_add_bus(struct rt_i2c_bus_device *bus,
+                            const char *bus_name);
+# 74 "../../../components/drivers/include/rtdevice.h" 2
+# 84 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/watchdog.h" 1
+# 37 "../../../components/drivers/include/drivers/watchdog.h"
+struct rt_watchdog_ops;
+struct rt_watchdog_device
+{
+    struct rt_device parent;
+    const struct rt_watchdog_ops *ops;
+};
+typedef struct rt_watchdog_device rt_watchdog_t;
+
+struct rt_watchdog_ops
+{
+    rt_err_t (*init)(rt_watchdog_t *wdt);
+    rt_err_t (*control)(rt_watchdog_t *wdt, int cmd, void *arg);
+};
+
+rt_err_t rt_hw_watchdog_register(rt_watchdog_t *wdt,
+                                 const char *name,
+                                 rt_uint32_t flag,
+                                 void *data);
+# 85 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/pin.h" 1
+# 37 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin
+{
+    struct rt_device parent;
+    const struct rt_pin_ops *ops;
+};
+# 63 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin_mode
+{
+    rt_uint16_t pin;
+    rt_uint16_t mode;
+};
+struct rt_device_pin_status
+{
+    rt_uint16_t pin;
+    rt_uint16_t status;
+};
+struct rt_pin_irq_hdr
+{
+    rt_int16_t pin;
+    rt_uint16_t mode;
+    void (*hdr)(void *args);
+    void *args;
+};
+struct rt_pin_ops
+{
+    void (*pin_mode)(struct rt_device *device, rt_base_t pin, rt_base_t mode);
+    void (*pin_write)(struct rt_device *device, rt_base_t pin, rt_base_t value);
+    int (*pin_read)(struct rt_device *device, rt_base_t pin);
+
+
+    rt_err_t (*pin_attach_irq)(struct rt_device *device, rt_int32_t pin,
+                      rt_uint32_t mode, void (*hdr)(void *args), void *args);
+    rt_err_t (*pin_detach_irq)(struct rt_device *device, rt_int32_t pin);
+    rt_err_t (*pin_irq_enable)(struct rt_device *device, rt_base_t pin, rt_uint32_t enabled);
+};
+
+int rt_device_pin_register(const char *name, const struct rt_pin_ops *ops, void *user_data);
+
+void rt_pin_mode(rt_base_t pin, rt_base_t mode);
+void rt_pin_write(rt_base_t pin, rt_base_t value);
+int rt_pin_read(rt_base_t pin);
+rt_err_t rt_pin_attach_irq(rt_int32_t pin, rt_uint32_t mode,
+                             void (*hdr)(void *args), void *args);
+rt_err_t rt_pin_detach_irq(rt_int32_t pin);
+rt_err_t rt_pin_irq_enable(rt_base_t pin, rt_uint32_t enabled);
+# 89 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/hwtimer.h" 1
+# 12 "../../../components/drivers/include/drivers/hwtimer.h"
+typedef enum
+{
+    HWTIMER_CTRL_FREQ_SET = 0x01,
+    HWTIMER_CTRL_STOP,
+    HWTIMER_CTRL_INFO_GET,
+    HWTIMER_CTRL_MODE_SET
+} rt_hwtimer_ctrl_t;
+
+
+typedef enum
+{
+    HWTIMER_MODE_ONESHOT = 0x01,
+    HWTIMER_MODE_PERIOD
+} rt_hwtimer_mode_t;
+
+
+typedef struct rt_hwtimerval
+{
+    rt_int32_t sec;
+    rt_int32_t usec;
+} rt_hwtimerval_t;
+
+
+
+
+struct rt_hwtimer_device;
+
+struct rt_hwtimer_ops
+{
+    void (*init)(struct rt_hwtimer_device *timer, rt_uint32_t state);
+    rt_err_t (*start)(struct rt_hwtimer_device *timer, rt_uint32_t cnt, rt_hwtimer_mode_t mode);
+    void (*stop)(struct rt_hwtimer_device *timer);
+    rt_uint32_t (*count_get)(struct rt_hwtimer_device *timer);
+    rt_err_t (*control)(struct rt_hwtimer_device *timer, rt_uint32_t cmd, void *args);
+};
+
+
+struct rt_hwtimer_info
+{
+    rt_int32_t maxfreq;
+    rt_int32_t minfreq;
+    rt_uint32_t maxcnt;
+    rt_uint8_t cntmode;
+};
+
+typedef struct rt_hwtimer_device
+{
+    struct rt_device parent;
+    const struct rt_hwtimer_ops *ops;
+    const struct rt_hwtimer_info *info;
+
+    rt_int32_t freq;
+    rt_int32_t overflow;
+    float period_sec;
+    rt_int32_t cycles;
+    rt_int32_t reload;
+    rt_hwtimer_mode_t mode;
+} rt_hwtimer_t;
+
+rt_err_t rt_device_hwtimer_register(rt_hwtimer_t *timer, const char *name, void *user_data);
+void rt_device_hwtimer_isr(rt_hwtimer_t *timer);
+# 93 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/cputime.h" 1
+# 28 "../../../components/drivers/include/drivers/cputime.h"
+struct rt_clock_cputime_ops
+{
+    float (*cputime_getres) (void);
+    uint32_t (*cputime_gettime)(void);
+};
+
+float clock_cpu_getres(void);
+uint32_t clock_cpu_gettime(void);
+
+uint32_t clock_cpu_microsecond(uint32_t cpu_tick);
+uint32_t clock_cpu_millisecond(uint32_t cpu_tick);
+
+int clock_cpu_setops(const struct rt_clock_cputime_ops *ops);
+# 97 "../../../components/drivers/include/rtdevice.h" 2
+# 108 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/sata.h" 1
+# 10 "../../../components/drivers/include/drivers/sata.h"
+struct rt_ata_device_ops;
+
+struct rt_ata_device
+{
+    struct rt_device parent;
+
+    struct rt_device_blk_geometry dev_info;
+    struct rt_device_blk_sectors dev_cap;
+
+    struct rt_mutex dlock;
+
+    const struct rt_ata_ops *ops;
+
+
+    void *crypto;
+    int disk_encrypt;
+
+
+
+    volatile int pending_cmds;
+
+};
+
+typedef struct rt_ata_device rt_ata_device_t;
+
+struct rt_ata_ops
+{
+    rt_err_t (*init)(struct rt_ata_device *device);
+    rt_err_t (*probe)(struct rt_ata_device *device, struct rt_device_blk_geometry *dev_info);
+    rt_size_t (*read)(struct rt_ata_device *device, rt_off_t pos, void *buffer, rt_size_t size);
+    rt_size_t (*write)(struct rt_ata_device *device, rt_off_t pos, const void *buffer, rt_size_t size);
+    rt_err_t (*ioctrl)(struct rt_ata_device *device, int cmd, void *args);
+    rt_err_t (*sync)(struct rt_ata_device *device);
+    rt_err_t (*trim)(struct rt_ata_device *device, void *buffer, rt_size_t size);
+};
+
+rt_err_t rt_ata_register(struct rt_ata_device *ata,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 109 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/crypto_dev.h" 1
+
+
+
+
+struct rt_crypto_device
+{
+    struct rt_device parent;
+
+    struct rt_mutex lock_cipher;
+    struct rt_mutex lock_pk;
+    struct rt_mutex lock_hash;
+    struct rt_mutex lock_rng;
+
+    const struct rt_crypto_ops *ops;
+};
+
+typedef struct rt_crypto_device rt_crypto_device_t;
+
+struct rt_crypto_ops
+{
+    rt_err_t (*reset)(rt_crypto_device_t *dev);
+    rt_err_t (*ioctl)(rt_crypto_device_t *dev, int cmd, void *args);
+};
+
+rt_err_t rt_crypto_register(rt_crypto_device_t *crypto,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 113 "../../../components/drivers/include/rtdevice.h" 2
 # 37 "../../../components/dfs/include/dfs.h" 2
 # 84 "../../../components/dfs/include/dfs.h"
 struct statfs
@@ -3759,6 +4263,11 @@ struct linger {
        int l_onoff;
        int l_linger;
 };
+# 309 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
+typedef struct ip_mreq {
+    struct in_addr imr_multiaddr;
+    struct in_addr imr_interface;
+} ip_mreq;
 # 477 "../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h"
 void lwip_socket_thread_init(void);
 void lwip_socket_thread_cleanup(void);
@@ -4124,6 +4633,13 @@ enum netconn_evt {
   NETCONN_EVT_SENDMINUS,
   NETCONN_EVT_ERROR
 };
+
+
+
+enum netconn_igmp {
+  NETCONN_JOIN,
+  NETCONN_LEAVE
+};
 # 199 "../../../components/net/lwip-2.0.2/src/include/lwip/api.h"
 struct ip_pcb;
 struct tcp_pcb;
@@ -4160,7 +4676,7 @@ struct netconn {
 
 
 
-
+  sys_mbox_t acceptmbox;
 
 
 
@@ -4191,7 +4707,16 @@ struct netconn {
 
 
   u8_t flags;
-# 275 "../../../components/net/lwip-2.0.2/src/include/lwip/api.h"
+
+
+
+  size_t write_offset;
+
+
+
+  struct api_msg *current_msg;
+
+
   netconn_callback callback;
 };
 # 300 "../../../components/net/lwip-2.0.2/src/include/lwip/api.h"
@@ -4227,6 +4752,17 @@ err_t netconn_write_partly(struct netconn *conn, const void *dataptr, size_t siz
 
 err_t netconn_close(struct netconn *conn);
 err_t netconn_shutdown(struct netconn *conn, u8_t shut_rx, u8_t shut_tx);
+
+
+err_t netconn_join_leave_group(struct netconn *conn, const ip_addr_t *multiaddr,
+                             const ip_addr_t *netif_addr, enum netconn_igmp join_or_leave);
+
+
+
+
+
+
+err_t netconn_gethostbyname(const char *name, ip_addr_t *addr);
 # 35 "../../../components/dfs/filesystems/net/socket/sys/socket.h" 2
 # 1 "../../../components/net/lwip-2.0.2/src/include/lwip/init.h" 1
 # 94 "../../../components/net/lwip-2.0.2/src/include/lwip/init.h"
@@ -4261,24 +4797,24 @@ struct lwip_sock {
 };
 struct lwip_sock *lwip_tryget_socket(int s);
 
-int lwip_accept(int s,struct sockaddr *addr,socklen_t *addrlen);
-int lwip_bind(int s,const struct sockaddr *name,socklen_t namelen);
-int lwip_shutdown(int s,int how);
-int lwip_getpeername(int s,struct sockaddr *name,socklen_t *namelen);
-int lwip_getsockname(int s,struct sockaddr *name,socklen_t *namelen);
-int lwip_getsockopt(int s,int level,int optname,void *optval,socklen_t *optlen);
-int lwip_setsockopt(int s,int level,int optname,const void *optval,socklen_t optlen);
-int lwip_connect(int s,const struct sockaddr *name,socklen_t namelen);
-int lwip_listen(int s,int backlog);
-int lwip_recv(int s,void *mem,size_t len,int flags);
-int lwip_recvfrom(int s,void *mem,size_t len,int flags,struct sockaddr *from,socklen_t *fromlen)
-                                                ;
-int lwip_send(int s,const void *dataptr,size_t size,int flags);
-int lwip_sendto(int s,const void *dataptr,size_t size,int flags,const struct sockaddr *to,socklen_t tolen)
-                                               ;
-int lwip_socket(int domain,int type,int protocol);
-int lwip_close(int s);
-int lwip_ioctl(int s,long cmd,void *arg);
+int accept(int s, struct sockaddr *addr, socklen_t *addrlen);
+int bind(int s, const struct sockaddr *name, socklen_t namelen);
+int shutdown(int s, int how);
+int getpeername (int s, struct sockaddr *name, socklen_t *namelen);
+int getsockname (int s, struct sockaddr *name, socklen_t *namelen);
+int getsockopt (int s, int level, int optname, void *optval, socklen_t *optlen);
+int setsockopt (int s, int level, int optname, const void *optval, socklen_t optlen);
+int connect(int s, const struct sockaddr *name, socklen_t namelen);
+int listen(int s, int backlog);
+int recv(int s, void *mem, size_t len, int flags);
+int recvfrom(int s, void *mem, size_t len, int flags,
+      struct sockaddr *from, socklen_t *fromlen);
+int send(int s, const void *dataptr, size_t size, int flags);
+int sendto(int s, const void *dataptr, size_t size, int flags,
+    const struct sockaddr *to, socklen_t tolen);
+int socket(int domain, int type, int protocol);
+int closesocket(int s);
+int ioctlsocket(int s, long cmd, void *arg);
 # 29 "../../../components/dfs/filesystems/net/net_sockets.c" 2
 
 # 1 "../../../components/dfs/filesystems/net/dfs_net.h" 1
@@ -4368,7 +4904,7 @@ static void event_callback(struct netconn *conn, enum netconn_evt evt, u16_t len
     }
 }
 
-int lwip_accept(int s,struct sockaddr *addr,socklen_t *addrlen)
+int accept(int s, struct sockaddr *addr, socklen_t *addrlen)
 {
     int new_client = -1;
     int sock = dfs_net_getsocket(s);
@@ -4418,7 +4954,7 @@ int lwip_accept(int s,struct sockaddr *addr,socklen_t *addrlen)
 }
 ;
 
-int lwip_bind(int s,const struct sockaddr *name,socklen_t namelen)
+int bind(int s, const struct sockaddr *name, socklen_t namelen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4426,7 +4962,7 @@ int lwip_bind(int s,const struct sockaddr *name,socklen_t namelen)
 }
 ;
 
-int lwip_shutdown(int s,int how)
+int shutdown(int s, int how)
 {
     int sock;
     struct dfs_fd *d;
@@ -4453,7 +4989,7 @@ int lwip_shutdown(int s,int how)
 }
 ;
 
-int lwip_getpeername(int s,struct sockaddr *name,socklen_t *namelen)
+int getpeername(int s, struct sockaddr *name, socklen_t *namelen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4461,7 +4997,7 @@ int lwip_getpeername(int s,struct sockaddr *name,socklen_t *namelen)
 }
 ;
 
-int lwip_getsockname(int s,struct sockaddr *name,socklen_t *namelen)
+int getsockname(int s, struct sockaddr *name, socklen_t *namelen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4469,7 +5005,7 @@ int lwip_getsockname(int s,struct sockaddr *name,socklen_t *namelen)
 }
 ;
 
-int lwip_getsockopt(int s,int level,int optname,void *optval,socklen_t *optlen)
+int getsockopt(int s, int level, int optname, void *optval, socklen_t *optlen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4477,7 +5013,7 @@ int lwip_getsockopt(int s,int level,int optname,void *optval,socklen_t *optlen)
 }
 ;
 
-int lwip_setsockopt(int s,int level,int optname,const void *optval,socklen_t optlen)
+int setsockopt(int s, int level, int optname, const void *optval, socklen_t optlen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4489,7 +5025,7 @@ int lwip_setsockopt(int s,int level,int optname,const void *optval,socklen_t opt
 }
 ;
 
-int lwip_connect(int s,const struct sockaddr *name,socklen_t namelen)
+int connect(int s, const struct sockaddr *name, socklen_t namelen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4497,7 +5033,7 @@ int lwip_connect(int s,const struct sockaddr *name,socklen_t namelen)
 }
 ;
 
-int lwip_listen(int s,int backlog)
+int listen(int s, int backlog)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4505,7 +5041,7 @@ int lwip_listen(int s,int backlog)
 }
 ;
 
-int __attribute__((section(".fast"))) lwip_recv(int s,void *mem,size_t len,int flags)
+int __attribute__((section(".fast"))) recv(int s, void *mem, size_t len, int flags)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4513,8 +5049,8 @@ int __attribute__((section(".fast"))) lwip_recv(int s,void *mem,size_t len,int f
 }
 ;
 
-int __attribute__((section(".fast"))) lwip_recvfrom(int s,void *mem,size_t len,int flags,struct sockaddr *from,socklen_t *fromlen)
-
+int __attribute__((section(".fast"))) recvfrom(int s, void *mem, size_t len, int flags,
+             struct sockaddr *from, socklen_t *fromlen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4522,7 +5058,7 @@ int __attribute__((section(".fast"))) lwip_recvfrom(int s,void *mem,size_t len,i
 }
 ;
 
-int __attribute__((section(".fast"))) lwip_send(int s,const void *dataptr,size_t size,int flags)
+int __attribute__((section(".fast"))) send(int s, const void *dataptr, size_t size, int flags)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4530,8 +5066,8 @@ int __attribute__((section(".fast"))) lwip_send(int s,const void *dataptr,size_t
 }
 ;
 
-int __attribute__((section(".fast"))) lwip_sendto(int s,const void *dataptr,size_t size,int flags,const struct sockaddr *to,socklen_t tolen)
-
+int __attribute__((section(".fast"))) sendto(int s, const void *dataptr, size_t size, int flags,
+           const struct sockaddr *to, socklen_t tolen)
 {
     int sock = dfs_net_getsocket(s);
 
@@ -4539,7 +5075,7 @@ int __attribute__((section(".fast"))) lwip_sendto(int s,const void *dataptr,size
 }
 ;
 
-int lwip_socket(int domain,int type,int protocol)
+int socket(int domain, int type, int protocol)
 {
 
     int fd;
@@ -4600,7 +5136,7 @@ int lwip_socket(int domain,int type,int protocol)
 }
 ;
 
-int lwip_close(int s)
+int closesocket(int s)
 {
     int sock = dfs_net_getsocket(s);
     struct dfs_fd *d;
@@ -4615,7 +5151,7 @@ int lwip_close(int s)
 }
 ;
 
-int lwip_ioctl(int s,long cmd,void *arg)
+int ioctlsocket(int s, long cmd, void *arg)
 {
     int sock = dfs_net_getsocket(s);
 

@@ -743,7 +743,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -3059,6 +3059,177 @@ static __inline void rt_poll_add(rt_wqueue_t *wq, rt_pollreq_t *req)
     }
 }
 # 38 "../../../components/drivers/include/rtdevice.h" 2
+# 46 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/rtc.h" 1
+# 28 "../../../components/drivers/include/drivers/rtc.h"
+rt_err_t set_date(rt_uint32_t year, rt_uint32_t month, rt_uint32_t day);
+rt_err_t set_time(rt_uint32_t hour, rt_uint32_t minute, rt_uint32_t second);
+
+int rt_soft_rtc_init(void);
+int rt_rtc_ntp_sync_init(void);
+# 47 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+
+
+
+# 1 "../../../components/drivers/include/drivers/spi.h" 1
+# 70 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message
+{
+    const void *send_buf;
+    void *recv_buf;
+    rt_size_t length;
+    struct rt_spi_message *next;
+
+    unsigned cs_take : 1;
+    unsigned cs_release : 1;
+};
+
+
+
+
+struct rt_spi_configuration
+{
+    rt_uint8_t mode;
+    rt_uint8_t data_width;
+    rt_uint16_t reserved;
+
+    rt_uint32_t max_hz;
+};
+
+struct rt_spi_ops;
+struct rt_spi_bus
+{
+    struct rt_device parent;
+    const struct rt_spi_ops *ops;
+
+    struct rt_mutex lock;
+    struct rt_spi_device *owner;
+};
+
+
+
+
+struct rt_spi_ops
+{
+    rt_err_t (*configure)(struct rt_spi_device *device, struct rt_spi_configuration *configuration);
+    rt_uint32_t (*xfer)(struct rt_spi_device *device, struct rt_spi_message *message);
+};
+
+
+
+
+struct rt_spi_device
+{
+    struct rt_device parent;
+    struct rt_spi_bus *bus;
+
+    struct rt_spi_configuration config;
+};
+
+
+
+rt_err_t rt_spi_bus_register(struct rt_spi_bus *bus,
+                             const char *name,
+                             const struct rt_spi_ops *ops);
+
+
+rt_err_t rt_spi_bus_attach_device(struct rt_spi_device *device,
+                                  const char *name,
+                                  const char *bus_name,
+                                  void *user_data);
+# 142 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take_bus(struct rt_spi_device *device);
+# 151 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release_bus(struct rt_spi_device *device);
+# 160 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_take(struct rt_spi_device *device);
+# 169 "../../../components/drivers/include/drivers/spi.h"
+rt_err_t rt_spi_release(struct rt_spi_device *device);
+
+
+rt_err_t rt_spi_configure(struct rt_spi_device *device,
+                          struct rt_spi_configuration *cfg);
+
+
+rt_err_t rt_spi_send_then_recv(struct rt_spi_device *device,
+                               const void *send_buf,
+                               rt_size_t send_length,
+                               void *recv_buf,
+                               rt_size_t recv_length);
+
+rt_err_t rt_spi_send_then_send(struct rt_spi_device *device,
+                               const void *send_buf1,
+                               rt_size_t send_length1,
+                               const void *send_buf2,
+                               rt_size_t send_length2);
+# 198 "../../../components/drivers/include/drivers/spi.h"
+rt_size_t rt_spi_transfer(struct rt_spi_device *device,
+                          const void *send_buf,
+                          void *recv_buf,
+                          rt_size_t length);
+# 212 "../../../components/drivers/include/drivers/spi.h"
+struct rt_spi_message *rt_spi_transfer_message(struct rt_spi_device *device,
+                                               struct rt_spi_message *message);
+
+static __inline rt_size_t rt_spi_recv(struct rt_spi_device *device,
+                                void *recv_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, (0), recv_buf, length);
+}
+
+static __inline rt_size_t rt_spi_send(struct rt_spi_device *device,
+                                const void *send_buf,
+                                rt_size_t length)
+{
+    return rt_spi_transfer(device, send_buf, (0), length);
+}
+
+static __inline rt_uint8_t rt_spi_sendrecv8(struct rt_spi_device *device,
+                                      rt_uint8_t data)
+{
+    rt_uint8_t value;
+
+    rt_spi_send_then_recv(device, &data, 1, &value, 1);
+
+    return value;
+}
+
+static __inline rt_uint16_t rt_spi_sendrecv16(struct rt_spi_device *device,
+                                        rt_uint16_t data)
+{
+    rt_uint16_t value;
+
+    rt_spi_send_then_recv(device, &data, 2, &value, 2);
+
+    return value;
+}
+
+
+
+
+
+
+
+static __inline void rt_spi_message_append(struct rt_spi_message *list,
+                                     struct rt_spi_message *message)
+{
+    if (!(list != (0))) { rt_assert_handler("list != RT_NULL", __FUNCTION__, 258); };
+    if (message == (0))
+        return;
+
+    while (list->next != (0))
+    {
+        list = list->next;
+    }
+
+    list->next = message;
+    message->next = (0);
+}
+# 54 "../../../components/drivers/include/rtdevice.h" 2
 # 65 "../../../components/drivers/include/rtdevice.h"
 # 1 "../../../components/drivers/include/drivers/serial.h" 1
 # 107 "../../../components/drivers/include/drivers/serial.h"
@@ -3140,4 +3311,2149 @@ rt_err_t rt_hw_serial_register(struct rt_serial_device *serial,
                                rt_uint32_t flag,
                                void *data);
 # 66 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/i2c.h" 1
+# 41 "../../../components/drivers/include/drivers/i2c.h"
+struct rt_i2c_msg
+{
+    rt_uint16_t addr;
+    rt_uint16_t flags;
+    rt_uint16_t len;
+    rt_uint8_t *buf;
+};
+
+struct rt_i2c_bus_device;
+
+struct rt_i2c_bus_device_ops
+{
+    rt_size_t (*master_xfer)(struct rt_i2c_bus_device *bus,
+                             struct rt_i2c_msg msgs[],
+                             rt_uint32_t num);
+    rt_size_t (*slave_xfer)(struct rt_i2c_bus_device *bus,
+                            struct rt_i2c_msg msgs[],
+                            rt_uint32_t num);
+    rt_err_t (*i2c_bus_control)(struct rt_i2c_bus_device *bus,
+                                rt_uint32_t,
+                                rt_uint32_t);
+};
+
+
+struct rt_i2c_bus_device
+{
+    struct rt_device parent;
+    const struct rt_i2c_bus_device_ops *ops;
+    rt_uint16_t flags;
+    rt_uint16_t addr;
+    struct rt_mutex lock;
+    rt_uint32_t timeout;
+    rt_uint32_t retries;
+    void *priv;
+};
+
+
+
+
+
+
+
+rt_err_t rt_i2c_bus_device_register(struct rt_i2c_bus_device *bus,
+                                    const char *bus_name);
+struct rt_i2c_bus_device *rt_i2c_bus_device_find(const char *bus_name);
+rt_size_t rt_i2c_transfer(struct rt_i2c_bus_device *bus,
+                          struct rt_i2c_msg msgs[],
+                          rt_uint32_t num);
+rt_size_t rt_i2c_master_send(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             const rt_uint8_t *buf,
+                             rt_uint32_t count);
+rt_size_t rt_i2c_master_recv(struct rt_i2c_bus_device *bus,
+                             rt_uint16_t addr,
+                             rt_uint16_t flags,
+                             rt_uint8_t *buf,
+                             rt_uint32_t count);
+int rt_i2c_core_init(void);
+# 70 "../../../components/drivers/include/rtdevice.h" 2
+# 1 "../../../components/drivers/include/drivers/i2c_dev.h" 1
+# 39 "../../../components/drivers/include/drivers/i2c_dev.h"
+struct rt_i2c_priv_data
+{
+    struct rt_i2c_msg *msgs;
+    rt_size_t number;
+};
+
+rt_err_t rt_i2c_bus_device_device_init(struct rt_i2c_bus_device *bus,
+                                       const char *name);
+# 71 "../../../components/drivers/include/rtdevice.h" 2
+
+
+# 1 "../../../components/drivers/include/drivers/i2c-bit-ops.h" 1
+# 32 "../../../components/drivers/include/drivers/i2c-bit-ops.h"
+struct rt_i2c_bit_ops
+{
+    void *data;
+    void (*set_sda)(void *data, rt_int32_t state);
+    void (*set_scl)(void *data, rt_int32_t state);
+    rt_int32_t (*get_sda)(void *data);
+    rt_int32_t (*get_scl)(void *data);
+
+    void (*udelay)(rt_uint32_t us);
+
+    rt_uint32_t delay_us;
+    rt_uint32_t timeout;
+};
+
+rt_err_t rt_i2c_bit_add_bus(struct rt_i2c_bus_device *bus,
+                            const char *bus_name);
+# 74 "../../../components/drivers/include/rtdevice.h" 2
+# 84 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/watchdog.h" 1
+# 37 "../../../components/drivers/include/drivers/watchdog.h"
+struct rt_watchdog_ops;
+struct rt_watchdog_device
+{
+    struct rt_device parent;
+    const struct rt_watchdog_ops *ops;
+};
+typedef struct rt_watchdog_device rt_watchdog_t;
+
+struct rt_watchdog_ops
+{
+    rt_err_t (*init)(rt_watchdog_t *wdt);
+    rt_err_t (*control)(rt_watchdog_t *wdt, int cmd, void *arg);
+};
+
+rt_err_t rt_hw_watchdog_register(rt_watchdog_t *wdt,
+                                 const char *name,
+                                 rt_uint32_t flag,
+                                 void *data);
+# 85 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/pin.h" 1
+# 37 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin
+{
+    struct rt_device parent;
+    const struct rt_pin_ops *ops;
+};
+# 63 "../../../components/drivers/include/drivers/pin.h"
+struct rt_device_pin_mode
+{
+    rt_uint16_t pin;
+    rt_uint16_t mode;
+};
+struct rt_device_pin_status
+{
+    rt_uint16_t pin;
+    rt_uint16_t status;
+};
+struct rt_pin_irq_hdr
+{
+    rt_int16_t pin;
+    rt_uint16_t mode;
+    void (*hdr)(void *args);
+    void *args;
+};
+struct rt_pin_ops
+{
+    void (*pin_mode)(struct rt_device *device, rt_base_t pin, rt_base_t mode);
+    void (*pin_write)(struct rt_device *device, rt_base_t pin, rt_base_t value);
+    int (*pin_read)(struct rt_device *device, rt_base_t pin);
+
+
+    rt_err_t (*pin_attach_irq)(struct rt_device *device, rt_int32_t pin,
+                      rt_uint32_t mode, void (*hdr)(void *args), void *args);
+    rt_err_t (*pin_detach_irq)(struct rt_device *device, rt_int32_t pin);
+    rt_err_t (*pin_irq_enable)(struct rt_device *device, rt_base_t pin, rt_uint32_t enabled);
+};
+
+int rt_device_pin_register(const char *name, const struct rt_pin_ops *ops, void *user_data);
+
+void rt_pin_mode(rt_base_t pin, rt_base_t mode);
+void rt_pin_write(rt_base_t pin, rt_base_t value);
+int rt_pin_read(rt_base_t pin);
+rt_err_t rt_pin_attach_irq(rt_int32_t pin, rt_uint32_t mode,
+                             void (*hdr)(void *args), void *args);
+rt_err_t rt_pin_detach_irq(rt_int32_t pin);
+rt_err_t rt_pin_irq_enable(rt_base_t pin, rt_uint32_t enabled);
+# 89 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/hwtimer.h" 1
+# 12 "../../../components/drivers/include/drivers/hwtimer.h"
+typedef enum
+{
+    HWTIMER_CTRL_FREQ_SET = 0x01,
+    HWTIMER_CTRL_STOP,
+    HWTIMER_CTRL_INFO_GET,
+    HWTIMER_CTRL_MODE_SET
+} rt_hwtimer_ctrl_t;
+
+
+typedef enum
+{
+    HWTIMER_MODE_ONESHOT = 0x01,
+    HWTIMER_MODE_PERIOD
+} rt_hwtimer_mode_t;
+
+
+typedef struct rt_hwtimerval
+{
+    rt_int32_t sec;
+    rt_int32_t usec;
+} rt_hwtimerval_t;
+
+
+
+
+struct rt_hwtimer_device;
+
+struct rt_hwtimer_ops
+{
+    void (*init)(struct rt_hwtimer_device *timer, rt_uint32_t state);
+    rt_err_t (*start)(struct rt_hwtimer_device *timer, rt_uint32_t cnt, rt_hwtimer_mode_t mode);
+    void (*stop)(struct rt_hwtimer_device *timer);
+    rt_uint32_t (*count_get)(struct rt_hwtimer_device *timer);
+    rt_err_t (*control)(struct rt_hwtimer_device *timer, rt_uint32_t cmd, void *args);
+};
+
+
+struct rt_hwtimer_info
+{
+    rt_int32_t maxfreq;
+    rt_int32_t minfreq;
+    rt_uint32_t maxcnt;
+    rt_uint8_t cntmode;
+};
+
+typedef struct rt_hwtimer_device
+{
+    struct rt_device parent;
+    const struct rt_hwtimer_ops *ops;
+    const struct rt_hwtimer_info *info;
+
+    rt_int32_t freq;
+    rt_int32_t overflow;
+    float period_sec;
+    rt_int32_t cycles;
+    rt_int32_t reload;
+    rt_hwtimer_mode_t mode;
+} rt_hwtimer_t;
+
+rt_err_t rt_device_hwtimer_register(rt_hwtimer_t *timer, const char *name, void *user_data);
+void rt_device_hwtimer_isr(rt_hwtimer_t *timer);
+# 93 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/cputime.h" 1
+# 28 "../../../components/drivers/include/drivers/cputime.h"
+struct rt_clock_cputime_ops
+{
+    float (*cputime_getres) (void);
+    uint32_t (*cputime_gettime)(void);
+};
+
+float clock_cpu_getres(void);
+uint32_t clock_cpu_gettime(void);
+
+uint32_t clock_cpu_microsecond(uint32_t cpu_tick);
+uint32_t clock_cpu_millisecond(uint32_t cpu_tick);
+
+int clock_cpu_setops(const struct rt_clock_cputime_ops *ops);
+# 97 "../../../components/drivers/include/rtdevice.h" 2
+# 108 "../../../components/drivers/include/rtdevice.h"
+# 1 "../../../components/drivers/include/drivers/sata.h" 1
+# 10 "../../../components/drivers/include/drivers/sata.h"
+struct rt_ata_device_ops;
+
+struct rt_ata_device
+{
+    struct rt_device parent;
+
+    struct rt_device_blk_geometry dev_info;
+    struct rt_device_blk_sectors dev_cap;
+
+    struct rt_mutex dlock;
+
+    const struct rt_ata_ops *ops;
+
+
+    void *crypto;
+    int disk_encrypt;
+
+
+
+    volatile int pending_cmds;
+
+};
+
+typedef struct rt_ata_device rt_ata_device_t;
+
+struct rt_ata_ops
+{
+    rt_err_t (*init)(struct rt_ata_device *device);
+    rt_err_t (*probe)(struct rt_ata_device *device, struct rt_device_blk_geometry *dev_info);
+    rt_size_t (*read)(struct rt_ata_device *device, rt_off_t pos, void *buffer, rt_size_t size);
+    rt_size_t (*write)(struct rt_ata_device *device, rt_off_t pos, const void *buffer, rt_size_t size);
+    rt_err_t (*ioctrl)(struct rt_ata_device *device, int cmd, void *args);
+    rt_err_t (*sync)(struct rt_ata_device *device);
+    rt_err_t (*trim)(struct rt_ata_device *device, void *buffer, rt_size_t size);
+};
+
+rt_err_t rt_ata_register(struct rt_ata_device *ata,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 109 "../../../components/drivers/include/rtdevice.h" 2
+
+
+
+# 1 "../../../components/drivers/include/drivers/crypto_dev.h" 1
+
+
+
+
+struct rt_crypto_device
+{
+    struct rt_device parent;
+
+    struct rt_mutex lock_cipher;
+    struct rt_mutex lock_pk;
+    struct rt_mutex lock_hash;
+    struct rt_mutex lock_rng;
+
+    const struct rt_crypto_ops *ops;
+};
+
+typedef struct rt_crypto_device rt_crypto_device_t;
+
+struct rt_crypto_ops
+{
+    rt_err_t (*reset)(rt_crypto_device_t *dev);
+    rt_err_t (*ioctl)(rt_crypto_device_t *dev, int cmd, void *args);
+};
+
+rt_err_t rt_crypto_register(rt_crypto_device_t *crypto,
+                               const char *name,
+                               rt_uint32_t flag,
+                               void *data);
+# 113 "../../../components/drivers/include/rtdevice.h" 2
 # 3 "../drivers/drv_sata.c" 2
+
+
+# 1 "../libraries/inc/tih/scu.h" 1
+# 23 "../libraries/inc/tih/scu.h"
+typedef enum {
+# 36 "../libraries/inc/tih/scu.h"
+    MODULE_OSC = 0,
+    MODULE_PLL,
+    MODULE_AHB,
+    MODULE_AXI,
+    MODULE_APB,
+    MODULE_SATA_HOST,
+    MODULE_SATA_DEVICE,
+    MODULE_USB,
+    MODULE_USB_60M,
+    MODULE_DMA,
+    MODULE_SPIFLASH,
+    MODULE_SPIFLASH_IO,
+    MODULE_PKE,
+    MODULE_TRNG,
+    MODULE_CRYPTO,
+    MODULE_GMAC0,
+    MODULE_GMAC1,
+    MODULE_GMAC0_25M,
+    MODULE_GMAC1_25M,
+    MODULE_EMMC0,
+    MODULE_EMMC1,
+    MODULE_EMMC0_PHY,
+    MODULE_EMMC1_PHY,
+    MODULE_MUXIO,
+    MODULE_MUXIO_INV,
+    MODULE_UART_IO,
+    MODULE_SPI,
+    MODULE_SPI_IO,
+    MODULE_I2C,
+    MODULE_TDC,
+    MODULE_H2P,
+    MODULE_H2X,
+    MODULE_H2X_RSD,
+    MODULE_USB3_PHY,
+    MODULE_ALIEN,
+    MODULE_GMAC0_125M,
+    MODULE_GMAC1_125M,
+    MODULE_ALL
+} scu_module_t;
+
+typedef enum clock_src {
+    CLOCK_OSC,
+    CLOCK_PLL
+} clock_src_t;
+
+
+unsigned int clock_freq_get(unsigned int module);
+int clock_freq_set(unsigned int module, unsigned int freq);
+clock_src_t clock_source_get(void);
+void clock_source_set(clock_src_t src, unsigned int freq);
+void clock_enable(unsigned int module);
+void clock_disable(unsigned int module);
+void clock_reset(void);
+void clock_normal(void);
+void clock_standby(void);
+void module_reset(unsigned int module);
+void multi_module_reset(unsigned int *module, unsigned int number);
+void module_enable(unsigned int module);
+void module_disable(unsigned int module);
+float scu_tdc_temp_get(void);
+unsigned long long scu_chipid_get(void);
+
+void scu_ice_enable(void);
+void scu_ice_disable(void);
+
+void scu_pin_mux_set(unsigned int mode1, unsigned int mode2);
+void scu_alien_enable(void);
+void scu_alien_disable(void);
+void scu_sw_cnt_enable(void);
+unsigned int scu_sw_cnt_get(void);
+
+unsigned int scu_reset_record_get(void);
+# 6 "../drivers/drv_sata.c" 2
+# 1 "../libraries/inc/tih/ata.h" 1
+# 107 "../libraries/inc/tih/ata.h"
+typedef struct idty_dev {
+    unsigned short w0_config;
+    unsigned short w1_cylinder_num;
+    unsigned short w2_spcconfig;
+    unsigned short w3_head_num;
+    unsigned short w4_w5_retired[2];
+    unsigned short w6_sector_num;
+    unsigned short w7_w8_reserved[2];
+    unsigned short w9_retired;
+    unsigned char w10_w19_serial_num[20];
+    unsigned short w20_w21_retired[2];
+    unsigned short w22_obsolete;
+    unsigned char w23_w26_fw_revision[8];
+    unsigned char w27_w46_model_num[40];
+    unsigned short w47_multi_max_sec_num;
+    unsigned short w48_trust;
+    unsigned short w49_cap;
+    unsigned short w50_cap;
+    unsigned short w51_w52_obsolete[2];
+    unsigned short w53_valid_info;
+    unsigned short w54_curr_cylinder_num;
+    unsigned short w55_curr_head_num;
+    unsigned short w56_curr_sector_num;
+    unsigned short w57_w58_curr_cap[2];
+    unsigned short w59_multi_curr_sec_num;
+    unsigned short w60_w61_total_sec_cnt[2];
+    unsigned short w62_obsolete;
+    unsigned short w63_mw_dmamode;
+    unsigned short w64_piomode;
+    unsigned short w65_minmwdma;
+    unsigned short w66_recmwdma;
+    unsigned short w67_minpio;
+    unsigned short w68_minpio_flow;
+    unsigned short w69_cap;
+    unsigned short w70_reserved;
+    unsigned short w71_w74_reserved[4];
+    unsigned short w75_qdepth;
+    unsigned short w76_cap;
+    unsigned short w77_cap;
+    unsigned short w78_sup;
+    unsigned short w79_enbl;
+    unsigned short w80_major_version;
+    unsigned short w81_minor_wersion;
+    unsigned short w82_cmd_fea_sup;
+    unsigned short w83_cmd_fea_sup;
+    unsigned short w84_cmd_fea_sup;
+    unsigned short w85_cmd_fea_enbl;
+    unsigned short w86_cmd_fea_enbl;
+    unsigned short w87_cmd_fea_enbl;
+    unsigned short w88_udma_mode;
+    unsigned short w89_normal_erasetime;
+    unsigned short w90_enhanced_erasetime;
+    unsigned short w91_curr_apm_level;
+    unsigned short w92_master_pwd;
+    unsigned short w93_hw_reset_val;
+    unsigned short w94_obsolete;
+    unsigned short w95_stream_min_sz;
+    unsigned short w96_stream_xfert_dma;
+    unsigned short w97_stream_lat;
+    unsigned short w98_w99_stream_perf[2];
+    unsigned short w100_w103_sec_cnt[4];
+    unsigned short w104_steam_xfert_pio;
+    unsigned short w105_trim_max_sec;
+    unsigned short w106_phy_logic_sec;
+    unsigned short w107_seek_delay;
+    unsigned short w108_naa_ieee_oui;
+    unsigned short w109_ieee_oui_uid;
+    unsigned short w110_uid_mid;
+    unsigned short w111_uid_low;
+    unsigned short w112_w115_reserved[4];
+    unsigned short w116_obsolete;
+    unsigned short w117_w118_lsec_size[2];
+    unsigned short w119_cmd_fea_sup;
+    unsigned short w120_cmd_fea_enbl;
+    unsigned short w121_w126_reserved[6];
+    unsigned short w127_obsolete;
+    unsigned short w128_secu_sts;
+    unsigned short w129_w159_vendor[31];
+    unsigned short w160_w167_reserved[8];
+    unsigned short w168_reserved;
+    unsigned short w169_trim_sup;
+    unsigned short w170_w173_reserved[4];
+    unsigned short w174_w175_reserved[2];
+    unsigned short w176_w205_curr_media_sernum[30];
+    unsigned short w206_sct_sup;
+    unsigned short w207_w208_reserved[2];
+    unsigned short w209_align_sec;
+    unsigned short w210_w216_reserved[7];
+    unsigned short w217_media_rotation;
+    unsigned short w218_w221_reserved[4];
+    unsigned short w222_trans_majrev;
+    unsigned short w223_trans_minorrev;
+    unsigned short w224_w229_reserved[6];
+    unsigned short w230_w233_extnum_sec[4];
+    unsigned short w234_dm_min_sec;
+    unsigned short w235_dm_max_sec;
+    unsigned short w236_w254_reserved[19];
+    unsigned short w255_integrity;
+} idty_dev_t;
+
+typedef struct fis_h2d {
+    unsigned char fis_type;
+    unsigned char c_pm;
+    unsigned char cmd;
+    unsigned char feature;
+    unsigned char lba_low;
+    unsigned char lba_mid;
+    unsigned char lba_high;
+    unsigned char device;
+    unsigned char lba_low_exp;
+    unsigned char lba_mid_exp;
+    unsigned char lba_high_exp;
+    unsigned char feature_exp;
+    unsigned short sec_count;
+    unsigned char icc;
+    unsigned char ctrl;
+    unsigned int rsrvd1;
+} fis_h2d_t;
+
+
+
+
+
+
+typedef struct fis_d2h {
+    unsigned char fis_type;
+    unsigned char i_pm;
+    unsigned char status;
+    unsigned char error;
+    unsigned char lba_low;
+    unsigned char lba_mid;
+    unsigned char lba_high;
+    unsigned char device;
+    unsigned int lba_exp;
+    unsigned char sec_count;
+    unsigned char sec_count_exp;
+    unsigned char rsrvd1;
+    unsigned char e_status;
+    unsigned short transfer_cnt;
+    unsigned short rsrvd2;
+} fis_d2h_t;
+
+typedef struct fis_set_dev_bit {
+    unsigned int fis_type:8;
+    unsigned int pm:4;
+    unsigned int reserved_0:2;
+    unsigned int intr:1;
+    unsigned int notify:1;
+    unsigned int status_lo:4;
+    unsigned int status_hi:4;
+    unsigned int error:8;
+    unsigned int prot_specific;
+} fis_set_dev_bit_t;
+
+typedef struct fis_dma_act_d2h {
+    unsigned char fis_type;
+    unsigned char rsrvd[3];
+} fis_dma_act_d2h_t;
+
+typedef struct fis_dma_setup {
+    unsigned char fis_type;
+    unsigned char a_i_d_pm;
+    unsigned short rsrvd1;
+    volatile unsigned int dma_buffid_low;
+    unsigned int dma_buffid_hi;
+    unsigned int rsrvd2;
+    unsigned int dma_buff_offset;
+    unsigned int dma_trans_cnt;
+    unsigned int rsrvd3;
+} fis_dma_setup_t;
+
+typedef struct fis_bist_act {
+    unsigned char fis_type;
+    unsigned char pm;
+    unsigned char pattern;
+    unsigned char rsrvd1;
+    unsigned int data1;
+    unsigned int data2;
+} fis_bist_act_t;
+# 7 "../drivers/drv_sata.c" 2
+# 1 "../libraries/inc/tih/ahci.h" 1
+
+
+
+
+# 1 "../libraries/inc/tih/ata.h" 1
+# 6 "../libraries/inc/tih/ahci.h" 2
+# 54 "../libraries/inc/tih/ahci.h"
+typedef enum ATA_OP {
+    ATA_READ = 3,
+    ATA_WRITE,
+    ATA_IOCTL
+} ata_op_t;
+
+
+typedef enum ncq_prio {
+    NCQ_PRIO_NORM,
+    NCQ_PRIO_ISO,
+    NCQ_PRIO_HIGH,
+    NCQ_PRIO_RESERVE
+} ncq_prio_t;
+
+typedef enum ncq_abort {
+    NCQ_ABORT_ALL,
+    NCQ_ABORT_STREAM,
+    NCQ_ABORT_NON_STREAM,
+    NCQ_ABORT_SELECTED
+} ncq_abort_t;
+
+typedef enum ncq_deadline {
+    NCQ_DEADLINE_WRNC_NONE = 0,
+    NCQ_DEADLINE_WNC = 1,
+    NCQ_DEADLINE_RNC = 2
+} ncq_deadline_t;
+
+typedef enum rw_type {
+    AHCI_RW_TYPE_SECTOR = 0,
+    AHCI_RW_TYPE_MULTI,
+    AHCI_RW_TYPE_NCQ
+} ahci_rw_type_t;
+
+typedef enum sata_addr_mode {
+    SATA_ADDR_MODE_CHS = 0,
+    SATA_ADDR_MODE_LBA28,
+    SATA_ADDR_MODE_LBA48,
+    SATA_ADDR_MODE_ALL
+} sata_addr_mode_t;
+
+typedef enum ahci_xfer_mode {
+    SATA_PIO_MODE_SET,
+    SATA_MDMA_MODE_SET,
+    SATA_UDMA_MODE_SET
+} ahci_xfer_mode_t;
+
+typedef enum ahci_device_type {
+    DEVICE_TYPE_ATA = 0,
+    DEVICE_TYPE_ATAPI,
+    DEVICE_TYPE_UNKNOWN = 0xEE
+} ahci_device_type_t;
+
+typedef enum ahci_phy_mode {
+    PHY_MODE_LISTEN = 0,
+    PHY_MODE_SPINUP,
+    PHY_MODE_OFFLINE,
+    PHY_MODE_NORMAL
+} ahci_phy_mode_t;
+
+typedef enum ahci_port_state {
+    AHCI_PORT_ACTIVE = 1,
+    AHCI_PORT_PARTIAL = 2,
+    AHCI_PORT_SLUMBER = 6
+} ahci_port_state_t;
+
+typedef enum ahci_xfer_prot {
+    SATA_PROT_UNKNOWN,
+    SATA_PROT_NIEN,
+    SATA_PROT_SWRESET,
+    SATA_PROT_NONDATA,
+    SATA_PROT_PIO_IN,
+    SATA_PROT_PIO_OUT,
+    SATA_PROT_DMA_IN,
+    SATA_PROT_DMA_OUT,
+    SATA_PROT_PACKET_ATAPI,
+    SATA_PROT_NCQ,
+    SATA_PROT_NCQ_NONDATA
+} ahci_xfer_prot_t;
+
+typedef enum ahci_err_code {
+    AHCI_OK = 0,
+    AHCI_FAIL = -1,
+    AHCI_CMD_QUEUED = -2,
+    AHCI_CMD_NOT_DONE_YET = -3,
+    AHCI_ERR_PORT_NOT_FOUND = -4,
+    AHCI_ERR_NO_CMD_SLOT = -5,
+    AHCI_ERR_NO_RX_FIS_INTR = -6,
+    AHCI_ERR_CMD_BIT_NOT_CLEAR = -7,
+    AHCI_ERR_NOT_NCQ_CMD = -8,
+    AHCI_ERR_TFD_STS = -9,
+    AHCI_ERR_CFG_VALUE_NOT_CHANGE = -10,
+    AHCI_ERR_CURR_XFER_MODE = -11,
+    AHCI_ERR_XFER_MODE_NOT_SUPPORT = -12,
+    AHCI_ERR_ADDR_MODE_NOT_SUPPORT = -13,
+    AHCI_ERR_DRQ_BLOCK_NOT_CORRECT = -14,
+    AHCI_ERR_STATE_NOT_SUPPORT = -15,
+    AHCI_ERR_DEVICE_TYPE_UNKNOWN = -16,
+    AHCI_ERR_TEST_UNIT_NOT_READY = -17,
+    AHCI_ERR_FATAL_ERROR = -18,
+    AHCI_ERR_TAG_OUT_OF_RANGE = -19,
+    AHCI_ERR_BYTE_COUNT_TOO_LARGE = -20,
+    AHCI_ERR_MEDIUM_ERROR = -21,
+    AHCI_ERR_DEVICE_NO_NCQ = -22,
+    AHCI_ERR_DEVICE_NO_DMA = -23,
+    AHCI_ERR_MAX = -24
+} ahci_err_code_t;
+
+typedef struct ahci_cmd_header {
+    unsigned int cfl :5;
+    unsigned int atapi :1;
+    unsigned int write :1;
+    unsigned int prefetch :1;
+    unsigned int reset :1;
+    unsigned int bist :1;
+    unsigned int clear :1;
+    unsigned int reserved :1;
+    unsigned int pmp :4;
+    unsigned int prdtl :16;
+    unsigned int prdbc;
+    unsigned int ctba;
+    unsigned int ctbaup;
+    unsigned int rsrv1;
+    unsigned int rsrv2;
+    unsigned int rsrv3;
+    unsigned int rsrv4;
+} ahci_cmd_header_t;
+
+typedef struct fis_h2d_2 {
+
+
+
+
+
+
+    unsigned int fea_cmd_cpm_fis;
+
+
+
+
+
+
+    unsigned int dev_lba_28;
+
+
+
+
+
+
+    unsigned int fea_lba_exp;
+
+
+
+
+
+    unsigned int ctrl_icc_scnt;
+    unsigned int rsrvd2;
+} fis_h2d_t2;
+
+typedef struct ahci_cmd_header2 {
+# 226 "../libraries/inc/tih/ahci.h"
+    unsigned int misc;
+    unsigned int prdbc;
+    unsigned int ctba;
+    unsigned int ctbaup;
+    unsigned int rsrv1;
+    unsigned int rsrv2;
+    unsigned int rsrv3;
+    unsigned int rsrv4;
+} ahci_cmd_header_t2;
+
+typedef struct ahci_prdt_entry {
+    unsigned int data_base_addr;
+    unsigned int data_base_upper_addr;
+    unsigned int reserved;
+    unsigned int intr_dbc;
+} ahci_prdt_entry_t;
+
+typedef struct ahci_cmd {
+
+    unsigned char device;
+    unsigned char rw_type;
+    unsigned short tag;
+    unsigned short cmd;
+    unsigned short feature;
+    unsigned short sector_cnt;
+    unsigned int cmd_op;
+    unsigned int buf_size;
+    unsigned long long lba;
+    unsigned short icc;
+    unsigned short clear;
+
+
+    ahci_xfer_prot_t protocol;
+    unsigned int cmd_slot_addr;
+    unsigned int cmd_tbl_addr;
+    unsigned int buf_addr;
+    unsigned short prdt_num;
+    unsigned short occupied;
+    unsigned int prdt_mux;
+    unsigned int addr_mode;
+
+    fis_h2d_t2 *h2d_fis;
+    ahci_cmd_header_t2 *hdr;
+
+    unsigned int start_time;
+    void *private;
+} ahci_cmd_t;
+
+typedef struct ahci_port {
+    unsigned int port_id;
+    struct ahci_hba *ahci;
+
+    idty_dev_t sata_id;
+    int sata_id_is_ok;
+
+
+    ahci_cmd_t cmd_slot[32];
+    unsigned int device_queue_depth;
+
+
+    ahci_cmd_header_t *cmd_list_addr;
+    unsigned int fis_addr;
+    unsigned int cmd_table_addr;
+    fis_dma_setup_t *dsu;
+
+
+    ahci_port_state_t state;
+    ahci_phy_mode_t phy_mode;
+
+
+    ahci_xfer_mode_t curr_xfer_mode;
+    unsigned short curr_xfer_sub_mode;
+    unsigned short curr_drq_block;
+
+
+    unsigned int cmd_status;
+    unsigned int ccs;
+    volatile unsigned int ssts;
+    volatile unsigned int sctl;
+    volatile unsigned int serr;
+    volatile unsigned int stfd;
+    volatile unsigned int sact;
+    volatile unsigned int ci;
+
+
+    volatile unsigned int p0is;
+
+
+    ahci_device_type_t device_type;
+    sata_addr_mode_t addr_mode;
+    unsigned short max_multi;
+    unsigned short lba_support;
+    unsigned short dma_support;
+    unsigned short ncq_support;
+    unsigned short lba48_support;
+    unsigned long long total_sectors;
+    unsigned int sector_size;
+    unsigned int max_rw_sector;
+    unsigned int use_max_cmd_slots;
+    unsigned short best_xfer_mode[SATA_UDMA_MODE_SET + 1];
+    unsigned short rw_type;
+} ahci_port_t;
+
+typedef struct ahci_hba {
+    ahci_port_t port;
+    unsigned char stag_spin_up;
+    unsigned char mech_pre_switch;
+    unsigned char port_multiplier;
+    unsigned char ahci_en;
+    unsigned char ncs;
+    unsigned char cccs;
+    unsigned char np;
+    unsigned char auto_p2s_cap;
+    unsigned char slumber_cap;
+    unsigned char partial_cap;
+    unsigned char cctl_used_intr;
+    unsigned int port_list;
+    unsigned int rev_id;
+
+    unsigned int is;
+} ahci_hba_t;
+
+
+typedef struct sata_ps {
+    unsigned short ps_control;
+    unsigned char pass[32];
+    unsigned short revision_code;
+    unsigned short revd[238];
+} sata_password;
+
+typedef struct btask_context {
+    unsigned int errors;
+    int task_ctx_valid;
+    int is_queue_cmd;
+    int is_hw_reset;
+} btask_ctx_t;
+
+typedef struct set_feature_param {
+    unsigned char is_valid;
+    unsigned char lba_high;
+    unsigned char lba_mid;
+    unsigned char lba_low;
+    unsigned int feature;
+    unsigned int count;
+} set_feature_t;
+
+
+extern btask_ctx_t btask_ctx;
+extern ahci_hba_t ahci;
+extern unsigned int id_buf_addr;
+
+ahci_err_code_t ahci_hw_init(int cont_en, unsigned int ram_size_limit);
+ahci_hba_t *ahci_hba_get(void);
+void ahci_clock_set(unsigned int clk);
+unsigned int ahci_clock_get(void);
+void ahci_wait_timeout_set(unsigned int value);
+void ahci_speed_set(unsigned int speed);
+
+
+void ahci_port_serr_clear(unsigned int status);
+unsigned int ahci_reg_is_flush(void);
+void ahci_reg_sact_set(ahci_port_t *port, unsigned int tag);
+unsigned int ahci_reg_sact_get(ahci_port_t *port);
+void ahci_reg_ci_set(ahci_port_t *port, unsigned int slot);
+unsigned int ahci_reg_ci_get(ahci_port_t *port);
+unsigned int ahci_reg_cmd_get(ahci_port_t *port);
+unsigned int ahci_reg_is_get(ahci_port_t *port);
+unsigned int ahci_reg_tfd_get(ahci_port_t *port);
+unsigned int ahci_reg_sts_get(ahci_port_t *port);
+unsigned int ahci_reg_err_get(ahci_port_t *port);
+unsigned int ahci_ccs_get(ahci_port_t *port);
+fis_d2h_t *ahci_rfis_base_get(ahci_port_t *port);
+fis_dma_setup_t *ahci_dsfis_base_get(ahci_port_t *port);
+fis_set_dev_bit_t *ahci_sdbfis_base_get(ahci_port_t *port);
+
+
+void ahci_intr_enable(unsigned int intr_src);
+void ahci_intr_disable(unsigned int intr_src);
+unsigned int ahci_intr_status(void);
+void ahci_intr_clear(unsigned int intr_src);
+void ahci_link_change_handler(ahci_port_t *port);
+
+
+ahci_err_code_t ahci_cmd_issue(ahci_port_t *port, unsigned int *ci_bits, unsigned int is_wait);
+void ahci_cmd_slot_free(ahci_cmd_t *cmd);
+int ahci_cmd_slot_is_empty(ahci_port_t *port);
+ahci_cmd_t *ahci_cmd_slot_get(unsigned short slot);
+ahci_cmd_t *ahci_usable_cmd_slot_get(ahci_port_t *port);
+ahci_err_code_t ahci_quick_rw(ahci_port_t *port, unsigned long long start, unsigned int nbytes, ahci_cmd_t *cmd);
+
+
+ahci_err_code_t ahci_sector_per_block_set(ahci_port_t *port, unsigned char nsector, unsigned short *tag);
+ahci_err_code_t ahci_puis_device_spinup_set(ahci_port_t *port, unsigned short * tag);
+ahci_err_code_t ahci_puis_feature_set(ahci_port_t *port, unsigned char enable, unsigned short *tag);
+ahci_err_code_t ahci_sata_feature_set(ahci_port_t *port, unsigned char enable, unsigned char feature_code, unsigned short *tag);
+ahci_err_code_t ahci_cache_feature_set(ahci_port_t *port, unsigned char enable, unsigned short *tag);
+ahci_err_code_t ahci_apm_feature_set(ahci_port_t *port, unsigned char enable, unsigned char level, unsigned short *tag);
+ahci_err_code_t ahci_lkah_feature_set(ahci_port_t *port, unsigned char enable, unsigned short *tag);
+ahci_err_code_t ahci_revert_to_default_feature_set(ahci_port_t *port, unsigned char enable, unsigned short *tag);
+ahci_err_code_t ahci_feature_set_exception(ahci_port_t *port, unsigned char feature, unsigned short sector_cnt, unsigned short *tag);
+ahci_err_code_t ahci_cache_flush(ahci_port_t *port, unsigned short *tag);
+ahci_err_code_t ahci_data_set_trim(ahci_port_t *port, unsigned char *buf, unsigned int nbytes, unsigned short *tag);
+ahci_err_code_t ahci_sleep_standby_handle(ahci_port_t *port, unsigned int sleep, unsigned int period, unsigned short *tag);
+ahci_err_code_t ahci_device_intr_enable(ahci_port_t *port, unsigned short *tag);
+ahci_err_code_t ahci_xfer_mode_set(ahci_port_t *port, ahci_xfer_mode_t mode, unsigned char submode, unsigned short *tag);
+ahci_err_code_t ahci_raw_rw(ahci_port_t *port, unsigned long long start, unsigned int buf, unsigned int nbytes, unsigned int op, ahci_cmd_t *cmd);
+ahci_err_code_t ahci_sector_read(ahci_port_t *port, unsigned long long start, unsigned char *buf, unsigned int nbytes,
+                                 ahci_rw_type_t type, unsigned short *tag);
+ahci_err_code_t ahci_sector_write(ahci_port_t *port, unsigned long long start, unsigned char *buf, unsigned int nbytes,
+                                  ahci_rw_type_t type, unsigned short *tag);
+ahci_err_code_t ahci_log_ext_read(ahci_port_t *port, unsigned char *log_buf, unsigned int sector_cnt, unsigned int page, unsigned short *tag);
+ahci_err_code_t ahci_ncq_queue_abort(ahci_port_t *port, ncq_abort_t type, unsigned char ttag, unsigned short *tag);
+ahci_err_code_t ahci_ncq_deadline_handle(ahci_port_t * port, ncq_deadline_t wdnc, ncq_deadline_t rdnc, unsigned short *tag);
+void identify_revise(void);
+ahci_err_code_t ahci_identify_read(ahci_port_t *port, unsigned short *tag);
+ahci_err_code_t ahci_smart(ahci_port_t *port, fis_h2d_t *h2d, unsigned char *smart_buf, unsigned short *tag);
+ahci_err_code_t ahci_read_max_address_ext(ahci_port_t *port, fis_h2d_t *h2d, unsigned short *tag);
+ahci_err_code_t ahci_read_max_address(ahci_port_t *port, fis_h2d_t *h2d, unsigned short *tag);
+ahci_err_code_t ahci_read_verify_sectors(ahci_port_t *port, unsigned short sector_cnt, unsigned int lba, unsigned short *tag);
+ahci_err_code_t ahci_read_verify_sectors_ext(ahci_port_t *port, unsigned short sector_cnt, unsigned long long lba, unsigned short *tag);
+ahci_err_code_t ahci_security(ahci_port_t *port, fis_h2d_t *h2d, unsigned char *buf, unsigned short *tag);
+ahci_err_code_t ahci_port_state_set(ahci_port_t *port, unsigned int aggressive, ahci_port_state_t state);
+ahci_err_code_t ahci_passthru(fis_h2d_t *h2d, unsigned char *buf, unsigned int nbytes, unsigned int protocol);
+
+
+ahci_err_code_t ahci_hba_reset(ahci_hba_t *ahci, int cont_en);
+ahci_err_code_t ahci_port_reset(ahci_port_t *port);
+ahci_err_code_t ahci_sw_reset(ahci_port_t *port, unsigned short *tag);
+void ahci_error_handler(ahci_err_code_t error);
+
+
+void ahci_init(void);
+void ahci_sleep(void);
+void ahci_awake(void);
+# 8 "../drivers/drv_sata.c" 2
+# 1 "../drivers/drv_crypto.h" 1
+
+
+# 1 "../libraries/inc/tih/crypto.h" 1
+# 30 "../libraries/inc/tih/crypto.h"
+typedef struct symm_info {
+    unsigned char alg;
+    unsigned char mode;
+    unsigned char func;
+    unsigned char endian;
+    unsigned int keybits;
+    unsigned char *key;
+    unsigned char *xtskey;
+
+
+
+
+
+    unsigned char *param;
+    unsigned int ctr_step;
+} symm_info_t;
+
+void crypto_hw_init(void);
+int crypto_is_busy(void);
+void crypto_reset(void);
+
+unsigned int crypto_frontend_port_addr(void);
+unsigned int crypto_backend_port_addr(void);
+
+int crypto_bridge_is_required(unsigned int addr, symm_info_t *info);
+int crypto_bridge_enable(symm_info_t *info, unsigned int addr, unsigned int addr_mode, unsigned int nbytes, unsigned int dir);
+int crypto_bridge_prd_enable(symm_info_t *info, unsigned int *prd, unsigned int prd_nwords, unsigned int data_nbytes, int ass_mode);
+
+int crypto_fifo_enable(symm_info_t *info, unsigned int nbytes, unsigned int dir);
+
+int crypto_dma_start(symm_info_t *info, unsigned int src_addr, unsigned int src_addr_mode, unsigned int dst_addr, unsigned int dst_addr_mode, unsigned int nbytes);
+
+void crypto_data_pad(void);
+void crypto_data_discard(void);
+void crypto_master_reset(void);
+void crypto_slave_reset(void);
+
+unsigned int crypto_reg_symc_lsr_get(void);
+unsigned int crypto_symc_data_cnt(void);
+# 4 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/crypto_errno.h" 1
+
+
+
+typedef enum crypto_errno {
+                TIH_OK = 0x0,
+                TIH_KEYNULL = -1,
+                TIH_KEYLENERR = -2,
+                TIH_XTSKEYNULL = -3,
+                TIH_ALGFUNCNOTSUPPORT = -4,
+                TIH_DATASIZEERR = -5,
+                TIH_INDATANULL = -6,
+                TIH_IVNULL = -7,
+                TIH_IVLENERR = -8,
+                TIH_ALGMODNOTSUPPORT = -9,
+                TIH_SM2VERIFYERR = -10,
+                TIH_SM2ZEROALL = -11,
+                TIH_SM2BUFFERNULL = -12,
+                TIH_SM2INTEGERTOOBIG = -13,
+                TIH_SM2INOUTSAMEBUFFER = -14,
+                TIH_SM2INPUTLENINVALID = -15,
+                TIH_SM2CIPHERINVALIDORDER = -16,
+                TIH_SM2NOTONCURVE = -17,
+                TIH_RSABUFFERNULL = -18,
+                TIH_RSAINPUTTOOLONG = -19,
+                TIH_RSAINPUTINVALID = -20,
+                TIH_UNKOWNERR = -21,
+} crypto_errno_t;
+# 5 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/aes.h" 1
+
+
+
+
+# 1 "../libraries/inc/tih/crypto_errno.h" 1
+# 6 "../libraries/inc/tih/aes.h" 2
+# 23 "../libraries/inc/tih/aes.h"
+crypto_errno_t aes_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                         unsigned char *key, unsigned int key_nbytes, unsigned int func, unsigned int mode, unsigned char *iv);
+crypto_errno_t aes_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key, unsigned int key_nbytes,
+                             unsigned int func, unsigned int mode, unsigned char *count, unsigned int ctr_step);
+crypto_errno_t aes_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key, unsigned int key_nbytes,
+                             unsigned int func, unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+# 7 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/pke.h" 1
+
+
+
+
+
+void pke_init(void);
+# 8 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm4.h" 1
+# 19 "../libraries/inc/tih/sm4.h"
+crypto_errno_t sm4_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                         unsigned char *key, unsigned int func, unsigned int mode, unsigned char *iv);
+crypto_errno_t sm4_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key,
+                             unsigned int func, unsigned int mode, unsigned char *count, unsigned int ctr_step);
+crypto_errno_t sm4_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes, unsigned char *key,
+                             unsigned int func, unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+# 9 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/ecc.h" 1
+
+
+
+
+
+typedef struct ecc_curve {
+    unsigned int ecc_p_nbits;
+    unsigned int ecc_n_nbits;
+    unsigned int *ecc_p;
+    unsigned int *ecc_a;
+    unsigned int *ecc_b;
+    unsigned int *ecc_gx;
+    unsigned int *ecc_gy;
+    unsigned int *ecc_n;
+} ecc_curve_t;
+
+
+int ecc_point_verify(ecc_curve_t *curve, unsigned int *px, unsigned int *py);
+
+int ecc_point_add(ecc_curve_t *curve, unsigned int *px, unsigned int *py, unsigned int *qx, unsigned int *qy, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_double(ecc_curve_t *curve, unsigned int *px, unsigned int *py, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_mul(ecc_curve_t *curve, unsigned int *k, unsigned int *px, unsigned int *py, unsigned int *rx, unsigned int *ry);
+
+int ecc_point_shamir(ecc_curve_t *curve, unsigned int *k1, unsigned int *P1x, unsigned int *P1y,
+                                           unsigned int *k2, unsigned int *P2x, unsigned int *P2y,
+                                           unsigned int *Qx, unsigned int *Qy);
+# 11 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/rsa.h" 1
+
+
+
+
+
+
+crypto_errno_t rsa_crt_keypair_gen(unsigned char *p, unsigned char *q,
+                                  unsigned char *dp, unsigned char *dq,
+                                  unsigned char *u, unsigned char *e,
+                                  unsigned char *n, unsigned int nbits);
+
+crypto_errno_t rsa_encrypt(unsigned char *plain,
+                           unsigned char *e, unsigned char *n,
+                           unsigned char *cipher,
+                           unsigned int nbits);
+
+crypto_errno_t rsa_crt_decrypt(unsigned char *cipher,
+                              unsigned char *p, unsigned char *q,
+                              unsigned char *dp, unsigned char *dq,
+                              unsigned char *u,
+                              unsigned char *plain,
+                              unsigned int nbits);
+
+crypto_errno_t rsa_keypair_gen(unsigned char *e, unsigned char *d, unsigned char *n, unsigned int nbits);
+
+crypto_errno_t rsa_decrypt(unsigned char *cipher,
+                           unsigned char *d, unsigned char *n,
+                           unsigned char *plain,
+                           unsigned int nbits);
+
+crypto_errno_t rsa_pq_keypair_gen(unsigned char *p, unsigned char *q,
+                                  unsigned char *e, unsigned char *d, unsigned char *n,
+                                  unsigned int nbits);
+# 12 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm2.h" 1
+# 10 "../libraries/inc/tih/sm2.h"
+typedef enum {
+    SM2_Role_Sponsor = 0,
+    SM2_Role_Responsor
+} sm2_exchange_role_e;
+
+crypto_errno_t sm2_keypair_gen(unsigned char *prikey, unsigned char *pubkey);
+crypto_errno_t sm2_e_get(unsigned char *m, unsigned int m_nbytes, unsigned char *z, unsigned char *e);
+crypto_errno_t sm2_z_get(unsigned char *id, unsigned int idbytes, unsigned char *pubkey, unsigned char *z);
+crypto_errno_t sm2_sign(unsigned char e[32], unsigned char prikey[32], unsigned char signature[64]);
+crypto_errno_t sm2_verify(unsigned char e[32], unsigned char pubkey[64], unsigned char signature[64]);
+crypto_errno_t sm2_encrypt(unsigned char *m, unsigned int m_nbytes,
+                           unsigned char pubkey[64],
+                           unsigned char *c, unsigned int *c_nbytes);
+crypto_errno_t sm2_decrypt(unsigned char *c, unsigned int c_nbytes,
+                           unsigned char prikey[32],
+                           unsigned char *m, unsigned int *m_nbytes);
+crypto_errno_t sm2_key_exchange(sm2_exchange_role_e role,
+                                unsigned char *da, unsigned char *pb,
+                                unsigned char *ra, unsigned char *rpa,
+                                unsigned char *rb,
+                                unsigned char *za, unsigned char *zb,
+                                unsigned int k_nbytes,
+                                unsigned char *ka, unsigned char *sl, unsigned char *sa);
+# 13 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/hash.h" 1
+# 12 "../libraries/inc/tih/hash.h"
+typedef struct hash_context {
+    unsigned int total[2];
+    unsigned char buffer[64];
+} hash_context_t;
+
+crypto_errno_t hash_init(hash_context_t *ctx, unsigned int alg);
+crypto_errno_t hash_update(hash_context_t *ctx, unsigned char *in, unsigned int nbytes, unsigned int alg);
+crypto_errno_t hash_final(hash_context_t *ctx, unsigned char *out, unsigned int alg);
+# 15 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha1.h" 1
+
+
+
+
+
+
+crypto_errno_t sha1_init(void);
+crypto_errno_t sha1_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha1_final(unsigned char *outdata);
+# 16 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha224.h" 1
+
+
+
+
+
+
+crypto_errno_t sha224_init(void);
+crypto_errno_t sha224_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha224_final(unsigned char *outdata);
+# 17 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sha256.h" 1
+
+
+
+
+
+
+crypto_errno_t sha256_init(void);
+crypto_errno_t sha256_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sha256_final(unsigned char *outdata);
+# 18 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/sm3.h" 1
+
+
+
+
+
+
+crypto_errno_t sm3_init(void);
+crypto_errno_t sm3_update(unsigned char *indata, unsigned int nbytes);
+crypto_errno_t sm3_final(unsigned char *outdata);
+# 19 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/cmac.h" 1
+# 13 "../libraries/inc/tih/cmac.h"
+typedef struct cmac_ctx {
+    unsigned char *key;
+    int keylen;
+    unsigned char *iv;
+    unsigned int alg_mode;
+} cmac_ctx_t;
+
+crypto_errno_t cmac_init(cmac_ctx_t *ctx, unsigned char *key, int keylen, unsigned char *iv, int ivlen, unsigned int alg);
+
+crypto_errno_t cmac_update(cmac_ctx_t *ctx, unsigned char *data, unsigned int len);
+
+crypto_errno_t cmac_final(cmac_ctx_t *ctx, unsigned char *out, unsigned int *len);
+# 20 "../drivers/drv_crypto.h" 2
+
+# 1 "../libraries/inc/tih/bignum.h" 1
+# 13 "../libraries/inc/tih/bignum.h"
+int bn_mod(unsigned int *a, unsigned int *b, unsigned int *out, unsigned int a_nwords, unsigned int b_nwords);
+
+
+
+
+
+int bn_cmp(unsigned int *a, unsigned int *b, unsigned int a_nwords, unsigned int b_nwords);
+
+
+
+
+
+
+int bn_add(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+int bn_sub(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_mul(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modadd(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modsub(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modmul(const unsigned int *modulus, const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int nwords);
+
+
+
+
+
+
+
+int bn_modexp(const unsigned int *modulus, const unsigned int *exponent, const unsigned int *base, unsigned int *out, unsigned int mod_nwords, unsigned int exp_nwords);
+
+
+
+
+
+
+int bn_modinv(const unsigned int *modulus, const unsigned int *a, unsigned int *out, unsigned int mod_nwords, unsigned int a_nwords);
+# 22 "../drivers/drv_crypto.h" 2
+# 1 "../libraries/inc/tih/rng.h" 1
+
+
+
+
+
+
+crypto_errno_t rand_get(unsigned char *rand, unsigned int nbyte);
+# 23 "../drivers/drv_crypto.h" 2
+
+typedef struct ecc_point {
+    unsigned int *x;
+    unsigned int *y;
+} ecc_point_t;
+
+
+crypto_errno_t tih_aes_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                             unsigned char *key, unsigned int keybytes, unsigned int func,
+                             unsigned int mode, unsigned char *iv);
+
+crypto_errno_t tih_aes_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int keybytes, unsigned int func,
+                                 unsigned int mode, unsigned char *count, unsigned int ctr_step);
+
+crypto_errno_t tih_aes_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int keybytes, unsigned int func,
+                                 unsigned int mode, unsigned char *tw, unsigned char *xtskey);
+
+crypto_errno_t tih_sm4_crypt(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                             unsigned char *key, unsigned int func, unsigned int mode, unsigned char *iv);
+
+crypto_errno_t tih_sm4_crypt_ctr(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int func, unsigned int mode,
+                                 unsigned char *count, unsigned int ctr_step);
+
+crypto_errno_t tih_sm4_crypt_xts(unsigned char *in, unsigned char *out, unsigned int nbytes,
+                                 unsigned char *key, unsigned int func, unsigned int mode,
+                                 unsigned char *tw, unsigned char *xtskey);
+
+crypto_errno_t tih_rsa_keypair_gen(unsigned char *p, unsigned char *q,
+                               unsigned char *dp, unsigned char *dq,
+                               unsigned char *u, unsigned char *e,
+                               unsigned char *n, unsigned int nbits);
+crypto_errno_t tih_rsa_encrypt(unsigned char *plain,
+                           unsigned char *e, unsigned char *n,
+                           unsigned char *cipher,
+                           unsigned int nbits);
+crypto_errno_t tih_rsa_decrypt(unsigned char *cipher,
+                           unsigned char *p, unsigned char *q,
+                           unsigned char *dp, unsigned char *dq,
+                           unsigned char *u,
+                           unsigned char *plain,
+                           unsigned int nbits);
+
+crypto_errno_t tih_sm2_keypair_gen(unsigned char *prikey, unsigned char *pubkey);
+crypto_errno_t tih_sm2_e_get(unsigned char *m, unsigned int m_nbytes, unsigned char *z, unsigned char *e);
+crypto_errno_t tih_sm2_z_get(unsigned char *id, unsigned int idbytes, unsigned char *pubkey, unsigned char *z);
+crypto_errno_t tih_sm2_sign(unsigned char e[32], unsigned char prikey[32], unsigned char signature[64]);
+crypto_errno_t tih_sm2_verify(unsigned char e[32], unsigned char pubkey[64], unsigned char signature[64]);
+crypto_errno_t tih_sm2_encrypt(unsigned char *m, unsigned int m_nbytes,
+                           unsigned char pubkey[64],
+                           unsigned char *c, unsigned int *c_nbytes);
+crypto_errno_t tih_sm2_decrypt(unsigned char *c, unsigned int c_nbytes,
+                           unsigned char prikey[32],
+                           unsigned char *m, unsigned int *m_nbytes);
+crypto_errno_t tih_sm2_key_exchange(sm2_exchange_role_e role,
+                                unsigned char *da, unsigned char *pb,
+                                unsigned char *ra, unsigned char *rpa,
+                                unsigned char *rb,
+                                unsigned char *za, unsigned char *zb,
+                                unsigned int k_nbytes,
+                                unsigned char *ka, unsigned char *sl, unsigned char *sa);
+
+
+crypto_errno_t tih_sha1_init(void);
+crypto_errno_t tih_sha1_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha1_final(unsigned char *out);
+
+
+crypto_errno_t tih_sha224_init(void);
+crypto_errno_t tih_sha224_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha224_final(unsigned char *out);
+
+
+crypto_errno_t tih_sha256_init(void);
+crypto_errno_t tih_sha256_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sha256_final(unsigned char *out);
+
+
+crypto_errno_t tih_cmac_init(cmac_ctx_t *ctx, unsigned char *key, int keylen,
+                             unsigned char *iv, int ivlen, unsigned int alg);
+crypto_errno_t tih_cmac_update(cmac_ctx_t *ctx, unsigned char *data, unsigned int len);
+crypto_errno_t tih_cmac_final(cmac_ctx_t *ctx, unsigned char *out, unsigned int *len);
+
+
+crypto_errno_t tih_sm3_init(void);
+crypto_errno_t tih_sm3_update(unsigned char *in, unsigned int nbytes);
+crypto_errno_t tih_sm3_final(unsigned char *out);
+
+crypto_errno_t tih_rand_get(unsigned char *rand, unsigned int byteLen);
+
+int tih_ecp_mul(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k, ecc_point_t *P);
+int tih_ecp_muladd(ecc_curve_t *curve, ecc_point_t *Q, unsigned int *k1, ecc_point_t *P1,
+                     unsigned int *k2, ecc_point_t *P2);
+int tih_ecp_add(ecc_curve_t *curve, ecc_point_t *P1, ecc_point_t *P2, ecc_point_t *Q);
+int tih_ecp_double(ecc_curve_t *curve, ecc_point_t *P, ecc_point_t *Q);
+int tih_ecp_check(ecc_curve_t *curve, ecc_point_t *P);
+
+
+
+
+
+int tih_mpi_add(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_sub(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_mul(const unsigned int *a, const unsigned int *b, unsigned int *out, unsigned int ab_nword);
+int tih_mpi_cmp(unsigned int *a, unsigned int *b, unsigned int a_nword, unsigned int b_nword);
+int tih_mpi_mod_mpi(unsigned int *a, unsigned int a_nword, unsigned int *b, unsigned int b_nword, unsigned int *c);
+int tih_mpi_add_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword);
+int tih_mpi_sub_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nword);
+int tih_mpi_inv_mod(const unsigned int *modulus, const unsigned int *a, unsigned int *ainv,
+                      unsigned int mod_nword, unsigned int a_nword);
+int tih_mpi_mul_mod(const unsigned int *modulus, const unsigned int *a, const unsigned int *b,
+                      unsigned int *out, unsigned int nwords);
+int tih_mpi_inv_mod(const unsigned int *modulus, const unsigned int *a, unsigned int *ainv,
+                      unsigned int mod_nword, unsigned int a_nword);
+# 9 "../drivers/drv_sata.c" 2
+# 1 "../drivers/drv_sata.h" 1
+# 10 "../drivers/drv_sata.c" 2
+
+
+static struct rt_ata_device ata;
+volatile static unsigned int gtag = 0;
+
+static unsigned char key[32] = {
+    0x11, 0x11, 0x11, 0x11,
+    0x22, 0x22, 0x22, 0x22,
+    0x33, 0x33, 0x33, 0x33,
+    0x44, 0x44, 0x44, 0x44,
+    0x11, 0x11, 0x11, 0x11,
+    0x22, 0x22, 0x22, 0x22,
+    0x33, 0x33, 0x33, 0x33,
+    0x44, 0x44, 0x44, 0x44
+};
+
+symm_info_t symm_info = {
+    .alg = 0x2,
+    .mode = 0x0,
+    .func = 0x0,
+    .endian = 0x1,
+    .keybits = 0x0,
+    .key = key,
+    .xtskey = ((void *)0),
+    .param = ((void *)0),
+    .ctr_step = 0,
+};
+
+static unsigned int ahci_intr_mask =
+                0x80000000 | 0x40000000 | 0x20000000 | 0x10000000 |
+                0x08000000 | 0x04000000 | 0x01000000 | 0x00400000 |
+                0x00000040 | 0x00000010 | 0x00000020 | 0x00000008 | 0x00000001
+                                                               ;
+static rt_err_t drv_ata_data_ready(struct rt_ata_device *ata, rt_uint32_t key);
+static rt_err_t drv_ata_data_wait(struct rt_ata_device *ata, rt_uint32_t key);
+# 53 "../drivers/drv_sata.c"
+static void ahci_ctx_init(void)
+{
+
+    btask_ctx.errors = 0;
+    btask_ctx.is_queue_cmd = 0;
+    btask_ctx.task_ctx_valid = 0;
+    btask_ctx.is_hw_reset = 0;
+
+    ahci_clock_set(clock_freq_get(MODULE_AXI));
+}
+
+static void __attribute__((section(".fast"))) ahci_intr_handler(unsigned int status)
+{
+    unsigned int is;
+    unsigned int port_id;
+    ahci_port_t *port;
+
+    is = ahci.is;
+    port_id = ahci.port.port_id;
+    port = &ahci.port;
+
+    if (is & (1 << ahci.cctl_used_intr)) {
+        do { if (0) rt_kprintf ("AHCI ccc intr hanppens.\n"); } while (0);
+    }
+
+    if (is & 0x1) {
+
+        if (status & 0x00000040) {
+
+            ahci_port_serr_clear((1 << 26));
+
+            do { if (0) rt_kprintf (" P%dIS.PCS is ON, receive COMINIT\n", port_id); } while (0);
+        }
+
+
+        if (status & 0x00400000) {
+            do { if (0) rt_kprintf ("[intr phy change]ci = 0x%x, sact = 0x%x\n", ahci_reg_ci_get(port), ahci_reg_sact_get(port)); } while (0);
+
+            ahci_port_serr_clear((1 << 16));
+
+            ahci_port_serr_clear((1 << 18));
+            ahci_link_change_handler(port);
+        }
+
+
+        if (status & 0x00000001) {
+            do { if (0) rt_kprintf ("Rx D2H FIS interrupt\n"); } while (0);
+        }
+
+
+        if (status & 0x00000002) {
+            do { if (0) rt_kprintf ("Rx PIO setup interrupt\n"); } while (0);
+        }
+
+
+        if (status & 0x00000004) {
+            do { if (0) rt_kprintf ("Rx PIO or DMA setup interrupt\n"); } while (0);
+        }
+
+
+        if (status & 0x00000020) {
+            do { if (0) rt_kprintf ("PRDT transfer complete\n"); } while (0);
+        }
+
+
+        if (status & 0x00000010) {
+            do { if (1) rt_kprintf ("Rx Unkown FIS interrupt\n"); } while (0);
+
+            ahci_port_serr_clear((1 << 25));
+        }
+
+
+        if (status & 0x00000008) {
+            do { if (0) rt_kprintf ("Set Device Bits FIS interrupt\n"); } while (0);
+        }
+
+        if (status & (0x40000000 | 0x20000000 | 0x10000000 | 0x08000000)) {
+
+            do { if (1) rt_kprintf ("[intr Error happen]ci = 0x%x, sact = 0x%x\n", ahci_reg_ci_get(port), ahci_reg_sact_get(port)); } while (0);
+            do { if (1) rt_kprintf ("ccs = 0x%x, cmd = 0x%x\n", ahci_ccs_get(port), (port->cmd_slot[ahci_ccs_get(port)].h2d_fis->fea_cmd_cpm_fis >> 16) & 0xff); } while (0);
+
+            if (status & (~0x40000000)) {
+                do { if (1) rt_kprintf (" Fatal Error happen ... P%d: sts 0x%08x. \n", port->port_id, status); } while (0);
+            } else {
+                do { if (1) rt_kprintf (" Task File Error happen ... P%d: sts 0x%08x. \n", port->port_id, status); } while (0);
+            }
+            do { if (1) rt_kprintf ("REG SSTS=0x%08x. \n", port->ssts); } while (0);
+            do { if (1) rt_kprintf ("REG SERR=0x%08x. \n", port->serr); } while (0);
+            do { if (1) rt_kprintf ("REG STFD=0x%08x. \n", port->stfd); } while (0);
+
+        } else if (status & (0x04000000 | 0x01000000)) {
+            do { if (1) rt_kprintf (" NON fatal error happen ... P%d: sts 0x%08x. \n", port->port_id, status); } while (0);
+            do { if (1) rt_kprintf ("REG SSTS=0x%08x. \n", port->ssts); } while (0);
+            do { if (1) rt_kprintf ("REG SERR=0x%08x. \n", port->serr); } while (0);
+        }
+    }
+
+
+if (status & (0x00000008 | 0x00000001 | 0x00000020)) {
+        unsigned int ci, sact, slot_finished, slot_count;
+
+        ci = ahci_reg_ci_get(port);
+        sact = ahci_reg_sact_get(port);
+        ci |= sact;
+        while((gtag >= 1) && (gtag != ci)) {
+            slot_count = 0;
+            slot_finished = gtag & (~ci);
+
+            gtag = gtag & ci;
+            while (slot_finished > 0) {
+                slot_count = slot_count + (slot_finished & 0x1);
+                slot_finished = slot_finished >> 1;
+            }
+
+            if (slot_count > 1) {
+                do { if (1) rt_kprintf ("[sata intr]slot_count = %d \n", slot_count); } while (0);
+            }
+
+            while ((slot_count--) > 0) {
+                drv_ata_data_ready(&ata, ci);
+            }
+        }
+    }
+
+}
+
+static void __attribute__((section(".fast"))) ahci_isr(void)
+{
+    unsigned int status;
+
+    status = ahci_intr_status();
+    ahci_intr_handler(status);
+    ahci_intr_clear(status);
+
+
+    ahci_reg_is_flush();
+
+    rt_hw_interrupt_clear(2);
+}
+
+static void drv_disk_crypto_init(struct rt_ata_device *device)
+{
+
+
+
+
+    if (device->disk_encrypt == 1) {
+        device->crypto = &symm_info;
+    }
+}
+
+static void __attribute__((section(".fast"))) drv_disk_crypto_lock()
+{
+
+    extern rt_crypto_device_t crypto_dev;
+    rt_mutex_take(&crypto_dev.lock_cipher, -1);
+
+
+}
+
+static void __attribute__((section(".fast"))) drv_disk_crypto_unlock()
+{
+
+    extern rt_crypto_device_t crypto_dev;
+    rt_mutex_release(&crypto_dev.lock_cipher);
+
+}
+
+
+static rt_err_t __attribute__((section(".fast"))) drv_ata_data_ready(struct rt_ata_device *ata, rt_uint32_t key)
+{
+    register rt_ubase_t temp;
+
+
+    temp = rt_hw_interrupt_disable();
+    ata->pending_cmds--;
+
+    rt_hw_interrupt_enable(temp);
+
+    rt_wqueue_wakeup(&(ata->parent.wait_queue), (void*)key);
+
+    return 0;
+}
+
+static rt_err_t __attribute__((section(".fast"))) drv_ata_data_wait(struct rt_ata_device *ata, rt_uint32_t key)
+{
+    rt_wqueue_wait(&(ata->parent.wait_queue), 0, 1000);
+
+    return 0;
+}
+
+static int __attribute__((section(".fast"))) drv_ata_cmd_pending_check(struct rt_ata_device *device, rt_uint32_t tag)
+{
+    int rc;
+    ahci_port_t *port;
+    unsigned int loop_count;
+    register rt_ubase_t temp;
+
+    rc = AHCI_OK;
+    loop_count = 0;
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+
+    temp = rt_hw_interrupt_disable();
+    gtag = gtag | (1 << tag);
+    device->pending_cmds++;
+
+    rt_hw_interrupt_enable(temp);
+
+loop:
+    drv_ata_data_wait(device, 0);
+    if (device->pending_cmds > 0) {
+        unsigned int ci, sact;
+
+        ci = ahci_reg_ci_get(port);
+        sact = ahci_reg_sact_get(port);
+        ci |= sact;
+        if ((ci & (1 << tag)) > 0) {
+            if (loop_count++ < 10) {
+                goto loop;
+            } else {
+                rc = AHCI_ERR_FATAL_ERROR;
+                device->pending_cmds = 0;
+            }
+        } else {
+
+
+            temp = rt_hw_interrupt_disable();
+            device->pending_cmds--;
+
+            rt_hw_interrupt_enable(temp);
+        }
+    }
+    return rc;
+}
+
+
+static rt_err_t drv_ata_init(struct rt_ata_device *device)
+{
+    unsigned int host_gen;
+    if (device == (0)) {
+        return -1;
+    }
+
+    ahci_ctx_init();
+    ahci_wait_timeout_set(60000000);
+
+    host_gen = 0x3;
+    ahci_speed_set(host_gen);
+
+    if (ahci_hw_init(1, 0)) {
+        do { if (1) rt_kprintf ("AHCI hw init fail.\n"); } while (0);
+        return -1;
+    }
+
+    rt_hw_interrupt_mask(2);
+    ahci_intr_enable(ahci_intr_mask);
+    rt_hw_interrupt_install(2, (rt_isr_handler_t)ahci_isr, 0, "ata");
+    rt_hw_interrupt_umask(2);
+
+    drv_disk_crypto_init(device);
+
+    return 0;
+}
+
+static void drv_ata_reset(unsigned int op)
+{
+    ahci_port_t *port = &ahci_hba_get()->port;
+
+
+    unsigned int busy = crypto_is_busy();
+    if (busy) {
+        if (op == 0) {
+            crypto_data_pad();
+        } else if (op == 1) {
+            crypto_data_discard();
+        }
+        while (busy) {
+            busy = crypto_is_busy();
+        }
+    }
+
+
+
+
+
+
+    unsigned int reset_mask[6] = {MODULE_SATA_HOST, MODULE_AXI, MODULE_H2X,
+                           MODULE_CRYPTO, MODULE_H2X_RSD};
+
+    multi_module_reset(reset_mask, 5);
+    crypto_reset();
+
+    drv_ata_init(&ata);
+
+    for (unsigned int i = 0; i < port->use_max_cmd_slots; i++) {
+        port->cmd_slot[i].occupied = 0;
+        port->cmd_slot[i].private = ((void *)0);
+    }
+}
+
+static rt_err_t drv_ata_probe(struct rt_ata_device *device, struct rt_device_blk_geometry *dev_info)
+{
+    unsigned short tag;
+    ahci_err_code_t rc;
+    ahci_port_t *port;
+
+    if (device == (0)) {
+        return -1;
+    }
+
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+    if (ahci_hba_reset(port->ahci, 1)) {
+        return -1;
+    }
+
+
+    rc = ahci_identify_read(port, &tag);
+    if (rc != AHCI_OK) {
+        ahci_error_handler(rc);
+        return -1;
+    }
+
+
+    if (port->ncq_support) {
+        btask_ctx.is_queue_cmd = 1;
+    }
+
+
+    dev_info->block_size = (1 << 9);
+    dev_info->bytes_per_sector = (1 << 9);
+    dev_info->sector_count = port->total_sectors;
+
+
+    rc = ahci_xfer_mode_set(port, SATA_PIO_MODE_SET, port->best_xfer_mode[SATA_PIO_MODE_SET], &tag);
+    if (rc != AHCI_OK) {
+        ahci_error_handler(rc);
+    }
+
+    rc = ahci_xfer_mode_set(port, SATA_UDMA_MODE_SET, port->best_xfer_mode[SATA_UDMA_MODE_SET],
+                            &tag);
+    if (rc != AHCI_OK) {
+        ahci_error_handler(rc);
+    }
+
+    return rc;
+}
+
+static rt_size_t __attribute__((section(".fast"))) drv_ata_read(struct rt_ata_device *device, rt_off_t pos, void *buffer, rt_size_t size)
+{
+    unsigned short tag;
+    unsigned int ci;
+    unsigned long long nbytes;
+    unsigned char *ahci_addr;
+    ahci_cmd_t *cmd;
+    ahci_err_code_t rc;
+    ahci_port_t *port;
+
+    if (device == (0)) {
+        return 0;
+    }
+
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+
+    if (!ahci_cmd_slot_is_empty(port)) {
+        do { if (1) rt_kprintf ("drv_ata_read, cmd_slot is not empty!!!\n"); } while (0);
+        return 0;
+    }
+
+    ahci_addr = (unsigned char *)buffer;
+    nbytes = size << 9;
+
+
+    if (device->disk_encrypt == 1) {
+
+        if ((unsigned int)buffer & 0x3) {
+            do { if (1) rt_kprintf ("[ERROR]:read buffer address for crypto is not 4-byte alignment.\n"); } while (0);
+            return 0;
+        }
+
+        drv_disk_crypto_lock();
+
+        if (device->crypto) {
+            ((symm_info_t *)device->crypto)->func = 0x1;
+        }
+
+
+        if (crypto_bridge_is_required((unsigned int)buffer, device->crypto)) {
+
+            crypto_bridge_enable(device->crypto, (unsigned int)buffer, 0, nbytes, 1);
+            ahci_addr = (unsigned char *)crypto_frontend_port_addr();
+        }
+    }
+
+
+    rc = ahci_sector_read(port, (unsigned long long)pos, ahci_addr, nbytes, AHCI_RW_TYPE_SECTOR, &tag);
+    if (rc) {
+        cmd = &(port->cmd_slot[tag]);
+        ahci_cmd_slot_free(cmd);
+
+        if (device->disk_encrypt == 1) {
+            drv_disk_crypto_unlock();
+        }
+        return 0;
+    }
+
+
+    ci = (1 << tag);
+
+
+    ahci_cmd_issue(port, &ci, 0);
+    rc = drv_ata_cmd_pending_check(device, tag);
+
+
+
+
+    cmd = &(port->cmd_slot[tag]);
+    ahci_cmd_slot_free(cmd);
+
+    if (device->disk_encrypt == 1) {
+        drv_disk_crypto_unlock();
+    }
+
+    if (rc) {
+        if (device->disk_encrypt == 1) {
+
+            drv_ata_reset(0);
+        } else {
+            ahci_error_handler(rc);
+        }
+
+        return 0;
+    }
+
+    return size;
+}
+
+static rt_size_t __attribute__((section(".fast"))) drv_ata_write(struct rt_ata_device *device, rt_off_t pos, const void *buffer, rt_size_t size)
+{
+    unsigned short tag;
+    unsigned int ci;
+    unsigned long long nbytes;
+    unsigned char *ahci_addr;
+    ahci_cmd_t *cmd;
+    ahci_err_code_t rc;
+    ahci_port_t *port;
+
+    if (device == (0)) {
+        return 0;
+    }
+
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+    if (!ahci_cmd_slot_is_empty(port)) {
+        do { if (1) rt_kprintf ("drv_ata_write, cmd_slot is not empty!!!\n"); } while (0);
+        return 0;
+    }
+
+    ahci_addr = (unsigned char *)buffer;
+    nbytes = size << 9;
+
+
+    if (device->disk_encrypt == 1) {
+
+        if ((unsigned int)buffer & 0x3) {
+            do { if (1) rt_kprintf ("[ERROR]:write buffer address for crypto is not 4-byte alignment.\n"); } while (0);
+            return 0;
+        }
+
+        drv_disk_crypto_lock();
+
+        if (device->crypto) {
+            ((symm_info_t *)device->crypto)->func = 0x0;
+        }
+
+
+        if (crypto_bridge_is_required((unsigned int)buffer, device->crypto)) {
+
+            crypto_bridge_enable(device->crypto, (unsigned int)buffer, 0, nbytes, 0);
+            ahci_addr = (unsigned char *)crypto_frontend_port_addr();
+        }
+    }
+
+
+    rc = ahci_sector_write(port, (unsigned long long)pos, ahci_addr, nbytes, AHCI_RW_TYPE_SECTOR, &tag);
+    if (rc) {
+        cmd = &(port->cmd_slot[tag]);
+        ahci_cmd_slot_free(cmd);
+        if (device->disk_encrypt == 1) {
+            drv_disk_crypto_unlock();
+        }
+        return 0;
+    }
+
+
+    ci = (1 << tag);
+
+
+    ahci_cmd_issue(port, &ci, 0);
+    rc = drv_ata_cmd_pending_check(device, tag);
+
+
+
+
+    cmd = &(port->cmd_slot[tag]);
+    ahci_cmd_slot_free(cmd);
+
+    if (device->disk_encrypt == 1) {
+        drv_disk_crypto_unlock();
+    }
+
+    if (rc) {
+        if (device->disk_encrypt == 1) {
+
+            drv_ata_reset(1);
+        } else {
+            ahci_error_handler(rc);
+        }
+
+        return 0;
+    }
+
+    return size;
+}
+
+static rt_err_t __attribute__((section(".fast"))) drv_ata_ioctl(struct rt_ata_device *device, int cmd, void *args)
+{
+    rt_err_t result = 0;
+
+    if (device == (0)) {
+        result = -1;
+        return result;
+    }
+
+    switch (cmd) {
+        case 0x10:
+            ahci_intr_enable(ahci_intr_mask);
+            rt_hw_interrupt_umask(2);
+            break;
+        case 0x11:
+            ahci_intr_disable(ahci_intr_mask);
+            rt_hw_interrupt_mask(2);
+            break;
+        default:
+            do { if (1) rt_kprintf ("[ata_ioctl] not support cmd type.\n"); } while (0);
+            result = -10;
+            break;
+    }
+
+    return result;
+}
+
+static rt_err_t __attribute__((section(".fast"))) drv_ata_sync(struct rt_ata_device* device)
+{
+    unsigned short tag;
+    ahci_err_code_t rc;
+    ahci_port_t *port;
+
+    if (device == (0)) {
+        return -1;
+    }
+
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+
+    if (!ahci_cmd_slot_is_empty(port)) {
+        do { if (1) rt_kprintf ("drv_ata_sync, cmd_slot is not empty!!!\n"); } while (0);
+        return -1;
+    }
+
+
+    rc = ahci_cache_flush(port, &tag);
+
+    if (rc) {
+        ahci_error_handler(rc);
+        return -1;
+    }
+    return 0;
+}
+
+static rt_err_t __attribute__((section(".fast"))) drv_ata_trim(struct rt_ata_device* device, void *buffer, rt_size_t size)
+{
+    unsigned short tag;
+    ahci_err_code_t rc;
+    ahci_port_t *port;
+
+    if (device == (0)) {
+        return -1;
+    }
+
+    ahci_hba_t *hba = (ahci_hba_t *)device->parent.user_data;
+    port = &hba->port;
+
+
+    if (!ahci_cmd_slot_is_empty(port)) {
+        do { if (1) rt_kprintf ("drv_ata_trim, cmd_slot is not empty!!!\n"); } while (0);
+        return -1;
+    }
+
+
+    rc = ahci_data_set_trim(port, buffer, size, &tag);
+
+    if (rc != AHCI_OK) {
+        ahci_error_handler(rc);
+        return -1;
+    }
+    return 0;
+}
+
+const static struct rt_ata_ops drv_ata_ops =
+{
+    drv_ata_init,
+    drv_ata_probe,
+    drv_ata_read,
+    drv_ata_write,
+    drv_ata_ioctl,
+    drv_ata_sync,
+    drv_ata_trim
+};
+
+static int drv_ata_register()
+{
+    ahci_hba_t *hba;
+
+    hba = ahci_hba_get();
+    ata.ops = &drv_ata_ops;
+
+    rt_ata_register(&ata, "ata", 0x003, hba);
+
+    return 0;
+}
+
+const init_fn_t __rt_init_drv_ata_register __attribute__((section(".rti_fn.""1"))) = drv_ata_register;
