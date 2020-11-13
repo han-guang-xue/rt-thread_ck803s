@@ -4738,9 +4738,9 @@ int mbedtls_mpi_fill_random( mbedtls_mpi *X, size_t size,
                      void *p_rng )
 {
     int ret;
-    unsigned char buf[256];
+    unsigned char buf[1024];
 
-    if( size > 256 )
+    if( size > 1024 )
         return( -0x0004 );
 
     do { if( ( ret = f_rng( p_rng, buf, size ) ) != 0 ) goto cleanup; } while( 0 );
@@ -5044,7 +5044,7 @@ int mbedtls_mpi_gen_prime( mbedtls_mpi *X, size_t nbits, int dh_flag,
     mbedtls_mpi_uint r;
     mbedtls_mpi Y;
 
-    if( nbits < 3 || nbits > ( 8 * 256 ) )
+    if( nbits < 3 || nbits > ( 8 * 1024 ) )
         return( -0x0004 );
 
     mbedtls_mpi_init( &Y );

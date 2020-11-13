@@ -4951,7 +4951,7 @@ static int rsa_alt_decrypt_wrap( void *ctx,
 
 static int rsa_alt_check_pair( const void *pub, const void *prv )
 {
-    unsigned char sig[256];
+    unsigned char sig[1024];
     unsigned char hash[32];
     size_t sig_len = 0;
     int ret;

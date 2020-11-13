@@ -69,7 +69,7 @@ CFLAGS   := -mcpu=ck803s    -O2  -g  -Wall  -ffunction-sections  -c -mistack -ff
 ASFLAGS  := -mcpu=ck803s   $(PreprocessorSwitch)CONFIG_CKCPU_MMU=0   -Wa,--gdwarf2    
 
 
-Objects0=$(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) $(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_eth$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) \
+Objects0=$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) $(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_eth$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) \
 	$(IntermediateDirectory)/drivers_drv_sata$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_spi$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_timer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_wdt$(ObjectSuffix) $(IntermediateDirectory)/drivers_retarget$(ObjectSuffix) $(IntermediateDirectory)/drivers_system$(ObjectSuffix) $(IntermediateDirectory)/src_tih_phy_m88e1512$(ObjectSuffix) $(IntermediateDirectory)/src_tih_phy_rtl8211$(ObjectSuffix) $(IntermediateDirectory)/src_clock$(ObjectSuffix) \
 	$(IntermediateDirectory)/src_components$(ObjectSuffix) $(IntermediateDirectory)/src_device$(ObjectSuffix) $(IntermediateDirectory)/src_idle$(ObjectSuffix) $(IntermediateDirectory)/src_ipc$(ObjectSuffix) $(IntermediateDirectory)/src_irq$(ObjectSuffix) $(IntermediateDirectory)/src_kservice$(ObjectSuffix) $(IntermediateDirectory)/src_mem$(ObjectSuffix) $(IntermediateDirectory)/src_memheap$(ObjectSuffix) $(IntermediateDirectory)/src_object$(ObjectSuffix) $(IntermediateDirectory)/src_scheduler$(ObjectSuffix) \
 	$(IntermediateDirectory)/src_signal$(ObjectSuffix) $(IntermediateDirectory)/src_thread$(ObjectSuffix) $(IntermediateDirectory)/src_timer$(ObjectSuffix) $(IntermediateDirectory)/ck803_cpuport$(ObjectSuffix) $(IntermediateDirectory)/ck803_stack_ck803$(ObjectSuffix) $(IntermediateDirectory)/ck803_contex_ck803_gcc$(ObjectSuffix) $(IntermediateDirectory)/ck803_startup_gcc$(ObjectSuffix) $(IntermediateDirectory)/common_backtrace$(ObjectSuffix) $(IntermediateDirectory)/common_showmem$(ObjectSuffix) $(IntermediateDirectory)/src_dfs$(ObjectSuffix) \
@@ -124,20 +124,20 @@ Always_Link:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/entry_main$(ObjectSuffix): entry/main.c  Lst/entry_main$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) entry/main.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/entry_main$(ObjectSuffix) -MF$(IntermediateDirectory)/entry_main$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/entry_main$(PreprocessSuffix): entry/main.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_main$(PreprocessSuffix) entry/main.c
+$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix): entry/ipraw.c  Lst/entry_ipraw$(PreprocessSuffix)
+	$(CC) $(SourceSwitch) entry/ipraw.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) -MF$(IntermediateDirectory)/entry_ipraw$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
+Lst/entry_ipraw$(PreprocessSuffix): entry/ipraw.c
+	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_ipraw$(PreprocessSuffix) entry/ipraw.c
 
 $(IntermediateDirectory)/entry_linklayer$(ObjectSuffix): entry/linklayer.c  Lst/entry_linklayer$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) entry/linklayer.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) -MF$(IntermediateDirectory)/entry_linklayer$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/entry_linklayer$(PreprocessSuffix): entry/linklayer.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_linklayer$(PreprocessSuffix) entry/linklayer.c
 
-$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix): entry/ipraw.c  Lst/entry_ipraw$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) entry/ipraw.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) -MF$(IntermediateDirectory)/entry_ipraw$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/entry_ipraw$(PreprocessSuffix): entry/ipraw.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_ipraw$(PreprocessSuffix) entry/ipraw.c
+$(IntermediateDirectory)/entry_main$(ObjectSuffix): entry/main.c  Lst/entry_main$(PreprocessSuffix)
+	$(CC) $(SourceSwitch) entry/main.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/entry_main$(ObjectSuffix) -MF$(IntermediateDirectory)/entry_main$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
+Lst/entry_main$(PreprocessSuffix): entry/main.c
+	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_main$(PreprocessSuffix) entry/main.c
 
 $(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix): ../drivers/drv_cputime.c  Lst/drivers_drv_cputime$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../drivers/drv_cputime.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_cputime$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)

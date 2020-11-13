@@ -5094,7 +5094,7 @@ int mbedtls_pk_write_key_der( mbedtls_pk_context *key, unsigned char *buf, size_
 int mbedtls_pk_write_pubkey_pem( mbedtls_pk_context *key, unsigned char *buf, size_t size )
 {
     int ret;
-    unsigned char output_buf[38 + 2 * 256 > 30 + 2 * ( ( 384 + 7 ) / 8 ) ? 38 + 2 * 256 : 30 + 2 * ( ( 384 + 7 ) / 8 )];
+    unsigned char output_buf[38 + 2 * 1024 > 30 + 2 * ( ( 384 + 7 ) / 8 ) ? 38 + 2 * 1024 : 30 + 2 * ( ( 384 + 7 ) / 8 )];
     size_t olen = 0;
 
     if( ( ret = mbedtls_pk_write_pubkey_der( key, output_buf,
@@ -5116,7 +5116,7 @@ int mbedtls_pk_write_pubkey_pem( mbedtls_pk_context *key, unsigned char *buf, si
 int mbedtls_pk_write_key_pem( mbedtls_pk_context *key, unsigned char *buf, size_t size )
 {
     int ret;
-    unsigned char output_buf[47 + 3 * 256 + 5 * 256 / 2 + 256 % 2 > 29 + 3 * ( ( 384 + 7 ) / 8 ) ? 47 + 3 * 256 + 5 * 256 / 2 + 256 % 2 : 29 + 3 * ( ( 384 + 7 ) / 8 )];
+    unsigned char output_buf[47 + 3 * 1024 + 5 * 1024 / 2 + 1024 % 2 > 29 + 3 * ( ( 384 + 7 ) / 8 ) ? 47 + 3 * 1024 + 5 * 1024 / 2 + 1024 % 2 : 29 + 3 * ( ( 384 + 7 ) / 8 )];
     const char *begin, *end;
     size_t olen = 0;
 

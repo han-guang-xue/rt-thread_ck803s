@@ -6,10 +6,6 @@
 
 /* T6X0 Soc hardware resource */
 
-#define RT_USING_T660
-
-/* T660 setting */
-
 #define RT_HAVING_GMAC
 #define RT_USING_ETH1
 #define RT_HAVING_ATA
@@ -24,6 +20,11 @@
 #define RT_HAVING_SPI
 #define RT_USING_ADC
 #define RT_HAVING_GPIO
+#define RT_USING_T680
+
+/* T680 setting */
+
+#define RT_USING_ETH0
 
 /* RT-Thread Kernel */
 
@@ -243,5 +244,65 @@
 #define WEBNET_CACHE_LEVEL 0
 #define WEBNET_USING_SAMPLES
 #define PKG_USING_WEBNET_V200
+
+/* RT-Thread online packages */
+
+/* IoT - internet of things */
+
+#define WEBCLIENT_NOT_USE_TLS
+#define PKG_USING_WEBCLIENT_V212
+#define PKG_WEBCLIENT_VER_NUM 0x20102
+
+/* Select supported modules */
+
+#define PKG_USING_WEBNET_V202
+#define PKG_USING_CJSON
+#define PKG_USING_CJSON_V102
+#define PKG_USING_LJSON
+#define PKG_USING_LJSON_V002
+
+/* Wi-Fi */
+
+/* Marvell WiFi */
+
+
+/* Wiced WiFi */
+
+#define NETUTILS_NTP_HOSTNAME2 "ntp.rt-thread.org"
+#define NETUTILS_NTP_HOSTNAME3 "edu.ntp.org.cn"
+#define PKG_USING_NETUTILS_V120
+
+/* IoT Cloud */
+
+
+/* security packages */
+
+/* Select Root Certificate */
+
+#define MBEDTLS_AES_ROM_TABLES
+#define MBEDTLS_MPI_MAX_SIZE 1024
+#define MBEDTLS_CTR_DRBG_KEYSIZE 32
+#define PKG_USING_MBEDTLS_V2710
+
+/* language packages */
+
+
+/* multimedia packages */
+
+
+/* tools packages */
+
+
+/* system packages */
+
+
+/* peripheral libraries and drivers */
+
+
+/* miscellaneous packages */
+
+
+/* samples: kernel and components samples */
+
 
 #endif

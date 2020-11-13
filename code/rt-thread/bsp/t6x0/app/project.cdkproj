@@ -170,13 +170,13 @@
     </BuildConfig>
   </BuildConfigs>
   <VirtualDirectory Name="entry">
-    <File Name="entry/main.c">
+    <File Name="entry/ipraw.c">
       <FileOption/>
     </File>
     <File Name="entry/linklayer.c">
       <FileOption/>
     </File>
-    <File Name="entry/ipraw.c">
+    <File Name="entry/main.c">
       <FileOption/>
     </File>
   </VirtualDirectory>

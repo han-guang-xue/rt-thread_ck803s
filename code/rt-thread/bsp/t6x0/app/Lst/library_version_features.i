@@ -2910,7 +2910,14 @@ static const char *features[] = {
     "MBEDTLS_ECP_ALT",
 # 202 "../../../packages/mbedtls-2.6.0/mbedtls/library/version_features.c"
     "MBEDTLS_ENTROPY_HARDWARE_ALT",
-# 211 "../../../packages/mbedtls-2.6.0/mbedtls/library/version_features.c"
+
+
+    "MBEDTLS_AES_ROM_TABLES",
+
+
+
+
+
     "MBEDTLS_CIPHER_MODE_CBC",
 
 

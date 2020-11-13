@@ -9760,7 +9760,7 @@ static int ssl_parse_client_key_exchange( mbedtls_ssl_context *ssl )
         if( ( ret = mbedtls_ecdh_calc_secret( &ssl->handshake->ecdh_ctx,
                                       &ssl->handshake->pmslen,
                                        ssl->handshake->premaster,
-                                       256,
+                                       1024,
                                        ssl->conf->f_rng, ssl->conf->p_rng ) ) != 0 )
         {
             mbedtls_debug_print_ret( ssl, 1, "../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_srv.c", 3759, "mbedtls_ecdh_calc_secret", ret );

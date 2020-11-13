@@ -5336,7 +5336,7 @@ int mbedtls_x509write_crt_set_basic_constraints( mbedtls_x509write_cert *ctx,
 int mbedtls_x509write_crt_set_subject_key_identifier( mbedtls_x509write_cert *ctx )
 {
     int ret;
-    unsigned char buf[256 * 2 + 20];
+    unsigned char buf[1024 * 2 + 20];
     unsigned char *c = buf + sizeof(buf);
     size_t len = 0;
 
@@ -5358,7 +5358,7 @@ int mbedtls_x509write_crt_set_subject_key_identifier( mbedtls_x509write_cert *ct
 int mbedtls_x509write_crt_set_authority_key_identifier( mbedtls_x509write_cert *ctx )
 {
     int ret;
-    unsigned char buf[256 * 2 + 20];
+    unsigned char buf[1024 * 2 + 20];
     unsigned char *c = buf + sizeof(buf);
     size_t len = 0;
 
@@ -5467,7 +5467,7 @@ int mbedtls_x509write_crt_der( mbedtls_x509write_cert *ctx, unsigned char *buf, 
     size_t sig_oid_len = 0;
     unsigned char *c, *c2;
     unsigned char hash[64];
-    unsigned char sig[256];
+    unsigned char sig[1024];
     unsigned char tmp_buf[2048];
     size_t sub_len = 0, pub_len = 0, sig_and_oid_len = 0, sig_len;
     size_t len = 0;

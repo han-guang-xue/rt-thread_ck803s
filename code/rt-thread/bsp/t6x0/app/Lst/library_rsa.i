@@ -4972,7 +4972,7 @@ int mbedtls_rsa_check_pubkey( const mbedtls_rsa_context *ctx )
         return( -0x4200 );
 
     if( mbedtls_mpi_bitlen( &ctx->N ) < 128 ||
-        mbedtls_mpi_bitlen( &ctx->N ) > ( 8 * 256 ) )
+        mbedtls_mpi_bitlen( &ctx->N ) > ( 8 * 1024 ) )
         return( -0x4200 );
 
     if( mbedtls_mpi_bitlen( &ctx->E ) < 2 ||
@@ -5399,7 +5399,7 @@ int mbedtls_rsa_rsaes_oaep_decrypt( mbedtls_rsa_context *ctx,
     int ret;
     size_t ilen, i, pad_len;
     unsigned char *p, bad, pad_done;
-    unsigned char buf[256];
+    unsigned char buf[1024];
     unsigned char lhash[32];
     unsigned int hlen;
     const mbedtls_md_info_t *md_info;
@@ -5532,7 +5532,7 @@ int mbedtls_rsa_rsaes_pkcs1_v15_decrypt( mbedtls_rsa_context *ctx,
     int ret;
     size_t ilen, pad_count = 0, i;
     unsigned char *p, bad, pad_done = 0;
-    unsigned char buf[256];
+    unsigned char buf[1024];
 
     if( mode == 1 && ctx->padding != 0 )
         return( -0x4080 );
@@ -5912,7 +5912,7 @@ int mbedtls_rsa_rsassa_pss_verify_ext( mbedtls_rsa_context *ctx,
     size_t slen, msb;
     const mbedtls_md_info_t *md_info;
     mbedtls_md_context_t md_ctx;
-    unsigned char buf[256];
+    unsigned char buf[1024];
 
     if( mode == 1 && ctx->padding != 1 )
         return( -0x4080 );
@@ -6058,7 +6058,7 @@ int mbedtls_rsa_rsassa_pkcs1_v15_verify( mbedtls_rsa_context *ctx,
     mbedtls_md_type_t msg_md_alg;
     const mbedtls_md_info_t *md_info;
     mbedtls_asn1_buf oid;
-    unsigned char buf[256];
+    unsigned char buf[1024];
 
     if( mode == 1 && ctx->padding != 0 )
         return( -0x4080 );

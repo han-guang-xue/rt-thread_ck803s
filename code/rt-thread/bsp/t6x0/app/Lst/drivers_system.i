@@ -3072,7 +3072,16 @@ void sys_hw_init(void)
 
     clock_enable(MODULE_SATA_HOST);
     module_enable(MODULE_SATA_HOST);
-# 125 "../drivers/system.c"
+# 116 "../drivers/system.c"
+    clock_freq_set(MODULE_GMAC0_25M, 25000000);
+    clock_freq_set(MODULE_GMAC0_125M, 125000000);
+    clock_enable(MODULE_GMAC0);
+    clock_enable(MODULE_GMAC0_25M);
+    clock_enable(MODULE_GMAC0_125M);
+    module_enable(MODULE_GMAC0);
+
+
+
     clock_freq_set(MODULE_GMAC1_25M, 25000000);
     clock_freq_set(MODULE_GMAC1_125M, 125000000);
     clock_enable(MODULE_GMAC1);

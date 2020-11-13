@@ -3994,7 +3994,18 @@ typedef struct
 } net_device;
 typedef net_device* net_device_t;
 # 54 "../drivers/drv_eth.c" 2
-# 74 "../drivers/drv_eth.c"
+# 63 "../drivers/drv_eth.c"
+unsigned int eth0_tx_pbuf_record[4];
+unsigned int eth0_rx_pbuf_record[4];
+
+net_device eth0_dev_entry;
+static net_device_t eth0_dev = &eth0_dev_entry;
+
+
+
+
+
+
 unsigned int eth1_tx_pbuf_record[4];
 unsigned int eth1_rx_pbuf_record[4];
 
@@ -4576,7 +4587,173 @@ static struct pbuf* __attribute__((section(".fast"))) eth_dev_rx(rt_device_t dev
         return p;
     }
 }
-# 731 "../drivers/drv_eth.c"
+# 581 "../drivers/drv_eth.c"
+static void __attribute__((section(".fast"))) eth0_isr()
+{
+    unsigned int status;
+
+    rt_hw_interrupt_clear(6);
+    status = gmac_intr_status(eth0_dev->gmac_id);
+    do { if (0) rt_kprintf ("[eth0 isr] status=0x%x\n", status); } while (0);
+    gmac_intr_clear(eth0_dev->gmac_id, status);
+
+    if (status & (1 << 8)) {
+        rt_kprintf("GMAC_INT_AHB_ERR in isr0\n");
+    }
+
+    if (status & (1 << 7)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TPKT_LOST in isr0\n"); } while (0);
+    }
+
+    if (status & (1 << 6)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TXBUF_UNAVA in isr0\n"); } while (0);
+    }
+
+    if (status & (1 << 4)) {
+        do { if (0) rt_kprintf ("GMAC_INT_TPKT2E in isr0\n"); } while (0);
+    }
+
+
+    if (status & ((1 << 0) | (1 << 2) | (1 << 3))) {
+        if (eth_device_ready(&(eth0_dev->parent)) != 0) {
+            ;
+        } else {
+            gmac_intr_disable(eth0_dev->gmac_id, ((1 << 0)));
+        }
+    }
+}
+
+static int rt_hw_t610_eth0_init(void)
+{
+    unsigned int i;
+    int ret;
+    unsigned int phy_mmd_clk;
+    rt_err_t result;
+    struct pbuf *p;
+
+    memset(eth0_dev, 0, sizeof(net_device));
+
+    eth0_dev->gmac_id = 0;
+    eth0_dev->tx_desc_num = 4;
+    eth0_dev->rx_desc_num = 4;
+    eth0_dev->link_status.linked = 0;
+    eth0_dev->tx_pbuf_record = eth0_tx_pbuf_record;
+    eth0_dev->rx_pbuf_record = eth0_rx_pbuf_record;
+    eth0_dev->phy = &rtl8211_phy_ops;
+    eth0_dev->phy_addr = 0;
+    eth0_dev->mac_addr[0] = 0x00;
+    eth0_dev->mac_addr[1] = 0x84;
+    eth0_dev->mac_addr[2] = 0x73;
+    eth0_dev->mac_addr[3] = 0x72;
+    rand_get(&eth0_dev->mac_addr[4], 1);
+    rand_get(&eth0_dev->mac_addr[5], 1);
+
+    ret = gmac_hw_init(eth0_dev->gmac_id);
+    if (ret != 0) {
+        return -1;
+    }
+
+    ret = gmac_tx_queue_init(eth0_dev->gmac_id, eth0_dev->tx_desc_num);
+    if (ret != 0) {
+        return -1;
+    }
+
+    ret = gmac_rx_queue_init(eth0_dev->gmac_id, eth0_dev->rx_desc_num, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)));
+    if (ret != 0) {
+        return -1;
+    }
+
+    for (i = 0; i < eth0_dev->rx_desc_num; i++) {
+        p = pbuf_alloc(PBUF_RAW, (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), PBUF_POOL);
+        if (p != 
+# 658 "../drivers/drv_eth.c" 3 4
+                (0)
+# 658 "../drivers/drv_eth.c"
+                    ) {
+            eth0_dev->rx_pbuf_record[i] = (unsigned int)p;
+
+            gmac_rx_buf_attach(eth0_dev->gmac_id, (unsigned char *)p->payload);
+            do { if (0) rt_kprintf ("RX queue %d 0x%x 0x%x\n", (((1500 +0u +16) + 8 - 1U) & ~(8 -1U)), (unsigned int)p->payload, ((((unsigned int)p->payload) >= 0x10000 && ((unsigned int)p->payload) < (0x10000 + (0x40000 - 0x10000))) ? (((unsigned int)p->payload) + 0x22300000 - (0x10000 & 0xFFF00000)) : (((unsigned int)p->payload) >= 0x11100000 && ((unsigned int)p->payload) < (0x11100000 + 0x2000)) ? (((unsigned int)p->payload) + 0x22200000 - (0x11100000 & 0xFFF00000)) : ((unsigned int)p->payload))); } while (0);
+        } else {
+            return -1;
+        }
+    }
+
+
+    gmac_chksum_offload_set(eth0_dev->gmac_id, (1 << 0) | (1 << 1) |
+                                               (1 << 2) | (1 << 3) |
+                                               (1 << 4) | (1 << 5) |
+                                               (1 << 6) | (1 << 7));
+
+
+
+
+
+
+    gmac_flow_ctrl_enable(eth0_dev->gmac_id, 0x1000, 10);
+    gmac_mac_addr_set(eth0_dev->gmac_id, eth0_dev->mac_addr);
+    gmac_intr_enable(eth0_dev->gmac_id, ((1 << 0)));
+    gmac_addr_filter_set(eth0_dev->gmac_id, (1 << 10) | (1 << 11));
+    gmac_tx_enable(eth0_dev->gmac_id);
+    gmac_rx_enable(eth0_dev->gmac_id);
+
+
+    phy_mmd_clk = eth0_dev->phy->phy_mmd_max_fre_get(eth0_dev->gmac_id);
+    gmac_phy_addr_set(eth0_dev->gmac_id, eth0_dev->phy_addr);
+    gmac_phy_mmd_clk_set(eth0_dev->gmac_id, phy_mmd_clk);
+    ret = eth0_dev->phy->phy_init(eth0_dev->gmac_id);
+    if (ret != 0) {
+        rt_kprintf("ERR##: PHY0 initialize fail!\n");
+    }
+
+
+    rt_timer_init(&eth0_dev->timer, "eth0_timer", eth_link_update, (void *)eth0_dev, 100, 0x2);
+    rt_timer_start(&eth0_dev->timer);
+
+
+    if (rt_hw_interrupt_install(6, eth0_isr, 
+# 700 "../drivers/drv_eth.c" 3 4
+                                                        (0)
+# 700 "../drivers/drv_eth.c"
+                                                            , "ETH0") != 
+# 700 "../drivers/drv_eth.c" 3 4
+                                                                         (0)
+# 700 "../drivers/drv_eth.c"
+                                                                             ) {
+        rt_hw_interrupt_umask(6);
+    }
+
+
+
+
+
+    eth0_dev->parent.parent.init = eth_dev_init;
+    eth0_dev->parent.parent.open = eth_dev_open;
+    eth0_dev->parent.parent.close = eth_dev_close;
+    eth0_dev->parent.parent.read = eth_dev_read;
+    eth0_dev->parent.parent.write = eth_dev_write;
+    eth0_dev->parent.parent.control = eth_dev_control;
+
+    eth0_dev->parent.eth_rx = eth_dev_rx;
+    eth0_dev->parent.eth_tx = eth_dev_tx;
+
+
+
+    eth0_dev->parent.parent.fops = 
+# 720 "../drivers/drv_eth.c" 3 4
+                                  (0)
+# 720 "../drivers/drv_eth.c"
+                                      ;
+
+
+    result = eth_device_init(&(eth0_dev->parent), "e0");
+    return result;
+}
+
+const init_fn_t __rt_init_rt_hw_t610_eth0_init __attribute__((section(".rti_fn.""4"))) = rt_hw_t610_eth0_init;
+
+
+
 static void __attribute__((section(".fast"))) eth1_isr()
 {
     unsigned int status;
