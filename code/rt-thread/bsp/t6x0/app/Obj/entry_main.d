@@ -10,7 +10,7 @@ Obj/entry_main.o: entry/main.c ../../../include/rtthread.h rtconfig.h \
  ../../../include/libc/libc_ioctl.h ../../../include/libc/libc_dirent.h \
  ../../../include/libc/libc_signal.h ../../../include/libc/libc_fdset.h \
  ../../../include/rtservice.h ../../../include/rtm.h \
- ../../../components/finsh/finsh_api.h
+ ../../../components/finsh/finsh_api.h entry/linklayer.c
 
 ../../../include/rtthread.h:
 
@@ -51,3 +51,5 @@ rtconfig.h:
 ../../../include/rtm.h:
 
 ../../../components/finsh/finsh_api.h:
+
+entry/linklayer.c:

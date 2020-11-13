@@ -3,7 +3,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "entry/main.c"
-# 26 "entry/main.c"
+
 # 1 "../../../include/rtthread.h" 1
 # 35 "../../../include/rtthread.h"
 # 1 "./rtconfig.h" 1
@@ -742,7 +742,7 @@ typedef long fd_mask;
 
 
 typedef struct _types_fd_set {
-    fd_mask fds_bits[(((32)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
+    fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
@@ -1243,7 +1243,7 @@ extern struct finsh_syscall *_syscall_table_begin, *_syscall_table_end;
 
 struct finsh_syscall* finsh_syscall_lookup(const char* name);
 # 570 "../../../include/rtthread.h" 2
-# 27 "entry/main.c" 2
+# 3 "entry/main.c" 2
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\stdio.h" 1 3 4
 # 22 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\stdio.h" 3 4
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\ansidef.h" 1 3 4
@@ -1333,7 +1333,7 @@ extern int __ltostr(char *s, unsigned int size, unsigned long i, unsigned int ba
 extern int getchar (void);
 extern FILE *fdopen (int __fd, __const char *__modes);
 extern int fileno (FILE *__stream);
-# 28 "entry/main.c" 2
+# 4 "entry/main.c" 2
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\stdlib.h" 1 3 4
 # 23 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\stdlib.h" 3 4
 typedef struct
@@ -1433,13 +1433,63 @@ extern void srand (unsigned int seed);
 extern int atexit (void (*__func) (void));
 extern char *getenv (__const char *__name);
 extern int system (__const char *__command) ;
-# 29 "entry/main.c" 2
+# 5 "entry/main.c" 2
+# 1 "entry/linklayer.c" 1
 
 
-# 30 "entry/main.c"
-int main(void)
+
+
+
+
+
+
+# 8 "entry/linklayer.c"
+static void data_print(char *data, uint32_t len)
 {
-    printf("RT-Thread test main entry\n");
-# 57 "entry/main.c"
-    return 0;
+    uint32_t i;
+
+    printf("print len = %d\n", len);
+    for (i = 0; i < len; i++)
+    {
+        printf("%02x ", data[i]);
+    }
+    printf("\n");
+}
+
+
+
+static char sendbuf[512];
+static char recvbuf[512];
+static void entry_main(void) {
+# 43 "entry/linklayer.c"
+}
+# 6 "entry/main.c" 2
+
+
+
+__attribute__((aligned(8)))
+static char thread1_stack[1024];
+static struct rt_thread thread1;
+
+
+static void thread1_entry(void *param)
+{
+ entry_main();
+}
+
+
+int main(void) {
+
+
+
+ rt_thread_init(&thread1,
+                   "thread1",
+                   thread1_entry,
+                   (0),
+                   &thread1_stack[0],
+                   sizeof(thread1_stack), 8, 50);
+    rt_thread_startup(&thread1);
+
+
+ return 0;
 }
