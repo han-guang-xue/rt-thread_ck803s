@@ -169,11 +169,6 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ</statistics>
-  </DebugSessions>
   <VirtualDirectory Name="entry">
     <File Name="entry/main.c">
       <FileOption/>
@@ -181,7 +176,9 @@
     <File Name="entry/linklayer.c">
       <FileOption/>
     </File>
-    <File Name="entry/ipraw.c"/>
+    <File Name="entry/ipraw.c">
+      <FileOption/>
+    </File>
   </VirtualDirectory>
   <VirtualDirectory Name="drivers">
     <File Name="../drivers/drv_cputime.c">
@@ -924,4 +921,14 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ</statistics>
+    <peripheralTabs/>
+    <WatchDisplayFormat/>
+    <LocalDisplayFormat/>
+    <debugLayout/>
+    <memoryTabColSizeExpressions/>
+  </DebugSessions>
 </Project>

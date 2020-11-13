@@ -5088,45 +5088,6 @@ Section Cross References
 	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record_layer) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_dtls_replay_check) for mbedtls_ssl_dtls_replay_check
 	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_dtls_replay_update) for mbedtls_ssl_dtls_replay_update
 	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record_layer) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_dtls_replay_update) for mbedtls_ssl_dtls_replay_update
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handle_message_type) for mbedtls_ssl_handle_message_type
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handle_message_type) for mbedtls_ssl_handle_message_type
-	Obj/library_ssl_cli.o(.text.ssl_parse_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_psk_identity) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_close_notify) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record_layer) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_change_cipher_spec) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_finished) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_certificate) for mbedtls_ssl_write_certificate
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_certificate) for mbedtls_ssl_write_certificate
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_change_cipher_spec) for mbedtls_ssl_write_change_cipher_spec
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_change_cipher_spec) for mbedtls_ssl_write_change_cipher_spec
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_optimize_checksum) for mbedtls_ssl_optimize_checksum
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_reset_checksum) for mbedtls_ssl_reset_checksum
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_finished) for mbedtls_ssl_write_finished
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_finished) for mbedtls_ssl_write_finished
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_session_init) for mbedtls_ssl_session_init
-	Obj/src_tls_client.o(.text.tls_cli_session_init) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_init) for mbedtls_ssl_init
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_init) for mbedtls_ssl_init
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_authmode) for mbedtls_ssl_conf_authmode
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_rng) for mbedtls_ssl_conf_rng
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_rng) for mbedtls_ssl_conf_rng
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_dbg) for mbedtls_ssl_conf_dbg
-	Obj/src_tls_client.o(.text.tls_cli_session_connect) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_bio) for mbedtls_ssl_set_bio
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_bio) for mbedtls_ssl_set_bio
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_session_cache) for mbedtls_ssl_conf_session_cache
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_own_cert) for mbedtls_ssl_conf_own_cert
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_own_cert) for mbedtls_ssl_conf_own_cert
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_own_cert) for mbedtls_gmssl_conf_own_cert
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_own_cert) for mbedtls_gmssl_conf_own_cert
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_ca_chain) for mbedtls_ssl_conf_ca_chain
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_ca_chain) for mbedtls_ssl_conf_ca_chain
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_ca_chain) for mbedtls_gmssl_conf_ca_chain
-	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_ca_chain) for mbedtls_gmssl_conf_ca_chain
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_hostname) for mbedtls_ssl_set_hostname
 	Obj/src_tls_client.o(.text.tls_cli_session_connect) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_get_verify_result) for mbedtls_ssl_get_verify_result
 	Obj/library_ssl_tls.o(.text.mbedtls_ssl_handshake) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handshake_step) for mbedtls_ssl_handshake_step
 	Obj/library_ssl_tls.o(.text.ssl_start_renegotiation) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handshake) for mbedtls_ssl_handshake
@@ -5154,6 +5115,64 @@ Section Cross References
 	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handshake_wrapup) for mbedtls_ssl_handshake_wrapup
 	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_setup) for mbedtls_ssl_setup
 	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_setup) for mbedtls_ssl_setup
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handle_message_type) for mbedtls_ssl_handle_message_type
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_handle_message_type) for mbedtls_ssl_handle_message_type
+	Obj/library_ssl_cli.o(.text.ssl_parse_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_psk_identity) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_close_notify) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_record_layer) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_change_cipher_spec) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_finished) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_read) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_send_alert_message) for mbedtls_ssl_send_alert_message
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_certificate) for mbedtls_ssl_write_certificate
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_certificate) for mbedtls_ssl_write_certificate
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_change_cipher_spec) for mbedtls_ssl_write_change_cipher_spec
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_change_cipher_spec) for mbedtls_ssl_write_change_cipher_spec
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_optimize_checksum) for mbedtls_ssl_optimize_checksum
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_reset_checksum) for mbedtls_ssl_reset_checksum
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_finished) for mbedtls_ssl_write_finished
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_finished) for mbedtls_ssl_write_finished
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_session_init) for mbedtls_ssl_session_init
+	Obj/src_tls_client.o(.text.tls_cli_session_init) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_init) for mbedtls_ssl_init
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_init) for mbedtls_ssl_init
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_authmode) for mbedtls_ssl_conf_authmode
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_rng) for mbedtls_ssl_conf_rng
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_rng) for mbedtls_ssl_conf_rng
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_dbg) for mbedtls_ssl_conf_dbg
+	Obj/library_ssl_cli.o(.text.ssl_write_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
+	Obj/library_ssl_srv.o(.text.ssl_write_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
+	Obj/library_ssl_cli.o(.text.ssl_check_server_ecdh_params) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_curve) for mbedtls_ssl_check_curve
+	Obj/library_ssl_cli.o(.text.ssl_parse_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_sig_hash) for mbedtls_ssl_check_sig_hash
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_sig_hash) for mbedtls_ssl_check_sig_hash
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_cert_usage) for mbedtls_ssl_check_cert_usage
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_cert_usage) for mbedtls_ssl_check_cert_usage
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) for mbedtls_ssl_parse_certificate
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) for mbedtls_ssl_parse_certificate
+	Obj/library_ssl_cli.o(.text.ssl_write_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
+	Obj/library_ssl_cli.o(.text.ssl_write_encrypted_pms) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
+	Obj/library_ssl_srv.o(.text.ssl_parse_encrypted_pms) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
+	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_version) for mbedtls_ssl_read_version
+	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_version) for mbedtls_ssl_read_version
+	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_calc_verify_md) for mbedtls_ssl_set_calc_verify_md
+	Obj/src_tls_client.o(.text.tls_cli_session_connect) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_bio) for mbedtls_ssl_set_bio
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_bio) for mbedtls_ssl_set_bio
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_session_cache) for mbedtls_ssl_conf_session_cache
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_own_cert) for mbedtls_ssl_conf_own_cert
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_own_cert) for mbedtls_ssl_conf_own_cert
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_own_cert) for mbedtls_gmssl_conf_own_cert
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_own_cert) for mbedtls_gmssl_conf_own_cert
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_ca_chain) for mbedtls_ssl_conf_ca_chain
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_conf_ca_chain) for mbedtls_ssl_conf_ca_chain
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_ca_chain) for mbedtls_gmssl_conf_ca_chain
+	Obj/src_tls_server.o(.text.tls_srv_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_gmssl_conf_ca_chain) for mbedtls_gmssl_conf_ca_chain
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_hostname) for mbedtls_ssl_set_hostname
 	Obj/library_ssl_tls.o(.text.ssl_check_ctr_renegotiate) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_renegotiate) for mbedtls_ssl_renegotiate
 	Obj/src_tls_client.o(.text.tls_cli_session_write) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write) for mbedtls_ssl_write
 	Obj/src_tls_server.o(.text.tls_srv_session_write) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write) for mbedtls_ssl_write
@@ -5194,25 +5213,6 @@ Section Cross References
 	Obj/library_ssl_cli.o(.text.ssl_parse_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_md_alg_from_hash) for mbedtls_ssl_md_alg_from_hash
 	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_md_alg_from_hash) for mbedtls_ssl_md_alg_from_hash
 	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_md_alg_from_hash) for mbedtls_ssl_md_alg_from_hash
-	Obj/library_ssl_cli.o(.text.ssl_write_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
-	Obj/library_ssl_srv.o(.text.ssl_write_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_hash_from_md_alg) for mbedtls_ssl_hash_from_md_alg
-	Obj/library_ssl_cli.o(.text.ssl_check_server_ecdh_params) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_curve) for mbedtls_ssl_check_curve
-	Obj/library_ssl_cli.o(.text.ssl_parse_server_key_exchange) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_sig_hash) for mbedtls_ssl_check_sig_hash
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_sig_hash) for mbedtls_ssl_check_sig_hash
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_cert_usage) for mbedtls_ssl_check_cert_usage
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_cert_usage) for mbedtls_ssl_check_cert_usage
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) for mbedtls_ssl_parse_certificate
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) for mbedtls_ssl_parse_certificate
-	Obj/library_ssl_cli.o(.text.ssl_write_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
-	Obj/library_ssl_cli.o(.text.ssl_write_encrypted_pms) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
-	Obj/library_ssl_srv.o(.text.ssl_parse_encrypted_pms) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_write_version) for mbedtls_ssl_write_version
-	Obj/library_ssl_cli.o(.text.mbedtls_ssl_handshake_client_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_version) for mbedtls_ssl_read_version
-	Obj/library_ssl_srv.o(.text.ssl_parse_client_hello) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_read_version) for mbedtls_ssl_read_version
-	Obj/library_ssl_srv.o(.text.mbedtls_ssl_handshake_server_step) refers to Obj/library_ssl_tls.o(.text.mbedtls_ssl_set_calc_verify_md) for mbedtls_ssl_set_calc_verify_md
 	Obj/crypto_crypto_dev.o(.text.rt_crypto_register) refers to Obj/library_threading.o(.text.mbedtls_threading_set_alt) for mbedtls_threading_set_alt
 	Obj/samples_crypto_app_test.o(.text.mbedtls_crypto_test) refers to Obj/library_timing.o(.text.mbedtls_timing_self_test) for mbedtls_timing_self_test
 	Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) refers to Obj/library_x509.o(.text.mbedtls_x509_get_serial) for mbedtls_x509_get_serial
@@ -5235,6 +5235,12 @@ Section Cross References
 	Obj/library_x509_crt.o(.text.x509_crt_verify_top) refers to Obj/library_x509.o(.text.mbedtls_x509_time_is_future) for mbedtls_x509_time_is_future
 	Obj/library_x509_crt.o(.text.x509_crt_verify_child) refers to Obj/library_x509.o(.text.mbedtls_x509_time_is_future) for mbedtls_x509_time_is_future
 	Obj/samples_crypto_app_test.o(.text.mbedtls_crypto_test) refers to Obj/library_x509.o(.text.mbedtls_x509_self_test) for mbedtls_x509_self_test
+	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) for mbedtls_x509_crt_parse_der
+	Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) for mbedtls_x509_crt_parse_der
+	Obj/library_ssl_cache.o(.text.mbedtls_ssl_cache_get) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
+	Obj/library_x509.o(.text.mbedtls_x509_self_test) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
+	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
+	Obj/src_tls_server.o(.text.tls_srv_create) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
 	Obj/library_debug.o(.text.mbedtls_debug_print_crt) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_info) for mbedtls_x509_crt_info
 	Obj/src_tls_client.o(.text.tls_cli_session_connect) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_verify_info) for mbedtls_x509_crt_verify_info
 	Obj/library_ssl_tls.o(.text.mbedtls_ssl_check_cert_usage) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_check_key_usage) for mbedtls_x509_crt_check_key_usage
@@ -5254,12 +5260,6 @@ Section Cross References
 	Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_free) for mbedtls_x509_crt_free
 	Obj/src_tls_client.o(.text.tls_cli_session_close) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_free) for mbedtls_x509_crt_free
 	Obj/src_tls_server.o(.text.tls_srv_destroy) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_free) for mbedtls_x509_crt_free
-	Obj/library_ssl_tls.o(.text.mbedtls_ssl_parse_certificate) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) for mbedtls_x509_crt_parse_der
-	Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse_der) for mbedtls_x509_crt_parse_der
-	Obj/library_ssl_cache.o(.text.mbedtls_ssl_cache_get) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
-	Obj/library_x509.o(.text.mbedtls_x509_self_test) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
-	Obj/src_tls_client.o(.text.tls_cli_session_config) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
-	Obj/src_tls_server.o(.text.tls_srv_create) refers to Obj/library_x509_crt.o(.text.mbedtls_x509_crt_parse) for mbedtls_x509_crt_parse
 	Obj/library_entropy_poll.o(.text.mbedtls_hardclock_poll) refers to Obj/src_timing_alt.o(.text.mbedtls_timing_hardclock) for mbedtls_timing_hardclock
 	Obj/library_timing.o(.text.mbedtls_timing_self_test) refers to Obj/src_timing_alt.o(.text.mbedtls_timing_hardclock) for mbedtls_timing_hardclock
 	Obj/library_timing.o(.text.busy_msleep) refers to Obj/src_timing_alt.o(.text.mbedtls_timing_get_timer) for mbedtls_timing_get_timer
@@ -5468,12 +5468,12 @@ Section Cross References
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_source_set
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_enable
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_reset
-	Obj/drivers_drv_spi.o(.text.drv_spi_configure) refers to bsp_spi.o(.text.spi_hw_init) for spi_hw_init
-	Obj/drivers_drv_spi.o(.fast) refers to bsp_spi.o(.text.spi_send_recv) for spi_send_recv
 	Obj/drivers_drv_spi.o(.text.drv_spi_init) refers to bsp_spi.o(.text.spi_frame_output_port_set) for spi_frame_output_port_set
 	Obj/drivers_drv_spi.o(.fast) refers to bsp_spi.o(.text.spi_frame_output_low) for spi_frame_output_low
 	Obj/drivers_drv_spi.o(.fast) refers to bsp_spi.o(.text.spi_frame_output_high) for spi_frame_output_high
 	bsp_spi.o(.text.spi_send_recv) refers to bsp_spi.o(.text.spi_tx_rx_fifo) for spi_tx_rx_fifo
+	Obj/drivers_drv_spi.o(.text.drv_spi_configure) refers to bsp_spi.o(.text.spi_hw_init) for spi_hw_init
+	Obj/drivers_drv_spi.o(.fast) refers to bsp_spi.o(.text.spi_send_recv) for spi_send_recv
 	Obj/drivers_drv_timer.o(.fast) refers to bsp_timer.o(.fast) for timer_count_get
 	Obj/drivers_drv_timer.o(.fast) refers to bsp_timer.o(.text.timer_hw_init) for timer_hw_init
 	Obj/drivers_drv_timer.o(.text.drv_hwtimer_init) refers to bsp_timer.o(.text.timer_hw_init) for timer_hw_init
@@ -5805,18 +5805,6 @@ Section Cross References
 	common_log.o(.fast) refers to norflash_norflash.o(.text.norflash_read) for norflash_read
 	common_log.o(.fast) refers to norflash_norflash.o(.text.norflash_write) for norflash_write
 	common_log.o(.fast) refers to norflash_norflash.o(.text.norflash_sector_erase) for norflash_sector_erase
-	sata_host_ahci_cmd.o(.fast) refers to sata_host_ahci.o(.text.ahci_hex_print) for ahci_hex_print
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_port_serr_clear) for ahci_port_serr_clear
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_is_flush) for ahci_reg_is_flush
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_ci_get) for ahci_reg_ci_get
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_ci_get) for ahci_reg_ci_get
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_ccs_get) for ahci_ccs_get
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_enable) for ahci_intr_enable
-	Obj/drivers_drv_sata.o(.text.drv_ata_init) refers to sata_host_ahci.o(.text.ahci_intr_enable) for ahci_intr_enable
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_disable) for ahci_intr_disable
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_status) for ahci_intr_status
-	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_clear) for ahci_intr_clear
-	sata_host_ahci.o(.text.ahci_hba_reset) refers to sata_host_ahci.o(.text.ahci_port_init) for ahci_port_init
 	Obj/drivers_drv_sata.o(.text.drv_ata_probe) refers to sata_host_ahci.o(.text.ahci_xfer_mode_set) for ahci_xfer_mode_set
 	sata_host_ahci.o(.text.ahci_identify_read) refers to sata_host_ahci.o(.text.identify_revise) for identify_revise
 	Obj/drivers_drv_sata.o(.text.drv_ata_probe) refers to sata_host_ahci.o(.text.ahci_identify_read) for ahci_identify_read
@@ -5829,6 +5817,18 @@ Section Cross References
 	Obj/drivers_drv_sata.o(.text.drv_ata_init) refers to sata_host_ahci.o(.text.ahci_clock_set) for ahci_clock_set
 	Obj/drivers_drv_sata.o(.text.drv_ata_init) refers to sata_host_ahci.o(.text.ahci_wait_timeout_set) for ahci_wait_timeout_set
 	Obj/drivers_drv_sata.o(.text.drv_ata_init) refers to sata_host_ahci.o(.text.ahci_speed_set) for ahci_speed_set
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_enable) for ahci_intr_enable
+	Obj/drivers_drv_sata.o(.text.drv_ata_init) refers to sata_host_ahci.o(.text.ahci_intr_enable) for ahci_intr_enable
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_disable) for ahci_intr_disable
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_status) for ahci_intr_status
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_intr_clear) for ahci_intr_clear
+	sata_host_ahci.o(.text.ahci_hba_reset) refers to sata_host_ahci.o(.text.ahci_port_init) for ahci_port_init
+	sata_host_ahci_cmd.o(.fast) refers to sata_host_ahci.o(.text.ahci_hex_print) for ahci_hex_print
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_port_serr_clear) for ahci_port_serr_clear
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_is_flush) for ahci_reg_is_flush
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_ci_get) for ahci_reg_ci_get
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_reg_ci_get) for ahci_reg_ci_get
+	Obj/drivers_drv_sata.o(.fast) refers to sata_host_ahci.o(.text.ahci_ccs_get) for ahci_ccs_get
 	sata_host_ahci.o(.fast) refers to sata_host_ahci.o(.fast) for ahci_prdt_setup
 	sata_host_ahci_cmd.o(.fast) refers to sata_host_ahci.o(.fast) for ahci_prdt_setup2
 	sata_host_ahci_cmd.o(.fast) refers to sata_host_ahci.o(.fast) for ahci_prdt_setup2
@@ -5946,6 +5946,19 @@ Section Cross References
 	Obj/src_kservice.o(.text.xmem_init) refers to common_memcpy_hw.o(.text.mem_hw_init) for mem_hw_init
 	Obj/src_kservice.o(.fast) refers to common_memcpy_hw.o(.fast) for memcpy_hw
 	Obj/src_kservice.o(.fast) refers to common_memcpy_hw.o(.fast) for memset_hw
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_event_set) for gmac_wol_wakeup_event_set
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_enter) for gmac_wol_mode_enter
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_exit) for gmac_wol_mode_exit
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_state_poll) for gmac_wol_state_poll
+	Obj/drivers_drv_eth.o(.fast) refers to gmac_gmac.o(.text.gmac_speed_duplex_set) for gmac_speed_duplex_set
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_statistics_get) for gmac_statistics_get
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_deinit) for gmac_hw_deinit
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.fast) for gmac_phy_addr_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.fast) for gmac_phy_addr_set
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_addr_filter_set) for gmac_addr_filter_set
@@ -5970,19 +5983,6 @@ Section Cross References
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_chksum_offload_set) for gmac_chksum_offload_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_chksum_offload_set) for gmac_chksum_offload_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_frame_filter_set) for gmac_wol_wakeup_frame_filter_set
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_event_set) for gmac_wol_wakeup_event_set
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_enter) for gmac_wol_mode_enter
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_exit) for gmac_wol_mode_exit
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_state_poll) for gmac_wol_state_poll
-	Obj/drivers_drv_eth.o(.fast) refers to gmac_gmac.o(.text.gmac_speed_duplex_set) for gmac_speed_duplex_set
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_statistics_get) for gmac_statistics_get
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_deinit) for gmac_hw_deinit
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_clk_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_clk_set
 	Obj/src_tih_phy_m88e1512.o(.text.marvell_phy_init) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_read16
