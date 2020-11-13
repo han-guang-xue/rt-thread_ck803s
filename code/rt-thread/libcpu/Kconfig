@@ -1,0 +1,10 @@
+config ARCH_ARM
+    bool
+
+config ARCH_ARM_ARM9
+    bool
+    select ARCH_ARM
+	
+config ARCH_CSKY
+    bool
+

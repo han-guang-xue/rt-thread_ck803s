@@ -1,0 +1,60 @@
+Import('RTT_ROOT')
+from building import *
+
+cwd     = GetCurrentDir()
+
+src	  = Glob(cwd + '/src/*.c')
+
+# remove no need file.
+if GetDepend('RT_USING_CRYPTO') == False:
+    SrcRemove(src, 'src/tih_aes.c')
+    SrcRemove(src, 'src/tih_cmac.c')
+    SrcRemove(src, 'src/tih_crypto.c')
+    SrcRemove(src, 'src/tih_eccp.c')
+    SrcRemove(src, 'src/tih_hash.c')
+    SrcRemove(src, 'src/tih_hmac.c')
+    SrcRemove(src, 'src/tih_pke.c')
+    SrcRemove(src, 'src/tih_rng.c')
+    SrcRemove(src, 'src/tih_rsa_osr.c')
+    SrcRemove(src, 'src/tih_rsa.c')
+    SrcRemove(src, 'src/tih_sha1.c')
+    SrcRemove(src, 'src/tih_sha224.c')
+    SrcRemove(src, 'src/tih_sm2_osr.c')
+    SrcRemove(src, 'src/tih_sha256.c')
+    SrcRemove(src, 'src/tih_sm2.c')
+    SrcRemove(src, 'src/tih_sm3.c')
+    SrcRemove(src, 'src/tih_sm4.c')
+
+if GetDepend('RT_USING_ATA') == False:
+    SrcRemove(src, 'src/tih_ahci.c')
+    SrcRemove(src, 'src/tih_ahci_cmd.c')
+
+if GetDepend('RT_USING_SERIAL') == False:
+    SrcRemove(src, 'src/tih_uart.c')
+
+if GetDepend('RT_USING_I2C') == False:
+    SrcRemove(src, 'src/tih_i2c.c')
+
+if GetDepend('RT_USING_SPI') == False:
+    SrcRemove(src, 'src/tih_spi.c')
+    SrcRemove(src, 'src/tih_spiflash.c')
+
+if GetDepend('RT_USING_HWTIMER') == False:
+    SrcRemove(src, 'src/tih_timer.c')
+
+if GetDepend('RT_USING_WDT') == False:
+    SrcRemove(src, 'src/tih_wdt.c')
+
+if GetDepend('RT_USING_PIN') == False:
+    SrcRemove(src, 'src/tih_gpio.c')
+
+if GetDepend('RT_USING_LWIP') == False:
+    SrcRemove(src, 'src/tih_gmac.c')
+    SrcRemove(src, 'src/tih_phy_m88e1512.c')
+    SrcRemove(src, 'src/tih_phy_rtl8211.c')
+    SrcRemove(src, 'src/tih_gmac.c')
+
+CPPPATH = [ cwd + '/inc', cwd + '/inc/tih', cwd + '/src']
+group = DefineGroup('t6x0', src, depend = [], LIBS = ['libt6x0_c.a'], LIBPATH = [cwd], CPPPATH = CPPPATH)
+
+Return('group')

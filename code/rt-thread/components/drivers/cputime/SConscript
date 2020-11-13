@@ -1,0 +1,11 @@
+from building import *
+
+cwd     = GetCurrentDir()
+CPPPATH = [cwd + '/../include']
+src     = Split('''
+cputime.c
+''')
+
+group   = DefineGroup('device', src, depend = ['RT_USING_CPUTIME'], CPPPATH = CPPPATH)
+
+Return('group')

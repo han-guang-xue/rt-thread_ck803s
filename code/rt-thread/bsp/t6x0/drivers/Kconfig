@@ -1,0 +1,171 @@
+menu "T6X0 Soc hardware resource"
+    choice
+    default RT_USING_NONE
+        prompt "Soc hardware select"
+        help
+            Select the mbedtls version
+
+        config RT_USING_T660
+            bool "T660 Soc"
+            default n
+            
+            if RT_USING_T660
+                menu "T660 setting"
+                    config RT_HAVING_GMAC
+                        bool "select hardware module->gmac"
+                        default y
+                        
+                        if RT_HAVING_GMAC
+                            config RT_USING_ETH1
+                                bool "select gmac:eth1"
+                                select RT_USING_LWIP
+                                default y
+                        endif
+                        
+                    config RT_HAVING_ATA
+                        bool "select hardware module->ata"
+                        default y            
+                        
+                    config RT_HAVING_CRYPTO
+                        bool "select hardware module->crypto"
+                        default y
+                        
+                    config RT_HAVING_TIMER
+                        bool "select hardware module->timer"
+                        default y            
+                        
+                    config RT_HAVING_CPUTIME
+                        bool "select hardware module->cpu timer"
+                        default y                                    
+                
+                    config RT_HAVING_I2C
+                        bool "select hardware module->i2c"
+                        default y
+                        
+                        if RT_HAVING_I2C
+                            config RT_USING_EEPROM
+                                bool "select eeprom device driver"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+            
+                    config RT_HAVING_UART
+                        bool "select hardware module->uart"
+                        default y
+                        
+                         if RT_HAVING_UART
+                            config RT_USING_UART1
+                                bool "select UART:1"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+                    
+                    config RT_HAVING_WDT
+                        bool "select hardware module->wdt"
+                        default y
+            
+                    config RT_HAVING_SPI
+                        bool "select hardware module->spi"
+                        default y
+                        
+                        if RT_HAVING_SPI
+                            config RT_USING_ADC
+                                bool "select adc device driver"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+                        
+                    config RT_HAVING_GPIO
+                        bool "select hardware module->gpio"
+                        default y
+                    
+                endmenu
+            endif
+            
+        config RT_USING_T680
+            bool "T680 Soc"
+            default n
+            
+            if RT_USING_T680
+                menu "T680 setting"
+                    config RT_HAVING_GMAC
+                        bool "select hardware module->gmac"
+                        default y
+                        
+                        if RT_HAVING_GMAC
+                            config RT_USING_ETH0
+                                bool "select gmac:eth0"
+                                select RT_USING_LWIP
+                                default y
+                            config RT_USING_ETH1
+                                bool "select gmac:eth1"
+                                select RT_USING_LWIP
+                                default y
+                        endif
+                        
+                    config RT_HAVING_ATA
+                        bool "select hardware module->ata"
+                        default y            
+                        
+                    config RT_HAVING_CRYPTO
+                        bool "select hardware module->crypto"
+                        default y
+                        
+                    config RT_HAVING_TIMER
+                        bool "select hardware module->timer"
+                        default y
+
+                    config RT_HAVING_CPUTIME
+                        bool "select hardware module->cpu timer"
+                        default y            
+                
+                    config RT_HAVING_I2C
+                        bool "select hardware module->i2c"
+                        default y
+                        
+                        if RT_HAVING_I2C
+                            config RT_USING_EEPROM
+                                bool "select eeprom device driver"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+            
+                    config RT_HAVING_UART
+                        bool "select hardware module->uart"
+                        default y
+                        
+                         if RT_HAVING_UART
+                            config RT_USING_UART1
+                                bool "select UART:1"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+                    
+                    config RT_HAVING_WDT
+                        bool "select hardware module->wdt"
+                        default y
+            
+                    config RT_HAVING_SPI
+                        bool "select hardware module->spi"
+                        default y
+                        
+                        if RT_HAVING_SPI
+                            config RT_USING_ADC
+                                bool "select adc device driver"
+                                select RT_USING_DEVICE
+                                default y
+                        endif
+                        
+                    config RT_HAVING_GPIO
+                        bool "select hardware module->gpio"
+                        default y
+                            
+                endmenu
+            endif
+            
+        config RT_USING_NONE
+            bool "No Soc"
+            default y            
+    endchoice
+    
+endmenu

@@ -1,0 +1,51 @@
+Import('RTT_ROOT')
+from building import *
+
+cwd     = GetCurrentDir()
+src	  = Glob('*.c')
+
+# remove no need file.
+if GetDepend('RT_USING_CRYPTO') == False:
+    SrcRemove(src, 'drv_crypto.c')
+
+if GetDepend('RT_USING_ATA') == False:
+    SrcRemove(src, 'drv_sata.c')
+
+if GetDepend('RT_USING_SERIAL') == False:
+    SrcRemove(src, 'drv_uart.c')
+
+if GetDepend('RT_USING_I2C') == False:
+    SrcRemove(src, 'drv_i2c.c')
+
+if GetDepend('RT_USING_SPI') == False:
+    SrcRemove(src, 'drv_spi.c')
+
+if GetDepend('RT_USING_HWTIMER') == False:
+    SrcRemove(src, 'drv_timer.c')
+
+if GetDepend('RT_USING_WDT') == False:
+    SrcRemove(src, 'drv_wdt.c')
+
+if GetDepend('RT_USING_PIN') == False:
+    SrcRemove(src, 'drv_gpio.c')
+
+if GetDepend('RT_USING_CPUTIME') == False:
+    SrcRemove(src, 'drv_cputime.c')
+
+if GetDepend('RT_USING_LWIP') == False:
+    SrcRemove(src, 'drv_eth.c')
+    CPPPATH = [ cwd, 
+            cwd + '/../libraries/inc',
+            RTT_ROOT + '/components/drivers/include'
+          ]
+else:
+    CPPPATH = [ cwd, 
+            cwd + '/../libraries/inc',
+            RTT_ROOT + '/components/drivers/include',
+            RTT_ROOT + '/components/net/lwip-2.0.2/src',
+            RTT_ROOT + '/components/net/lwip-2.0.2/src/include',
+            RTT_ROOT + '/components/net/lwip-2.0.2/src/arch/include'
+          ]
+group = DefineGroup('drivers', src, depend = [], CPPPATH = CPPPATH)
+
+Return('group')

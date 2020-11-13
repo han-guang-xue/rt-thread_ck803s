@@ -1,0 +1,5 @@
+rm server server6 client client6
+gcc -o server server.c
+gcc -o server6 server6.c
+gcc -o client client.c
+gcc -o client6 client6.c

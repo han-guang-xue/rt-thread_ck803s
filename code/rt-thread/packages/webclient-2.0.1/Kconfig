@@ -1,0 +1,45 @@
+
+menuconfig PKG_USING_WEBCLIENT
+    bool "WebClient: A HTTP/HTTPS Client for RT-Thread"
+    default n
+    select RT_USING_LIBC
+
+if PKG_USING_WEBCLIENT
+
+    if !PKG_USING_WEBCLIENT_V100
+    
+        config WEBCLIENT_USING_SAMPLES
+            bool "Enable webclient GET/POST samples"
+            default n
+            
+    endif
+
+    if PKG_USING_WEBCLIENT_V201
+    
+        config WEBCLIENT_USING_TLS
+            bool "Enable support tls protocol"
+            select PKG_USING_MBEDTLS
+            select MBEDTLS_USING_CRYPTO
+            select MBEDTLS_USING_X509
+            select MBEDTLS_USING_TLS
+            default n
+    
+    endif 
+
+    choice
+
+        prompt "Version"
+        help
+            Select the webclient version
+        default PKG_USING_WEBCLIENT_V201
+
+        config PKG_USING_WEBCLIENT_V201
+            bool "v2.0.1"
+
+    endchoice
+
+    config PKG_WEBCLIENT_VER
+       string
+       default "v2.0.1"    if PKG_USING_WEBCLIENT_V201
+
+endif

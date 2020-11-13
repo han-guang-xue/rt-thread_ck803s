@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project Name="rt-thread" Version="1">
+  <Dependencies Name="Debug"/>
+  <Description/>
+  <Dependencies Name="BuildSet"/>
+  <BuildConfigs>
+    <BuildConfig Name="BuildSet">
+      <Target>
+        <ROMBank Selected="1">
+          <ROM1>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM1>
+          <ROM2>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM2>
+          <ROM3>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM3>
+          <ROM4>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM4>
+          <ROM5>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+          </ROM5>
+        </ROMBank>
+        <RAMBank>
+          <RAM1>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM1>
+          <RAM2>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM2>
+          <RAM3>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM3>
+          <RAM4>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM4>
+          <RAM5>
+            <InUse>no</InUse>
+            <Start/>
+            <Size/>
+            <Init>yes</Init>
+          </RAM5>
+        </RAMBank>
+        <CPU>ck803s</CPU>
+        <UseMiniLib>yes</UseMiniLib>
+        <Endian>little</Endian>
+        <UseHardFloat>no</UseHardFloat>
+        <UseEnhancedLRW>no</UseEnhancedLRW>
+      </Target>
+      <Output>
+        <OutputName>$(ProjectName)</OutputName>
+        <Type>Executable</Type>
+        <CreateHexFile>yes</CreateHexFile>
+        <CreateBinFile>yes</CreateBinFile>
+        <Preprocessor>yes</Preprocessor>
+        <Disasm>yes</Disasm>
+        <CallGraph>yes</CallGraph>
+        <Map>yes</Map>
+      </Output>
+      <User>
+        <BeforeCompile>
+          <RunUserProg>no</RunUserProg>
+          <UserProgName/>
+        </BeforeCompile>
+        <BeforeMake>
+          <RunUserProg>no</RunUserProg>
+          <UserProgName/>
+        </BeforeMake>
+        <AfterMake>
+          <RunUserProg>yes</RunUserProg>
+          <UserProgName>csky-abiv2-elf-objcopy -O binary .\Obj\$(ProjectName).elf .\Obj\$(ProjectName).bin</UserProgName>
+        </AfterMake>
+      </User>
+      <Compiler>
+        <Define/>
+        <Undefine/>
+        <Optim>Optimize more (-O2)</Optim>
+        <DebugLevel>Default (-g)</DebugLevel>
+        <IncludePath/>
+        <OtherFlags>-ffunction-sections -fdata-sections -mno-required-printf </OtherFlags>
+        <Verbose>no</Verbose>
+        <Ansi>no</Ansi>
+        <Syntax>no</Syntax>
+        <Pedantic>no</Pedantic>
+        <PedanticErr>no</PedanticErr>
+        <InhibitWarn>no</InhibitWarn>
+        <AllWarn>yes</AllWarn>
+        <WarnErr>no</WarnErr>
+        <OneElfS>yes</OneElfS>
+        <Fstrict>no</Fstrict>
+      </Compiler>
+      <Asm>
+        <Define>CONFIG_CKCPU_MMU=0</Define>
+        <Undefine/>
+        <IncludePath></IncludePath>
+        <OtherFlags/>
+        <DebugLevel>gdwarf2</DebugLevel>
+      </Asm>
+      <Linker>
+        <Garbage>yes</Garbage>
+        <LDFile>$(ProjectPath)\fw_jtag.ld</LDFile>
+        <LibName/>
+        <LibPath/>
+        <OtherFlags/>
+        <AutoLDFile>no</AutoLDFile>
+      </Linker>
+      <Debug>
+        <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
+        <Connector>Remote ICE</Connector>
+        <StopAt>yes</StopAt>
+        <StopAtText>main</StopAtText>
+        <InitFile/>
+        <AutoRun>no</AutoRun>
+        <ResetType>Hard Reset</ResetType>
+        <SoftResetVal>0</SoftResetVal>
+        <ResetAfterLoad>no</ResetAfterLoad>
+        <ConfigICE>
+          <IP>localhost</IP>
+          <PORT>1025</PORT>
+          <Clock>12000</Clock>
+          <Delay>10</Delay>
+          <DDC>yes</DDC>
+          <TRST>no</TRST>
+          <Connect>Normal</Connect>
+          <ResetType>Soft Reset</ResetType>
+          <SoftResetVal>0</SoftResetVal>
+          <RTOSType>Bare Metal</RTOSType>
+          <DownloadToFlash>no</DownloadToFlash>
+          <ResetAfterConnect>yes</ResetAfterConnect>
+        </ConfigICE>
+        <ConfigSIM>
+          <SIMTarget/>
+          <OtherFlags/>
+          <NoGraphic>yes</NoGraphic>
+          <Log>no</Log>
+        </ConfigSIM>
+      </Debug>
+      <Flash>
+        <InitFile/>
+        <Erase>Erase Sectors</Erase>
+        <Algorithms Path=""/>
+        <Program>yes</Program>
+        <Verify>no</Verify>
+        <ResetAndRun>no</ResetAndRun>
+      </Flash>
+    </BuildConfig>
+  </BuildConfigs>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ</statistics>
+  </DebugSessions>
+</Project>

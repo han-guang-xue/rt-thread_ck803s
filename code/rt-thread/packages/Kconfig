@@ -1,0 +1,8 @@
+menu "RT-Thread local packages"
+
+source "$RTT_DIR/packages/mbedtls-2.6.0/Kconfig"
+source "$RTT_DIR/packages/netutils-1.0.0/Kconfig"
+source "$RTT_DIR/packages/webclient-2.0.1/Kconfig"
+source "$RTT_DIR/packages/webnet-2.0.0/Kconfig"
+
+endmenu

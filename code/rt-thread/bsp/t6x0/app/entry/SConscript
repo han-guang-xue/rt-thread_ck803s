@@ -1,0 +1,14 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = os.path.join(str(Dir('#')), 'entry')
+src	= Glob('*.c')
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+CCFLAGS = ' -c -mistack -ffunction-sections'
+
+group = DefineGroup('entry', src, depend = [''], CPPPATH = CPPPATH, CCFLAGS=CCFLAGS)
+
+Return('group')
