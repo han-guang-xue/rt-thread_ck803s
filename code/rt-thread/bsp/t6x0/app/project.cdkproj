@@ -408,275 +408,6 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
-  <VirtualDirectory Name="mbedtls">
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/aes.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/aes_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/aesni.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/arc4.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/asn1parse.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/asn1write.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/base64.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/bignum.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/blowfish.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/camellia.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ccm.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/certs.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/cipher.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/cipher_wrap.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/cmac.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ctr_drbg.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/debug.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/des.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/dhm.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecdh.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecdh_sm2.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecdsa.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecdsa_sm2.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecjpake.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecp.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecp_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecp_curves.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ecp_curves_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/entropy.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/entropy_poll.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/error.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/gcm.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/havege.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/hmac_drbg.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/md.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/md2.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/md4.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/md5.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/md_wrap.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/memory_buffer_alloc.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/oid.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/padlock.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pem.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pk.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pk_wrap.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pkcs11.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pkcs12.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pkcs5.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pkparse.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/pkwrite.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/platform.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ripemd160.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/rsa.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sha1.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sha1_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sha256.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sha256_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sha512.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sm2.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sm3.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/sm4.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_cache.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_ciphersuites.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_cli.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_cookie.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_srv.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_ticket.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/ssl_tls.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/threading.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/timing.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/version.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/version_features.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509_create.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509_crl.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509_crt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509_csr.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509write_crt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/x509write_csr.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/mbedtls/library/xtea.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/threading_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/timing_alt.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/tls_certificate.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/tls_client.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/tls_hardware.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/tls_net.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/ports/src/tls_server.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/samples/crypto_app_test.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/mbedtls-2.6.0/samples/tls_app_test.c">
-      <FileOption/>
-    </File>
-  </VirtualDirectory>
   <VirtualDirectory Name="netutils">
     <File Name="../../../packages/netutils-1.0.0/iperf/iperf.c">
       <FileOption/>
@@ -694,70 +425,19 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
-  <VirtualDirectory Name="webclient">
-    <File Name="../../../packages/webclient-2.0.1/src/webclient.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webclient-2.0.1/src/webclient_file.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webclient-2.0.1/samples/webclient_get_sample.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webclient-2.0.1/samples/webclient_post_sample.c">
-      <FileOption/>
-    </File>
-  </VirtualDirectory>
-  <VirtualDirectory Name="webnet">
-    <File Name="../../../packages/webnet-2.0.0/src/webnet.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/src/wn_mimetype.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/src/wn_request.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/src/wn_session.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/src/wn_utils.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/src/wn_module.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_asp.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_auth.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_cgi.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_index.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_alias.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_upload.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/module/wn_module_ssi.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/samples/wn_sample.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/webnet-2.0.0/samples/wn_sample_upload.c">
-      <FileOption/>
-    </File>
-  </VirtualDirectory>
   <MonitorProgress>
-    <DebugLaunch>170</DebugLaunch>
+    <DebugLaunch>136</DebugLaunch>
   </MonitorProgress>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ;</statistics>
+    <peripheralTabs/>
+    <WatchDisplayFormat>1</WatchDisplayFormat>
+    <LocalDisplayFormat>1</LocalDisplayFormat>
+    <debugLayout/>
+    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
+  </DebugSessions>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -855,10 +535,10 @@
       <Compiler>
         <Define/>
         <Undefine/>
-        <Optim>Optimize more (-O2)</Optim>
+        <Optim>None (-O0)</Optim>
         <DebugLevel>Default (-g)</DebugLevel>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
-        <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf -DMBEDTLS_CONFIG_FILE=\"mbedtls\/config.h\"</OtherFlags>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp</IncludePath>
+        <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf</OtherFlags>
         <Verbose>no</Verbose>
         <Ansi>no</Ansi>
         <Syntax>no</Syntax>
@@ -873,7 +553,7 @@
       <Asm>
         <Define>CONFIG_CKCPU_MMU=0</Define>
         <Undefine/>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\mbedtls-2.6.0\mbedtls\include;..\..\..\packages\mbedtls-2.6.0\mbedtls\include\mbedtls;..\..\..\packages\mbedtls-2.6.0\ports\inc;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp;..\..\..\packages\webclient-2.0.1\inc;..\..\..\packages\webnet-2.0.0\inc</IncludePath>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp</IncludePath>
         <OtherFlags/>
         <DebugLevel>gdwarf2</DebugLevel>
       </Asm>
@@ -889,7 +569,7 @@
       <Debug>
         <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
         <Connector>ICE</Connector>
-        <StopAt>yes</StopAt>
+        <StopAt>no</StopAt>
         <StopAtText>main</StopAtText>
         <InitFile/>
         <AutoRun>yes</AutoRun>
@@ -919,11 +599,11 @@
           <OtherFlags/>
         </ConfigICE>
         <ConfigSIM>
-          <SIMTarget>soccfg/userconfig/T680/1.xml</SIMTarget>
-          <OtherFlags>111</OtherFlags>
+          <SIMTarget/>
+          <OtherFlags/>
           <NoGraphic>yes</NoGraphic>
           <Log>no</Log>
-          <SimTrace>yes</SimTrace>
+          <SimTrace>no</SimTrace>
         </ConfigSIM>
       </Debug>
       <Flash>
@@ -941,14 +621,4 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ;</statistics>
-    <peripheralTabs/>
-    <WatchDisplayFormat>1</WatchDisplayFormat>
-    <LocalDisplayFormat>1</LocalDisplayFormat>
-    <debugLayout/>
-    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
-  </DebugSessions>
 </Project>

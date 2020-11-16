@@ -34,10 +34,6 @@ Obj/crypto_crypto_dev.o: ../../../components/drivers/crypto/crypto_dev.c \
  ../../../components/drivers/include/drivers/cputime.h \
  ../../../components/drivers/include/drivers/sata.h \
  ../../../components/drivers/include/drivers/crypto_dev.h \
- ../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h \
- ../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\/config.h \
- ../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\/check_config.h \
- ../../../packages/mbedtls-2.6.0/ports/inc/threading_alt.h \
  ../../../include/rtdbg.h
 
 ../../../include/rthw.h:
@@ -131,13 +127,5 @@ rtconfig.h:
 ../../../components/drivers/include/drivers/sata.h:
 
 ../../../components/drivers/include/drivers/crypto_dev.h:
-
-../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h:
-
-../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\/config.h:
-
-../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\/check_config.h:
-
-../../../packages/mbedtls-2.6.0/ports/inc/threading_alt.h:
 
 ../../../include/rtdbg.h:

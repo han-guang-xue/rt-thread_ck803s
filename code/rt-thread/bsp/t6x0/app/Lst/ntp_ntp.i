@@ -4683,7 +4683,7 @@ time_t ntp_get_time(const char *host_name)
         uint16_t check = 0;
 
 
-        rt_snprintf(date, 16, "%s", "Nov 13 2020");
+        rt_snprintf(date, 16, "%s", "Nov 16 2020");
 
         for (index = 0; index < sizeof(month) / 4; index++)
         {

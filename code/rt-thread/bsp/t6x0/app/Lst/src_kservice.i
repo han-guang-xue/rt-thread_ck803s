@@ -3176,7 +3176,7 @@ void rt_show_version(void)
     rt_kprintf("\n \\ | /\n");
     rt_kprintf("- RT -     Thread Operating System\n");
     rt_kprintf(" / | \\     %d.%d.%d build %s\n",
-               3L, 1L, 0L, "Nov 13 2020");
+               3L, 1L, 0L, "Nov 16 2020");
     rt_kprintf(" 2006 - 2018 Copyright by rt-thread team\n");
 }
 ;

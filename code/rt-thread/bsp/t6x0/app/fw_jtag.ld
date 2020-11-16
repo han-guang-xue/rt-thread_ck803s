@@ -23,8 +23,8 @@
 
 MEMORY
 {
-    SRAM1   : ORIGIN = 0x0,         LENGTH = 0x20000   /* on-chip SRAM1 128KB */
-    SRAM2   : ORIGIN = 0x20000,     LENGTH = 0x20000   /* on-chip SRAM2 128KB */
+    SRAM1   : ORIGIN = 0x0,         LENGTH = 0x40000   /* on-chip SRAM1 128KB */
+    SRAM2   : ORIGIN = 0x40000,     LENGTH = 0x20000   /* on-chip SRAM2 128KB */
     D-TCM   : ORIGIN = 0x400000,    LENGTH = 0x8000    /* D-TCM  32KB         */
     SRAM3   : ORIGIN = 0x11100000 , LENGTH = 0x2000    /* on-chip SRAM2 8KB   */
     

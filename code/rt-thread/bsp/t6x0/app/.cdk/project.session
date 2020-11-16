@@ -1,97 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws">
-  <int Value="2" Name="m_selectedTab"/>
+  <int Value="0" Name="m_selectedTab"/>
   <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\libcpu\c-sky\ck803\startup_gcc.S" Name="FileName"/>
-      <int Value="208" Name="FirstVisibleLine"/>
-      <int Value="222" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\drivers\drv_crypto.c" Name="FileName"/>
-      <int Value="60" Name="FirstVisibleLine"/>
-      <int Value="78" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\main.c" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="7" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\ff.c" Name="FileName"/>
-      <int Value="47" Name="FirstVisibleLine"/>
-      <int Value="30" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\core\sys.c" Name="FileName"/>
-      <int Value="85" Name="FirstVisibleLine"/>
-      <int Value="1" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\linklayer.c" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="42" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\ipraw.c" Name="FileName"/>
-      <int Value="193" Name="FirstVisibleLine"/>
-      <int Value="175" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\core\ipv4\ip4.c" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="4" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\cmd.c" Name="FileName"/>
-      <int Value="556" Name="FirstVisibleLine"/>
-      <int Value="457" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\shell.c" Name="FileName"/>
-      <int Value="31" Name="FirstVisibleLine"/>
-      <int Value="1" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\finsh\symbol.c" Name="FileName"/>
-      <int Value="58" Name="FirstVisibleLine"/>
-      <int Value="74" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\drivers\drv_cputime.c" Name="FileName"/>
-      <int Value="7" Name="FirstVisibleLine"/>
-      <int Value="26" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\drivers\drv_eth.c" Name="FileName"/>
-      <int Value="132" Name="FirstVisibleLine"/>
-      <int Value="154" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\utilities\utest\utest.c" Name="FileName"/>
+      <int Value="80" Name="FirstVisibleLine"/>
+      <int Value="90" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="90:3"/>
+        <wxString Value="101:3"/>
+      </wxArrayString>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
   </TabInfoArray>

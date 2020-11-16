@@ -3645,61 +3645,7 @@ rt_err_t rt_crypto_register(rt_crypto_device_t *crypto,
                                void *data);
 # 113 "../../../components/drivers/include/rtdevice.h" 2
 # 3 "../../../components/drivers/crypto/crypto_dev.c" 2
-
-
-# 1 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h" 1
-# 29 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h"
-# 1 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/config.h" 1
-# 2820 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/config.h"
-# 1 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/check_config.h" 1
-# 36 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/check_config.h"
-# 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 1 3 4
-# 37 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/check_config.h" 2
-# 667 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/check_config.h"
-typedef int mbedtls_iso_c_forbids_empty_translation_units;
-# 2821 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls\\/config.h" 2
-# 30 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h" 2
-# 53 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h"
-# 1 "../../../packages/mbedtls-2.6.0/ports/inc/threading_alt.h" 1
-# 38 "../../../packages/mbedtls-2.6.0/ports/inc/threading_alt.h"
-typedef struct mbedtls_threading_mutex
-{
-    struct rt_mutex mutex;
-    int is_valid;
-} mbedtls_threading_mutex_t;
-
-void threading_mutex_init_rtt( mbedtls_threading_mutex_t *mutex );
-void threading_mutex_free_rtt( mbedtls_threading_mutex_t *mutex );
-int threading_mutex_lock_rtt( mbedtls_threading_mutex_t *mutex );
-int threading_mutex_unlock_rtt( mbedtls_threading_mutex_t *mutex );
-# 54 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h" 2
-# 73 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h"
-void mbedtls_threading_set_alt( void (*mutex_init)( mbedtls_threading_mutex_t * ),
-                       void (*mutex_free)( mbedtls_threading_mutex_t * ),
-                       int (*mutex_lock)( mbedtls_threading_mutex_t * ),
-                       int (*mutex_unlock)( mbedtls_threading_mutex_t * ) );
-
-
-
-
-void mbedtls_threading_free_alt( void );
-# 90 "../../../packages/mbedtls-2.6.0/mbedtls/include/mbedtls/threading.h"
-extern void (*mbedtls_mutex_init)( mbedtls_threading_mutex_t *mutex );
-extern void (*mbedtls_mutex_free)( mbedtls_threading_mutex_t *mutex );
-extern int (*mbedtls_mutex_lock)( mbedtls_threading_mutex_t *mutex );
-extern int (*mbedtls_mutex_unlock)( mbedtls_threading_mutex_t *mutex );
-
-
-
-
-extern mbedtls_threading_mutex_t mbedtls_threading_readdir_mutex;
-extern mbedtls_threading_mutex_t mbedtls_threading_gmtime_mutex;
-# 6 "../../../components/drivers/crypto/crypto_dev.c" 2
-
-
-
-
-
+# 11 "../../../components/drivers/crypto/crypto_dev.c"
 # 1 "../../../include/rtdbg.h" 1
 # 12 "../../../components/drivers/crypto/crypto_dev.c" 2
 
@@ -3709,17 +3655,7 @@ static rt_device_t crypto_dev = (0);
 
 static void rt_tls_env_init(void)
 {
-
-
-
-
-    mbedtls_threading_set_alt(threading_mutex_init_rtt,
-                              threading_mutex_free_rtt,
-                              threading_mutex_lock_rtt,
-                              threading_mutex_unlock_rtt);
-
-
-
+# 30 "../../../components/drivers/crypto/crypto_dev.c"
 }
 
 static rt_err_t rt_crypto_init(rt_device_t dev)
