@@ -23,7 +23,7 @@ static char sendbuf[BUFSIZE];
 static char recvbuf[BUFSIZE];
 static void entry_main(void) {
 	
-	printf("entry_main startting succeeded");
+	printf("entry_main startting succeeded \n");
 //	
 //	int32_t sock;
 //	sock = socket(PF_INET, SOCK_RAW, IPPROTO_ICMP);		

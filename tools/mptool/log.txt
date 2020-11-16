@@ -1,0 +1,13 @@
+( 2020-11-16 17:33:55 )    ERR:  File:(..\mptool_com\mythread.cpp) Line:(280) "COM5" 连接设备失败!
+( 2020-11-16 17:33:55 )    ERR:  File:(..\mptool_com\mythread.cpp) Line:(280) "COM3" 连接设备失败!
+( 2020-11-16 17:34:53 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"
+( 2020-11-16 17:35:04 )    ERR:  File:(..\mptool_usb\mainwindow.cpp) Line:(627) 连接TIH设备失败！
+( 2020-11-16 17:35:04 )    ERR:  File:(..\mptool_usb\mainwindow.cpp) Line:(645) "设备 0 Reboot 失败！"
+( 2020-11-16 17:35:15 )    ERR:  File:(..\mptool_usb\mainwindow.cpp) Line:(627) 连接TIH设备失败！
+( 2020-11-16 17:35:15 )    ERR:  File:(..\mptool_usb\mainwindow.cpp) Line:(645) "设备 0 Reboot 失败！"
+( 2020-11-16 17:35:19 )    ERR:  File:(..\mptool_usb\mythread.cpp) Line:(368) 设备 0 连接TIH设备失败！
+( 2020-11-16 17:36:00 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"
+( 2020-11-16 17:40:28 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"
+( 2020-11-16 17:43:08 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"
+( 2020-11-16 17:46:29 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"
+( 2020-11-16 17:49:21 )    Debug:  File:(..\mptool_usb\mainwindow.cpp) Line:(648) "设备 0 Reboot 成功！"

@@ -412,7 +412,7 @@
     </File>
   </VirtualDirectory>
   <MonitorProgress>
-    <DebugLaunch>136</DebugLaunch>
+    <DebugLaunch>106</DebugLaunch>
   </MonitorProgress>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
