@@ -15,40 +15,16 @@
     </File>
   </VirtualDirectory>
   <VirtualDirectory Name="drivers">
-    <File Name="../drivers/drv_cputime.c">
-      <FileOption/>
-    </File>
-    <File Name="../drivers/drv_crypto.c">
-      <FileOption/>
-    </File>
     <File Name="../drivers/drv_ctimer.c">
       <FileOption/>
     </File>
     <File Name="../drivers/drv_eth.c">
       <FileOption/>
     </File>
-    <File Name="../drivers/drv_gpio.c">
-      <FileOption/>
-    </File>
-    <File Name="../drivers/drv_i2c.c">
-      <FileOption/>
-    </File>
     <File Name="../drivers/drv_intr.c">
       <FileOption/>
     </File>
-    <File Name="../drivers/drv_sata.c">
-      <FileOption/>
-    </File>
-    <File Name="../drivers/drv_spi.c">
-      <FileOption/>
-    </File>
-    <File Name="../drivers/drv_timer.c">
-      <FileOption/>
-    </File>
     <File Name="../drivers/drv_uart.c">
-      <FileOption/>
-    </File>
-    <File Name="../drivers/drv_wdt.c">
       <FileOption/>
     </File>
     <File Name="../drivers/retarget.c">
@@ -184,52 +160,13 @@
     </File>
   </VirtualDirectory>
   <VirtualDirectory Name="device">
-    <File Name="../../../components/drivers/cputime/cputime.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/crypto/crypto_dev.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/hwtimer/hwtimer.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/i2c/i2c_core.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/i2c/i2c_dev.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/i2c/i2c-bit-ops.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/i2c/i2c_eeprom.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/misc/pin.c">
-      <FileOption/>
-    </File>
     <File Name="../../../components/drivers/rtc/rtc.c">
       <FileOption/>
     </File>
     <File Name="../../../components/drivers/rtc/soft_rtc.c">
       <FileOption/>
     </File>
-    <File Name="../../../components/drivers/sata/sata.c">
-      <FileOption/>
-    </File>
     <File Name="../../../components/drivers/serial/serial.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/spi/spi_core.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/spi/spi_dev.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/spi/spi_adc.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../components/drivers/watchdog/watchdog.c">
       <FileOption/>
     </File>
   </VirtualDirectory>
@@ -411,9 +348,16 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
-  <MonitorProgress>
-    <DebugLaunch>106</DebugLaunch>
-  </MonitorProgress>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ</statistics>
+    <peripheralTabs/>
+    <WatchDisplayFormat/>
+    <LocalDisplayFormat/>
+    <debugLayout/>
+    <memoryTabColSizeExpressions/>
+  </DebugSessions>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -513,7 +457,7 @@
         <Undefine/>
         <Optim>Optimize more (-O2)</Optim>
         <DebugLevel>Default (-g)</DebugLevel>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
         <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf</OtherFlags>
         <Verbose>no</Verbose>
         <Ansi>no</Ansi>
@@ -529,7 +473,7 @@
       <Asm>
         <Define>CONFIG_CKCPU_MMU=0</Define>
         <Undefine/>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
         <OtherFlags/>
         <DebugLevel>gdwarf2</DebugLevel>
       </Asm>
@@ -597,14 +541,7 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ;</statistics>
-    <peripheralTabs/>
-    <WatchDisplayFormat>1</WatchDisplayFormat>
-    <LocalDisplayFormat>1</LocalDisplayFormat>
-    <debugLayout/>
-    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
-  </DebugSessions>
+  <MonitorProgress>
+    <DebugLaunch>100</DebugLaunch>
+  </MonitorProgress>
 </Project>

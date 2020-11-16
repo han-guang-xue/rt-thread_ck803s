@@ -21,17 +21,7 @@ Obj/ntp_ntp.o: ../../../packages/netutils-1.0.0/ntp/ntp.c \
  ../../../components/drivers/include/ipc/pipe.h \
  ../../../components/drivers/include/ipc/poll.h \
  ../../../components/drivers/include/drivers/rtc.h \
- ../../../components/drivers/include/drivers/spi.h \
  ../../../components/drivers/include/drivers/serial.h \
- ../../../components/drivers/include/drivers/i2c.h \
- ../../../components/drivers/include/drivers/i2c_dev.h \
- ../../../components/drivers/include/drivers/i2c-bit-ops.h \
- ../../../components/drivers/include/drivers/watchdog.h \
- ../../../components/drivers/include/drivers/pin.h \
- ../../../components/drivers/include/drivers/hwtimer.h \
- ../../../components/drivers/include/drivers/cputime.h \
- ../../../components/drivers/include/drivers/sata.h \
- ../../../components/drivers/include/drivers/crypto_dev.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/inet.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/opt.h \
  ../../../components/net/lwip-2.0.2/src/lwipopts.h \
@@ -124,27 +114,7 @@ rtconfig.h:
 
 ../../../components/drivers/include/drivers/rtc.h:
 
-../../../components/drivers/include/drivers/spi.h:
-
 ../../../components/drivers/include/drivers/serial.h:
-
-../../../components/drivers/include/drivers/i2c.h:
-
-../../../components/drivers/include/drivers/i2c_dev.h:
-
-../../../components/drivers/include/drivers/i2c-bit-ops.h:
-
-../../../components/drivers/include/drivers/watchdog.h:
-
-../../../components/drivers/include/drivers/pin.h:
-
-../../../components/drivers/include/drivers/hwtimer.h:
-
-../../../components/drivers/include/drivers/cputime.h:
-
-../../../components/drivers/include/drivers/sata.h:
-
-../../../components/drivers/include/drivers/crypto_dev.h:
 
 ../../../components/net/lwip-2.0.2/src/include/lwip/inet.h:
 

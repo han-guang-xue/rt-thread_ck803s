@@ -1462,7 +1462,7 @@ static char sendbuf[512];
 static char recvbuf[512];
 static void entry_main(void) {
 
- printf("entry_main startting succeeded(123) \n");
+ printf("entry_main startting succeeded \n");
 # 43 "entry/linklayer.c"
 }
 # 6 "entry/main.c" 2

@@ -8,18 +8,6 @@
 
 #define RT_HAVING_GMAC
 #define RT_USING_ETH1
-#define RT_HAVING_ATA
-#define RT_HAVING_CRYPTO
-#define RT_HAVING_TIMER
-#define RT_HAVING_CPUTIME
-#define RT_HAVING_I2C
-#define RT_USING_EEPROM
-#define RT_HAVING_UART
-#define RT_USING_UART1
-#define RT_HAVING_WDT
-#define RT_HAVING_SPI
-#define RT_USING_ADC
-#define RT_HAVING_GPIO
 #define RT_USING_T680
 
 /* T680 setting */
@@ -114,21 +102,12 @@
 
 #define RT_USING_DEVICE_IPC
 #define RT_PIPE_BUFSZ 512
-#define RT_USING_CRYPTO
-#define RT_USING_ATA
 #define RT_USING_SERIAL
-#define RT_USING_HWTIMER
-#define RT_USING_CPUTIME
-#define RT_USING_I2C
-#define RT_USING_I2C_BITOPS
-#define RT_USING_PIN
 #define RT_USING_RTC
 #define RT_USING_SOFT_RTC
 #define RTC_SYNC_USING_NTP
 #define RTC_NTP_FIRST_SYNC_DELAY 1
 #define RTC_NTP_SYNC_PERIOD 3600
-#define RT_USING_SPI
-#define RT_USING_WDT
 
 /* POSIX layer and C standard library */
 

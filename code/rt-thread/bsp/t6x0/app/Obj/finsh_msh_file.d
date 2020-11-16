@@ -29,17 +29,7 @@ Obj/finsh_msh_file.o: ../../../components/finsh/msh_file.c \
  ../../../components/drivers/include/ipc/pipe.h \
  ../../../components/drivers/include/ipc/poll.h \
  ../../../components/drivers/include/drivers/rtc.h \
- ../../../components/drivers/include/drivers/spi.h \
  ../../../components/drivers/include/drivers/serial.h \
- ../../../components/drivers/include/drivers/i2c.h \
- ../../../components/drivers/include/drivers/i2c_dev.h \
- ../../../components/drivers/include/drivers/i2c-bit-ops.h \
- ../../../components/drivers/include/drivers/watchdog.h \
- ../../../components/drivers/include/drivers/pin.h \
- ../../../components/drivers/include/drivers/hwtimer.h \
- ../../../components/drivers/include/drivers/cputime.h \
- ../../../components/drivers/include/drivers/sata.h \
- ../../../components/drivers/include/drivers/crypto_dev.h \
  ../../../components/dfs/include/dfs_fs.h
 
 ../../../include/rtthread.h:
@@ -126,26 +116,6 @@ rtconfig.h:
 
 ../../../components/drivers/include/drivers/rtc.h:
 
-../../../components/drivers/include/drivers/spi.h:
-
 ../../../components/drivers/include/drivers/serial.h:
-
-../../../components/drivers/include/drivers/i2c.h:
-
-../../../components/drivers/include/drivers/i2c_dev.h:
-
-../../../components/drivers/include/drivers/i2c-bit-ops.h:
-
-../../../components/drivers/include/drivers/watchdog.h:
-
-../../../components/drivers/include/drivers/pin.h:
-
-../../../components/drivers/include/drivers/hwtimer.h:
-
-../../../components/drivers/include/drivers/cputime.h:
-
-../../../components/drivers/include/drivers/sata.h:
-
-../../../components/drivers/include/drivers/crypto_dev.h:
 
 ../../../components/dfs/include/dfs_fs.h:

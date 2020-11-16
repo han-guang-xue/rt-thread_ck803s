@@ -47,8 +47,8 @@ MakeDirCommand         :=mkdir
 LinkOptions            := -mcpu=ck803s  -nostartfiles -Wl,--gc-sections -T$(ProjectPath)/fw_jtag.ld
 LinkOtherFlagsOption   :=
 IncludePackagePath     :=
-IncludeCPath           :=$(IncludeSwitch)entry $(IncludeSwitch). $(IncludeSwitch)../drivers $(IncludeSwitch)../libraries/inc $(IncludeSwitch)../../../components/drivers/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/arch/include $(IncludeSwitch)../libraries/inc/tih $(IncludeSwitch)../libraries/src $(IncludeSwitch)../../../include $(IncludeSwitch)../../../libcpu/c-sky/ck803 $(IncludeSwitch)../../../libcpu/c-sky/common $(IncludeSwitch)../../../components/dfs/include $(IncludeSwitch)../../../components/dfs/filesystems/devfs $(IncludeSwitch)../../../components/dfs/filesystems/elmfat $(IncludeSwitch)../../../components/dfs/filesystems/net $(IncludeSwitch)../../../components/dfs/filesystems/net/select $(IncludeSwitch)../../../components/dfs/filesystems/net/socket $(IncludeSwitch)../../../components/dfs/filesystems/ramfs $(IncludeSwitch)../../../components/dfs/filesystems/romfs $(IncludeSwitch)../../../components/drivers/spi $(IncludeSwitch)../../../components/finsh $(IncludeSwitch)../../../components/libc/compilers/minilibc $(IncludeSwitch)../../../components/libc/time $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/ipv4 $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/netif $(IncludeSwitch)../../../packages/netutils-1.0.0/ntp $(IncludeSwitch)../../../packages/netutils-1.0.0/ping 
-IncludeAPath           :=$(IncludeSwitch)entry $(IncludeSwitch). $(IncludeSwitch)../drivers $(IncludeSwitch)../libraries/inc $(IncludeSwitch)../../../components/drivers/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/arch/include $(IncludeSwitch)../libraries/inc/tih $(IncludeSwitch)../libraries/src $(IncludeSwitch)../../../include $(IncludeSwitch)../../../libcpu/c-sky/ck803 $(IncludeSwitch)../../../libcpu/c-sky/common $(IncludeSwitch)../../../components/dfs/include $(IncludeSwitch)../../../components/dfs/filesystems/devfs $(IncludeSwitch)../../../components/dfs/filesystems/elmfat $(IncludeSwitch)../../../components/dfs/filesystems/net $(IncludeSwitch)../../../components/dfs/filesystems/net/select $(IncludeSwitch)../../../components/dfs/filesystems/net/socket $(IncludeSwitch)../../../components/dfs/filesystems/ramfs $(IncludeSwitch)../../../components/dfs/filesystems/romfs $(IncludeSwitch)../../../components/drivers/spi $(IncludeSwitch)../../../components/finsh $(IncludeSwitch)../../../components/libc/compilers/minilibc $(IncludeSwitch)../../../components/libc/time $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/ipv4 $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/netif $(IncludeSwitch)../../../packages/netutils-1.0.0/ntp $(IncludeSwitch)../../../packages/netutils-1.0.0/ping 
+IncludeCPath           :=$(IncludeSwitch)entry $(IncludeSwitch). $(IncludeSwitch)../drivers $(IncludeSwitch)../libraries/inc $(IncludeSwitch)../../../components/drivers/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/arch/include $(IncludeSwitch)../libraries/inc/tih $(IncludeSwitch)../libraries/src $(IncludeSwitch)../../../include $(IncludeSwitch)../../../libcpu/c-sky/ck803 $(IncludeSwitch)../../../libcpu/c-sky/common $(IncludeSwitch)../../../components/dfs/include $(IncludeSwitch)../../../components/dfs/filesystems/devfs $(IncludeSwitch)../../../components/dfs/filesystems/elmfat $(IncludeSwitch)../../../components/dfs/filesystems/net $(IncludeSwitch)../../../components/dfs/filesystems/net/select $(IncludeSwitch)../../../components/dfs/filesystems/net/socket $(IncludeSwitch)../../../components/dfs/filesystems/ramfs $(IncludeSwitch)../../../components/dfs/filesystems/romfs $(IncludeSwitch)../../../components/finsh $(IncludeSwitch)../../../components/libc/compilers/minilibc $(IncludeSwitch)../../../components/libc/time $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/ipv4 $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/netif $(IncludeSwitch)../../../packages/netutils-1.0.0/ntp $(IncludeSwitch)../../../packages/netutils-1.0.0/ping 
+IncludeAPath           :=$(IncludeSwitch)entry $(IncludeSwitch). $(IncludeSwitch)../drivers $(IncludeSwitch)../libraries/inc $(IncludeSwitch)../../../components/drivers/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/arch/include $(IncludeSwitch)../libraries/inc/tih $(IncludeSwitch)../libraries/src $(IncludeSwitch)../../../include $(IncludeSwitch)../../../libcpu/c-sky/ck803 $(IncludeSwitch)../../../libcpu/c-sky/common $(IncludeSwitch)../../../components/dfs/include $(IncludeSwitch)../../../components/dfs/filesystems/devfs $(IncludeSwitch)../../../components/dfs/filesystems/elmfat $(IncludeSwitch)../../../components/dfs/filesystems/net $(IncludeSwitch)../../../components/dfs/filesystems/net/select $(IncludeSwitch)../../../components/dfs/filesystems/net/socket $(IncludeSwitch)../../../components/dfs/filesystems/ramfs $(IncludeSwitch)../../../components/dfs/filesystems/romfs $(IncludeSwitch)../../../components/finsh $(IncludeSwitch)../../../components/libc/compilers/minilibc $(IncludeSwitch)../../../components/libc/time $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/ipv4 $(IncludeSwitch)../../../components/net/lwip-2.0.2/src/include/netif $(IncludeSwitch)../../../packages/netutils-1.0.0/ntp $(IncludeSwitch)../../../packages/netutils-1.0.0/ping 
 Libs                   := -Wl,--whole-archive  -Wl,--no-whole-archive  
 ArLibs                 := 
 PackagesLibPath        :=
@@ -69,21 +69,19 @@ CFLAGS   := -mcpu=ck803s    -O2  -g  -Wall  -ffunction-sections  -c -mistack -ff
 ASFLAGS  := -mcpu=ck803s   $(PreprocessorSwitch)CONFIG_CKCPU_MMU=0   -Wa,--gdwarf2    
 
 
-Objects0=$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) $(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_eth$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) \
-	$(IntermediateDirectory)/drivers_drv_sata$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_spi$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_timer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_wdt$(ObjectSuffix) $(IntermediateDirectory)/drivers_retarget$(ObjectSuffix) $(IntermediateDirectory)/drivers_system$(ObjectSuffix) $(IntermediateDirectory)/src_tih_phy_m88e1512$(ObjectSuffix) $(IntermediateDirectory)/src_tih_phy_rtl8211$(ObjectSuffix) $(IntermediateDirectory)/src_clock$(ObjectSuffix) \
-	$(IntermediateDirectory)/src_components$(ObjectSuffix) $(IntermediateDirectory)/src_device$(ObjectSuffix) $(IntermediateDirectory)/src_idle$(ObjectSuffix) $(IntermediateDirectory)/src_ipc$(ObjectSuffix) $(IntermediateDirectory)/src_irq$(ObjectSuffix) $(IntermediateDirectory)/src_kservice$(ObjectSuffix) $(IntermediateDirectory)/src_mem$(ObjectSuffix) $(IntermediateDirectory)/src_memheap$(ObjectSuffix) $(IntermediateDirectory)/src_object$(ObjectSuffix) $(IntermediateDirectory)/src_scheduler$(ObjectSuffix) \
-	$(IntermediateDirectory)/src_signal$(ObjectSuffix) $(IntermediateDirectory)/src_thread$(ObjectSuffix) $(IntermediateDirectory)/src_timer$(ObjectSuffix) $(IntermediateDirectory)/ck803_cpuport$(ObjectSuffix) $(IntermediateDirectory)/ck803_stack_ck803$(ObjectSuffix) $(IntermediateDirectory)/ck803_contex_ck803_gcc$(ObjectSuffix) $(IntermediateDirectory)/ck803_startup_gcc$(ObjectSuffix) $(IntermediateDirectory)/common_backtrace$(ObjectSuffix) $(IntermediateDirectory)/common_showmem$(ObjectSuffix) $(IntermediateDirectory)/src_dfs$(ObjectSuffix) \
-	$(IntermediateDirectory)/src_dfs_file$(ObjectSuffix) $(IntermediateDirectory)/src_dfs_fs$(ObjectSuffix) $(IntermediateDirectory)/src_dfs_posix$(ObjectSuffix) $(IntermediateDirectory)/src_poll$(ObjectSuffix) $(IntermediateDirectory)/src_select$(ObjectSuffix) $(IntermediateDirectory)/devfs_devfs$(ObjectSuffix) $(IntermediateDirectory)/elmfat_dfs_elm$(ObjectSuffix) $(IntermediateDirectory)/elmfat_ff$(ObjectSuffix) $(IntermediateDirectory)/option_ccsbcs$(ObjectSuffix) $(IntermediateDirectory)/net_dfs_net$(ObjectSuffix) \
-	$(IntermediateDirectory)/net_net_netdb$(ObjectSuffix) $(IntermediateDirectory)/net_net_sockets$(ObjectSuffix) $(IntermediateDirectory)/ramfs_dfs_ramfs$(ObjectSuffix) $(IntermediateDirectory)/romfs_dfs_romfs$(ObjectSuffix) $(IntermediateDirectory)/romfs_romfs$(ObjectSuffix) $(IntermediateDirectory)/cputime_cputime$(ObjectSuffix) $(IntermediateDirectory)/crypto_crypto_dev$(ObjectSuffix) $(IntermediateDirectory)/hwtimer_hwtimer$(ObjectSuffix) $(IntermediateDirectory)/i2c_i2c_core$(ObjectSuffix) $(IntermediateDirectory)/i2c_i2c_dev$(ObjectSuffix) \
-	$(IntermediateDirectory)/i2c_i2c-bit-ops$(ObjectSuffix) $(IntermediateDirectory)/i2c_i2c_eeprom$(ObjectSuffix) $(IntermediateDirectory)/misc_pin$(ObjectSuffix) $(IntermediateDirectory)/rtc_rtc$(ObjectSuffix) $(IntermediateDirectory)/rtc_soft_rtc$(ObjectSuffix) $(IntermediateDirectory)/sata_sata$(ObjectSuffix) $(IntermediateDirectory)/serial_serial$(ObjectSuffix) $(IntermediateDirectory)/spi_spi_core$(ObjectSuffix) $(IntermediateDirectory)/spi_spi_dev$(ObjectSuffix) $(IntermediateDirectory)/spi_spi_adc$(ObjectSuffix) \
-	$(IntermediateDirectory)/watchdog_watchdog$(ObjectSuffix) $(IntermediateDirectory)/src_completion$(ObjectSuffix) $(IntermediateDirectory)/src_dataqueue$(ObjectSuffix) $(IntermediateDirectory)/src_pipe$(ObjectSuffix) $(IntermediateDirectory)/src_ringbuffer$(ObjectSuffix) $(IntermediateDirectory)/src_waitqueue$(ObjectSuffix) $(IntermediateDirectory)/src_workqueue$(ObjectSuffix) $(IntermediateDirectory)/finsh_shell$(ObjectSuffix) $(IntermediateDirectory)/finsh_symbol$(ObjectSuffix) $(IntermediateDirectory)/finsh_cmd$(ObjectSuffix) \
-	$(IntermediateDirectory)/finsh_msh$(ObjectSuffix) $(IntermediateDirectory)/finsh_msh_cmd$(ObjectSuffix) $(IntermediateDirectory)/finsh_msh_file$(ObjectSuffix) $(IntermediateDirectory)/minilibc_stdlib$(ObjectSuffix) $(IntermediateDirectory)/minilibc_string$(ObjectSuffix) $(IntermediateDirectory)/minilibc_time$(ObjectSuffix) $(IntermediateDirectory)/time_clock_time$(ObjectSuffix) $(IntermediateDirectory)/time_posix_sleep$(ObjectSuffix) $(IntermediateDirectory)/arch_sys_arch$(ObjectSuffix) $(IntermediateDirectory)/api_api_lib$(ObjectSuffix) \
-	$(IntermediateDirectory)/api_api_msg$(ObjectSuffix) $(IntermediateDirectory)/api_err$(ObjectSuffix) $(IntermediateDirectory)/api_netbuf$(ObjectSuffix) $(IntermediateDirectory)/api_netdb$(ObjectSuffix) $(IntermediateDirectory)/api_netifapi$(ObjectSuffix) $(IntermediateDirectory)/api_sockets$(ObjectSuffix) $(IntermediateDirectory)/api_tcpip$(ObjectSuffix) $(IntermediateDirectory)/core_def$(ObjectSuffix) $(IntermediateDirectory)/core_dns$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/entry_ipraw$(ObjectSuffix) $(IntermediateDirectory)/entry_linklayer$(ObjectSuffix) $(IntermediateDirectory)/entry_main$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_eth$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) $(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix) $(IntermediateDirectory)/drivers_retarget$(ObjectSuffix) $(IntermediateDirectory)/drivers_system$(ObjectSuffix) $(IntermediateDirectory)/src_tih_phy_m88e1512$(ObjectSuffix) \
+	$(IntermediateDirectory)/src_tih_phy_rtl8211$(ObjectSuffix) $(IntermediateDirectory)/src_clock$(ObjectSuffix) $(IntermediateDirectory)/src_components$(ObjectSuffix) $(IntermediateDirectory)/src_device$(ObjectSuffix) $(IntermediateDirectory)/src_idle$(ObjectSuffix) $(IntermediateDirectory)/src_ipc$(ObjectSuffix) $(IntermediateDirectory)/src_irq$(ObjectSuffix) $(IntermediateDirectory)/src_kservice$(ObjectSuffix) $(IntermediateDirectory)/src_mem$(ObjectSuffix) $(IntermediateDirectory)/src_memheap$(ObjectSuffix) \
+	$(IntermediateDirectory)/src_object$(ObjectSuffix) $(IntermediateDirectory)/src_scheduler$(ObjectSuffix) $(IntermediateDirectory)/src_signal$(ObjectSuffix) $(IntermediateDirectory)/src_thread$(ObjectSuffix) $(IntermediateDirectory)/src_timer$(ObjectSuffix) $(IntermediateDirectory)/ck803_cpuport$(ObjectSuffix) $(IntermediateDirectory)/ck803_stack_ck803$(ObjectSuffix) $(IntermediateDirectory)/ck803_contex_ck803_gcc$(ObjectSuffix) $(IntermediateDirectory)/ck803_startup_gcc$(ObjectSuffix) $(IntermediateDirectory)/common_backtrace$(ObjectSuffix) \
+	$(IntermediateDirectory)/common_showmem$(ObjectSuffix) $(IntermediateDirectory)/src_dfs$(ObjectSuffix) $(IntermediateDirectory)/src_dfs_file$(ObjectSuffix) $(IntermediateDirectory)/src_dfs_fs$(ObjectSuffix) $(IntermediateDirectory)/src_dfs_posix$(ObjectSuffix) $(IntermediateDirectory)/src_poll$(ObjectSuffix) $(IntermediateDirectory)/src_select$(ObjectSuffix) $(IntermediateDirectory)/devfs_devfs$(ObjectSuffix) $(IntermediateDirectory)/elmfat_dfs_elm$(ObjectSuffix) $(IntermediateDirectory)/elmfat_ff$(ObjectSuffix) \
+	$(IntermediateDirectory)/option_ccsbcs$(ObjectSuffix) $(IntermediateDirectory)/net_dfs_net$(ObjectSuffix) $(IntermediateDirectory)/net_net_netdb$(ObjectSuffix) $(IntermediateDirectory)/net_net_sockets$(ObjectSuffix) $(IntermediateDirectory)/ramfs_dfs_ramfs$(ObjectSuffix) $(IntermediateDirectory)/romfs_dfs_romfs$(ObjectSuffix) $(IntermediateDirectory)/romfs_romfs$(ObjectSuffix) $(IntermediateDirectory)/rtc_rtc$(ObjectSuffix) $(IntermediateDirectory)/rtc_soft_rtc$(ObjectSuffix) $(IntermediateDirectory)/serial_serial$(ObjectSuffix) \
+	$(IntermediateDirectory)/src_completion$(ObjectSuffix) $(IntermediateDirectory)/src_dataqueue$(ObjectSuffix) $(IntermediateDirectory)/src_pipe$(ObjectSuffix) $(IntermediateDirectory)/src_ringbuffer$(ObjectSuffix) $(IntermediateDirectory)/src_waitqueue$(ObjectSuffix) $(IntermediateDirectory)/src_workqueue$(ObjectSuffix) $(IntermediateDirectory)/finsh_shell$(ObjectSuffix) $(IntermediateDirectory)/finsh_symbol$(ObjectSuffix) $(IntermediateDirectory)/finsh_cmd$(ObjectSuffix) $(IntermediateDirectory)/finsh_msh$(ObjectSuffix) \
+	$(IntermediateDirectory)/finsh_msh_cmd$(ObjectSuffix) $(IntermediateDirectory)/finsh_msh_file$(ObjectSuffix) $(IntermediateDirectory)/minilibc_stdlib$(ObjectSuffix) $(IntermediateDirectory)/minilibc_string$(ObjectSuffix) $(IntermediateDirectory)/minilibc_time$(ObjectSuffix) $(IntermediateDirectory)/time_clock_time$(ObjectSuffix) $(IntermediateDirectory)/time_posix_sleep$(ObjectSuffix) $(IntermediateDirectory)/arch_sys_arch$(ObjectSuffix) $(IntermediateDirectory)/api_api_lib$(ObjectSuffix) $(IntermediateDirectory)/api_api_msg$(ObjectSuffix) \
+	$(IntermediateDirectory)/api_err$(ObjectSuffix) $(IntermediateDirectory)/api_netbuf$(ObjectSuffix) $(IntermediateDirectory)/api_netdb$(ObjectSuffix) $(IntermediateDirectory)/api_netifapi$(ObjectSuffix) $(IntermediateDirectory)/api_sockets$(ObjectSuffix) $(IntermediateDirectory)/api_tcpip$(ObjectSuffix) $(IntermediateDirectory)/core_def$(ObjectSuffix) $(IntermediateDirectory)/core_dns$(ObjectSuffix) $(IntermediateDirectory)/core_inet_chksum$(ObjectSuffix) $(IntermediateDirectory)/core_init$(ObjectSuffix) \
+	$(IntermediateDirectory)/core_ip$(ObjectSuffix) $(IntermediateDirectory)/core_if$(ObjectSuffix) $(IntermediateDirectory)/core_memp$(ObjectSuffix) $(IntermediateDirectory)/core_netif$(ObjectSuffix) $(IntermediateDirectory)/core_pbuf$(ObjectSuffix) $(IntermediateDirectory)/core_raw$(ObjectSuffix) $(IntermediateDirectory)/core_stats$(ObjectSuffix) $(IntermediateDirectory)/core_sys$(ObjectSuffix) $(IntermediateDirectory)/core_tcp$(ObjectSuffix) $(IntermediateDirectory)/core_tcp_in$(ObjectSuffix) \
+	$(IntermediateDirectory)/core_tcp_out$(ObjectSuffix) $(IntermediateDirectory)/core_timeouts$(ObjectSuffix) $(IntermediateDirectory)/core_udp$(ObjectSuffix) $(IntermediateDirectory)/netif_ethernet$(ObjectSuffix) $(IntermediateDirectory)/netif_ethernetif$(ObjectSuffix) $(IntermediateDirectory)/netif_lowpan6$(ObjectSuffix) $(IntermediateDirectory)/ipv4_autoip$(ObjectSuffix) $(IntermediateDirectory)/ipv4_dhcp$(ObjectSuffix) $(IntermediateDirectory)/ipv4_etharp$(ObjectSuffix) 
 
-Objects1=$(IntermediateDirectory)/core_inet_chksum$(ObjectSuffix) \
-	$(IntermediateDirectory)/core_init$(ObjectSuffix) $(IntermediateDirectory)/core_ip$(ObjectSuffix) $(IntermediateDirectory)/core_if$(ObjectSuffix) $(IntermediateDirectory)/core_memp$(ObjectSuffix) $(IntermediateDirectory)/core_netif$(ObjectSuffix) $(IntermediateDirectory)/core_pbuf$(ObjectSuffix) $(IntermediateDirectory)/core_raw$(ObjectSuffix) $(IntermediateDirectory)/core_stats$(ObjectSuffix) $(IntermediateDirectory)/core_sys$(ObjectSuffix) $(IntermediateDirectory)/core_tcp$(ObjectSuffix) \
-	$(IntermediateDirectory)/core_tcp_in$(ObjectSuffix) $(IntermediateDirectory)/core_tcp_out$(ObjectSuffix) $(IntermediateDirectory)/core_timeouts$(ObjectSuffix) $(IntermediateDirectory)/core_udp$(ObjectSuffix) $(IntermediateDirectory)/netif_ethernet$(ObjectSuffix) $(IntermediateDirectory)/netif_ethernetif$(ObjectSuffix) $(IntermediateDirectory)/netif_lowpan6$(ObjectSuffix) $(IntermediateDirectory)/ipv4_autoip$(ObjectSuffix) $(IntermediateDirectory)/ipv4_dhcp$(ObjectSuffix) $(IntermediateDirectory)/ipv4_etharp$(ObjectSuffix) \
-	$(IntermediateDirectory)/ipv4_icmp$(ObjectSuffix) $(IntermediateDirectory)/ipv4_igmp$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4_addr$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4_frag$(ObjectSuffix) $(IntermediateDirectory)/ntp_ntp$(ObjectSuffix) $(IntermediateDirectory)/ping_ping$(ObjectSuffix) $(IntermediateDirectory)/__rt_entry$(ObjectSuffix) 
+Objects1=$(IntermediateDirectory)/ipv4_icmp$(ObjectSuffix) \
+	$(IntermediateDirectory)/ipv4_igmp$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4_addr$(ObjectSuffix) $(IntermediateDirectory)/ipv4_ip4_frag$(ObjectSuffix) $(IntermediateDirectory)/ntp_ntp$(ObjectSuffix) $(IntermediateDirectory)/ping_ping$(ObjectSuffix) $(IntermediateDirectory)/__rt_entry$(ObjectSuffix) 
 
 
 
@@ -126,16 +124,6 @@ $(IntermediateDirectory)/entry_main$(ObjectSuffix): entry/main.c  Lst/entry_main
 Lst/entry_main$(PreprocessSuffix): entry/main.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/entry_main$(PreprocessSuffix) entry/main.c
 
-$(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix): ../drivers/drv_cputime.c  Lst/drivers_drv_cputime$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_cputime.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_cputime$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_cputime$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_cputime$(PreprocessSuffix): ../drivers/drv_cputime.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_cputime$(PreprocessSuffix) ../drivers/drv_cputime.c
-
-$(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix): ../drivers/drv_crypto.c  Lst/drivers_drv_crypto$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_crypto.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_crypto$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_crypto$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_crypto$(PreprocessSuffix): ../drivers/drv_crypto.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_crypto$(PreprocessSuffix) ../drivers/drv_crypto.c
-
 $(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix): ../drivers/drv_ctimer.c  Lst/drivers_drv_ctimer$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../drivers/drv_ctimer.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_ctimer$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_ctimer$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/drivers_drv_ctimer$(PreprocessSuffix): ../drivers/drv_ctimer.c
@@ -146,45 +134,15 @@ $(IntermediateDirectory)/drivers_drv_eth$(ObjectSuffix): ../drivers/drv_eth.c  L
 Lst/drivers_drv_eth$(PreprocessSuffix): ../drivers/drv_eth.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_eth$(PreprocessSuffix) ../drivers/drv_eth.c
 
-$(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix): ../drivers/drv_gpio.c  Lst/drivers_drv_gpio$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_gpio.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_gpio$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_gpio$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_gpio$(PreprocessSuffix): ../drivers/drv_gpio.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_gpio$(PreprocessSuffix) ../drivers/drv_gpio.c
-
-$(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix): ../drivers/drv_i2c.c  Lst/drivers_drv_i2c$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_i2c.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_i2c$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_i2c$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_i2c$(PreprocessSuffix): ../drivers/drv_i2c.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_i2c$(PreprocessSuffix) ../drivers/drv_i2c.c
-
 $(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix): ../drivers/drv_intr.c  Lst/drivers_drv_intr$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../drivers/drv_intr.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_intr$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_intr$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/drivers_drv_intr$(PreprocessSuffix): ../drivers/drv_intr.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_intr$(PreprocessSuffix) ../drivers/drv_intr.c
 
-$(IntermediateDirectory)/drivers_drv_sata$(ObjectSuffix): ../drivers/drv_sata.c  Lst/drivers_drv_sata$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_sata.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_sata$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_sata$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_sata$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_sata$(PreprocessSuffix): ../drivers/drv_sata.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_sata$(PreprocessSuffix) ../drivers/drv_sata.c
-
-$(IntermediateDirectory)/drivers_drv_spi$(ObjectSuffix): ../drivers/drv_spi.c  Lst/drivers_drv_spi$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_spi.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_spi$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_spi$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_spi$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_spi$(PreprocessSuffix): ../drivers/drv_spi.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_spi$(PreprocessSuffix) ../drivers/drv_spi.c
-
-$(IntermediateDirectory)/drivers_drv_timer$(ObjectSuffix): ../drivers/drv_timer.c  Lst/drivers_drv_timer$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_timer.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_timer$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_timer$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_timer$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_timer$(PreprocessSuffix): ../drivers/drv_timer.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_timer$(PreprocessSuffix) ../drivers/drv_timer.c
-
 $(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix): ../drivers/drv_uart.c  Lst/drivers_drv_uart$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../drivers/drv_uart.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_uart$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_uart$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/drivers_drv_uart$(PreprocessSuffix): ../drivers/drv_uart.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_uart$(PreprocessSuffix) ../drivers/drv_uart.c
-
-$(IntermediateDirectory)/drivers_drv_wdt$(ObjectSuffix): ../drivers/drv_wdt.c  Lst/drivers_drv_wdt$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../drivers/drv_wdt.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_drv_wdt$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_drv_wdt$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_drv_wdt$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/drivers_drv_wdt$(PreprocessSuffix): ../drivers/drv_wdt.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/drivers_drv_wdt$(PreprocessSuffix) ../drivers/drv_wdt.c
 
 $(IntermediateDirectory)/drivers_retarget$(ObjectSuffix): ../drivers/retarget.c  Lst/drivers_retarget$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../drivers/retarget.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/drivers_retarget$(ObjectSuffix) -MF$(IntermediateDirectory)/drivers_retarget$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/drivers_retarget$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
@@ -386,46 +344,6 @@ $(IntermediateDirectory)/romfs_romfs$(ObjectSuffix): ../../../components/dfs/fil
 Lst/romfs_romfs$(PreprocessSuffix): ../../../components/dfs/filesystems/romfs/romfs.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/romfs_romfs$(PreprocessSuffix) ../../../components/dfs/filesystems/romfs/romfs.c
 
-$(IntermediateDirectory)/cputime_cputime$(ObjectSuffix): ../../../components/drivers/cputime/cputime.c  Lst/cputime_cputime$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/cputime/cputime.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/cputime_cputime$(ObjectSuffix) -MF$(IntermediateDirectory)/cputime_cputime$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/cputime_cputime$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/cputime_cputime$(PreprocessSuffix): ../../../components/drivers/cputime/cputime.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/cputime_cputime$(PreprocessSuffix) ../../../components/drivers/cputime/cputime.c
-
-$(IntermediateDirectory)/crypto_crypto_dev$(ObjectSuffix): ../../../components/drivers/crypto/crypto_dev.c  Lst/crypto_crypto_dev$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/crypto/crypto_dev.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/crypto_crypto_dev$(ObjectSuffix) -MF$(IntermediateDirectory)/crypto_crypto_dev$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/crypto_crypto_dev$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/crypto_crypto_dev$(PreprocessSuffix): ../../../components/drivers/crypto/crypto_dev.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/crypto_crypto_dev$(PreprocessSuffix) ../../../components/drivers/crypto/crypto_dev.c
-
-$(IntermediateDirectory)/hwtimer_hwtimer$(ObjectSuffix): ../../../components/drivers/hwtimer/hwtimer.c  Lst/hwtimer_hwtimer$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/hwtimer/hwtimer.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/hwtimer_hwtimer$(ObjectSuffix) -MF$(IntermediateDirectory)/hwtimer_hwtimer$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/hwtimer_hwtimer$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/hwtimer_hwtimer$(PreprocessSuffix): ../../../components/drivers/hwtimer/hwtimer.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/hwtimer_hwtimer$(PreprocessSuffix) ../../../components/drivers/hwtimer/hwtimer.c
-
-$(IntermediateDirectory)/i2c_i2c_core$(ObjectSuffix): ../../../components/drivers/i2c/i2c_core.c  Lst/i2c_i2c_core$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/i2c/i2c_core.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/i2c_i2c_core$(ObjectSuffix) -MF$(IntermediateDirectory)/i2c_i2c_core$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/i2c_i2c_core$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/i2c_i2c_core$(PreprocessSuffix): ../../../components/drivers/i2c/i2c_core.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/i2c_i2c_core$(PreprocessSuffix) ../../../components/drivers/i2c/i2c_core.c
-
-$(IntermediateDirectory)/i2c_i2c_dev$(ObjectSuffix): ../../../components/drivers/i2c/i2c_dev.c  Lst/i2c_i2c_dev$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/i2c/i2c_dev.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/i2c_i2c_dev$(ObjectSuffix) -MF$(IntermediateDirectory)/i2c_i2c_dev$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/i2c_i2c_dev$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/i2c_i2c_dev$(PreprocessSuffix): ../../../components/drivers/i2c/i2c_dev.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/i2c_i2c_dev$(PreprocessSuffix) ../../../components/drivers/i2c/i2c_dev.c
-
-$(IntermediateDirectory)/i2c_i2c-bit-ops$(ObjectSuffix): ../../../components/drivers/i2c/i2c-bit-ops.c  Lst/i2c_i2c-bit-ops$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/i2c/i2c-bit-ops.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/i2c_i2c-bit-ops$(ObjectSuffix) -MF$(IntermediateDirectory)/i2c_i2c-bit-ops$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/i2c_i2c-bit-ops$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/i2c_i2c-bit-ops$(PreprocessSuffix): ../../../components/drivers/i2c/i2c-bit-ops.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/i2c_i2c-bit-ops$(PreprocessSuffix) ../../../components/drivers/i2c/i2c-bit-ops.c
-
-$(IntermediateDirectory)/i2c_i2c_eeprom$(ObjectSuffix): ../../../components/drivers/i2c/i2c_eeprom.c  Lst/i2c_i2c_eeprom$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/i2c/i2c_eeprom.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/i2c_i2c_eeprom$(ObjectSuffix) -MF$(IntermediateDirectory)/i2c_i2c_eeprom$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/i2c_i2c_eeprom$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/i2c_i2c_eeprom$(PreprocessSuffix): ../../../components/drivers/i2c/i2c_eeprom.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/i2c_i2c_eeprom$(PreprocessSuffix) ../../../components/drivers/i2c/i2c_eeprom.c
-
-$(IntermediateDirectory)/misc_pin$(ObjectSuffix): ../../../components/drivers/misc/pin.c  Lst/misc_pin$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/misc/pin.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/misc_pin$(ObjectSuffix) -MF$(IntermediateDirectory)/misc_pin$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/misc_pin$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/misc_pin$(PreprocessSuffix): ../../../components/drivers/misc/pin.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/misc_pin$(PreprocessSuffix) ../../../components/drivers/misc/pin.c
-
 $(IntermediateDirectory)/rtc_rtc$(ObjectSuffix): ../../../components/drivers/rtc/rtc.c  Lst/rtc_rtc$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../../../components/drivers/rtc/rtc.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/rtc_rtc$(ObjectSuffix) -MF$(IntermediateDirectory)/rtc_rtc$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/rtc_rtc$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/rtc_rtc$(PreprocessSuffix): ../../../components/drivers/rtc/rtc.c
@@ -436,35 +354,10 @@ $(IntermediateDirectory)/rtc_soft_rtc$(ObjectSuffix): ../../../components/driver
 Lst/rtc_soft_rtc$(PreprocessSuffix): ../../../components/drivers/rtc/soft_rtc.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/rtc_soft_rtc$(PreprocessSuffix) ../../../components/drivers/rtc/soft_rtc.c
 
-$(IntermediateDirectory)/sata_sata$(ObjectSuffix): ../../../components/drivers/sata/sata.c  Lst/sata_sata$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/sata/sata.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/sata_sata$(ObjectSuffix) -MF$(IntermediateDirectory)/sata_sata$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/sata_sata$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/sata_sata$(PreprocessSuffix): ../../../components/drivers/sata/sata.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/sata_sata$(PreprocessSuffix) ../../../components/drivers/sata/sata.c
-
 $(IntermediateDirectory)/serial_serial$(ObjectSuffix): ../../../components/drivers/serial/serial.c  Lst/serial_serial$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../../../components/drivers/serial/serial.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/serial_serial$(ObjectSuffix) -MF$(IntermediateDirectory)/serial_serial$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/serial_serial$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/serial_serial$(PreprocessSuffix): ../../../components/drivers/serial/serial.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/serial_serial$(PreprocessSuffix) ../../../components/drivers/serial/serial.c
-
-$(IntermediateDirectory)/spi_spi_core$(ObjectSuffix): ../../../components/drivers/spi/spi_core.c  Lst/spi_spi_core$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/spi/spi_core.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/spi_spi_core$(ObjectSuffix) -MF$(IntermediateDirectory)/spi_spi_core$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/spi_spi_core$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/spi_spi_core$(PreprocessSuffix): ../../../components/drivers/spi/spi_core.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/spi_spi_core$(PreprocessSuffix) ../../../components/drivers/spi/spi_core.c
-
-$(IntermediateDirectory)/spi_spi_dev$(ObjectSuffix): ../../../components/drivers/spi/spi_dev.c  Lst/spi_spi_dev$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/spi/spi_dev.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/spi_spi_dev$(ObjectSuffix) -MF$(IntermediateDirectory)/spi_spi_dev$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/spi_spi_dev$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/spi_spi_dev$(PreprocessSuffix): ../../../components/drivers/spi/spi_dev.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/spi_spi_dev$(PreprocessSuffix) ../../../components/drivers/spi/spi_dev.c
-
-$(IntermediateDirectory)/spi_spi_adc$(ObjectSuffix): ../../../components/drivers/spi/spi_adc.c  Lst/spi_spi_adc$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/spi/spi_adc.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/spi_spi_adc$(ObjectSuffix) -MF$(IntermediateDirectory)/spi_spi_adc$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/spi_spi_adc$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/spi_spi_adc$(PreprocessSuffix): ../../../components/drivers/spi/spi_adc.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/spi_spi_adc$(PreprocessSuffix) ../../../components/drivers/spi/spi_adc.c
-
-$(IntermediateDirectory)/watchdog_watchdog$(ObjectSuffix): ../../../components/drivers/watchdog/watchdog.c  Lst/watchdog_watchdog$(PreprocessSuffix)
-	$(CC) $(SourceSwitch) ../../../components/drivers/watchdog/watchdog.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/watchdog_watchdog$(ObjectSuffix) -MF$(IntermediateDirectory)/watchdog_watchdog$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/watchdog_watchdog$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
-Lst/watchdog_watchdog$(PreprocessSuffix): ../../../components/drivers/watchdog/watchdog.c
-	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/watchdog_watchdog$(PreprocessSuffix) ../../../components/drivers/watchdog/watchdog.c
 
 $(IntermediateDirectory)/src_completion$(ObjectSuffix): ../../../components/drivers/src/completion.c  Lst/src_completion$(PreprocessSuffix)
 	$(CC) $(SourceSwitch) ../../../components/drivers/src/completion.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/src_completion$(ObjectSuffix) -MF$(IntermediateDirectory)/src_completion$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/src_completion$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)

@@ -3052,26 +3052,6 @@ void sys_hw_init(void)
 
     clock_freq_set(MODULE_UART_IO, 50000000);
     clock_enable(MODULE_UART_IO);
-
-
-
-    clock_freq_set(MODULE_SPI_IO, 50000000);
-    clock_enable(MODULE_SPI_IO);
-
-
-
-    clock_freq_set(MODULE_CRYPTO, 200000000);
-    clock_enable(MODULE_CRYPTO);
-    clock_enable(MODULE_PKE);
-    clock_enable(MODULE_TRNG);
-    module_enable(MODULE_CRYPTO);
-    module_enable(MODULE_PKE);
-    module_enable(MODULE_TRNG);
-
-
-
-    clock_enable(MODULE_SATA_HOST);
-    module_enable(MODULE_SATA_HOST);
 # 116 "../drivers/system.c"
     clock_freq_set(MODULE_GMAC0_25M, 25000000);
     clock_freq_set(MODULE_GMAC0_125M, 125000000);
