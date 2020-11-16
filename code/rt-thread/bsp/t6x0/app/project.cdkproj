@@ -403,41 +403,17 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
-  <VirtualDirectory Name="utest">
-    <File Name="../../../components/utilities/utest/utest.c">
-      <FileOption/>
-    </File>
-  </VirtualDirectory>
   <VirtualDirectory Name="netutils">
-    <File Name="../../../packages/netutils-1.0.0/iperf/iperf.c">
-      <FileOption/>
-    </File>
     <File Name="../../../packages/netutils-1.0.0/ntp/ntp.c">
       <FileOption/>
     </File>
     <File Name="../../../packages/netutils-1.0.0/ping/ping.c">
       <FileOption/>
     </File>
-    <File Name="../../../packages/netutils-1.0.0/tftp/tftp_port.c">
-      <FileOption/>
-    </File>
-    <File Name="../../../packages/netutils-1.0.0/tftp/tftp_server.c">
-      <FileOption/>
-    </File>
   </VirtualDirectory>
   <MonitorProgress>
     <DebugLaunch>136</DebugLaunch>
   </MonitorProgress>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ;</statistics>
-    <peripheralTabs/>
-    <WatchDisplayFormat>1</WatchDisplayFormat>
-    <LocalDisplayFormat>1</LocalDisplayFormat>
-    <debugLayout/>
-    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
-  </DebugSessions>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -535,9 +511,9 @@
       <Compiler>
         <Define/>
         <Undefine/>
-        <Optim>None (-O0)</Optim>
+        <Optim>Optimize more (-O2)</Optim>
         <DebugLevel>Default (-g)</DebugLevel>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp</IncludePath>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
         <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf</OtherFlags>
         <Verbose>no</Verbose>
         <Ansi>no</Ansi>
@@ -553,7 +529,7 @@
       <Asm>
         <Define>CONFIG_CKCPU_MMU=0</Define>
         <Undefine/>
-        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\components\utilities\utest;..\..\..\packages\netutils-1.0.0\iperf;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping;..\..\..\packages\netutils-1.0.0\tftp</IncludePath>
+        <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\drivers\spi;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
         <OtherFlags/>
         <DebugLevel>gdwarf2</DebugLevel>
       </Asm>
@@ -621,4 +597,14 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ;</statistics>
+    <peripheralTabs/>
+    <WatchDisplayFormat>1</WatchDisplayFormat>
+    <LocalDisplayFormat>1</LocalDisplayFormat>
+    <debugLayout/>
+    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
+  </DebugSessions>
 </Project>

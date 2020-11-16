@@ -184,17 +184,11 @@
 
 /* Utilities */
 
-#define RT_USING_UTEST
-#define UTEST_THR_STACK_SIZE 1024
-#define UTEST_THR_PRIORITY 20
 
 /* RT-Thread local packages */
 
 #define PKG_USING_NETUTILS
 #define PKG_NETUTILS_PING
-#define PKG_NETUTILS_TFTP
-#define NETUTILS_TFTP_PORT 69
-#define PKG_NETUTILS_IPERF
 #define PKG_NETUTILS_NTP
 #define NETUTILS_NTP_TIMEZONE 8
 #define NETUTILS_NTP_HOSTNAME "cn.ntp.org.cn"

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws">
-  <int Value="0" Name="m_selectedTab"/>
+  <int Value="1" Name="m_selectedTab"/>
   <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\utilities\utest\utest.c" Name="FileName"/>
-      <int Value="80" Name="FirstVisibleLine"/>
-      <int Value="90" Name="CurrentLine"/>
+      <int Value="77" Name="FirstVisibleLine"/>
+      <int Value="87" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks">
         <wxString Value="90:3"/>
         <wxString Value="101:3"/>
       </wxArrayString>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\src\ipc.c" Name="FileName"/>
+      <int Value="85" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
   </TabInfoArray>
