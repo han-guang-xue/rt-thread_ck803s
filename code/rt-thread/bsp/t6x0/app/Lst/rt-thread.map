@@ -1561,10 +1561,6 @@ Section Cross References
 	Obj/src_select.o(.fast) refers to Obj/src_poll.o(.fast) for poll
 	Obj/entry_ipraw.o(.text.iprawtest) refers to Obj/src_select.o(.fast) for select
 	Obj/src_dfs.o(.text.dfs_init) refers to Obj/devfs_devfs.o(.text.devfs_init) for devfs_init
-	Obj/elmfat_ff.o(.text.find_volume) refers to Obj/elmfat_dfs_elm.o(.text.disk_initialize) for disk_initialize
-	Obj/elmfat_ff.o(.text.f_mkfs) refers to Obj/elmfat_dfs_elm.o(.text.disk_initialize) for disk_initialize
-	Obj/elmfat_ff.o(.text.validate) refers to Obj/elmfat_dfs_elm.o(.text.disk_status) for disk_status
-	Obj/elmfat_ff.o(.text.find_volume) refers to Obj/elmfat_dfs_elm.o(.text.disk_status) for disk_status
 	Obj/elmfat_ff.o(.text.f_open) refers to Obj/elmfat_dfs_elm.o(.text.get_fattime) for get_fattime
 	Obj/elmfat_ff.o(.text.f_sync) refers to Obj/elmfat_dfs_elm.o(.text.get_fattime) for get_fattime
 	Obj/elmfat_ff.o(.text.f_mkdir) refers to Obj/elmfat_dfs_elm.o(.text.get_fattime) for get_fattime
@@ -1587,6 +1583,10 @@ Section Cross References
 	Obj/elmfat_ff.o(.text.f_unlink) refers to Obj/elmfat_dfs_elm.o(.text.ff_memfree) for ff_memfree
 	Obj/elmfat_ff.o(.text.f_mkdir) refers to Obj/elmfat_dfs_elm.o(.text.ff_memfree) for ff_memfree
 	Obj/elmfat_ff.o(.text.f_rename) refers to Obj/elmfat_dfs_elm.o(.text.ff_memfree) for ff_memfree
+	Obj/elmfat_ff.o(.text.find_volume) refers to Obj/elmfat_dfs_elm.o(.text.disk_initialize) for disk_initialize
+	Obj/elmfat_ff.o(.text.f_mkfs) refers to Obj/elmfat_dfs_elm.o(.text.disk_initialize) for disk_initialize
+	Obj/elmfat_ff.o(.text.validate) refers to Obj/elmfat_dfs_elm.o(.text.disk_status) for disk_status
+	Obj/elmfat_ff.o(.text.find_volume) refers to Obj/elmfat_dfs_elm.o(.text.disk_status) for disk_status
 	Obj/elmfat_ff.o(.fast) refers to Obj/elmfat_dfs_elm.o(.fast) for disk_read
 	Obj/elmfat_ff.o(.fast) refers to Obj/elmfat_dfs_elm.o(.fast) for disk_read
 	Obj/elmfat_ff.o(.fast) refers to Obj/elmfat_dfs_elm.o(.fast) for disk_read
@@ -2067,6 +2067,8 @@ Section Cross References
 	Obj/netif_ethernetif.o(.text.eth_device_init_with_flag) refers to Obj/api_netifapi.o(.text.netifapi_netif_add) for netifapi_netif_add
 	Obj/netif_ethernetif.o(.text.set_if) refers to Obj/api_netifapi.o(.text.netifapi_netif_set_addr) for netifapi_netif_set_addr
 	Obj/netif_ethernetif.o(.fast) refers to Obj/api_netifapi.o(.text.netifapi_netif_common) for netifapi_netif_common
+	Obj/ping_ping.o(.text.ping) refers to Obj/api_sockets.o(.text.lwip_setsockopt) for lwip_setsockopt
+	Obj/net_dfs_net.o(.text.dfs_net_ioctl) refers to Obj/api_sockets.o(.text.lwip_ioctl) for lwip_ioctl
 	Obj/net_dfs_net.o(.text.dfs_net_poll) refers to Obj/api_sockets.o(.text.lwip_tryget_socket) for lwip_tryget_socket
 	Obj/net_net_sockets.o(.text.event_callback) refers to Obj/api_sockets.o(.text.lwip_tryget_socket) for lwip_tryget_socket
 	Obj/net_net_sockets.o(.text.socket) refers to Obj/api_sockets.o(.text.lwip_tryget_socket) for lwip_tryget_socket
@@ -2075,8 +2077,6 @@ Section Cross References
 	Obj/ping_ping.o(.text.ping) refers to Obj/api_sockets.o(.text.lwip_close) for lwip_close
 	Obj/net_net_sockets.o(.text.socket) refers to Obj/api_sockets.o(.text.lwip_socket) for lwip_socket
 	Obj/ping_ping.o(.text.ping) refers to Obj/api_sockets.o(.text.lwip_socket) for lwip_socket
-	Obj/ping_ping.o(.text.ping) refers to Obj/api_sockets.o(.text.lwip_setsockopt) for lwip_setsockopt
-	Obj/net_dfs_net.o(.text.dfs_net_ioctl) refers to Obj/api_sockets.o(.text.lwip_ioctl) for lwip_ioctl
 	Obj/net_net_sockets.o(.fast) refers to Obj/api_sockets.o(.fast) for lwip_recvfrom
 	Obj/api_sockets.o(.fast) refers to Obj/api_sockets.o(.fast) for lwip_recvfrom
 	Obj/api_sockets.o(.fast) refers to Obj/api_sockets.o(.fast) for lwip_recvfrom
@@ -2612,6 +2612,8 @@ Section Cross References
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_source_set
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_enable
 	Obj/drivers_system.o(.text.sys_hw_init) refers to bsp_scu.o(.fast) for clock_reset
+	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_rx_ready) for uart_rx_ready
+	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_ndelay_getc) for uart_ndelay_getc
 	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_hw_init) for uart_hw_init
 	Obj/drivers_system.o(.fast) refers to bsp_uart.o(.text.uart_hw_init) for uart_hw_init
 	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_intr_enable) for uart_intr_enable
@@ -2619,8 +2621,6 @@ Section Cross References
 	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.fast) for uart_intr_status
 	Obj/drivers_retarget.o(.text.fputc) refers to bsp_uart.o(.text.console_putc) for console_putc
 	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_putc) for uart_putc
-	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_rx_ready) for uart_rx_ready
-	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.text.uart_ndelay_getc) for uart_ndelay_getc
 	Obj/drivers_drv_uart.o(.fast) refers to bsp_uart.o(.fast) for uart_intr_clear
 	Obj/ck803_cpuport.o(.text.rt_hw_hard_fault_exception) refers to bsp_wdt.o(.text.chip_reset) for chip_reset
 	crypto_rng.o(.fast) refers to crypto_rng.o(.fast) for get_rand
@@ -2643,22 +2643,6 @@ Section Cross References
 	Obj/src_kservice.o(.text.xmem_init) refers to common_memcpy_hw.o(.text.mem_hw_init) for mem_hw_init
 	Obj/src_kservice.o(.fast) refers to common_memcpy_hw.o(.fast) for memcpy_hw
 	Obj/src_kservice.o(.fast) refers to common_memcpy_hw.o(.fast) for memset_hw
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_event_set) for gmac_wol_wakeup_event_set
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_enter) for gmac_wol_mode_enter
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_exit) for gmac_wol_mode_exit
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_state_poll) for gmac_wol_state_poll
-	Obj/drivers_drv_eth.o(.fast) refers to gmac_gmac.o(.text.gmac_speed_duplex_set) for gmac_speed_duplex_set
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_statistics_get) for gmac_statistics_get
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
-	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
-	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_deinit) for gmac_hw_deinit
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.fast) for gmac_phy_addr_set
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.fast) for gmac_phy_addr_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.fast) for gmac_phy_addr_set
@@ -2690,6 +2674,22 @@ Section Cross References
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_chksum_offload_set) for gmac_chksum_offload_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_chksum_offload_set) for gmac_chksum_offload_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_frame_filter_set) for gmac_wol_wakeup_frame_filter_set
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_wakeup_event_set) for gmac_wol_wakeup_event_set
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_enter) for gmac_wol_mode_enter
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_mode_exit) for gmac_wol_mode_exit
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_wol_state_poll) for gmac_wol_state_poll
+	Obj/drivers_drv_eth.o(.fast) refers to gmac_gmac.o(.text.gmac_speed_duplex_set) for gmac_speed_duplex_set
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_statistics_get) for gmac_statistics_get
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_tx_queue_init) for gmac_tx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_rx_queue_init) for gmac_rx_queue_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
+	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_init) for gmac_hw_init
+	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.text.gmac_hw_deinit) for gmac_hw_deinit
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth0_init) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_clk_set
 	Obj/drivers_drv_eth.o(.text.rt_hw_t610_eth1_init) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_clk_set
 	Obj/drivers_drv_eth.o(.text.eth_dev_control) refers to gmac_gmac.o(.fast) for gmac_phy_mmd_clk_set

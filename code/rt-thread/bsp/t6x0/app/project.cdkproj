@@ -348,15 +348,18 @@
       <FileOption/>
     </File>
   </VirtualDirectory>
+  <MonitorProgress>
+    <DebugLaunch>100</DebugLaunch>
+  </MonitorProgress>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ</statistics>
+    <statistics>;;MHZ;</statistics>
     <peripheralTabs/>
-    <WatchDisplayFormat/>
-    <LocalDisplayFormat/>
+    <WatchDisplayFormat>1</WatchDisplayFormat>
+    <LocalDisplayFormat>1</LocalDisplayFormat>
     <debugLayout/>
-    <memoryTabColSizeExpressions/>
+    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
@@ -541,7 +544,4 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <MonitorProgress>
-    <DebugLaunch>100</DebugLaunch>
-  </MonitorProgress>
 </Project>
