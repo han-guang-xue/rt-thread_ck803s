@@ -1,4 +1,5 @@
-Obj/devfs_devfs.o: ../../../components/dfs/filesystems/devfs/devfs.c \
+Obj/devfs_devfs.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/devfs/devfs.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -28,7 +29,7 @@ Obj/devfs_devfs.o: ../../../components/dfs/filesystems/devfs/devfs.c \
  ../libraries/inc/tih/csi_reg.h ../libraries/inc/tih/csi_instr.h \
  ../../../components/dfs/include/dfs_fs.h \
  ../../../components/dfs/include/dfs_file.h \
- ../../../components/dfs/filesystems/devfs/devfs.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/devfs/devfs.h
 
 ../../../include/rtthread.h:
 
@@ -110,4 +111,4 @@ rtconfig.h:
 
 ../../../components/dfs/include/dfs_file.h:
 
-../../../components/dfs/filesystems/devfs/devfs.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/devfs/devfs.h:

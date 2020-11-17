@@ -1,5 +1,5 @@
 Obj/net_net_sockets.o: \
- ../../../components/dfs/filesystems/net/net_sockets.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/net_sockets.c \
  ../../../components/dfs/include/dfs.h \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../components/libc/compilers/minilibc/string.h \
@@ -55,7 +55,7 @@ Obj/net_net_sockets.o: \
  ../../../components/net/lwip-2.0.2/src/include/lwip/sys.h \
  ../../../components/net/lwip-2.0.2/src/arch/include/arch/sys_arch.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/init.h \
- ../../../components/dfs/filesystems/net/dfs_net.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/dfs_net.h
 
 ../../../components/dfs/include/dfs.h:
 
@@ -189,4 +189,4 @@ rtconfig.h:
 
 ../../../components/net/lwip-2.0.2/src/include/lwip/init.h:
 
-../../../components/dfs/filesystems/net/dfs_net.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/dfs_net.h:

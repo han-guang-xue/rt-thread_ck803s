@@ -1,4 +1,5 @@
-Obj/ping_ping.o: ../../../packages/netutils-1.0.0/ping/ping.c \
+Obj/ping_ping.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/packages/netutils-1.0.0/ping/ping.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \

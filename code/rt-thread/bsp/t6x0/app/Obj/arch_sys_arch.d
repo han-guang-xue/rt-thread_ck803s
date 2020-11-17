@@ -1,5 +1,5 @@
 Obj/arch_sys_arch.o: \
- ../../../components/net/lwip-2.0.2/src/arch/sys_arch.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/net/lwip-2.0.2/src/arch/sys_arch.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \

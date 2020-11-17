@@ -1,4 +1,5 @@
-Obj/core_if.o: ../../../components/net/lwip-2.0.2/src/core/if.c \
+Obj/core_if.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/net/lwip-2.0.2/src/core/if.c \
  ../../../components/net/lwip-2.0.2/src/include/net/if.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/sockets.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/opt.h \

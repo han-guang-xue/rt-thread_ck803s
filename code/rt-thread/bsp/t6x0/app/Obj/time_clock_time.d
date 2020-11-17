@@ -1,4 +1,5 @@
-Obj/time_clock_time.o: ../../../components/libc/time/clock_time.c \
+Obj/time_clock_time.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/libc/time/clock_time.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -21,7 +22,7 @@ Obj/time_clock_time.o: ../../../components/libc/time/clock_time.c \
  ../../../components/drivers/include/ipc/poll.h \
  ../../../components/drivers/include/drivers/rtc.h \
  ../../../components/drivers/include/drivers/serial.h \
- ../../../components/libc/time/clock_time.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/libc/time/clock_time.h
 
 ../../../include/rtthread.h:
 
@@ -83,4 +84,4 @@ rtconfig.h:
 
 ../../../components/drivers/include/drivers/serial.h:
 
-../../../components/libc/time/clock_time.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/libc/time/clock_time.h:

@@ -1,4 +1,5 @@
-Obj/drivers_drv_ctimer.o: ../drivers/drv_ctimer.c \
+Obj/drivers_drv_ctimer.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/drivers/drv_ctimer.c \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../include/rthw.h ../../../include/rtthread.h rtconfig.h \
  ../../../include/rtdebug.h ../../../include/rtdef.h \

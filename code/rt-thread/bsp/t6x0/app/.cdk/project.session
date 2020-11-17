@@ -1,67 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws">
-  <int Value="5" Name="m_selectedTab"/>
+  <int Value="2" Name="m_selectedTab"/>
   <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\project.cdkws" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\utilities\utest\utest.c" Name="FileName"/>
-      <int Value="77" Name="FirstVisibleLine"/>
-      <int Value="87" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks">
-        <wxString Value="90:3"/>
-        <wxString Value="101:3"/>
-      </wxArrayString>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\src\ipc.c" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="20" Name="CurrentLine"/>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\drivers\drv_eth.c" Name="FileName"/>
+      <int Value="846" Name="FirstVisibleLine"/>
+      <int Value="857" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\libcpu\c-sky\ck803\startup_gcc.S" Name="FileName"/>
-      <int Value="125" Name="FirstVisibleLine"/>
-      <int Value="143" Name="CurrentLine"/>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\netif\ethernetif.c" Name="FileName"/>
+      <int Value="243" Name="FirstVisibleLine"/>
+      <int Value="250" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\src\kservice.c" Name="FileName"/>
-      <int Value="403" Name="FirstVisibleLine"/>
-      <int Value="410" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\ipraw.c" Name="FileName"/>
-      <int Value="58" Name="FirstVisibleLine"/>
-      <int Value="73" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks">
-        <wxString Value="55:3"/>
-        <wxString Value="68:3"/>
-        <wxString Value="69:3"/>
-        <wxString Value="192:3"/>
-      </wxArrayString>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\main.c" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="18" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\bsp\t6x0\app\entry\linklayer.c" Name="FileName"/>
-      <int Value="7" Name="FirstVisibleLine"/>
-      <int Value="15" Name="CurrentLine"/>
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\core\ipv4\ip4.c" Name="FileName"/>
+      <int Value="145" Name="FirstVisibleLine"/>
+      <int Value="151" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
   </TabInfoArray>
   <SerializedObject Name="m_breakpoints">
-    <long Value="0" Name="Count"/>
+    <long Value="1" Name="Count"/>
+    <SerializedObject Name="Breakpoint0">
+      <wxString Value="E:\YCXGIT\T6x0_RTOS_SDK_V0.9.3_b1\T6x0_RTOS_SDK_V0.9.3\code\rt-thread\components\net\lwip-2.0.2\src\core\ipv4\ip4.c" Name="file"/>
+      <int Value="158" Name="lineno"/>
+      <wxString Value="" Name="function_name"/>
+      <wxString Value="" Name="memory_address"/>
+      <int Value="4" Name="bp_type"/>
+      <int Value="0" Name="watchpoint_type"/>
+      <wxString Value="" Name="watchpt_data"/>
+      <CData Name="commandlist"/>
+      <bool Value="0" Name="regex"/>
+      <bool Value="0" Name="is_temp"/>
+      <bool Value="1" Name="is_enabled"/>
+      <int Value="0" Name="ignore_number"/>
+      <wxString Value="" Name="conditions"/>
+      <int Value="0" Name="origin"/>
+    </SerializedObject>
   </SerializedObject>
 </Session>

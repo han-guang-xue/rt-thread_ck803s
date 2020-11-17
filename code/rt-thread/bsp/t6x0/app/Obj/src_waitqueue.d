@@ -1,4 +1,5 @@
-Obj/src_waitqueue.o: ../../../components/drivers/src/waitqueue.c \
+Obj/src_waitqueue.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/drivers/src/waitqueue.c \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../include/rthw.h ../../../include/rtthread.h rtconfig.h \
  ../../../include/rtdebug.h ../../../include/rtdef.h \

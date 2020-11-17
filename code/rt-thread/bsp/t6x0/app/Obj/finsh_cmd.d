@@ -1,4 +1,5 @@
-Obj/finsh_cmd.o: ../../../components/finsh/cmd.c \
+Obj/finsh_cmd.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/cmd.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -13,8 +14,9 @@ Obj/finsh_cmd.o: ../../../components/finsh/cmd.c \
  ../../../components/finsh/finsh_api.h ../../../include/rthw.h \
  ../libraries/inc/tih/core_ck803.h ../libraries/inc/tih/sysdep.h \
  ../libraries/inc/tih/csi_gcc.h ../libraries/inc/tih/csi_reg.h \
- ../libraries/inc/tih/csi_instr.h ../../../components/finsh/finsh.h \
- ../../../components/finsh/finsh_api.h \
+ ../libraries/inc/tih/csi_instr.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh_api.h \
  ../../../components/libc/compilers/minilibc/string.h
 
 ../../../include/rtthread.h:
@@ -69,8 +71,8 @@ rtconfig.h:
 
 ../libraries/inc/tih/csi_instr.h:
 
-../../../components/finsh/finsh.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh.h:
 
-../../../components/finsh/finsh_api.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh_api.h:
 
 ../../../components/libc/compilers/minilibc/string.h:

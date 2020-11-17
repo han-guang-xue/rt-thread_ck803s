@@ -1,4 +1,5 @@
-Obj/serial_serial.o: ../../../components/drivers/serial/serial.c \
+Obj/serial_serial.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/drivers/serial/serial.c \
  ../../../include/rthw.h ../../../include/rtthread.h rtconfig.h \
  ../../../include/rtdebug.h ../../../include/rtdef.h \
  ../libraries/inc/tih/sysdep.h ../../../include/rtlibc.h \

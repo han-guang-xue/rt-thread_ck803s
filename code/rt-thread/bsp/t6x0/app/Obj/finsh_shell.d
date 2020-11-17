@@ -1,4 +1,5 @@
-Obj/finsh_shell.o: ../../../components/finsh/shell.c \
+Obj/finsh_shell.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/shell.c \
  ../../../include/rthw.h ../../../include/rtthread.h rtconfig.h \
  ../../../include/rtdebug.h ../../../include/rtdef.h \
  ../libraries/inc/tih/sysdep.h ../../../include/rtlibc.h \
@@ -14,9 +15,11 @@ Obj/finsh_shell.o: ../../../components/finsh/shell.c \
  ../../../components/finsh/finsh_api.h ../libraries/inc/tih/core_ck803.h \
  ../libraries/inc/tih/sysdep.h ../libraries/inc/tih/csi_gcc.h \
  ../libraries/inc/tih/csi_reg.h ../libraries/inc/tih/csi_instr.h \
- ../../../components/finsh/finsh.h ../../../components/finsh/finsh_api.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh_api.h \
  ../../../components/libc/compilers/minilibc/string.h \
- ../../../components/finsh/shell.h ../../../components/finsh/msh.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/shell.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h \
  ../../../components/dfs/include/dfs_posix.h \
  ../../../components/dfs/include/dfs_file.h \
  ../../../components/dfs/include/dfs.h \
@@ -84,15 +87,15 @@ rtconfig.h:
 
 ../libraries/inc/tih/csi_instr.h:
 
-../../../components/finsh/finsh.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh.h:
 
-../../../components/finsh/finsh_api.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/finsh_api.h:
 
 ../../../components/libc/compilers/minilibc/string.h:
 
-../../../components/finsh/shell.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/shell.h:
 
-../../../components/finsh/msh.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h:
 
 ../../../components/dfs/include/dfs_posix.h:
 

@@ -1,4 +1,5 @@
-Obj/entry_ipraw.o: entry/ipraw.c \
+Obj/entry_ipraw.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/app/entry/ipraw.c \
  ../../../components/libc/compilers/minilibc/string.h \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \

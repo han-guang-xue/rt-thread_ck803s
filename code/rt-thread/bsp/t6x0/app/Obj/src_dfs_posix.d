@@ -1,4 +1,5 @@
-Obj/src_dfs_posix.o: ../../../components/dfs/src/dfs_posix.c \
+Obj/src_dfs_posix.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/src/dfs_posix.c \
  ../../../components/dfs/include/dfs.h \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../components/libc/compilers/minilibc/string.h \

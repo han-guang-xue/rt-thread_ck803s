@@ -1,4 +1,5 @@
-Obj/ck803_stack_ck803.o: ../../../libcpu/c-sky/ck803/stack_ck803.c \
+Obj/ck803_stack_ck803.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/libcpu/c-sky/ck803/stack_ck803.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \

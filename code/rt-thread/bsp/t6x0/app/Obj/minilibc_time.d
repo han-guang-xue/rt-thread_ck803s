@@ -1,4 +1,5 @@
-Obj/minilibc_time.o: ../../../components/libc/compilers/minilibc/time.c \
+Obj/minilibc_time.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/libc/compilers/minilibc/time.c \
  ../../../components/libc/compilers/minilibc/time.h \
  ../../../components/libc/compilers/minilibc/sys/time.h \
  ../../../components/libc/compilers/minilibc/sys/types.h \

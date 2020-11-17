@@ -1,8 +1,9 @@
-Obj/finsh_msh.o: ../../../components/finsh/msh.c \
- ../../../components/finsh/msh.h ../../../include/rtthread.h rtconfig.h \
- ../../../include/rtdebug.h ../../../include/rtdef.h \
- ../libraries/inc/tih/sysdep.h ../../../include/rtlibc.h \
- ../../../include/libc/libc_stat.h \
+Obj/finsh_msh.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h \
+ ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
+ ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
+ ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../components/libc/compilers/minilibc/time.h \
  ../../../components/libc/compilers/minilibc/sys/time.h \
@@ -33,7 +34,7 @@ Obj/finsh_msh.o: ../../../components/finsh/msh.c \
  ../../../components/drivers/include/drivers/serial.h \
  ../../../components/dfs/include/dfs_fs.h
 
-../../../components/finsh/msh.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h:
 
 ../../../include/rtthread.h:
 

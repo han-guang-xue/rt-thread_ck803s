@@ -1,4 +1,5 @@
-Obj/common_showmem.o: ../../../libcpu/c-sky/common/showmem.c \
+Obj/common_showmem.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/libcpu/c-sky/common/showmem.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \

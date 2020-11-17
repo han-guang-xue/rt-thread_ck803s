@@ -1,4 +1,5 @@
-Obj/src_signal.o: ../../../src/signal.c \
+Obj/src_signal.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/src/signal.c \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../components/libc/compilers/minilibc/string.h \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \

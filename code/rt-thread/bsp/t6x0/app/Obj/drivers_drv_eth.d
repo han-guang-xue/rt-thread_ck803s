@@ -1,4 +1,5 @@
-Obj/drivers_drv_eth.o: ../drivers/drv_eth.c \
+Obj/drivers_drv_eth.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/drivers/drv_eth.c \
  ../../../components/net/lwip-2.0.2/src/lwipopts.h rtconfig.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/opt.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/debug.h \
@@ -35,8 +36,9 @@ Obj/drivers_drv_eth.o: ../drivers/drv_eth.c \
  ../../../components/net/lwip-2.0.2/src/include/lwip/if_ether.h \
  ../libraries/inc/tih/timer.h ../libraries/inc/tih/sram.h \
  ../libraries/inc/tih/rng.h ../libraries/inc/tih/crypto_errno.h \
- ../drivers/drv_eth.h ../libraries/inc/tih/phy.h \
- ../libraries/inc/tih/gmac.h ../libraries/inc/tih/phy.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/drivers/drv_eth.h \
+ ../libraries/inc/tih/phy.h ../libraries/inc/tih/gmac.h \
+ ../libraries/inc/tih/phy.h \
  ../../../components/net/lwip-2.0.2/src/include/netif/ethernetif.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/netif.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/ip_addr.h \
@@ -144,7 +146,7 @@ rtconfig.h:
 
 ../libraries/inc/tih/crypto_errno.h:
 
-../drivers/drv_eth.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/drivers/drv_eth.h:
 
 ../libraries/inc/tih/phy.h:
 

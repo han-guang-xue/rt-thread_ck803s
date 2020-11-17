@@ -1,3 +1,31 @@
+### lwip_system_init 
+
+Lwip初始化
+
+### eth_device_init 
+
+网卡驱动中调用,两个驱动分别调用并命名
+
+### eth1_dev 和 eth0_dev的结构
+
+### raw_sendto 根据ip发送数据
+
+### RX 接收, TX 发送
+
+### eth_rx_thread_entry 接收网卡的数据
+
+> 网卡接收数据之后会调用 netif 中的 netif->input(这个函数由网络设备驱动程序调用向TCP/IP栈传递数据包)
+
+### ip4_input 数据传到IP层处理
+
+
+
+
+
+
+
+
+
 ## 网卡驱动实现原理
 
 https://blog.csdn.net/tao546377318/article/details/51602298
@@ -279,3 +307,4 @@ https://blog.csdn.net/tao546377318/article/details/51602298
 **网卡驱动的作用**
 
 IP 地址和MAC 地址之间的关联关系保存在主机系统里面，叫做ARP 表，由驱动程序和操作系统完成。在Microsoft 的系统里面可以用 arp -a 的命令查看ARP 表。收到数据帧的时候也是一样，做完CRC 以后，如果没有CRC 效验错误，就把帧头去掉，把数据包拿出 来通过标准的借口传递给驱动和上层的协议客栈，最终正确的达到我们的应用程序。
+

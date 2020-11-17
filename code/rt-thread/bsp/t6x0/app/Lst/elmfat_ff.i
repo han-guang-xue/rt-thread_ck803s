@@ -1,22 +1,708 @@
-# 1 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 # 1 "E:\\YCXGIT\\T6x0_RTOS_SDK_V0.9.3_b1\\T6x0_RTOS_SDK_V0.9.3\\code\\rt-thread\\bsp\\t6x0\\app//"
 # 1 "<built-in>"
+#define __STDC__ 1
+#define __STDC_VERSION__ 201112L
+#define __STDC_UTF_16__ 1
+#define __STDC_UTF_32__ 1
+#define __STDC_HOSTED__ 1
+#define __GNUC__ 6
+#define __GNUC_MINOR__ 3
+#define __GNUC_PATCHLEVEL__ 0
+#define __VERSION__ "6.3.0"
+#define __ATOMIC_RELAXED 0
+#define __ATOMIC_SEQ_CST 5
+#define __ATOMIC_ACQUIRE 2
+#define __ATOMIC_RELEASE 3
+#define __ATOMIC_ACQ_REL 4
+#define __ATOMIC_CONSUME 1
+#define __OPTIMIZE__ 1
+#define __FINITE_MATH_ONLY__ 0
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_LONG__ 4
+#define __SIZEOF_LONG_LONG__ 8
+#define __SIZEOF_SHORT__ 2
+#define __SIZEOF_FLOAT__ 4
+#define __SIZEOF_DOUBLE__ 8
+#define __SIZEOF_LONG_DOUBLE__ 8
+#define __SIZEOF_SIZE_T__ 4
+#define __CHAR_BIT__ 8
+#define __BIGGEST_ALIGNMENT__ 4
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_PDP_ENDIAN__ 3412
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __SIZEOF_POINTER__ 4
+#define __SIZE_TYPE__ unsigned int
+#define __PTRDIFF_TYPE__ int
+#define __WCHAR_TYPE__ long int
+#define __WINT_TYPE__ unsigned int
+#define __INTMAX_TYPE__ long long int
+#define __UINTMAX_TYPE__ long long unsigned int
+#define __CHAR16_TYPE__ short unsigned int
+#define __CHAR32_TYPE__ unsigned int
+#define __SIG_ATOMIC_TYPE__ int
+#define __INT8_TYPE__ signed char
+#define __INT16_TYPE__ short int
+#define __INT32_TYPE__ long int
+#define __INT64_TYPE__ long long int
+#define __UINT8_TYPE__ unsigned char
+#define __UINT16_TYPE__ short unsigned int
+#define __UINT32_TYPE__ long unsigned int
+#define __UINT64_TYPE__ long long unsigned int
+#define __INT_LEAST8_TYPE__ signed char
+#define __INT_LEAST16_TYPE__ short int
+#define __INT_LEAST32_TYPE__ long int
+#define __INT_LEAST64_TYPE__ long long int
+#define __UINT_LEAST8_TYPE__ unsigned char
+#define __UINT_LEAST16_TYPE__ short unsigned int
+#define __UINT_LEAST32_TYPE__ unsigned int
+#define __UINT_LEAST64_TYPE__ long long unsigned int
+#define __INT_FAST8_TYPE__ int
+#define __INT_FAST16_TYPE__ int
+#define __INT_FAST32_TYPE__ int
+#define __INT_FAST64_TYPE__ long long int
+#define __UINT_FAST8_TYPE__ unsigned int
+#define __UINT_FAST16_TYPE__ unsigned int
+#define __UINT_FAST32_TYPE__ unsigned int
+#define __UINT_FAST64_TYPE__ long long unsigned int
+#define __INTPTR_TYPE__ int
+#define __UINTPTR_TYPE__ unsigned int
+#define __has_include(STR) __has_include__(STR)
+#define __has_include_next(STR) __has_include_next__(STR)
+#define __GXX_ABI_VERSION 1010
+#define __USING_SJLJ_EXCEPTIONS__ 1
+#define __SCHAR_MAX__ 0x7f
+#define __SHRT_MAX__ 0x7fff
+#define __INT_MAX__ 0x7fffffff
+#define __LONG_MAX__ 0x7fffffffL
+#define __LONG_LONG_MAX__ 0x7fffffffffffffffLL
+#define __WCHAR_MAX__ 0x7fffffffL
+#define __WCHAR_MIN__ (-__WCHAR_MAX__ - 1)
+#define __WINT_MAX__ 0xffffffffU
+#define __WINT_MIN__ 0U
+#define __PTRDIFF_MAX__ 0x7fffffff
+#define __SIZE_MAX__ 0xffffffffU
+#define __INTMAX_MAX__ 0x7fffffffffffffffLL
+#define __INTMAX_C(c) c ## LL
+#define __UINTMAX_MAX__ 0xffffffffffffffffULL
+#define __UINTMAX_C(c) c ## ULL
+#define __SIG_ATOMIC_MAX__ 0x7fffffff
+#define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
+#define __INT8_MAX__ 0x7f
+#define __INT16_MAX__ 0x7fff
+#define __INT32_MAX__ 0x7fffffffL
+#define __INT64_MAX__ 0x7fffffffffffffffLL
+#define __UINT8_MAX__ 0xff
+#define __UINT16_MAX__ 0xffff
+#define __UINT32_MAX__ 0xffffffffUL
+#define __UINT64_MAX__ 0xffffffffffffffffULL
+#define __INT_LEAST8_MAX__ 0x7f
+#define __INT8_C(c) c
+#define __INT_LEAST16_MAX__ 0x7fff
+#define __INT16_C(c) c
+#define __INT_LEAST32_MAX__ 0x7fffffffL
+#define __INT32_C(c) c ## L
+#define __INT_LEAST64_MAX__ 0x7fffffffffffffffLL
+#define __INT64_C(c) c ## LL
+#define __UINT_LEAST8_MAX__ 0xff
+#define __UINT8_C(c) c
+#define __UINT_LEAST16_MAX__ 0xffff
+#define __UINT16_C(c) c
+#define __UINT_LEAST32_MAX__ 0xffffffffU
+#define __UINT32_C(c) c ## U
+#define __UINT_LEAST64_MAX__ 0xffffffffffffffffULL
+#define __UINT64_C(c) c ## ULL
+#define __INT_FAST8_MAX__ 0x7fffffff
+#define __INT_FAST16_MAX__ 0x7fffffff
+#define __INT_FAST32_MAX__ 0x7fffffff
+#define __INT_FAST64_MAX__ 0x7fffffffffffffffLL
+#define __UINT_FAST8_MAX__ 0xffffffffU
+#define __UINT_FAST16_MAX__ 0xffffffffU
+#define __UINT_FAST32_MAX__ 0xffffffffU
+#define __UINT_FAST64_MAX__ 0xffffffffffffffffULL
+#define __INTPTR_MAX__ 0x7fffffff
+#define __UINTPTR_MAX__ 0xffffffffU
+#define __GCC_IEC_559 0
+#define __GCC_IEC_559_COMPLEX 0
+#define __FLT_EVAL_METHOD__ 0
+#define __DEC_EVAL_METHOD__ 2
+#define __FLT_RADIX__ 2
+#define __FLT_MANT_DIG__ 24
+#define __FLT_DIG__ 6
+#define __FLT_MIN_EXP__ (-125)
+#define __FLT_MIN_10_EXP__ (-37)
+#define __FLT_MAX_EXP__ 128
+#define __FLT_MAX_10_EXP__ 38
+#define __FLT_DECIMAL_DIG__ 9
+#define __FLT_MAX__ 3.4028234663852886e+38F
+#define __FLT_MIN__ 1.1754943508222875e-38F
+#define __FLT_EPSILON__ 1.1920928955078125e-7F
+#define __FLT_DENORM_MIN__ 1.4012984643248171e-45F
+#define __FLT_HAS_DENORM__ 1
+#define __FLT_HAS_INFINITY__ 1
+#define __FLT_HAS_QUIET_NAN__ 1
+#define __DBL_MANT_DIG__ 53
+#define __DBL_DIG__ 15
+#define __DBL_MIN_EXP__ (-1021)
+#define __DBL_MIN_10_EXP__ (-307)
+#define __DBL_MAX_EXP__ 1024
+#define __DBL_MAX_10_EXP__ 308
+#define __DBL_DECIMAL_DIG__ 17
+#define __DBL_MAX__ ((double)1.7976931348623157e+308L)
+#define __DBL_MIN__ ((double)2.2250738585072014e-308L)
+#define __DBL_EPSILON__ ((double)2.2204460492503131e-16L)
+#define __DBL_DENORM_MIN__ ((double)4.9406564584124654e-324L)
+#define __DBL_HAS_DENORM__ 1
+#define __DBL_HAS_INFINITY__ 1
+#define __DBL_HAS_QUIET_NAN__ 1
+#define __LDBL_MANT_DIG__ 53
+#define __LDBL_DIG__ 15
+#define __LDBL_MIN_EXP__ (-1021)
+#define __LDBL_MIN_10_EXP__ (-307)
+#define __LDBL_MAX_EXP__ 1024
+#define __LDBL_MAX_10_EXP__ 308
+#define __DECIMAL_DIG__ 17
+#define __LDBL_MAX__ 1.7976931348623157e+308L
+#define __LDBL_MIN__ 2.2250738585072014e-308L
+#define __LDBL_EPSILON__ 2.2204460492503131e-16L
+#define __LDBL_DENORM_MIN__ 4.9406564584124654e-324L
+#define __LDBL_HAS_DENORM__ 1
+#define __LDBL_HAS_INFINITY__ 1
+#define __LDBL_HAS_QUIET_NAN__ 1
+#define __DEC32_MANT_DIG__ 7
+#define __DEC32_MIN_EXP__ (-94)
+#define __DEC32_MAX_EXP__ 97
+#define __DEC32_MIN__ 1E-95DF
+#define __DEC32_MAX__ 9.999999E96DF
+#define __DEC32_EPSILON__ 1E-6DF
+#define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
+#define __DEC64_MANT_DIG__ 16
+#define __DEC64_MIN_EXP__ (-382)
+#define __DEC64_MAX_EXP__ 385
+#define __DEC64_MIN__ 1E-383DD
+#define __DEC64_MAX__ 9.999999999999999E384DD
+#define __DEC64_EPSILON__ 1E-15DD
+#define __DEC64_SUBNORMAL_MIN__ 0.000000000000001E-383DD
+#define __DEC128_MANT_DIG__ 34
+#define __DEC128_MIN_EXP__ (-6142)
+#define __DEC128_MAX_EXP__ 6145
+#define __DEC128_MIN__ 1E-6143DL
+#define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
+#define __DEC128_EPSILON__ 1E-33DL
+#define __DEC128_SUBNORMAL_MIN__ 0.000000000000000000000000000000001E-6143DL
+#define __SFRACT_FBIT__ 7
+#define __SFRACT_IBIT__ 0
+#define __SFRACT_MIN__ (-0.5HR-0.5HR)
+#define __SFRACT_MAX__ 0X7FP-7HR
+#define __SFRACT_EPSILON__ 0x1P-7HR
+#define __USFRACT_FBIT__ 8
+#define __USFRACT_IBIT__ 0
+#define __USFRACT_MIN__ 0.0UHR
+#define __USFRACT_MAX__ 0XFFP-8UHR
+#define __USFRACT_EPSILON__ 0x1P-8UHR
+#define __FRACT_FBIT__ 15
+#define __FRACT_IBIT__ 0
+#define __FRACT_MIN__ (-0.5R-0.5R)
+#define __FRACT_MAX__ 0X7FFFP-15R
+#define __FRACT_EPSILON__ 0x1P-15R
+#define __UFRACT_FBIT__ 16
+#define __UFRACT_IBIT__ 0
+#define __UFRACT_MIN__ 0.0UR
+#define __UFRACT_MAX__ 0XFFFFP-16UR
+#define __UFRACT_EPSILON__ 0x1P-16UR
+#define __LFRACT_FBIT__ 31
+#define __LFRACT_IBIT__ 0
+#define __LFRACT_MIN__ (-0.5LR-0.5LR)
+#define __LFRACT_MAX__ 0X7FFFFFFFP-31LR
+#define __LFRACT_EPSILON__ 0x1P-31LR
+#define __ULFRACT_FBIT__ 32
+#define __ULFRACT_IBIT__ 0
+#define __ULFRACT_MIN__ 0.0ULR
+#define __ULFRACT_MAX__ 0XFFFFFFFFP-32ULR
+#define __ULFRACT_EPSILON__ 0x1P-32ULR
+#define __LLFRACT_FBIT__ 63
+#define __LLFRACT_IBIT__ 0
+#define __LLFRACT_MIN__ (-0.5LLR-0.5LLR)
+#define __LLFRACT_MAX__ 0X7FFFFFFFFFFFFFFFP-63LLR
+#define __LLFRACT_EPSILON__ 0x1P-63LLR
+#define __ULLFRACT_FBIT__ 64
+#define __ULLFRACT_IBIT__ 0
+#define __ULLFRACT_MIN__ 0.0ULLR
+#define __ULLFRACT_MAX__ 0XFFFFFFFFFFFFFFFFP-64ULLR
+#define __ULLFRACT_EPSILON__ 0x1P-64ULLR
+#define __SACCUM_FBIT__ 7
+#define __SACCUM_IBIT__ 8
+#define __SACCUM_MIN__ (-0X1P7HK-0X1P7HK)
+#define __SACCUM_MAX__ 0X7FFFP-7HK
+#define __SACCUM_EPSILON__ 0x1P-7HK
+#define __USACCUM_FBIT__ 8
+#define __USACCUM_IBIT__ 8
+#define __USACCUM_MIN__ 0.0UHK
+#define __USACCUM_MAX__ 0XFFFFP-8UHK
+#define __USACCUM_EPSILON__ 0x1P-8UHK
+#define __ACCUM_FBIT__ 15
+#define __ACCUM_IBIT__ 16
+#define __ACCUM_MIN__ (-0X1P15K-0X1P15K)
+#define __ACCUM_MAX__ 0X7FFFFFFFP-15K
+#define __ACCUM_EPSILON__ 0x1P-15K
+#define __UACCUM_FBIT__ 16
+#define __UACCUM_IBIT__ 16
+#define __UACCUM_MIN__ 0.0UK
+#define __UACCUM_MAX__ 0XFFFFFFFFP-16UK
+#define __UACCUM_EPSILON__ 0x1P-16UK
+#define __LACCUM_FBIT__ 31
+#define __LACCUM_IBIT__ 32
+#define __LACCUM_MIN__ (-0X1P31LK-0X1P31LK)
+#define __LACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LK
+#define __LACCUM_EPSILON__ 0x1P-31LK
+#define __ULACCUM_FBIT__ 32
+#define __ULACCUM_IBIT__ 32
+#define __ULACCUM_MIN__ 0.0ULK
+#define __ULACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULK
+#define __ULACCUM_EPSILON__ 0x1P-32ULK
+#define __LLACCUM_FBIT__ 31
+#define __LLACCUM_IBIT__ 32
+#define __LLACCUM_MIN__ (-0X1P31LLK-0X1P31LLK)
+#define __LLACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LLK
+#define __LLACCUM_EPSILON__ 0x1P-31LLK
+#define __ULLACCUM_FBIT__ 32
+#define __ULLACCUM_IBIT__ 32
+#define __ULLACCUM_MIN__ 0.0ULLK
+#define __ULLACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULLK
+#define __ULLACCUM_EPSILON__ 0x1P-32ULLK
+#define __QQ_FBIT__ 7
+#define __QQ_IBIT__ 0
+#define __HQ_FBIT__ 15
+#define __HQ_IBIT__ 0
+#define __SQ_FBIT__ 31
+#define __SQ_IBIT__ 0
+#define __DQ_FBIT__ 63
+#define __DQ_IBIT__ 0
+#define __TQ_FBIT__ 127
+#define __TQ_IBIT__ 0
+#define __UQQ_FBIT__ 8
+#define __UQQ_IBIT__ 0
+#define __UHQ_FBIT__ 16
+#define __UHQ_IBIT__ 0
+#define __USQ_FBIT__ 32
+#define __USQ_IBIT__ 0
+#define __UDQ_FBIT__ 64
+#define __UDQ_IBIT__ 0
+#define __UTQ_FBIT__ 128
+#define __UTQ_IBIT__ 0
+#define __HA_FBIT__ 7
+#define __HA_IBIT__ 8
+#define __SA_FBIT__ 15
+#define __SA_IBIT__ 16
+#define __DA_FBIT__ 31
+#define __DA_IBIT__ 32
+#define __TA_FBIT__ 63
+#define __TA_IBIT__ 64
+#define __UHA_FBIT__ 8
+#define __UHA_IBIT__ 8
+#define __USA_FBIT__ 16
+#define __USA_IBIT__ 16
+#define __UDA_FBIT__ 32
+#define __UDA_IBIT__ 32
+#define __UTA_FBIT__ 64
+#define __UTA_IBIT__ 64
+#define __REGISTER_PREFIX__ 
+#define __USER_LABEL_PREFIX__ 
+#define __GNUC_STDC_INLINE__ 1
+#define __CHAR_UNSIGNED__ 1
+#define __GCC_ATOMIC_BOOL_LOCK_FREE 1
+#define __GCC_ATOMIC_CHAR_LOCK_FREE 1
+#define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 1
+#define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 1
+#define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 1
+#define __GCC_ATOMIC_SHORT_LOCK_FREE 1
+#define __GCC_ATOMIC_INT_LOCK_FREE 1
+#define __GCC_ATOMIC_LONG_LOCK_FREE 1
+#define __GCC_ATOMIC_LLONG_LOCK_FREE 1
+#define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
+#define __GCC_ATOMIC_POINTER_LOCK_FREE 1
+#define __GCC_HAVE_DWARF2_CFI_ASM 1
+#define __PRAGMA_REDEFINE_EXTNAME 1
+#define __SIZEOF_WCHAR_T__ 4
+#define __SIZEOF_WINT_T__ 4
+#define __SIZEOF_PTRDIFF_T__ 4
+#define __csky__ 2
+#define __CSKY__ 2
+#define __ckcore__ 2
+#define __CKCORE__ 2
+#define __CSKYABIV2__ 1
+#define __cskyabiv2__ 1
+#define __CSKYABI__ 2
+#define __cskyabi__ 2
+#define __ckcoreLE__ 1
+#define __cskyLE__ 1
+#define __cskyle__ 1
+#define __CSKYLE__ 1
+#define __CK803__ 1
+#define __ck803__ 1
+#define __CK803S__ 1
+#define __ck803s__ 1
+#define __csky_soft_float__ 1
+#define __CSKY_SOFT_FLOAT__ 1
+#define __csky_required_printf__ 1
+#define __CSKY_REQUIRED_PRINTF__ 1
+#define __ELF__ 1
 # 1 "<command-line>"
-# 1 "../../../components/dfs/filesystems/elmfat/ff.c"
-# 20 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+# 20 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 # 1 "../../../components/libc/compilers/minilibc/string.h" 1
-# 17 "../../../components/libc/compilers/minilibc/string.h"
+# 15 "../../../components/libc/compilers/minilibc/string.h"
+#define __STRING_H__ 
+
 # 1 "../../../include/rtthread.h" 1
-# 35 "../../../include/rtthread.h"
+# 33 "../../../include/rtthread.h"
+#define __RT_THREAD_H__ 
+
 # 1 "./rtconfig.h" 1
+
+#define RT_CONFIG_H__ 
+
+
+
+
+
+
+#define RT_HAVING_GMAC 
+#define RT_USING_ETH1 
+#define RT_USING_T680 
+
+
+
+#define RT_USING_ETH0 
+
+
+
+#define RT_NAME_MAX 8
+#define RT_ALIGN_SIZE 8
+#define RT_THREAD_PRIORITY_32 
+#define RT_THREAD_PRIORITY_MAX 32
+#define RT_SYSTEM_CLOCK 200000000
+#define RT_TICK_PER_SECOND 100
+#define RT_DEBUG 
+#define RT_USING_OVERFLOW_CHECK 
+#define RT_DEBUG_INIT 0
+#define RT_DEBUG_THREAD 0
+#define RT_USING_HOOK 
+#define IDLE_THREAD_STACK_SIZE 256
+
+
+
+#define RT_USING_SEMAPHORE 
+#define RT_USING_MUTEX 
+#define RT_USING_EVENT 
+#define RT_USING_MAILBOX 
+#define RT_USING_MESSAGEQUEUE 
+
+
+
+#define RT_USING_MEMHEAP 
+#define RT_USING_SMALL_MEM 
+#define RT_USING_HEAP 
+
+
+
+#define RT_USING_DEVICE 
+#define RT_USING_CONSOLE 
+#define RT_CONSOLEBUF_SIZE 256
+#define RT_CONSOLE_DEVICE_NAME "uart0"
+
+
+
+#define RT_USING_COMPONENTS_INIT 
+#define RT_USING_USER_MAIN 
+#define RT_MAIN_THREAD_STACK_SIZE 2048
+
+
+
+#define RT_USING_FINSH 
+#define FINSH_THREAD_NAME "tshell"
+#define FINSH_USING_HISTORY 
+#define FINSH_HISTORY_LINES 5
+#define FINSH_USING_SYMTAB 
+#define FINSH_USING_DESCRIPTION 
+#define FINSH_THREAD_PRIORITY 20
+#define FINSH_THREAD_STACK_SIZE 4096
+#define FINSH_CMD_SIZE 80
+#define FINSH_USING_MSH 
+#define FINSH_USING_MSH_DEFAULT 
+#define FINSH_USING_MSH_ONLY 
+#define FINSH_ARG_MAX 10
+
+
+
+#define RT_USING_DFS 
+#define DFS_USING_WORKDIR 
+#define DFS_FILESYSTEMS_MAX 4
+#define DFS_FILESYSTEM_TYPES_MAX 4
+#define DFS_FD_MAX 12
+#define RT_USING_DFS_ELMFAT 
+
+
+
+#define RT_DFS_ELM_USE_EXFAT 
+#define RT_DFS_ELM_CODE_PAGE 437
+#define RT_DFS_ELM_WORD_ACCESS 
+#define RT_DFS_ELM_USE_LFN_3 
+#define RT_DFS_ELM_USE_LFN 3
+#define RT_DFS_ELM_MAX_LFN 255
+#define RT_DFS_ELM_DRIVES 2
+#define RT_DFS_ELM_MAX_SECTOR_SIZE 512
+#define RT_DFS_ELM_USE_ERASE 
+#define RT_DFS_ELM_REENTRANT 
+#define RT_USING_DFS_DEVFS 
+#define RT_USING_DFS_NET 
+#define RT_USING_DFS_ROMFS 
+#define RT_USING_DFS_RAMFS 
+
+
+
+#define RT_USING_DEVICE_IPC 
+#define RT_PIPE_BUFSZ 512
+#define RT_USING_SERIAL 
+#define RT_USING_RTC 
+#define RT_USING_SOFT_RTC 
+#define RTC_SYNC_USING_NTP 
+#define RTC_NTP_FIRST_SYNC_DELAY 1
+#define RTC_NTP_SYNC_PERIOD 3600
+
+
+
+#define RT_USING_LIBC 
+#define RT_USING_MINILIBC 
+#define RT_USING_POSIX 
+
+
+
+
+
+#define RT_USING_LWIP 
+#define RT_USING_LWIP202 
+#define RT_LWIP_IGMP 
+#define RT_LWIP_ICMP 
+#define RT_LWIP_DNS 
+#define RT_LWIP_DHCP 
+#define IP_SOF_BROADCAST 1
+#define IP_SOF_BROADCAST_RECV 1
+#define RT_LWIP_ETH_MTU 1500
+
+
+
+#define RT_LWIP_IPADDR "192.168.1.30"
+#define RT_LWIP_GWADDR "192.168.1.1"
+#define RT_LWIP_MSKADDR "255.255.255.0"
+#define RT_LWIP_UDP 
+#define RT_LWIP_TCP 
+#define RT_LWIP_RAW 
+#define RT_LWIP_HW_OFFLOAD 1
+#define RT_MEMP_NUM_NETCONN 8
+#define RT_LWIP_PBUF_NUM 16
+#define RT_LWIP_RAW_PCB_NUM 4
+#define RT_LWIP_UDP_PCB_NUM 4
+#define RT_LWIP_TCP_PCB_NUM 4
+#define RT_LWIP_TCP_SEG_NUM 40
+#define RT_LWIP_TCP_SND_BUF 13140
+#define RT_LWIP_TCP_WND 13140
+#define RT_LWIP_TCPTHREAD_PRIORITY 10
+#define RT_LWIP_TCPTHREAD_MBOX_SIZE 8
+#define RT_LWIP_TCPTHREAD_STACKSIZE 2048
+#define LWIP_NO_TX_THREAD 
+#define RT_LWIP_ETHTHREAD_PRIORITY 12
+#define RT_LWIP_ETHTHREAD_STACKSIZE 1024
+#define RT_LWIP_ETHTHREAD_MBOX_SIZE 8
+#define RT_LWIP_REASSEMBLY_FRAG 
+#define LWIP_NETIF_STATUS_CALLBACK 1
+#define SO_REUSE 1
+#define LWIP_SO_RCVTIMEO 1
+#define LWIP_SO_SNDTIMEO 1
+#define LWIP_SO_RCVBUF 1
+#define LWIP_NETIF_LOOPBACK 0
+
+
+
+
+
+
+#define PKG_USING_NETUTILS 
+#define PKG_NETUTILS_PING 
+#define PKG_NETUTILS_NTP 
+#define NETUTILS_NTP_TIMEZONE 8
+#define NETUTILS_NTP_HOSTNAME "cn.ntp.org.cn"
+#define PKG_USING_NETUTILS_V100 
+# 188 "./rtconfig.h"
+#define NETUTILS_NTP_HOSTNAME2 "ntp.rt-thread.org"
+#define NETUTILS_NTP_HOSTNAME3 "edu.ntp.org.cn"
+#define PKG_USING_NETUTILS_V120 
 # 36 "../../../include/rtthread.h" 2
 # 1 "../../../include/rtdebug.h" 1
+# 22 "../../../include/rtdebug.h"
+#define __RTDEBUG_H__ 
+# 53 "../../../include/rtdebug.h"
+#define RT_DEBUG_MEM 0
+
+
+
+#define RT_DEBUG_MEMHEAP 0
+
+
+
+#define RT_DEBUG_MODULE 0
+
+
+
+#define RT_DEBUG_SCHEDULER 0
+
+
+
+#define RT_DEBUG_SLAB 0
+
+
+
+
+
+
+
+#define RT_DEBUG_TIMER 0
+
+
+
+#define RT_DEBUG_IRQ 0
+
+
+
+#define RT_DEBUG_IPC 0
+# 94 "../../../include/rtdebug.h"
+#define RT_DEBUG_CONTEXT_CHECK 1
+
+
+#define RT_DEBUG_LOG(type,message) do { if (type) rt_kprintf message; } while (0)
+
+
+
+
+
+
+
+#define RT_ASSERT(EX) if (!(EX)) { rt_assert_handler(#EX, __FUNCTION__, __LINE__); }
+
+
+
+
+
+
+
+#define RT_DEBUG_NOT_IN_INTERRUPT do { rt_base_t level; level = rt_hw_interrupt_disable(); if (rt_interrupt_get_nest() != 0) { rt_kprintf("Function[%s] shall not be used in ISR\n", __FUNCTION__); RT_ASSERT(0) } rt_hw_interrupt_enable(level); } while (0)
+# 131 "../../../include/rtdebug.h"
+#define RT_DEBUG_IN_THREAD_CONTEXT do { rt_base_t level; level = rt_hw_interrupt_disable(); if (rt_thread_self() == RT_NULL) { rt_kprintf("Function[%s] shall not be used before scheduler start\n", __FUNCTION__); RT_ASSERT(0) } RT_DEBUG_NOT_IN_INTERRUPT; rt_hw_interrupt_enable(level); } while (0)
 # 37 "../../../include/rtthread.h" 2
 # 1 "../../../include/rtdef.h" 1
-# 45 "../../../include/rtdef.h"
+# 42 "../../../include/rtdef.h"
+#define __RT_DEF_H__ 
+
+
 # 1 "../libraries/inc/tih/sysdep.h" 1
+
+#define __SYSDEP_H__ 
+
+
+#define uint64 unsigned long long
+
+
+
+#define uint32 unsigned int
+
+
+
+#define int32 int
+
+
+
+#define uint16 unsigned short
+
+
+
+#define int16 short
+
+
+
+#define uint8 unsigned char
+
+
+
+#define int8 char
+
+
+
+#define NULL ((void *)0)
+
+
+
+#define bool int
+
+
+
+#define FALSE 0
+
+
+
+#define TRUE 1
+
+
+
+#define read32(addr) (*(volatile uint32 *)(addr))
+
+
+
+#define write32(addr,val) (*(volatile uint32 *)(addr) = (val))
+
+
+
+#define DIR_IN 0
+
+
+
+#define DIR_OUT 1
+
+
+
+#define ADDR_INC 0
+
+
+
+#define ADDR_FIX 1
+
+
+
+#define __isr __attribute__((isr))
+
+
+
+
+#define __packed __attribute__((packed))
+#define __align4 __attribute__((aligned(4)))
+
+#define __fast __attribute__((section(".fast")))
+#define __exdata __attribute__((section(".exdata"),zero_init))
+#define __overlay __attribute__((section(".overlay")))
+
+#define __weak __attribute__((weak))
 # 46 "../../../include/rtdef.h" 2
-# 68 "../../../include/rtdef.h"
+# 59 "../../../include/rtdef.h"
+#define RT_VERSION 3L
+#define RT_SUBVERSION 1L
+#define RT_REVISION 0L
+
+
+#define RTTHREAD_VERSION ((RT_VERSION * 10000) + (RT_SUBVERSION * 100) + RT_REVISION)
+
+
+
 typedef signed char rt_int8_t;
 typedef signed short rt_int16_t;
 typedef signed long rt_int32_t;
@@ -36,12 +722,98 @@ typedef rt_base_t rt_flag_t;
 typedef rt_ubase_t rt_size_t;
 typedef rt_ubase_t rt_dev_t;
 typedef rt_base_t rt_off_t;
+
+
+#define RT_TRUE 1
+#define RT_FALSE 0
+
+
+
+
+#define RT_UINT8_MAX 0xff
+#define RT_UINT16_MAX 0xffff
+#define RT_UINT32_MAX 0xffffffff
+#define RT_TICK_MAX RT_UINT32_MAX
 # 132 "../../../include/rtdef.h"
         typedef __builtin_va_list __gnuc_va_list;
         typedef __gnuc_va_list va_list;
+#define va_start(v,l) __builtin_va_start(v,l)
+#define va_end(v) __builtin_va_end(v)
+#define va_arg(v,l) __builtin_va_arg(v,l)
+
+
+#define SECTION(x) __attribute__((section(x)))
+#define RT_UNUSED __attribute__((unused))
+#define RT_USED __attribute__((used))
+#define ALIGN(n) __attribute__((aligned(n)))
+#define RT_WEAK __attribute__((weak))
+#define rt_inline static __inline
+#define RTT_API 
 # 183 "../../../include/rtdef.h"
 typedef int (*init_fn_t)(void);
-# 304 "../../../include/rtdef.h"
+# 198 "../../../include/rtdef.h"
+#define INIT_EXPORT(fn,level) const init_fn_t __rt_init_ ##fn SECTION(".rti_fn."level) = fn
+# 207 "../../../include/rtdef.h"
+#define INIT_BOARD_EXPORT(fn) INIT_EXPORT(fn, "1")
+
+
+
+#define INIT_PREV_EXPORT(fn) INIT_EXPORT(fn, "2")
+
+#define INIT_DEVICE_EXPORT(fn) INIT_EXPORT(fn, "3")
+
+#define INIT_COMPONENT_EXPORT(fn) INIT_EXPORT(fn, "4")
+
+#define INIT_ENV_EXPORT(fn) INIT_EXPORT(fn, "5")
+
+#define INIT_APP_EXPORT(fn) INIT_EXPORT(fn, "6")
+# 234 "../../../include/rtdef.h"
+#define RT_EVENT_LENGTH 32
+
+
+#define RT_MM_PAGE_SIZE 4096
+#define RT_MM_PAGE_MASK (RT_MM_PAGE_SIZE - 1)
+#define RT_MM_PAGE_BITS 12
+
+
+
+#define RT_KERNEL_MALLOC(sz) rt_malloc(sz)
+
+
+
+#define RT_KERNEL_FREE(ptr) rt_free(ptr)
+
+
+
+#define RT_KERNEL_REALLOC(ptr,size) rt_realloc(ptr, size)
+# 261 "../../../include/rtdef.h"
+#define RT_EOK 0
+#define RT_ERROR 1
+#define RT_ETIMEOUT 2
+#define RT_EFULL 3
+#define RT_EEMPTY 4
+#define RT_ENOMEM 5
+#define RT_ENOSYS 6
+#define RT_EBUSY 7
+#define RT_EIO 8
+#define RT_EINTR 9
+#define RT_EINVAL 10
+# 282 "../../../include/rtdef.h"
+#define RT_ALIGN(size,align) (((size) + (align) - 1) & ~((align) - 1))
+# 291 "../../../include/rtdef.h"
+#define RT_ALIGN_DOWN(size,align) ((size) & ~((align) - 1))
+
+
+
+
+
+
+
+#define RT_NULL (0)
+
+
+
+
 struct rt_list_node
 {
     struct rt_list_node *next;
@@ -57,7 +829,12 @@ struct rt_slist_node
     struct rt_slist_node *next;
 };
 typedef struct rt_slist_node rt_slist_t;
-# 334 "../../../include/rtdef.h"
+# 329 "../../../include/rtdef.h"
+#define RT_OBJECT_FLAG_MODULE 0x80
+
+
+
+
 struct rt_object
 {
     char name[8];
@@ -97,7 +874,38 @@ struct rt_object_information
     rt_list_t object_list;
     rt_size_t object_size;
 };
-# 437 "../../../include/rtdef.h"
+
+
+
+
+
+#define RT_OBJECT_HOOK_CALL(func,argv) do { if ((func) != RT_NULL) func argv; } while (0)
+# 412 "../../../include/rtdef.h"
+#define RT_TIMER_FLAG_DEACTIVATED 0x0
+#define RT_TIMER_FLAG_ACTIVATED 0x1
+#define RT_TIMER_FLAG_ONE_SHOT 0x0
+#define RT_TIMER_FLAG_PERIODIC 0x2
+
+#define RT_TIMER_FLAG_HARD_TIMER 0x0
+#define RT_TIMER_FLAG_SOFT_TIMER 0x4
+
+#define RT_TIMER_CTRL_SET_TIME 0x0
+#define RT_TIMER_CTRL_GET_TIME 0x1
+#define RT_TIMER_CTRL_SET_ONESHOT 0x2
+#define RT_TIMER_CTRL_SET_PERIODIC 0x3
+
+
+#define RT_TIMER_SKIP_LIST_LEVEL 1
+
+
+
+
+#define RT_TIMER_SKIP_LIST_MASK 0x3
+
+
+
+
+
 struct rt_timer
 {
     struct rt_object parent;
@@ -111,7 +919,31 @@ struct rt_timer
     rt_tick_t timeout_tick;
 };
 typedef struct rt_timer *rt_timer_t;
-# 503 "../../../include/rtdef.h"
+# 479 "../../../include/rtdef.h"
+#define RT_THREAD_INIT 0x00
+#define RT_THREAD_READY 0x01
+#define RT_THREAD_SUSPEND 0x02
+#define RT_THREAD_RUNNING 0x03
+#define RT_THREAD_BLOCK RT_THREAD_SUSPEND
+#define RT_THREAD_CLOSE 0x04
+#define RT_THREAD_STAT_MASK 0x0f
+
+#define RT_THREAD_STAT_SIGNAL 0x10
+#define RT_THREAD_STAT_SIGNAL_READY (RT_THREAD_STAT_SIGNAL | RT_THREAD_READY)
+#define RT_THREAD_STAT_SIGNAL_WAIT 0x20
+#define RT_THREAD_STAT_SIGNAL_MASK 0xf0
+
+
+
+
+#define RT_THREAD_CTRL_STARTUP 0x00
+#define RT_THREAD_CTRL_CLOSE 0x01
+#define RT_THREAD_CTRL_CHANGE_PRIORITY 0x02
+#define RT_THREAD_CTRL_INFO 0x03
+
+
+
+
 struct rt_thread
 {
 
@@ -162,7 +994,19 @@ struct rt_thread
     rt_uint32_t user_data;
 };
 typedef struct rt_thread *rt_thread_t;
-# 587 "../../../include/rtdef.h"
+# 575 "../../../include/rtdef.h"
+#define RT_IPC_FLAG_FIFO 0x00
+#define RT_IPC_FLAG_PRIO 0x01
+
+#define RT_IPC_CMD_UNKNOWN 0x00
+#define RT_IPC_CMD_RESET 0x01
+
+#define RT_WAITING_FOREVER -1
+#define RT_WAITING_NO 0
+
+
+
+
 struct rt_ipc_object
 {
     struct rt_object parent;
@@ -199,7 +1043,19 @@ struct rt_mutex
     struct rt_thread *owner;
 };
 typedef struct rt_mutex *rt_mutex_t;
-# 636 "../../../include/rtdef.h"
+
+
+
+
+
+
+#define RT_EVENT_FLAG_AND 0x01
+#define RT_EVENT_FLAG_OR 0x02
+#define RT_EVENT_FLAG_CLEAR 0x04
+
+
+
+
 struct rt_event
 {
     struct rt_ipc_object parent;
@@ -307,7 +1163,60 @@ enum rt_device_class_type
     RT_Device_Class_Miscellaneous,
     RT_Device_Class_Unknown
 };
-# 851 "../../../include/rtdef.h"
+
+
+
+
+#define RT_DEVICE_FLAG_DEACTIVATE 0x000
+
+#define RT_DEVICE_FLAG_RDONLY 0x001
+#define RT_DEVICE_FLAG_WRONLY 0x002
+#define RT_DEVICE_FLAG_RDWR 0x003
+
+#define RT_DEVICE_FLAG_REMOVABLE 0x004
+#define RT_DEVICE_FLAG_STANDALONE 0x008
+#define RT_DEVICE_FLAG_ACTIVATED 0x010
+#define RT_DEVICE_FLAG_SUSPENDED 0x020
+#define RT_DEVICE_FLAG_STREAM 0x040
+
+#define RT_DEVICE_FLAG_INT_RX 0x100
+#define RT_DEVICE_FLAG_DMA_RX 0x200
+#define RT_DEVICE_FLAG_INT_TX 0x400
+#define RT_DEVICE_FLAG_DMA_TX 0x800
+
+#define RT_DEVICE_OFLAG_CLOSE 0x000
+#define RT_DEVICE_OFLAG_RDONLY 0x001
+#define RT_DEVICE_OFLAG_WRONLY 0x002
+#define RT_DEVICE_OFLAG_RDWR 0x003
+#define RT_DEVICE_OFLAG_OPEN 0x008
+#define RT_DEVICE_OFLAG_MASK 0xf0f
+
+
+
+
+#define RT_DEVICE_CTRL_RESUME 0x01
+#define RT_DEVICE_CTRL_SUSPEND 0x02
+#define RT_DEVICE_CTRL_CONFIG 0x03
+
+#define RT_DEVICE_CTRL_SET_INT 0x10
+#define RT_DEVICE_CTRL_CLR_INT 0x11
+#define RT_DEVICE_CTRL_GET_INT 0x12
+
+
+
+
+#define RT_DEVICE_CTRL_CHAR_STREAM 0x10
+#define RT_DEVICE_CTRL_BLK_GETGEOME 0x10
+#define RT_DEVICE_CTRL_BLK_SYNC 0x11
+#define RT_DEVICE_CTRL_BLK_ERASE 0x12
+#define RT_DEVICE_CTRL_BLK_AUTOREFRESH 0x13
+#define RT_DEVICE_CTRL_NETIF_GETMAC 0x10
+#define RT_DEVICE_CTRL_MTD_FORMAT 0x10
+#define RT_DEVICE_CTRL_RTC_GET_TIME 0x10
+#define RT_DEVICE_CTRL_RTC_SET_TIME 0x11
+#define RT_DEVICE_CTRL_RTC_GET_ALARM 0x12
+#define RT_DEVICE_CTRL_RTC_SET_ALARM 0x13
+
 typedef struct rt_device *rt_device_t;
 
 
@@ -389,7 +1298,24 @@ struct rt_device_blk_sectors
     rt_uint32_t sector_begin;
     rt_uint32_t sector_end;
 };
-# 950 "../../../include/rtdef.h"
+
+
+
+
+#define RT_DEVICE_CTRL_CURSOR_SET_POSITION 0x10
+#define RT_DEVICE_CTRL_CURSOR_SET_TYPE 0x11
+
+
+
+
+#define RTGRAPHIC_CTRL_RECT_UPDATE 0
+#define RTGRAPHIC_CTRL_POWERON 1
+#define RTGRAPHIC_CTRL_POWEROFF 2
+#define RTGRAPHIC_CTRL_GET_INFO 3
+#define RTGRAPHIC_CTRL_SET_MODE 4
+#define RTGRAPHIC_CTRL_GET_EXT 5
+
+
 enum
 {
     RTGRAPHIC_PIXEL_FORMAT_MONO = 0,
@@ -407,7 +1333,15 @@ enum
     RTGRAPHIC_PIXEL_FORMAT_ARGB565,
     RTGRAPHIC_PIXEL_FORMAT_ALPHA,
 };
-# 976 "../../../include/rtdef.h"
+
+
+
+
+#define RTGRAPHIC_PIXEL_POSITION(x,y) ((x << 16) | y)
+
+
+
+
 struct rt_device_graphic_info
 {
     rt_uint8_t pixel_format;
@@ -444,42 +1378,227 @@ struct rt_device_graphic_ops
 
     void (*blit_line) (const char *pixel, int x, int y, rt_size_t size);
 };
+#define rt_graphix_ops(device) ((struct rt_device_graphic_ops *)(device->user_data))
 # 1071 "../../../include/rtdef.h"
 # 1 "../../../include/rtlibc.h" 1
-# 29 "../../../include/rtlibc.h"
+# 26 "../../../include/rtlibc.h"
+#define RTLIBC_H__ 
+
+
 # 1 "../../../include/libc/libc_stat.h" 1
-# 75 "../../../include/libc/libc_stat.h"
+
+#define LIBC_STAT_H__ 
+# 39 "../../../include/libc/libc_stat.h"
+#define S_IFMT 00170000
+#define S_IFSOCK 0140000
+#define S_IFLNK 0120000
+#define S_IFREG 0100000
+#define S_IFBLK 0060000
+#define S_IFDIR 0040000
+#define S_IFCHR 0020000
+#define S_IFIFO 0010000
+#define S_ISUID 0004000
+#define S_ISGID 0002000
+#define S_ISVTX 0001000
+
+#define S_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)
+#define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+#define S_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)
+#define S_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)
+#define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)
+#define S_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)
+
+#define S_IRWXU 00700
+#define S_IRUSR 00400
+#define S_IWUSR 00200
+#define S_IXUSR 00100
+
+#define S_IRWXG 00070
+#define S_IRGRP 00040
+#define S_IWGRP 00020
+#define S_IXGRP 00010
+
+#define S_IRWXO 00007
+#define S_IROTH 00004
+#define S_IWOTH 00002
+#define S_IXOTH 00001
+
+
 # 1 "../../../components/libc/compilers/minilibc/stdint.h" 1
 
 
 
 
 
-
+#define __STDINT_H__ 
 
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 1 3 4
-# 34 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 3 4
+# 30 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 3 4
+#define _GCC_LIMITS_H_ 
+
+
+
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\syslimits.h" 1 3 4
 
 
 
 
 
-
+#define _GCC_NEXT_LIMITS_H 
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 1 3 4
 # 168 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 3 4
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\limits.h" 1 3 4
-# 11 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\limits.h" 3 4
+# 9 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\limits.h" 3 4
+#define _LIBC_LIMITS_H_ 1
+
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\features.h" 1 3 4
+# 10 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\features.h" 3 4
+#define _FEATURES_H 1
+
+#define __MINILIBC__ 1
+
+
+
+#define __GNUC_PREREQ(maj,min) ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
+
+
+
+
+
+#define __GNUC_PREREQ__(ma,mi) __GNUC_PREREQ(ma, mi)
 # 12 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\limits.h" 2 3 4
+
+
+
+
+#define MB_LEN_MAX 1
+
+
+
+
+#define NL_ARGMAX 32
+# 142 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\limits.h" 3 4
+#define _POSIX2_RE_DUP_MAX 255
+
+
+
+#define ARG_MAX 4096
+
+
+
+#define PATH_MAX 4096
 # 169 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 2 3 4
 # 8 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\syslimits.h" 2 3 4
+#undef _GCC_NEXT_LIMITS_H
 # 35 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 2 3 4
+# 60 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 3 4
+#define _LIMITS_H___ 
+
+
+#undef CHAR_BIT
+#define CHAR_BIT __CHAR_BIT__
+
+
+
+
+
+
+
+#undef SCHAR_MIN
+#define SCHAR_MIN (-SCHAR_MAX - 1)
+#undef SCHAR_MAX
+#define SCHAR_MAX __SCHAR_MAX__
+
+
+#undef UCHAR_MAX
+
+
+
+#define UCHAR_MAX (SCHAR_MAX * 2 + 1)
+
+
+
+
+#undef CHAR_MIN
+
+
+
+#define CHAR_MIN 0
+
+#undef CHAR_MAX
+#define CHAR_MAX UCHAR_MAX
+# 103 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include-fixed\\limits.h" 3 4
+#undef SHRT_MIN
+#define SHRT_MIN (-SHRT_MAX - 1)
+#undef SHRT_MAX
+#define SHRT_MAX __SHRT_MAX__
+
+
+#undef USHRT_MAX
+
+
+
+#define USHRT_MAX (SHRT_MAX * 2 + 1)
+
+
+
+#undef INT_MIN
+#define INT_MIN (-INT_MAX - 1)
+#undef INT_MAX
+#define INT_MAX __INT_MAX__
+
+
+#undef UINT_MAX
+#define UINT_MAX (INT_MAX * 2U + 1U)
+
+
+
+#undef LONG_MIN
+#define LONG_MIN (-LONG_MAX - 1L)
+#undef LONG_MAX
+#define LONG_MAX __LONG_MAX__
+
+
+#undef ULONG_MAX
+#define ULONG_MAX (LONG_MAX * 2UL + 1UL)
+
+
+
+#undef LLONG_MIN
+#define LLONG_MIN (-LLONG_MAX - 1LL)
+#undef LLONG_MAX
+#define LLONG_MAX __LONG_LONG_MAX__
+
+
+#undef ULLONG_MAX
+#define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+
+
+
+
+#undef LONG_LONG_MIN
+#define LONG_LONG_MIN (-LONG_LONG_MAX - 1LL)
+#undef LONG_LONG_MAX
+#define LONG_LONG_MAX __LONG_LONG_MAX__
+
+
+#undef ULONG_LONG_MAX
+#define ULONG_LONG_MAX (LONG_LONG_MAX * 2ULL + 1ULL)
 # 9 "../../../components/libc/compilers/minilibc/stdint.h" 2
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include\\stdint.h" 1 3 4
 # 9 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include\\stdint.h" 3 4
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 1 3 4
-# 33 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 3 4
+# 24 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 3 4
+#define _STDINT_H 1
+
+
+
+
+
+
+
+#define __int8_t_defined 
 
 # 33 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 3 4
 typedef signed char int8_t;
@@ -496,7 +1615,7 @@ typedef unsigned short int uint16_t;
 
 typedef unsigned int uint32_t;
 typedef unsigned int __uint32_t;
-
+#define __uint32_t_defined 
 
 __extension__
 typedef unsigned long long int uint64_t;
@@ -539,7 +1658,7 @@ typedef unsigned long long int uint_fast64_t;
 
 
 typedef int intptr_t;
-
+#define __intptr_t_defined 
 
 typedef unsigned int uintptr_t;
 
@@ -549,20 +1668,127 @@ __extension__
 typedef long long int intmax_t;
 __extension__
 typedef unsigned long long int uintmax_t;
+
+
+
+
+
+
+#define __INT64_C(c) c ## LL
+#define __UINT64_C(c) c ## ULL
+
+
+
+
+#define INT8_MIN (-128)
+#define INT16_MIN (-32767-1)
+#define INT32_MIN (-2147483647-1)
+#define INT64_MIN (-__INT64_C(9223372036854775807)-1)
+
+#define INT8_MAX (127)
+#define INT16_MAX (32767)
+#define INT32_MAX (2147483647)
+#define INT64_MAX (__INT64_C(9223372036854775807))
+
+
+#define UINT8_MAX (255)
+#define UINT16_MAX (65535)
+#define UINT32_MAX (4294967295U)
+#define UINT64_MAX (__UINT64_C(18446744073709551615))
+
+
+
+#define INT_LEAST8_MIN (-128)
+#define INT_LEAST16_MIN (-32767-1)
+#define INT_LEAST32_MIN (-2147483647-1)
+#define INT_LEAST64_MIN (-__INT64_C(9223372036854775807)-1)
+
+#define INT_LEAST8_MAX (127)
+#define INT_LEAST16_MAX (32767)
+#define INT_LEAST32_MAX (2147483647)
+#define INT_LEAST64_MAX (__INT64_C(9223372036854775807))
+
+
+#define UINT_LEAST8_MAX (255)
+#define UINT_LEAST16_MAX (65535)
+#define UINT_LEAST32_MAX (4294967295U)
+#define UINT_LEAST64_MAX (__UINT64_C(18446744073709551615))
+
+
+
+#define INT_FAST8_MIN (-128)
+#define INT_FAST16_MIN (-2147483647-1)
+#define INT_FAST32_MIN (-2147483647-1)
+#define INT_FAST64_MIN (-__INT64_C(9223372036854775807)-1)
+
+#define INT_FAST8_MAX (127)
+#define INT_FAST16_MAX (2147483647)
+#define INT_FAST32_MAX (2147483647)
+#define INT_FAST64_MAX (__INT64_C(9223372036854775807))
+
+
+#define UINT_FAST8_MAX (255)
+#define UINT_FAST16_MAX (4294967295U)
+#define UINT_FAST32_MAX (4294967295U)
+#define UINT_FAST64_MAX (__UINT64_C(18446744073709551615))
+
+
+
+#define INTPTR_MIN (-2147483647-1)
+#define INTPTR_MAX (2147483647)
+#define UINTPTR_MAX (4294967295U)
+
+
+
+#define INTMAX_MIN (-__INT64_C(9223372036854775807)-1)
+
+#define INTMAX_MAX (__INT64_C(9223372036854775807))
+
+
+#define UINTMAX_MAX (__UINT64_C(18446744073709551615))
+# 191 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 3 4
+#define PTRDIFF_MIN (-2147483647-1)
+#define PTRDIFF_MAX (2147483647)
+
+
+#define SIG_ATOMIC_MIN (-2147483647-1)
+#define SIG_ATOMIC_MAX (2147483647)
+
+
+#define SIZE_MAX (4294967295U)
+# 222 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\stdint.h" 3 4
+#define INT8_C(c) c
+#define INT16_C(c) c
+#define INT32_C(c) c
+#define INT64_C(c) c ## LL
+
+
+#define UINT8_C(c) c
+#define UINT16_C(c) c
+#define UINT32_C(c) c ## U
+#define UINT64_C(c) c ## ULL
+
+
+#define INTMAX_C(c) c ## LL
+#define UINTMAX_C(c) c ## ULL
 # 10 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\lib\\gcc\\csky-elfabiv2\\6.3.0\\include\\stdint.h" 2 3 4
+
+
+
+#define _GCC_WRAP_STDINT_H 
 # 10 "../../../components/libc/compilers/minilibc/stdint.h" 2
 # 76 "../../../include/libc/libc_stat.h" 2
 # 1 "../../../components/libc/compilers/minilibc/time.h" 1
 
-
+#define __TIME_H__ 
 
 # 1 "../../../components/libc/compilers/minilibc/sys/time.h" 1
 
-
+#define _SYS_TIME_H_ 
 
 # 1 "../../../components/libc/compilers/minilibc/sys/types.h" 1
 
-
+#define __TYPES_H__ 
 
 
 
@@ -588,6 +1814,12 @@ typedef unsigned long clockid_t;
 typedef int pid_t;
 
 typedef unsigned long clock_t;
+
+
+
+
+
+#define __u_char_defined 
 # 5 "../../../components/libc/compilers/minilibc/sys/time.h" 2
 typedef long time_t;
 
@@ -673,22 +1905,430 @@ struct stat
 };
 # 30 "../../../include/rtlibc.h" 2
 # 1 "../../../include/libc/libc_errno.h" 1
+# 26 "../../../include/libc/libc_errno.h"
+#define LIBC_ERRNO_H__ 
+# 35 "../../../include/libc/libc_errno.h"
+#define EPERM 1
+#define ENOENT 2
+#define ESRCH 3
+#define EINTR 4
+#define EIO 5
+#define ENXIO 6
+#define E2BIG 7
+#define ENOEXEC 8
+#define EBADF 9
+#define ECHILD 10
+#define EAGAIN 11
+#define ENOMEM 12
+#define EACCES 13
+#define EFAULT 14
+#define ENOTBLK 15
+#define EBUSY 16
+#define EEXIST 17
+#define EXDEV 18
+#define ENODEV 19
+#define ENOTDIR 20
+#define EISDIR 21
+#define EINVAL 22
+#define ENFILE 23
+#define EMFILE 24
+#define ENOTTY 25
+#define ETXTBSY 26
+#define EFBIG 27
+#define ENOSPC 28
+#define ESPIPE 29
+#define EROFS 30
+#define EMLINK 31
+#define EPIPE 32
+#define EDOM 33
+#define ERANGE 34
+#define EDEADLK 35
+#define ENAMETOOLONG 36
+#define ENOLCK 37
+#define ENOSYS 38
+#define ENOTEMPTY 39
+#define ELOOP 40
+#define EWOULDBLOCK EAGAIN
+#define ENOMSG 42
+#define EIDRM 43
+#define ECHRNG 44
+#define EL2NSYNC 45
+#define EL3HLT 46
+#define EL3RST 47
+#define ELNRNG 48
+#define EUNATCH 49
+#define ENOCSI 50
+#define EL2HLT 51
+#define EBADE 52
+#define EBADR 53
+#define EXFULL 54
+#define ENOANO 55
+#define EBADRQC 56
+#define EBADSLT 57
+#define EDEADLOCK EDEADLK
+#define EBFONT 59
+#define ENOSTR 60
+#define ENODATA 61
+#define ETIME 62
+#define ENOSR 63
+#define ENONET 64
+#define ENOPKG 65
+#define EREMOTE 66
+#define ENOLINK 67
+#define EADV 68
+#define ESRMNT 69
+#define ECOMM 70
+#define EPROTO 71
+#define EMULTIHOP 72
+#define EDOTDOT 73
+#define EBADMSG 74
+#define EOVERFLOW 75
+#define ENOTUNIQ 76
+#define EBADFD 77
+#define EREMCHG 78
+#define ELIBACC 79
+#define ELIBBAD 80
+#define ELIBSCN 81
+#define ELIBMAX 82
+#define ELIBEXEC 83
+#define EILSEQ 84
+#define ERESTART 85
+#define ESTRPIPE 86
+#define EUSERS 87
+#define ENOTSOCK 88
+#define EDESTADDRREQ 89
+#define EMSGSIZE 90
+#define EPROTOTYPE 91
+#define ENOPROTOOPT 92
+#define EPROTONOSUPPORT 93
+#define ESOCKTNOSUPPORT 94
+#define EOPNOTSUPP 95
+#define ENOTSUP EOPNOTSUPP
+#define EPFNOSUPPORT 96
+#define EAFNOSUPPORT 97
+#define EADDRINUSE 98
+#define EADDRNOTAVAIL 99
+#define ENETDOWN 100
+#define ENETUNREACH 101
+#define ENETRESET 102
+#define ECONNABORTED 103
+#define ECONNRESET 104
+#define ENOBUFS 105
+#define EISCONN 106
+#define ENOTCONN 107
+#define ESHUTDOWN 108
+#define ETOOMANYREFS 109
+#define ETIMEDOUT 110
+#define ECONNREFUSED 111
+#define EHOSTDOWN 112
+#define EHOSTUNREACH 113
+#define EALREADY 114
+#define EINPROGRESS 115
+#define ESTALE 116
+#define EUCLEAN 117
+#define ENOTNAM 118
+#define ENAVAIL 119
+#define EISNAM 120
+#define EREMOTEIO 121
+#define EDQUOT 122
+#define ENOMEDIUM 123
+#define EMEDIUMTYPE 124
+#define ECANCELED 125
+#define ENOKEY 126
+#define EKEYEXPIRED 127
+#define EKEYREVOKED 128
+#define EKEYREJECTED 129
+#define EOWNERDEAD 130
+#define ENOTRECOVERABLE 131
+#define ERFKILL 132
+#define EHWPOISON 133
 # 31 "../../../include/rtlibc.h" 2
 
 # 1 "../../../include/libc/libc_fcntl.h" 1
+# 27 "../../../include/libc/libc_fcntl.h"
+#define LIBC_FCNTL_H__ 
+# 60 "../../../include/libc/libc_fcntl.h"
+#define O_RDONLY 00
+#define O_WRONLY 01
+#define O_RDWR 02
+
+#define O_CREAT 0100
+#define O_EXCL 0200
+#define O_NOCTTY 0400
+#define O_TRUNC 01000
+#define O_APPEND 02000
+#define O_NONBLOCK 04000
+#define O_DSYNC 010000
+#define O_SYNC 04010000
+#define O_RSYNC 04010000
+#define O_BINARY 0100000
+#define O_DIRECTORY 0200000
+#define O_NOFOLLOW 0400000
+#define O_CLOEXEC 02000000
+
+#define O_ASYNC 020000
+#define O_DIRECT 040000
+#define O_LARGEFILE 0100000
+#define O_NOATIME 01000000
+#define O_PATH 010000000
+#define O_TMPFILE 020200000
+#define O_NDELAY O_NONBLOCK
+
+#define O_SEARCH O_PATH
+#define O_EXEC O_PATH
+
+#define O_ACCMODE (03|O_SEARCH)
+
+#define F_DUPFD 0
+#define F_GETFD 1
+#define F_SETFD 2
+#define F_GETFL 3
+#define F_SETFL 4
+
+#define F_SETOWN 8
+#define F_GETOWN 9
+#define F_SETSIG 10
+#define F_GETSIG 11
+
+#define F_GETLK 12
+#define F_SETLK 13
+#define F_SETLKW 14
+
+#define F_SETOWN_EX 15
+#define F_GETOWN_EX 16
+
+#define F_GETOWNER_UIDS 17
 # 33 "../../../include/rtlibc.h" 2
 # 1 "../../../include/libc/libc_ioctl.h" 1
-# 133 "../../../include/libc/libc_ioctl.h"
+# 26 "../../../include/libc/libc_ioctl.h"
+#define LIBC_IOCTL_H__ 
+
+#define _IOC(a,b,c,d) ( ((a)<<30) | ((b)<<8) | (c) | ((d)<<16) )
+#define _IOC_NONE 0U
+#define _IOC_WRITE 1U
+#define _IOC_READ 2U
+
+
+#define _IO(a,b) _IOC(_IOC_NONE,(a),(b),0)
+#define _IOW(a,b,c) _IOC(_IOC_WRITE,(a),(b),sizeof(c))
+#define _IOR(a,b,c) _IOC(_IOC_READ,(a),(b),sizeof(c))
+#define _IOWR(a,b,c) _IOC(_IOC_READ|_IOC_WRITE,(a),(b),sizeof(c))
+
+#define FIONREAD _IOR('f', 127, int)
+#define FIONBIO _IOW('f', 126, int)
+#define FIONWRITE _IOR('f', 121, int)
+
+
+
+#define TCGETS 0x5401
+#define TCSETS 0x5402
+#define TCSETSW 0x5403
+#define TCSETSF 0x5404
+#define TCGETA 0x5405
+#define TCSETA 0x5406
+#define TCSETAW 0x5407
+#define TCSETAF 0x5408
+#define TCSBRK 0x5409
+#define TCXONC 0x540A
+#define TCFLSH 0x540B
+#define TIOCEXCL 0x540C
+#define TIOCNXCL 0x540D
+#define TIOCSCTTY 0x540E
+#define TIOCGPGRP 0x540F
+#define TIOCSPGRP 0x5410
+#define TIOCOUTQ 0x5411
+#define TIOCSTI 0x5412
+#define TIOCGWINSZ 0x5413
+#define TIOCSWINSZ 0x5414
+#define TIOCMGET 0x5415
+#define TIOCMBIS 0x5416
+#define TIOCMBIC 0x5417
+#define TIOCMSET 0x5418
+#define TIOCGSOFTCAR 0x5419
+#define TIOCSSOFTCAR 0x541A
+
+#define TIOCINQ FIONREAD
+#define TIOCLINUX 0x541C
+#define TIOCCONS 0x541D
+#define TIOCGSERIAL 0x541E
+#define TIOCSSERIAL 0x541F
+#define TIOCPKT 0x5420
+
+#define TIOCNOTTY 0x5422
+#define TIOCSETD 0x5423
+#define TIOCGETD 0x5424
+#define TCSBRKP 0x5425
+#define TIOCSBRK 0x5427
+#define TIOCCBRK 0x5428
+#define TIOCGSID 0x5429
+#define TIOCGRS485 0x542E
+#define TIOCSRS485 0x542F
+#define TIOCGPTN 0x80045430
+#define TIOCSPTLCK 0x40045431
+#define TIOCGDEV 0x80045432
+#define TCGETX 0x5432
+#define TCSETX 0x5433
+#define TCSETXF 0x5434
+#define TCSETXW 0x5435
+#define TIOCSIG 0x40045436
+#define TIOCVHANGUP 0x5437
+#define TIOCGPKT 0x80045438
+#define TIOCGPTLCK 0x80045439
+#define TIOCGEXCL 0x80045440
+
+#define FIONCLEX 0x5450
+#define FIOCLEX 0x5451
+
+
+#define FIOASYNC 0x5452
+
+
+#define TIOCSERCONFIG 0x5453
+#define TIOCSERGWILD 0x5454
+#define TIOCSERSWILD 0x5455
+#define TIOCGLCKTRMIOS 0x5456
+#define TIOCSLCKTRMIOS 0x5457
+#define TIOCSERGSTRUCT 0x5458
+#define TIOCSERGETLSR 0x5459
+#define TIOCSERGETMULTI 0x545A
+#define TIOCSERSETMULTI 0x545B
+
+#define TIOCMIWAIT 0x545C
+#define TIOCGICOUNT 0x545D
+#define FIOQSIZE 0x5460
+
+#define TIOCPKT_DATA 0
+#define TIOCPKT_FLUSHREAD 1
+#define TIOCPKT_FLUSHWRITE 2
+#define TIOCPKT_STOP 4
+#define TIOCPKT_START 8
+#define TIOCPKT_NOSTOP 16
+#define TIOCPKT_DOSTOP 32
+#define TIOCPKT_IOCTL 64
+
+#define TIOCSER_TEMT 0x01
+
 struct winsize {
 unsigned short ws_row;
 unsigned short ws_col;
 unsigned short ws_xpixel;
 unsigned short ws_ypixel;
 };
+
+#define TIOCM_LE 0x001
+#define TIOCM_DTR 0x002
+#define TIOCM_RTS 0x004
+#define TIOCM_ST 0x008
+#define TIOCM_SR 0x010
+#define TIOCM_CTS 0x020
+#define TIOCM_CAR 0x040
+#define TIOCM_RNG 0x080
+#define TIOCM_DSR 0x100
+#define TIOCM_CD TIOCM_CAR
+#define TIOCM_RI TIOCM_RNG
+#define TIOCM_OUT1 0x2000
+#define TIOCM_OUT2 0x4000
+#define TIOCM_LOOP 0x8000
+
+#define N_TTY 0
+#define N_SLIP 1
+#define N_MOUSE 2
+#define N_PPP 3
+#define N_STRIP 4
+#define N_AX25 5
+#define N_X25 6
+#define N_6PACK 7
+#define N_MASC 8
+#define N_R3964 9
+#define N_PROFIBUS_FDL 10
+#define N_IRDA 11
+#define N_SMSBLOCK 12
+#define N_HDLC 13
+#define N_SYNC_PPP 14
+#define N_HCI 15
+
+#define FIOSETOWN 0x8901
+#define SIOCSPGRP 0x8902
+#define FIOGETOWN 0x8903
+#define SIOCGPGRP 0x8904
+
+#define SIOCGSTAMP 0x8906
+#define SIOCGSTAMPNS 0x8907
+
+#define SIOCADDRT 0x890B
+#define SIOCDELRT 0x890C
+#define SIOCRTMSG 0x890D
+
+#define SIOCGIFNAME 0x8910
+#define SIOCSIFLINK 0x8911
+#define SIOCGIFCONF 0x8912
+#define SIOCGIFFLAGS 0x8913
+#define SIOCSIFFLAGS 0x8914
+#define SIOCGIFADDR 0x8915
+#define SIOCSIFADDR 0x8916
+#define SIOCGIFDSTADDR 0x8917
+#define SIOCSIFDSTADDR 0x8918
+#define SIOCGIFBRDADDR 0x8919
+#define SIOCSIFBRDADDR 0x891a
+#define SIOCGIFNETMASK 0x891b
+#define SIOCSIFNETMASK 0x891c
+#define SIOCGIFMETRIC 0x891d
+#define SIOCSIFMETRIC 0x891e
+#define SIOCGIFMEM 0x891f
+#define SIOCSIFMEM 0x8920
+#define SIOCGIFMTU 0x8921
+#define SIOCSIFMTU 0x8922
+#define SIOCSIFNAME 0x8923
+#define SIOCSIFHWADDR 0x8924
+#define SIOCGIFENCAP 0x8925
+#define SIOCSIFENCAP 0x8926
+#define SIOCGIFHWADDR 0x8927
+#define SIOCGIFSLAVE 0x8929
+#define SIOCSIFSLAVE 0x8930
+#define SIOCADDMULTI 0x8931
+#define SIOCDELMULTI 0x8932
+#define SIOCGIFINDEX 0x8933
+#define SIOGIFINDEX SIOCGIFINDEX
+#define SIOCSIFPFLAGS 0x8934
+#define SIOCGIFPFLAGS 0x8935
+#define SIOCDIFADDR 0x8936
+#define SIOCSIFHWBROADCAST 0x8937
+#define SIOCGIFCOUNT 0x8938
+
+#define SIOCGIFBR 0x8940
+#define SIOCSIFBR 0x8941
+
+#define SIOCGIFTXQLEN 0x8942
+#define SIOCSIFTXQLEN 0x8943
+
+#define SIOCDARP 0x8953
+#define SIOCGARP 0x8954
+#define SIOCSARP 0x8955
+
+#define SIOCDRARP 0x8960
+#define SIOCGRARP 0x8961
+#define SIOCSRARP 0x8962
+
+#define SIOCGIFMAP 0x8970
+#define SIOCSIFMAP 0x8971
+
+#define SIOCADDDLCI 0x8980
+#define SIOCDELDLCI 0x8981
+
+#define SIOCDEVPRIVATE 0x89F0
+#define SIOCPROTOPRIVATE 0x89E0
 # 34 "../../../include/rtlibc.h" 2
 # 1 "../../../include/libc/libc_dirent.h" 1
+
+#define LIBC_DIRENT_H__ 
+
+#define DT_UNKNOWN 0x00
+#define DT_REG 0x01
+#define DT_DIR 0x02
 # 35 "../../../include/rtlibc.h" 2
 # 1 "../../../include/libc/libc_signal.h" 1
+# 26 "../../../include/libc/libc_signal.h"
+#define LIBC_SIGNAL_H__ 
 # 41 "../../../include/libc/libc_signal.h"
 union sigval
 {
@@ -718,27 +2358,93 @@ struct siginfo
     union sigval si_value;
 };
 typedef struct siginfo siginfo_t;
-# 85 "../../../include/libc/libc_signal.h"
+
+
+#define SI_USER 0x01
+#define SI_QUEUE 0x02
+#define SI_TIMER 0x03
+
+#define SI_ASYNCIO 0x04
+
+#define SI_MESGQ 0x05
+
+
+
+
+
+
+
 # 1 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\signal.h" 1 3 4
-# 12 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\signal.h" 3 4
+
+
+
+
+
+
+
+#define _SIGNAL_H_ 
+
+
+
 
 # 12 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\signal.h" 3 4
 typedef void (*sa_sighandler_t)(int);
 typedef void (*__sighandler_t)(int);
 typedef int sig_atomic_t;
-# 46 "d:\\c-sky\\cdk\\csky\\mingw\\csky-abiv2-elf-toolchain\\csky-elfabiv2\\sys-include\\signal.h" 3 4
+
+
+
+
+
+
+#define SIG_DFL ((sa_sighandler_t) 1)
+#define SIG_IGN ((sa_sighandler_t) 2)
+#define SIG_ERR ((sa_sighandler_t)-1)
+
+#define NUM_LIBC_SIGNALS 18
+
+#define SIGHUP 1
+#define SIGINT 2
+#define SIGQUIT 3
+#define SIGILL 4
+#define SIGTRAP 5
+#define SIGABRT 6
+#define SIGIOT 6
+#define SIGBUS 7
+#define SIGFPE 8
+#define SIGKILL 9
+#define SIGUSR1 10
+#define SIGSEGV 11
+#define SIGUSR2 12
+#define SIGPIPE 13
+#define SIGALRM 14
+#define SIGTERM 15
+
+
+
 extern sa_sighandler_t signal(int __sig, sa_sighandler_t __handler);
 extern int raise(int __sig);
 # 86 "../../../include/libc/libc_signal.h" 2
 # 36 "../../../include/rtlibc.h" 2
 # 1 "../../../include/libc/libc_fdset.h" 1
-# 53 "../../../include/libc/libc_fdset.h"
+# 26 "../../../include/libc/libc_fdset.h"
+#define LIBC_FDSET_H__ 
+# 44 "../../../include/libc/libc_fdset.h"
+#define FD_SETSIZE DFS_FD_MAX
+
+
+
+
+
+
+#define NBBY 8
+
 
 # 53 "../../../include/libc/libc_fdset.h"
 typedef long fd_mask;
+#define NFDBITS (sizeof (fd_mask) * NBBY)
 
-
-
+#define howmany(x,y) (((x)+((y)-1))/(y))
 
 
 
@@ -746,11 +2452,34 @@ typedef long fd_mask;
 typedef struct _types_fd_set {
     fd_mask fds_bits[(((12)+(((sizeof (fd_mask) * 8))-1))/((sizeof (fd_mask) * 8)))];
 } _types_fd_set;
+
+#define fd_set _types_fd_set
+
+#define FD_SET(n,p) ((p)->fds_bits[(n)/NFDBITS] |= (1L << ((n) % NFDBITS)))
+#define FD_CLR(n,p) ((p)->fds_bits[(n)/NFDBITS] &= ~(1L << ((n) % NFDBITS)))
+#define FD_ISSET(n,p) ((p)->fds_bits[(n)/NFDBITS] & (1L << ((n) % NFDBITS)))
+#define FD_ZERO(p) memset((void*)(p), 0, sizeof(*(p)))
 # 37 "../../../include/rtlibc.h" 2
 # 1072 "../../../include/rtdef.h" 2
 # 38 "../../../include/rtthread.h" 2
 # 1 "../../../include/rtservice.h" 1
-# 61 "../../../include/rtservice.h"
+# 31 "../../../include/rtservice.h"
+#define __RT_SERVICE_H__ 
+# 47 "../../../include/rtservice.h"
+#define rt_container_of(ptr,type,member) ((type *)((char *)(ptr) - (unsigned long)(&((type *)0)->member)))
+
+
+
+
+
+
+#define RT_LIST_OBJECT_INIT(object) { &(object), &(object) }
+
+
+
+
+
+
 static __inline void rt_list_init(rt_list_t *l)
 {
     l->next = l->prev = l;
@@ -823,7 +2552,29 @@ static __inline unsigned int rt_list_len(const rt_list_t *l)
 
     return len;
 }
-# 185 "../../../include/rtservice.h"
+
+
+
+
+
+
+
+#define rt_list_entry(node,type,member) rt_container_of(node, type, member)
+# 149 "../../../include/rtservice.h"
+#define rt_list_for_each_entry(pos,head,member) for (pos = rt_list_entry((head)->next, typeof(*pos), member); &pos->member != (head); pos = rt_list_entry(pos->member.next, typeof(*pos), member))
+# 161 "../../../include/rtservice.h"
+#define rt_list_for_each_entry_safe(pos,n,head,member) for (pos = rt_list_entry((head)->next, typeof(*pos), member), n = rt_list_entry(pos->member.next, typeof(*pos), member); &pos->member != (head); pos = n, n = rt_list_entry(n->member.next, typeof(*n), member))
+# 175 "../../../include/rtservice.h"
+#define rt_list_first_entry(ptr,type,member) rt_list_entry((ptr)->next, type, member)
+
+
+#define RT_SLIST_OBJECT_INIT(object) { RT_NULL }
+
+
+
+
+
+
 static __inline void rt_slist_init(rt_slist_t *l)
 {
     l->next = (0);
@@ -886,11 +2637,28 @@ static __inline int rt_slist_isempty(rt_slist_t *l)
 {
     return l->next == (0);
 }
+
+
+
+
+
+
+
+#define rt_slist_entry(node,type,member) rt_container_of(node, type, member)
+# 263 "../../../include/rtservice.h"
+#define rt_slist_for_each_entry(pos,head,member) for (pos = rt_slist_entry((head)->next, typeof(*pos), member); &pos->member != (RT_NULL); pos = rt_slist_entry(pos->member.next, typeof(*pos), member))
+# 276 "../../../include/rtservice.h"
+#define rt_slist_first_entry(ptr,type,member) rt_slist_entry((ptr)->next, type, member)
 # 39 "../../../include/rtthread.h" 2
 # 1 "../../../include/rtm.h" 1
-# 25 "../../../include/rtm.h"
+# 22 "../../../include/rtm.h"
+#define __RTM_H__ 
+
+
 # 1 "../../../include/rtthread.h" 1
 # 26 "../../../include/rtm.h" 2
+# 54 "../../../include/rtm.h"
+#define RTM_EXPORT(symbol) 
 # 40 "../../../include/rtthread.h" 2
 # 54 "../../../include/rtthread.h"
 void rt_system_object_init(void);
@@ -1196,7 +2964,7 @@ void rt_set_errno(rt_err_t no);
 int *_rt_errno(void);
 
 
-
+#define errno *_rt_errno()
 
 
 
@@ -1228,7 +2996,14 @@ void rt_assert_handler(const char *ex, const char *func, rt_size_t line);
 
 
 # 1 "../../../components/finsh/finsh_api.h" 1
-# 31 "../../../components/finsh/finsh_api.h"
+# 24 "../../../components/finsh/finsh_api.h"
+#define FINSH_API_H__ 
+
+
+
+
+
+
 typedef long (*syscall_func)(void);
 
 
@@ -1244,9 +3019,42 @@ extern struct finsh_syscall *_syscall_table_begin, *_syscall_table_end;
 
 
 struct finsh_syscall* finsh_syscall_lookup(const char* name);
+# 105 "../../../components/finsh/finsh_api.h"
+#define FINSH_FUNCTION_EXPORT_CMD(name,cmd,desc) const char __fsym_ ##cmd ##_name[] SECTION(".rodata.name") = #cmd; const char __fsym_ ##cmd ##_desc[] SECTION(".rodata.name") = #desc; const struct finsh_syscall __fsym_ ##cmd SECTION("FSymTab")= { __fsym_ ##cmd ##_name, __fsym_ ##cmd ##_desc, (syscall_func)&name };
+# 115 "../../../components/finsh/finsh_api.h"
+#define FINSH_VAR_EXPORT(name,type,desc) const char __vsym_ ##name ##_name[] SECTION(".rodata.name") = #name; const char __vsym_ ##name ##_desc[] SECTION(".rodata.name") = #desc; const struct finsh_sysvar __vsym_ ##name SECTION("VSymTab")= { __vsym_ ##name ##_name, __vsym_ ##name ##_desc, type, (void*)&name };
+# 198 "../../../components/finsh/finsh_api.h"
+#define FINSH_FUNCTION_EXPORT(name,desc) FINSH_FUNCTION_EXPORT_CMD(name, name, desc)
+# 210 "../../../components/finsh/finsh_api.h"
+#define FINSH_FUNCTION_EXPORT_ALIAS(name,alias,desc) FINSH_FUNCTION_EXPORT_CMD(name, alias, desc)
+# 222 "../../../components/finsh/finsh_api.h"
+#define MSH_CMD_EXPORT(command,desc) FINSH_FUNCTION_EXPORT_CMD(command, __cmd_ ##command, desc)
+
+#define MSH_CMD_EXPORT_ALIAS(command,alias,desc) FINSH_FUNCTION_EXPORT_ALIAS(command, __cmd_ ##alias, desc)
 # 570 "../../../include/rtthread.h" 2
 # 18 "../../../components/libc/compilers/minilibc/string.h" 2
-# 40 "../../../components/libc/compilers/minilibc/string.h"
+
+
+
+
+
+#define ZEROPAD (1 << 0)
+#define SIGN (1 << 1)
+#define PLUS (1 << 2)
+#define SPACE (1 << 3)
+#define LEFT (1 << 4)
+#define SPECIAL (1 << 5)
+#define LARGE (1 << 6)
+
+#define _U 0x01
+#define _L 0x02
+#define _D 0x04
+#define _C 0x08
+#define _P 0x10
+#define _S 0x20
+#define _X 0x40
+#define _SP 0x80
+
 void* memset(void *s, int c, size_t n);
 void* memcpy(void *dest, const void *src, size_t n);
 void* memmove(void *dest, const void *src, size_t n);
@@ -1278,11 +3086,24 @@ size_t strspn (const char *s, const char *accept);
 
 long strtol(const char *str, char **endptr, int base);
 long long strtoll(const char *str, char **endptr, int base);
-# 21 "../../../components/dfs/filesystems/elmfat/ff.c" 2
-# 1 "../../../components/dfs/filesystems/elmfat/ff.h" 1
-# 29 "../../../components/dfs/filesystems/elmfat/ff.h"
-# 1 "../../../components/dfs/filesystems/elmfat/integer.h" 1
-# 18 "../../../components/dfs/filesystems/elmfat/integer.h"
+# 21 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c" 2
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h" 1
+# 22 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
+#define _FATFS 68020
+
+
+
+
+
+
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h" 1
+
+
+
+
+
+#define _FF_INTEGER 
+# 18 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h"
 typedef int INT;
 typedef unsigned int UINT;
 
@@ -1300,14 +3121,137 @@ typedef unsigned long DWORD;
 
 
 typedef unsigned long long QWORD;
-# 30 "../../../components/dfs/filesystems/elmfat/ff.h" 2
-# 1 "../../../components/dfs/filesystems/elmfat/ffconf.h" 1
-# 31 "../../../components/dfs/filesystems/elmfat/ff.h" 2
-# 70 "../../../components/dfs/filesystems/elmfat/ff.h"
+# 30 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h" 2
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h" 1
+
+
+
+
+#define _FFCONF 68020
+
+
+
+
+
+#define _FS_READONLY 0
+
+
+
+
+
+
+#define _FS_MINIMIZE 0
+# 28 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _USE_STRFUNC 0
+# 37 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _USE_FIND 0
+
+
+
+
+#define _USE_MKFS 1
+
+
+
+#define _USE_FASTSEEK 1
+
+
+
+#define _USE_EXPAND 0
+
+
+
+#define _USE_CHMOD 0
+
+
+
+
+#define _USE_LABEL 0
+
+
+
+
+#define _USE_FORWARD 0
+# 73 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _CODE_PAGE RT_DFS_ELM_CODE_PAGE
+# 106 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _USE_LFN RT_DFS_ELM_USE_LFN
+#define _MAX_LFN RT_DFS_ELM_MAX_LFN
+# 131 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _LFN_UNICODE 0
+
+
+
+
+
+
+#define _STRF_ENCODE 3
+# 150 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _FS_RPATH 0
+# 164 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _VOLUMES RT_DFS_ELM_DRIVES
+
+
+
+
+
+
+#define _STR_VOLUME_ID 0
+#define _VOLUME_STRS "RAM","NAND","CF","SD","SD2","USB","USB2","USB3"
+
+
+
+
+
+
+
+#define _MULTI_PARTITION 0
+# 189 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _MIN_SS 512
+
+#define _MAX_SS RT_DFS_ELM_MAX_SECTOR_SIZE
+# 203 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _USE_TRIM 0
+
+
+
+
+
+#define _FS_NOFSINFO 0
+# 226 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _FS_TINY 0
+
+
+
+
+
+
+#define _FS_EXFAT 1
+# 242 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _FS_NORTC 0
+#define _NORTC_MON 1
+#define _NORTC_MDAY 1
+#define _NORTC_YEAR 2016
+# 256 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _FS_LOCK 0
+# 269 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h"
+#define _FS_REENTRANT 1
+
+
+
+#define _FS_TIMEOUT 1000
+#define _SYNC_t rt_mutex_t
+# 31 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h" 2
+# 50 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
+#define LD2PD(vol) (BYTE)(vol)
+#define LD2PT(vol) 0
+# 70 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
 typedef char TCHAR;
-# 84 "../../../components/dfs/filesystems/elmfat/ff.h"
+#define _T(x) x
+#define _TEXT(x) x
+# 84 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
 typedef QWORD FSIZE_t;
-# 93 "../../../components/dfs/filesystems/elmfat/ff.h"
+# 93 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
 typedef struct {
  BYTE fs_type;
  BYTE drv;
@@ -1332,7 +3276,7 @@ typedef struct {
 
  DWORD last_clst;
  DWORD free_clst;
-# 126 "../../../components/dfs/filesystems/elmfat/ff.h"
+# 126 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
  DWORD n_fatent;
  DWORD fsize;
  DWORD volbase;
@@ -1490,7 +3434,17 @@ int f_putc (TCHAR c, FIL* fp);
 int f_puts (const TCHAR* str, FIL* cp);
 int f_printf (FIL* fp, const TCHAR* str, ...);
 TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
-# 303 "../../../components/dfs/filesystems/elmfat/ff.h"
+
+#define f_eof(fp) ((int)((fp)->fptr == (fp)->obj.objsize))
+#define f_error(fp) ((fp)->err)
+#define f_tell(fp) ((fp)->fptr)
+#define f_size(fp) ((fp)->obj.objsize)
+#define f_rewind(fp) f_lseek((fp), 0)
+#define f_rewinddir(dp) f_readdir((dp), 0)
+
+
+#define EOF (-1)
+# 303 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
 DWORD get_fattime (void);
 
 
@@ -1510,9 +3464,46 @@ int ff_cre_syncobj (BYTE vol, rt_mutex_t* sobj);
 int ff_req_grant (rt_mutex_t sobj);
 void ff_rel_grant (rt_mutex_t sobj);
 int ff_del_syncobj (rt_mutex_t sobj);
-# 22 "../../../components/dfs/filesystems/elmfat/ff.c" 2
-# 1 "../../../components/dfs/filesystems/elmfat/diskio.h" 1
-# 16 "../../../components/dfs/filesystems/elmfat/diskio.h"
+# 332 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h"
+#define FA_READ 0x01
+#define FA_WRITE 0x02
+#define FA_OPEN_EXISTING 0x00
+#define FA_CREATE_NEW 0x04
+#define FA_CREATE_ALWAYS 0x08
+#define FA_OPEN_ALWAYS 0x10
+#define FA_OPEN_APPEND 0x30
+
+
+#define CREATE_LINKMAP ((FSIZE_t)0 - 1)
+
+
+#define FM_FAT 0x01
+#define FM_FAT32 0x02
+#define FM_EXFAT 0x04
+#define FM_ANY 0x07
+#define FM_SFD 0x08
+
+
+#define FS_FAT12 1
+#define FS_FAT16 2
+#define FS_FAT32 3
+#define FS_EXFAT 4
+
+
+#define AM_RDO 0x01
+#define AM_HID 0x02
+#define AM_SYS 0x04
+#define AM_DIR 0x10
+#define AM_ARC 0x20
+# 22 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c" 2
+# 1 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h" 1
+
+
+
+
+
+#define _DISKIO_DEFINED 
+# 16 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h"
 typedef BYTE DSTATUS;
 
 
@@ -1534,13 +3525,237 @@ DSTATUS disk_status (BYTE pdrv);
 DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
 DRESULT disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
 DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
-# 23 "../../../components/dfs/filesystems/elmfat/ff.c" 2
-# 525 "../../../components/dfs/filesystems/elmfat/ff.c"
+
+
+
+
+#define STA_NOINIT 0x01
+#define STA_NODISK 0x02
+#define STA_PROTECT 0x04
+
+
+
+
+
+#define CTRL_SYNC 0
+#define GET_SECTOR_COUNT 1
+#define GET_SECTOR_SIZE 2
+#define GET_BLOCK_SIZE 3
+#define CTRL_TRIM 4
+
+
+#define CTRL_POWER 5
+#define CTRL_LOCK 6
+#define CTRL_EJECT 7
+#define CTRL_FORMAT 8
+
+
+#define MMC_GET_TYPE 10
+#define MMC_GET_CSD 11
+#define MMC_GET_CID 12
+#define MMC_GET_OCR 13
+#define MMC_GET_SDSTAT 14
+#define ISDIO_READ 55
+#define ISDIO_WRITE 56
+#define ISDIO_MRITE 57
+
+
+#define ATA_GET_REV 20
+#define ATA_GET_MODEL 21
+#define ATA_GET_SN 22
+# 23 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c" 2
+# 36 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define ABORT(fs,res) { fp->err = (BYTE)(res); LEAVE_FF(fs, res); }
+
+
+
+
+
+
+
+#define ENTER_FF(fs) { if (!lock_fs(fs)) return FR_TIMEOUT; }
+#define LEAVE_FF(fs,res) { unlock_fs(fs, res); return res; }
+# 58 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define SS(fs) ((UINT)_MAX_SS)
+# 71 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define GET_FATTIME() get_fattime()
+# 129 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define _DF1S 0
+#define _EXCVT {0x80,0x9A,0x45,0x41,0x8E,0x41,0x8F,0x80,0x45,0x45,0x45,0x49,0x49,0x49,0x8E,0x8F, 0x90,0x92,0x92,0x4F,0x99,0x4F,0x55,0x55,0x59,0x99,0x9A,0x9B,0x9C,0x9D,0x9E,0x9F, 0x41,0x49,0x4F,0x55,0xA5,0xA5,0xA6,0xA7,0xA8,0xA9,0xAA,0xAB,0xAC,0xAD,0xAE,0xAF, 0xB0,0xB1,0xB2,0xB3,0xB4,0xB5,0xB6,0xB7,0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF, 0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7,0xC8,0xC9,0xCA,0xCB,0xCC,0xCD,0xCE,0xCF, 0xD0,0xD1,0xD2,0xD3,0xD4,0xD5,0xD6,0xD7,0xD8,0xD9,0xDA,0xDB,0xDC,0xDD,0xDE,0xDF, 0xE0,0xE1,0xE2,0xE3,0xE4,0xE5,0xE6,0xE7,0xE8,0xE9,0xEA,0xEB,0xEC,0xED,0xEE,0xEF, 0xF0,0xF1,0xF2,0xF3,0xF4,0xF5,0xF6,0xF7,0xF8,0xF9,0xFA,0xFB,0xFC,0xFD,0xFE,0xFF}
+# 328 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define IsUpper(c) (((c)>='A')&&((c)<='Z'))
+#define IsLower(c) (((c)>='a')&&((c)<='z'))
+#define IsDigit(c) (((c)>='0')&&((c)<='9'))
+# 348 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define IsDBCS1(c) 0
+#define IsDBCS2(c) 0
+
+
+
+
+
+#define AM_VOL 0x08
+#define AM_LFN 0x0F
+#define AM_MASK 0x3F
+
+
+
+#define FA_SEEKEND 0x20
+#define FA_MODIFIED 0x40
+#define FA_DIRTY 0x80
+
+
+
+#define NSFLAG 11
+#define NS_LOSS 0x01
+#define NS_LFN 0x02
+#define NS_LAST 0x04
+#define NS_BODY 0x08
+#define NS_EXT 0x10
+#define NS_DOT 0x20
+#define NS_NOLFN 0x40
+#define NS_NONAME 0x80
+
+
+
+#define MAX_FAT12 0xFF5
+#define MAX_FAT16 0xFFF5
+#define MAX_FAT32 0xFFFFFF5
+#define MAX_EXFAT 0x7FFFFFFD
+#define MAX_DIR 0x200000
+#define MAX_DIR_EX 0x10000000
+
+
+
+
+
+
+#define BS_JmpBoot 0
+#define BS_OEMName 3
+#define BPB_BytsPerSec 11
+#define BPB_SecPerClus 13
+#define BPB_RsvdSecCnt 14
+#define BPB_NumFATs 16
+#define BPB_RootEntCnt 17
+#define BPB_TotSec16 19
+#define BPB_Media 21
+#define BPB_FATSz16 22
+#define BPB_SecPerTrk 24
+#define BPB_NumHeads 26
+#define BPB_HiddSec 28
+#define BPB_TotSec32 32
+#define BS_DrvNum 36
+#define BS_NTres 37
+#define BS_BootSig 38
+#define BS_VolID 39
+#define BS_VolLab 43
+#define BS_FilSysType 54
+#define BS_BootCode 62
+#define BS_55AA 510
+
+#define BPB_FATSz32 36
+#define BPB_ExtFlags32 40
+#define BPB_FSVer32 42
+#define BPB_RootClus32 44
+#define BPB_FSInfo32 48
+#define BPB_BkBootSec32 50
+#define BS_DrvNum32 64
+#define BS_NTres32 65
+#define BS_BootSig32 66
+#define BS_VolID32 67
+#define BS_VolLab32 71
+#define BS_FilSysType32 82
+#define BS_BootCode32 90
+
+#define BPB_ZeroedEx 11
+#define BPB_VolOfsEx 64
+#define BPB_TotSecEx 72
+#define BPB_FatOfsEx 80
+#define BPB_FatSzEx 84
+#define BPB_DataOfsEx 88
+#define BPB_NumClusEx 92
+#define BPB_RootClusEx 96
+#define BPB_VolIDEx 100
+#define BPB_FSVerEx 104
+#define BPB_VolFlagEx 106
+#define BPB_ActFatEx 107
+#define BPB_BytsPerSecEx 108
+#define BPB_SecPerClusEx 109
+#define BPB_NumFATsEx 110
+#define BPB_DrvNumEx 111
+#define BPB_PercInUseEx 112
+#define BPB_RsvdEx 113
+#define BS_BootCodeEx 120
+
+#define FSI_LeadSig 0
+#define FSI_StrucSig 484
+#define FSI_Free_Count 488
+#define FSI_Nxt_Free 492
+
+#define MBR_Table 446
+#define SZ_PTE 16
+#define PTE_Boot 0
+#define PTE_StHead 1
+#define PTE_StSec 2
+#define PTE_StCyl 3
+#define PTE_System 4
+#define PTE_EdHead 5
+#define PTE_EdSec 6
+#define PTE_EdCyl 7
+#define PTE_StLba 8
+#define PTE_SizLba 12
+
+#define DIR_Name 0
+#define DIR_Attr 11
+#define DIR_NTres 12
+#define DIR_CrtTime10 13
+#define DIR_CrtTime 14
+#define DIR_LstAccDate 18
+#define DIR_FstClusHI 20
+#define DIR_ModTime 22
+#define DIR_FstClusLO 26
+#define DIR_FileSize 28
+#define LDIR_Ord 0
+#define LDIR_Attr 11
+#define LDIR_Type 12
+#define LDIR_Chksum 13
+#define LDIR_FstClusLO 26
+#define XDIR_Type 0
+#define XDIR_NumLabel 1
+#define XDIR_Label 2
+#define XDIR_CaseSum 4
+#define XDIR_NumSec 1
+#define XDIR_SetSum 2
+#define XDIR_Attr 4
+#define XDIR_CrtTime 8
+#define XDIR_ModTime 12
+#define XDIR_AccTime 16
+#define XDIR_CrtTime10 20
+#define XDIR_ModTime10 21
+#define XDIR_CrtTZ 22
+#define XDIR_ModTZ 23
+#define XDIR_AccTZ 24
+#define XDIR_GenFlags 33
+#define XDIR_NumName 35
+#define XDIR_NameHash 36
+#define XDIR_ValidFileSize 40
+#define XDIR_FstClus 52
+#define XDIR_FileSize 56
+
+#define SZDIRE 32
+#define LLEF 0x40
+#define DDEM 0xE5
+#define RDDEM 0x05
+# 525 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static FATFS *FatFs[2];
 static WORD Fsid;
-# 582 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 567 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
+#define DEF_NAMBUF WCHAR *lfn;
+#define INIT_NAMBUF(fs) { lfn = ff_memalloc((_MAX_LFN+1)*2 + SZDIRE*19); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; (fs)->dirbuf = (BYTE*)(lfn+_MAX_LFN+1); }
+#define FREE_NAMBUF() ff_memfree(lfn)
+# 582 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static const BYTE ExCvt[] = {0x80,0x9A,0x45,0x41,0x8E,0x41,0x8F,0x80,0x45,0x45,0x45,0x49,0x49,0x49,0x8E,0x8F, 0x90,0x92,0x92,0x4F,0x99,0x4F,0x55,0x55,0x59,0x99,0x9A,0x9B,0x9C,0x9D,0x9E,0x9F, 0x41,0x49,0x4F,0x55,0xA5,0xA5,0xA6,0xA7,0xA8,0xA9,0xAA,0xAB,0xAC,0xAD,0xAE,0xAF, 0xB0,0xB1,0xB2,0xB3,0xB4,0xB5,0xB6,0xB7,0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF, 0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7,0xC8,0xC9,0xCA,0xCB,0xCC,0xCD,0xCE,0xCF, 0xD0,0xD1,0xD2,0xD3,0xD4,0xD5,0xD6,0xD7,0xD8,0xD9,0xDA,0xDB,0xDC,0xDD,0xDE,0xDF, 0xE0,0xE1,0xE2,0xE3,0xE4,0xE5,0xE6,0xE7,0xE8,0xE9,0xEA,0xEB,0xEC,0xED,0xEE,0xEF, 0xF0,0xF1,0xF2,0xF3,0xF4,0xF5,0xF6,0xF7,0xF8,0xF9,0xFA,0xFB,0xFC,0xFD,0xFE,0xFF};
-# 601 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 601 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 WORD __attribute__((section(".fast"))) ld_word (const BYTE* ptr)
 {
@@ -1611,7 +3826,7 @@ void __attribute__((section(".fast"))) st_qword (BYTE* ptr, QWORD val)
  *ptr++ = (BYTE)val; val >>= 8;
  *ptr++ = (BYTE)val;
 }
-# 681 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 681 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 void __attribute__((section(".fast"))) mem_cpy (void* dst, const void* src, UINT cnt) {
  BYTE *d = (BYTE*)dst;
@@ -1654,7 +3869,7 @@ int chk_chr (const char* str, int chr) {
  while (*str && *str != chr) str++;
  return *str;
 }
-# 731 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 731 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 int lock_fs (
  FATFS* fs
@@ -1674,7 +3889,7 @@ void unlock_fs (
   ff_rel_grant(fs->sobj);
  }
 }
-# 872 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 872 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT __attribute__((section(".fast"))) sync_window (
  FATFS* fs
@@ -1727,7 +3942,7 @@ FRESULT __attribute__((section(".fast"))) move_window (
  }
  return res;
 }
-# 933 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 933 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT sync_fs (
  FATFS* fs
@@ -1758,7 +3973,7 @@ FRESULT sync_fs (
 
  return res;
 }
-# 972 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 972 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 DWORD clust2sect (
  FATFS* fs,
@@ -1769,7 +3984,7 @@ DWORD clust2sect (
  if (clst >= fs->n_fatent - 2) return 0;
  return clst * fs->csize + fs->database;
 }
-# 990 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 990 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 DWORD __attribute__((section(".fast"))) get_fat (
  _FDID* obj,
@@ -1837,7 +4052,7 @@ DWORD __attribute__((section(".fast"))) get_fat (
 
  return val;
 }
-# 1066 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1066 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT __attribute__((section(".fast"))) put_fat (
  FATFS* fs,
@@ -1889,7 +4104,7 @@ FRESULT __attribute__((section(".fast"))) put_fat (
  }
  return res;
 }
-# 1132 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1132 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 DWORD __attribute__((section(".fast"))) find_bitmap (
  FATFS* fs,
@@ -1985,7 +4200,7 @@ FRESULT fill_fat_chain (
  }
  return FR_OK;
 }
-# 1236 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1236 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT remove_chain (
  _FDID* obj,
@@ -2140,7 +4355,7 @@ DWORD __attribute__((section(".fast"))) create_chain (
 
  return ncl;
 }
-# 1401 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1401 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 DWORD __attribute__((section(".fast"))) clmt_clust (
  FIL* fp,
@@ -2161,7 +4376,7 @@ DWORD __attribute__((section(".fast"))) clmt_clust (
  }
  return cl + *tbl;
 }
-# 1431 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1431 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_sdi (
  DIR* dp,
@@ -2203,7 +4418,7 @@ FRESULT dir_sdi (
 
  return FR_OK;
 }
-# 1480 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1480 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_next (
  DIR* dp,
@@ -2265,7 +4480,7 @@ FRESULT dir_next (
 
  return FR_OK;
 }
-# 1550 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1550 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_alloc (
  DIR* dp,
@@ -2299,7 +4514,7 @@ FRESULT dir_alloc (
  if (res == FR_NO_FILE) res = FR_DENIED;
  return res;
 }
-# 1593 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1593 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 DWORD ld_clust (
  FATFS* fs,
@@ -2330,7 +4545,7 @@ void st_clust (
   st_word(dir + 20, (WORD)(cl >> 16));
  }
 }
-# 1631 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1631 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 const BYTE LfnOfs[] = {1,3,5,7,9,14,16,18,20,22,24,28,30};
 
@@ -2439,7 +4654,7 @@ void put_lfn (
  if (wc == 0xFFFF || !lfn[i]) ord |= 0x40;
  dir[0] = ord;
 }
-# 1750 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1750 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 void gen_numname (
  BYTE* dst,
@@ -2490,7 +4705,7 @@ void gen_numname (
   dst[j++] = (i < 8) ? ns[i++] : ' ';
  } while (j < 8);
 }
-# 1809 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1809 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 BYTE sum_sfn (
  const BYTE* dir
@@ -2502,7 +4717,7 @@ BYTE sum_sfn (
  do sum = (sum >> 1) + (sum << 7) + *dir++; while (--n);
  return sum;
 }
-# 1830 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1830 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 WORD xdir_sum (
  const BYTE* dir
@@ -2553,7 +4768,7 @@ DWORD xsum32 (
  sum = ((sum & 1) ? 0x80000000 : 0) + (sum >> 1) + dat;
  return sum;
 }
-# 1888 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1888 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 void get_xdir_info (
  BYTE* dirb,
@@ -2564,7 +4779,7 @@ void get_xdir_info (
  WCHAR w;
 
  UINT nc;
-# 1912 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1912 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  for (si = 32 * 2, di = nc = 0; nc < dirb[35]; si += 2, nc++) {
   if ((si % 32) == 0) si += 2;
   w = ld_word(dirb + si);
@@ -2586,7 +4801,7 @@ void get_xdir_info (
  fno->ftime = ld_word(dirb + 12 + 0);
  fno->fdate = ld_word(dirb + 12 + 2);
 }
-# 1941 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 1941 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT load_xdir (
  DIR* dp
@@ -2728,7 +4943,7 @@ void create_xdir (
  dirb[35] = nc;
  dirb[1] = nb;
 }
-# 2093 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2093 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_read (
  DIR* dp,
@@ -2797,7 +5012,7 @@ FRESULT dir_read (
  if (res != FR_OK) dp->sect = 0;
  return res;
 }
-# 2170 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2170 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_find (
  DIR* dp
@@ -2868,7 +5083,7 @@ FRESULT dir_find (
 
  return res;
 }
-# 2249 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2249 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_register (
  DIR* dp
@@ -2962,7 +5177,7 @@ FRESULT dir_register (
 
  return res;
 }
-# 2352 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2352 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT dir_remove (
  DIR* dp
@@ -2990,10 +5205,10 @@ FRESULT dir_remove (
   } while (res == FR_OK);
   if (res == FR_NO_FILE) res = FR_INT_ERR;
  }
-# 2388 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2388 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  return res;
 }
-# 2400 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2400 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 void get_fileinfo (
  DIR* dp,
@@ -3068,13 +5283,13 @@ void get_fileinfo (
   if (!dp->dir[12]) j = 0;
  }
  fno->altname[j] = 0;
-# 2487 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2487 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  fno->fattrib = dp->dir[11];
  fno->fsize = ld_dword(dp->dir + 28);
  tm = ld_dword(dp->dir + 22);
  fno->ftime = (WORD)tm; fno->fdate = (WORD)(tm >> 16);
 }
-# 2574 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2574 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT create_name (
  DIR* dp,
@@ -3112,7 +5327,7 @@ FRESULT create_name (
  }
  *path = &p[si];
  cf = (w < ' ') ? 0x04 : 0;
-# 2621 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2621 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  while (di) {
   w = lfn[di - 1];
   if (w != ' ' && w != '.') break;
@@ -3188,9 +5403,9 @@ FRESULT create_name (
  dp->fn[11] = cf;
 
  return FR_OK;
-# 2760 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2760 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 }
-# 2769 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2769 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT follow_path (
  DIR* dp,
@@ -3212,7 +5427,7 @@ FRESULT follow_path (
   while (*path == '/' || *path == '\\') path++;
   obj->sclust = 0;
  }
-# 2804 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2804 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  if ((UINT)*path < ' ') {
   dp->fn[11] = 0x80;
   res = dir_sdi(dp, 0);
@@ -3258,7 +5473,7 @@ FRESULT follow_path (
 
  return res;
 }
-# 2857 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2857 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 int get_ldnumber (
  const TCHAR** path
@@ -3267,7 +5482,7 @@ int get_ldnumber (
  const TCHAR *tp, *tt;
  UINT i;
  int vol = -1;
-# 2873 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2873 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  if (*path) {
   for (tt = *path; (UINT)*tt >= (3 ? ' ' : '!') && *tt != ':'; tt++) ;
   if (*tt == ':') {
@@ -3279,7 +5494,7 @@ int get_ldnumber (
      *path = ++tt;
     }
    }
-# 2900 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2900 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
    return vol;
   }
 
@@ -3290,7 +5505,7 @@ int get_ldnumber (
  }
  return vol;
 }
-# 2918 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2918 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 BYTE check_fs (
  FATFS* fs,
@@ -3311,7 +5526,7 @@ BYTE check_fs (
 
  return 2;
 }
-# 2946 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 2946 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT find_volume (
  const TCHAR** path,
@@ -3511,10 +5726,10 @@ FRESULT find_volume (
 
  fs->fs_type = fmt;
  fs->id = ++Fsid;
-# 3157 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3157 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
  return FR_OK;
 }
-# 3167 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3167 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 static
 FRESULT validate (
  _FDID* obj,
@@ -3534,7 +5749,7 @@ FRESULT validate (
  }
  return res;
 }
-# 3202 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3202 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_mount (
  FATFS* fs,
  const TCHAR* path,
@@ -3575,7 +5790,7 @@ FRESULT f_mount (
  res = find_volume(&path, &fs, 0);
  { unlock_fs(fs, res); return res; };
 }
-# 3250 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3250 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_open (
  FIL* fp,
  const TCHAR* path,
@@ -3698,7 +5913,7 @@ FRESULT f_open (
 
 
   }
-# 3384 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3384 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
   if (res == FR_OK) {
 
    if (fs->fs_type == 4) {
@@ -3758,7 +5973,7 @@ FRESULT f_open (
 
  { unlock_fs(fs, res); return res; };
 }
-# 3451 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3451 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT __attribute__((section(".fast"))) f_read (
  FIL* fp,
  void* buff,
@@ -3850,7 +6065,7 @@ FRESULT __attribute__((section(".fast"))) f_read (
 
  { unlock_fs(fs, FR_OK); return FR_OK; };
 }
-# 3551 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3551 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT __attribute__((section(".fast"))) f_write (
  FIL* fp,
  const void* buff,
@@ -3964,7 +6179,7 @@ FRESULT __attribute__((section(".fast"))) f_write (
 
  { unlock_fs(fs, FR_OK); return FR_OK; };
 }
-# 3672 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3672 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_sync (
  FIL* fp
 )
@@ -4034,7 +6249,7 @@ FRESULT f_sync (
 
  { unlock_fs(fs, res); return res; };
 }
-# 3751 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3751 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_close (
  FIL* fp
 )
@@ -4063,7 +6278,7 @@ FRESULT f_close (
  }
  return res;
 }
-# 3939 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 3939 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_lseek (
  FIL* fp,
  FSIZE_t ofs
@@ -4210,7 +6425,7 @@ FRESULT f_lseek (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4093 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4093 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_opendir (
  DIR* dp,
  const TCHAR* path
@@ -4254,7 +6469,7 @@ FRESULT f_opendir (
    if (res == FR_OK) {
     obj->id = fs->id;
     res = dir_sdi(dp, 0);
-# 4146 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4146 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
    }
   }
   ff_memfree(lfn);
@@ -4264,7 +6479,7 @@ FRESULT f_opendir (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4163 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4163 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_closedir (
  DIR *dp
 )
@@ -4290,7 +6505,7 @@ FRESULT f_closedir (
  }
  return res;
 }
-# 4196 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4196 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_readdir (
  DIR* dp,
  FILINFO* fno
@@ -4338,7 +6553,7 @@ FRESULT f_seekdir(
  }
  return FR_OK;
 }
-# 4301 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4301 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_stat (
  const TCHAR* path,
  FILINFO* fno
@@ -4366,7 +6581,7 @@ FRESULT f_stat (
 
  { unlock_fs(dj.obj.fs, res); return res; };
 }
-# 4336 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4336 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_getfree (
  const TCHAR* path,
  DWORD* nclst,
@@ -4446,7 +6661,7 @@ FRESULT f_getfree (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4423 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4423 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_truncate (
  FIL* fp
 )
@@ -4489,7 +6704,7 @@ FRESULT f_truncate (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4473 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4473 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_unlink (
  const TCHAR* path
 )
@@ -4577,7 +6792,7 @@ FRESULT f_unlink (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4568 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4568 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_mkdir (
  const TCHAR* path
 )
@@ -4663,7 +6878,7 @@ FRESULT f_mkdir (
 
  { unlock_fs(fs, res); return res; };
 }
-# 4661 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 4661 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_rename (
  const TCHAR* path_old,
  const TCHAR* path_new
@@ -4757,7 +6972,7 @@ FRESULT f_rename (
 
  { unlock_fs(fs, res); return res; };
 }
-# 5234 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 5234 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 FRESULT f_mkfs (
  const TCHAR* path,
  BYTE opt,
@@ -5206,7 +7421,7 @@ FRESULT f_mkfs (
 
  return FR_OK;
 }
-# 6068 "../../../components/dfs/filesystems/elmfat/ff.c"
+# 6068 "E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c"
 int elm_get_vol(FATFS *fat)
 {
  int vol;

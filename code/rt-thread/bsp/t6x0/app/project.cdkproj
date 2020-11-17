@@ -13,6 +13,9 @@
     <File Name="entry/main.c">
       <FileOption/>
     </File>
+    <File Name="entry/netcont.c">
+      <FileOption/>
+    </File>
   </VirtualDirectory>
   <VirtualDirectory Name="drivers">
     <File Name="../drivers/drv_ctimer.c">
@@ -349,18 +352,8 @@
     </File>
   </VirtualDirectory>
   <MonitorProgress>
-    <DebugLaunch>100</DebugLaunch>
+    <DebugLaunch>112</DebugLaunch>
   </MonitorProgress>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ;</statistics>
-    <peripheralTabs/>
-    <WatchDisplayFormat>1</WatchDisplayFormat>
-    <LocalDisplayFormat>1</LocalDisplayFormat>
-    <debugLayout/>
-    <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
-  </DebugSessions>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -437,7 +430,7 @@
         <CreateHexFile>yes</CreateHexFile>
         <CreateBinFile>yes</CreateBinFile>
         <Preprocessor>yes</Preprocessor>
-        <Disassmeble>yes</Disassmeble>
+        <Disasm>no</Disasm>
         <CallGraph>yes</CallGraph>
         <Map>yes</Map>
       </Output>
@@ -459,7 +452,7 @@
         <Define/>
         <Undefine/>
         <Optim>Optimize more (-O2)</Optim>
-        <DebugLevel>Default (-g)</DebugLevel>
+        <DebugLevel>Maximum (-g3)</DebugLevel>
         <IncludePath>entry;.;..\drivers;..\libraries\inc;..\..\..\components\drivers\include;..\..\..\components\net\lwip-2.0.2\src;..\..\..\components\net\lwip-2.0.2\src\include;..\..\..\components\net\lwip-2.0.2\src\arch\include;..\libraries\inc\tih;..\libraries\src;..\..\..\include;..\..\..\libcpu\c-sky\ck803;..\..\..\libcpu\c-sky\common;..\..\..\components\dfs\include;..\..\..\components\dfs\filesystems\devfs;..\..\..\components\dfs\filesystems\elmfat;..\..\..\components\dfs\filesystems\net;..\..\..\components\dfs\filesystems\net\select;..\..\..\components\dfs\filesystems\net\socket;..\..\..\components\dfs\filesystems\ramfs;..\..\..\components\dfs\filesystems\romfs;..\..\..\components\finsh;..\..\..\components\libc\compilers\minilibc;..\..\..\components\libc\time;..\..\..\components\net\lwip-2.0.2\src\include\ipv4;..\..\..\components\net\lwip-2.0.2\src\include\netif;..\..\..\packages\netutils-1.0.0\ntp;..\..\..\packages\netutils-1.0.0\ping</IncludePath>
         <OtherFlags> -c -mistack -ffunction-sections -fdata-sections -mno-required-printf</OtherFlags>
         <Verbose>no</Verbose>
@@ -487,11 +480,10 @@
         <LibPath/>
         <OtherFlags/>
         <AutoLDFile>no</AutoLDFile>
-        <LinkType/>
       </Linker>
       <Debug>
         <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
-        <Connector>ICE</Connector>
+        <Connector>Remote ICE</Connector>
         <StopAt>no</StopAt>
         <StopAtText>main</StopAtText>
         <InitFile/>
@@ -504,7 +496,6 @@
         <ConfigICE>
           <IP>localhost</IP>
           <PORT>1025</PORT>
-          <CPUNumber>0</CPUNumber>
           <Clock>12000</Clock>
           <Delay>10</Delay>
           <WaitReset>50</WaitReset>
@@ -536,12 +527,20 @@
         <Program>yes</Program>
         <Verify>no</Verify>
         <ResetAndRun>no</ResetAndRun>
-        <ResetType>Soft Reset</ResetType>
-        <SoftResetVal/>
         <External>no</External>
         <Command/>
         <Arguments/>
       </Flash>
     </BuildConfig>
   </BuildConfigs>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions>;;;</memoryExpressions>
+    <statistics>;;MHZ</statistics>
+    <peripheralTabs/>
+    <WatchDisplayFormat>1</WatchDisplayFormat>
+    <LocalDisplayFormat>1</LocalDisplayFormat>
+    <peripheralsDisFormat>Hex</peripheralsDisFormat>
+    <debugLayout/>
+  </DebugSessions>
 </Project>

@@ -1,4 +1,5 @@
-Obj/net_dfs_net.o: ../../../components/dfs/filesystems/net/dfs_net.c \
+Obj/net_dfs_net.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/dfs_net.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -55,7 +56,7 @@ Obj/net_dfs_net.o: ../../../components/dfs/filesystems/net/dfs_net.c \
  ../../../components/net/lwip-2.0.2/src/arch/include/arch/sys_arch.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/init.h \
  ../../../components/dfs/include/dfs_poll.h \
- ../../../components/dfs/filesystems/net/dfs_net.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/dfs_net.h \
  ../../../components/net/lwip-2.0.2/src/include/net/if.h \
  ../../../components/net/lwip-2.0.2/src/include/netif/ethernetif.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/netif.h \
@@ -200,7 +201,7 @@ rtconfig.h:
 
 ../../../components/dfs/include/dfs_poll.h:
 
-../../../components/dfs/filesystems/net/dfs_net.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/dfs_net.h:
 
 ../../../components/net/lwip-2.0.2/src/include/net/if.h:
 

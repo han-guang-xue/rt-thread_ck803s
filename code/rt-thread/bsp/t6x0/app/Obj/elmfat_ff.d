@@ -1,4 +1,5 @@
-Obj/elmfat_ff.o: ../../../components/dfs/filesystems/elmfat/ff.c \
+Obj/elmfat_ff.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.c \
  ../../../components/libc/compilers/minilibc/string.h \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
@@ -12,10 +13,10 @@ Obj/elmfat_ff.o: ../../../components/dfs/filesystems/elmfat/ff.c \
  ../../../include/libc/libc_signal.h ../../../include/libc/libc_fdset.h \
  ../../../include/rtservice.h ../../../include/rtm.h \
  ../../../components/finsh/finsh_api.h \
- ../../../components/dfs/filesystems/elmfat/ff.h \
- ../../../components/dfs/filesystems/elmfat/integer.h \
- ../../../components/dfs/filesystems/elmfat/ffconf.h \
- ../../../components/dfs/filesystems/elmfat/diskio.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h
 
 ../../../components/libc/compilers/minilibc/string.h:
 
@@ -59,10 +60,10 @@ rtconfig.h:
 
 ../../../components/finsh/finsh_api.h:
 
-../../../components/dfs/filesystems/elmfat/ff.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h:
 
-../../../components/dfs/filesystems/elmfat/integer.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h:
 
-../../../components/dfs/filesystems/elmfat/ffconf.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h:
 
-../../../components/dfs/filesystems/elmfat/diskio.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h:

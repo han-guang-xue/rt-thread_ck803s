@@ -1,5 +1,5 @@
 Obj/netif_ethernetif.o: \
- ../../../components/net/lwip-2.0.2/src/netif/ethernetif.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/net/lwip-2.0.2/src/netif/ethernetif.c \
  ../../../components/net/lwip-2.0.2/src/include/lwip/opt.h \
  ../../../components/net/lwip-2.0.2/src/lwipopts.h rtconfig.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/debug.h \

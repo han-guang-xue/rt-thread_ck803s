@@ -1,4 +1,5 @@
-Obj/time_posix_sleep.o: ../../../components/libc/time/posix_sleep.c \
+Obj/time_posix_sleep.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/libc/time/posix_sleep.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \

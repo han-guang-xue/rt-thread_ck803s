@@ -1,7 +1,9 @@
-Obj/drivers_drv_uart.o: ../drivers/drv_uart.c ../../../include/rthw.h \
- ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
- ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
- ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
+Obj/drivers_drv_uart.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/bsp/t6x0/drivers/drv_uart.c \
+ ../../../include/rthw.h ../../../include/rtthread.h rtconfig.h \
+ ../../../include/rtdebug.h ../../../include/rtdef.h \
+ ../libraries/inc/tih/sysdep.h ../../../include/rtlibc.h \
+ ../../../include/libc/libc_stat.h \
  ../../../components/libc/compilers/minilibc/stdint.h \
  ../../../components/libc/compilers/minilibc/time.h \
  ../../../components/libc/compilers/minilibc/sys/time.h \

@@ -1,5 +1,5 @@
 Obj/ramfs_dfs_ramfs.o: \
- ../../../components/dfs/filesystems/ramfs/dfs_ramfs.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/ramfs/dfs_ramfs.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -29,7 +29,7 @@ Obj/ramfs_dfs_ramfs.o: \
  ../../../components/drivers/include/drivers/serial.h \
  ../../../components/dfs/include/dfs_fs.h \
  ../../../components/dfs/include/dfs_file.h \
- ../../../components/dfs/filesystems/ramfs/dfs_ramfs.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/ramfs/dfs_ramfs.h
 
 ../../../include/rtthread.h:
 
@@ -111,4 +111,4 @@ rtconfig.h:
 
 ../../../components/dfs/include/dfs_file.h:
 
-../../../components/dfs/filesystems/ramfs/dfs_ramfs.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/ramfs/dfs_ramfs.h:

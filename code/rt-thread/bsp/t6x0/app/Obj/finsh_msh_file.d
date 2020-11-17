@@ -1,4 +1,5 @@
-Obj/finsh_msh_file.o: ../../../components/finsh/msh_file.c \
+Obj/finsh_msh_file.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh_file.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -13,7 +14,7 @@ Obj/finsh_msh_file.o: ../../../components/finsh/msh_file.c \
  ../../../components/finsh/finsh_api.h ../../../components/finsh/finsh.h \
  ../../../components/finsh/finsh_api.h \
  ../../../components/libc/compilers/minilibc/string.h \
- ../../../components/finsh/msh.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h \
  ../../../components/dfs/include/dfs_posix.h \
  ../../../components/dfs/include/dfs_file.h \
  ../../../components/dfs/include/dfs.h ../../../include/rthw.h \
@@ -78,7 +79,7 @@ rtconfig.h:
 
 ../../../components/libc/compilers/minilibc/string.h:
 
-../../../components/finsh/msh.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/finsh/msh.h:
 
 ../../../components/dfs/include/dfs_posix.h:
 

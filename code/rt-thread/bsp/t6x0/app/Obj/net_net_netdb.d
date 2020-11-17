@@ -1,5 +1,6 @@
-Obj/net_net_netdb.o: ../../../components/dfs/filesystems/net/net_netdb.c \
- ../../../components/dfs/filesystems/net/netdb.h \
+Obj/net_net_netdb.o: \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/net_netdb.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/netdb.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/opt.h \
  ../../../components/net/lwip-2.0.2/src/lwipopts.h rtconfig.h \
@@ -37,7 +38,7 @@ Obj/net_net_netdb.o: ../../../components/dfs/filesystems/net/net_netdb.c \
  ../../../components/net/lwip-2.0.2/src/include/lwip/err.h \
  ../../../components/net/lwip-2.0.2/src/include/lwip/errno.h
 
-../../../components/dfs/filesystems/net/netdb.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/net/netdb.h:
 
 ../../../components/net/lwip-2.0.2/src/include/lwip/netdb.h:
 

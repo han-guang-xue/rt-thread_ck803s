@@ -1,5 +1,5 @@
 Obj/elmfat_dfs_elm.o: \
- ../../../components/dfs/filesystems/elmfat/dfs_elm.c \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/dfs_elm.c \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -12,9 +12,9 @@ Obj/elmfat_dfs_elm.o: \
  ../../../include/libc/libc_signal.h ../../../include/libc/libc_fdset.h \
  ../../../include/rtservice.h ../../../include/rtm.h \
  ../../../components/finsh/finsh_api.h \
- ../../../components/dfs/filesystems/elmfat/ffconf.h \
- ../../../components/dfs/filesystems/elmfat/ff.h \
- ../../../components/dfs/filesystems/elmfat/integer.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h \
  ../../../components/libc/compilers/minilibc/string.h \
  ../../../components/dfs/include/dfs_fs.h \
  ../../../components/dfs/include/dfs.h ../../../include/rthw.h \
@@ -33,7 +33,7 @@ Obj/elmfat_dfs_elm.o: \
  ../../../components/drivers/include/drivers/serial.h \
  ../../../components/dfs/include/dfs_file.h \
  ../../../components/finsh/finsh.h ../../../components/finsh/finsh_api.h \
- ../../../components/dfs/filesystems/elmfat/diskio.h
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h
 
 ../../../include/rtthread.h:
 
@@ -75,11 +75,11 @@ rtconfig.h:
 
 ../../../components/finsh/finsh_api.h:
 
-../../../components/dfs/filesystems/elmfat/ffconf.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ffconf.h:
 
-../../../components/dfs/filesystems/elmfat/ff.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/ff.h:
 
-../../../components/dfs/filesystems/elmfat/integer.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/integer.h:
 
 ../../../components/libc/compilers/minilibc/string.h:
 
@@ -125,4 +125,4 @@ rtconfig.h:
 
 ../../../components/finsh/finsh_api.h:
 
-../../../components/dfs/filesystems/elmfat/diskio.h:
+E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/diskio.h:

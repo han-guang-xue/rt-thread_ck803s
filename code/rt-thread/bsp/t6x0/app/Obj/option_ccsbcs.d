@@ -1,6 +1,6 @@
 Obj/option_ccsbcs.o: \
- ../../../components/dfs/filesystems/elmfat/option/ccsbcs.c \
- ../../../components/dfs/filesystems/elmfat/option/../ff.h \
+ E:/YCXGIT/T6x0_RTOS_SDK_V0.9.3_b1/T6x0_RTOS_SDK_V0.9.3/code/rt-thread/components/dfs/filesystems/elmfat/option/ccsbcs.c \
+ e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\ff.h \
  ../../../include/rtthread.h rtconfig.h ../../../include/rtdebug.h \
  ../../../include/rtdef.h ../libraries/inc/tih/sysdep.h \
  ../../../include/rtlibc.h ../../../include/libc/libc_stat.h \
@@ -13,10 +13,10 @@ Obj/option_ccsbcs.o: \
  ../../../include/libc/libc_signal.h ../../../include/libc/libc_fdset.h \
  ../../../include/rtservice.h ../../../include/rtm.h \
  ../../../components/finsh/finsh_api.h \
- ../../../components/dfs/filesystems/elmfat/option/../integer.h \
- ../../../components/dfs/filesystems/elmfat/option/../ffconf.h
+ e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\integer.h \
+ e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\ffconf.h
 
-../../../components/dfs/filesystems/elmfat/option/../ff.h:
+e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\ff.h:
 
 ../../../include/rtthread.h:
 
@@ -58,6 +58,6 @@ rtconfig.h:
 
 ../../../components/finsh/finsh_api.h:
 
-../../../components/dfs/filesystems/elmfat/option/../integer.h:
+e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\integer.h:
 
-../../../components/dfs/filesystems/elmfat/option/../ffconf.h:
+e:\ycxgit\t6x0_rtos_sdk_v0.9.3_b1\t6x0_rtos_sdk_v0.9.3\code\rt-thread\components\dfs\filesystems\elmfat\ffconf.h:
